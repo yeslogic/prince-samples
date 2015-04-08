@@ -1,0 +1,646 @@
+<html>
+<!--
+    vim: ts=4 sw=4 expandtab
+-->
+<head>
+<title>The Mercury Programming Language</title>
+<link rel="stylesheet" href="mfug.css"/>
+</head>
+<body>
+
+<div class="centerpage"><div>
+<h1>The Mercury Programming Language</h1>
+<!-- <div class="image"><img src="logo.png" width="25%"/></div> -->
+<h2 class="subtitle">Paul Bone<br/> based on slides by Zoltan Somogyi</h2>
+</div></div>
+
+<div class="slide">
+<h2>Mercury from 30,000ft</h2>
+
+<p>
+Mercury is a purely declarative logic/functional programming language.
+It is aimed at <em>programming in the large</em>.
+</p>
+
+<p class="quote">
+Mercury <em>looks</em> like <strong>Prolog</strong>,
+but it <em>feels</em> like strict <strong>Haskell</strong> or
+pure <strong>OCaml</strong>
+</p>
+
+</div>
+
+<div class="slide">
+<h2>Goals</h2>
+
+<p>
+Declarative programming (for example in <strong>Prolog</strong>) has always
+been very powerful.  However creating <em>large</em> pieces of software is
+difficult.
+</p>
+
+<p>
+We aim to make <em>programming in the large</em> easier:
+</p>
+
+<ul>
+<li>large programs</li>
+<li>large teams</li>
+<li>better program reliability</li>
+<li>better program maintainability</li>
+<li>program efficiency</li>
+</ul>
+
+<!--
+These objectives mesh well together:
+the language features that help programmers
+(the information in declarations, the absence of side-effects)
+help the compiler as well in generating efficient code.
+-->
+
+</div>
+
+<div class="slide">
+<h2>This talk</h2>
+
+<p>
+I do not have enough time to teach you Mercury.
+</p>
+
+<p>
+Instead I will aim to give a guided tour of Mercury's main features,
+and how it differs from languages you may be familiar with.
+</p>
+
+<p>
+Time permitting I will introduce two very cool Mercury technologies:
+</p>
+
+<ul>
+<li>declarative debugging, and</li>
+<li>automatic parallelization.</li>
+</ul>
+
+<p>
+The <em>purity</em> of Mercury is key
+in making both of these feasible.
+</p>
+</div>
+
+<div class="slide">
+<h2>Some syntax</h2>
+
+<p>
+<code>fibs/2</code> is the hello world of declarative programming.
+<span class="hl1">F</span> is the <span class="hl2">N</span>th fibbonachi
+number.
+</p>
+
+<code><pre>
+fibs(<span class="hl1">N</span>, <span class="hl2">F</span>) :-
+    ( N &lt; 2 -&gt;
+        F = 1
+    ;
+        fibs(N - 1, FA),
+        fibs(N - 2, FB),
+        F = FA + FB
+    ).
+</pre></code>
+
+<p>
+<strong>Predicates</strong> do not have return values per-say.
+They are either <em>true</em> or <em>false</em> for a given set of
+arguments.
+Arguments may be either
+<span class="hl1">input</span> or <span class="hl2">output</span>.
+</p>
+
+
+</div>
+
+<div class="slide">
+<h2>Some syntax</h2>
+
+<p>
+<code>fibs/2</code> is the hello world of declarative programming.
+<span class="math">F</span> is the <span class="math">N</span>th Fibonacci
+number.
+</p>
+
+<code><pre>
+fibs(N, F) :-
+    ( N &lt; 2 -&gt;
+        F = 1
+    ;
+        fibs(N - 1, FA)<span class="hl">,</span>
+        fibs(N - 2, FB)<span class="hl">,</span>
+        F = FA + FB
+    ).
+</pre></code>
+
+<p>
+A <strong>clause</strong> is made up of <strong>goals</strong> and goals can
+be
+<em>conjoined</em> (logical AND) with a <code><span class="hl">,</span></code>
+and
+<em>disjoined</em> (logical OR) with a <code><span class="hl">;</span></code>.
+</p>
+
+</div>
+
+<div class="slide">
+<h2>Some syntax</h2>
+
+<p>
+<code>fibs/2</code> is the hello world of declarative programming.
+<span class="math">F</span> is the <span class="math">N</span>th Fibonacci
+number.
+</p>
+
+<code><pre>
+fibs(N, F) :-
+    ( N &lt; 2 <span class="hl">-&gt;</span>
+        F = 1
+    <span class="hl">;</span>
+        fibs(N - 1, FA),
+        fibs(N - 2, FB),
+        F = FA + FB
+    ).
+</pre></code>
+
+<p>
+This code also uses an <em>if-then-else</em> which joins three goals:
+</p>
+
+<div class="formula">
+<span class="math">Condition</span> <code>-&gt;</code>
+<span class="math">Then</span> <code>;</code>
+<span class="math">Else</span>
+</div>
+
+</div>
+
+<div class="slide">
+<h2>Purity</h2>
+
+<p>
+Imperative programs are based on side effects.
+You call a function such as
+</p>
+
+<code>strcat(str1, str2);</code>
+
+<p>
+and it returns a value, but the <em>reason</em> you call it is for its side
+effect (modifying str1).
+</p>
+
+</div>
+
+<div class="slide">
+<h2>Purity</h2>
+
+<p>
+Purely declarative programs have <em>no</em> <strong>side effects</strong>.
+If a predicate has an <strong>effect</strong>, it has to be 
+reflected in its <strong>argument list</strong>.
+</p>
+
+<code><pre>
+hello(<span class="hl">IO0</span>, <span class="hl">IO</span>) :-
+    io.write_string("Hello, ", <span class="hl">IO0</span>, <span class="hl">IO1</span>),
+    io.write_string("world\n", <span class="hl">IO1</span>, <span class="hl">IO</span>).
+</pre></code>
+
+<p>
+Because a predicate can return more than one item,
+it is easy to work with more than one <em>state</em>.
+</p>
+
+<p class="footnote">
+In purely declarative languages, data structures are
+<strong>immutable</strong>.
+Instead of updating an existing data structure,
+programs create slight variants of existing data structures,
+typically reusing <em>almost all their memory</em>.
+</p>
+</div>
+
+<div class="slide">
+<h2>Purity</h2>
+
+<p>
+Typing out all the intermediate versions of a value can become tedious.
+</p>
+
+<code><pre>
+hello(<span class="hl">IO0</span>, <span class="hl">IO</span>) :-
+    io.write_string("Hello, ", <span class="hl">IO0</span>, <span class="hl">IO1</span>),
+    io.write_string("world\n", <span class="hl">IO1</span>, <span class="hl">IO</span>).
+</pre></code>
+
+<p>
+So we created a useful syntactic sugar:
+</p>
+
+<code><pre>
+hello(<span class="hl">!IO</span>) :-
+    io.write_string("Hello, ", <span class="hl">!IO</span>),
+    io.write_string("world\n", <span class="hl">!IO</span>).
+</pre></code>
+
+<p>
+It is now easy to update this code without renumbering all the variables.
+</p>
+</div>
+
+<div class="slide">
+<h2>Types</h2>
+
+<p>
+Mercury has a <em>strong</em>, <em>static</em> type system similar to
+Haskell's.
+</p>
+
+<p>
+There are several built-in types (<code>int</code>,
+<code>float</code>, <code>char</code>...).
+Developers can define new types easily.
+</p>
+
+<code style="font-size: 80%"><pre>
+:- type <span class="hl">playing_card</span>
+    ---&gt;    normal_card(
+                c_suit      :: <span class="hl">suit</span>,
+                c_num       :: <span class="hl">int</span>
+            )
+    ;       joker.
+
+:- type <span class="hl">suit</span>
+    ---&gt;    heart
+    ;       diamond
+    ;       spade
+    ;       club.
+</pre></code>
+
+</div>
+
+<div class="slide">
+<h2>Types</h2>
+
+<p>
+A predicate's arguments' types are declared in its <code>pred</code>
+declaration.
+</p>
+
+<code><pre>
+:- pred fibs(<span class="hl">int</span>, <span class="hl">int</span>).
+
+fibs(N, F) :-
+    ( N &lt; 2 -&gt;
+        F = 1
+    ;
+        fibs(N - 1, FA),
+        fibs(N - 2, FB),
+        F = FA + FB
+    ).
+</pre></code>
+
+</div>
+
+<div class="slide">
+<h2>Modes</h2>
+
+<p>
+The basic modes are <code>in</code> and <code>out</code>.
+</p>
+
+<code><pre>
+:- pred fibs(int, int).
+:- mode fibs(<span class="hl">in</span>, <span class="hl">out</span>).
+</pre></code>
+
+<p>
+When there is a single mode for a predicate we can write this more
+succinctly:
+</p>
+
+<code><pre>
+:- pred fibs(int::<span class="hl">in</span>, int::<span class="hl">out</span>).
+</pre></code>
+
+</div>
+
+<div class="slide">
+<h2>Modes</h2>
+
+<p>
+<code>in</code> and <code>out</code> are defined as:
+</p>
+
+<code><pre>
+:- mode in  == ground &gt;&gt; ground.
+:- mode out == free &gt;&gt; ground.
+</pre></code>
+
+<p>
+Where <code>free</code> means <em>doesn't have a value</em>,
+and <code>ground</code> means <em>has a value</em>.
+These are <strong>instantiation states</strong>.
+</p>
+
+</div>
+
+<div class="slide">
+<h2>Modes</h2>
+
+<p>
+Modes can also be used to track <strong>uniqueness</strong>.
+These modes are <code>di</code> for <strong>destructive input</strong>
+and <code>uo</code> for <strong>destructive output</strong>.
+</p>
+
+<code><pre>
+:- pred hello(io::<span class="hl">di</span>, io::<span class="hl">uo</span>).
+</pre></code>
+
+<p>
+They are defined as:
+</p>
+
+<code><pre>
+:- mode <span class="hl">di</span> == unique &gt;&gt; clobbered.
+:- mode <span class="hl">uo</span> == free &gt;&gt; unique.
+</pre></code>
+
+<p>
+<code>clobbered</code> means that the memory that used to contain a value
+has been written-over: a program cannot read it's value.
+In practice the <code>io</code> type is special: it is optimised away and
+doesn't consume any memory.
+</p>
+
+</div>
+
+<!--
+<div class="slide">
+<h2>Fancy Modes</h2>
+
+<p>
+<em>In theory</em> Mercury (the language) supports partial instantiation,
+however <em>in practice</em> this isn't officially supported.
+If it works you got lucky.
+</p>
+
+</div>
+-->
+
+<div class="slide">
+<h2>Genealogy Example</h2>
+
+<code><pre>
+:- pred mother(person, person).
+:- mode mother(in, out).
+:- mode mother(out, in).
+
+mother(paul,  faye).
+mother(james, faye).
+</code></pre>
+
+<p>
+This predicate has two modes.
+We can call it in either mode:
+</p>
+
+<ul>
+<li>
+Who is Paul's mother?<br/>
+<code>mother(paul, M)</code>
+</li>
+<li>
+Who is Faye the mother of?<br/>
+<code>mother(C, faye)</code>
+</li>
+</ul>
+
+</div>
+
+<div class="slide">
+<h2>Determinisms</h2>
+
+<code><pre>
+:- pred mother(person, person).
+:- mode mother(in, out) is <span class="hl1">det</span>.
+:- mode mother(out, in) is <span class="hl2">nondet</span>.
+
+mother(paul,  faye).
+mother(james, faye).
+</code></pre>
+
+<p>
+The second <strong>mode</strong> may have multiple answers or none at all
+so it it <strong>nondeterministic</strong>,
+we indicate this with <code>is <span class="hl2">nondet</span></code>.
+</p>
+<p>
+The first <strong>mode</strong> has exactly one answer it <code>is <span
+class="hl1">det</span></code>. 
+</p>
+
+<p class="footnote">
+<strong>Fun Science Fact:</strong>
+A person may have two <em>biological</em> mothers when they have their
+normal DNA from one woman and their mitochondrial DNA from another woman.
+<p>
+
+</div>
+
+<div class="slide">
+<h2>Disjunction syntax</h2>
+
+<p>These are equivalent:</p>
+
+<table style="font-size: 90%">
+<tr>
+<td>
+<code><pre>
+mother(paul,  faye).
+mother(james, faye).
+</code></pre>
+</td>
+
+<td>
+<code><pre>
+mother(C, M) :-
+    M = faye,
+    (
+        C = paul
+    ;
+        C = james
+    ).
+</code></pre>
+</td>
+</tr>
+</table>
+
+<p>
+Whether you write one clause containing disjunctions or multiple clauses
+depends on the kind of thing you're expressing.
+In this case using <strong>facts</strong> (clauses without bodies) is clearer.
+</p>
+
+</div>
+
+<div class="slide">
+<h2>Determinisms</h2>
+
+<p>
+There are six basic <strong>determinisms</strong>.
+They form a matrix based on what they allow
+</p>
+
+<table>
+<tr>
+<td></td>
+<th>
+at most zero solutions
+</th>
+<th>
+at most one solution
+</th>
+<th>
+no limit
+</th>
+</tr>
+<tr><th>cannot fail</th><td><code>erroneous</code></td><td><code>det</code></td><td><code>multi</code></td></tr>
+<tr><th>can fail</th><td><code>failure</code></td><td><code>semidet</code></td><td><code>nondet</code></td></tr>
+</table>
+
+<p>
+The two remaining determinisms <code>cc_multi</code> and
+<code>cc_nondet</code> are used in <strong>committed choice</strong>
+contexts.
+</p>
+
+</div>
+
+<div class="slide">
+<h2>Geneology Example</h2>
+
+<p>
+<strong>Nondeterministic search</strong> can be a very useful programming
+tool:
+</p>
+
+<code style="font-size: 80%"><pre>
+mother(paul,  faye).
+mother(james, faye).
+
+parent(C, P) :-
+    mother(C, P).
+parent(C, P) :-
+    father(C, P).
+
+sibling(A, B) :-
+    parent(A, P),
+    parent(B, P).
+</pre></code>
+
+<p>
+Mercury generates specialised code for each <strong>mode</strong> of each
+<strong>predicate</strong>.
+</p>
+
+</div>
+
+<div class="slide">
+<h2>IO</h2>
+
+<p>
+Using predicates and modes we can now make IO <em>safe</em> in this purely
+declarative language.
+</p>
+
+<code><pre>
+:- pred main(io::di, io::uo) is det.
+
+main(!IO) :-
+    write_string("Hello ", !IO),
+    write_string("World\n", !IO).
+</pre></code>
+
+<ul>
+<li>The <strong>mode system</strong> ensures that we can't reference an old
+version of IO (because it's <strong>clobbered</strong>)</li>
+<li>the <strong>determinism system</strong> ensures that we cannot
+<em>backtrack</em> over IO (because code is <strong>det</strong>)</li>
+</ul>
+
+</div>
+
+<div class="slide"><h2>An old version of a state variable</h2>
+
+<p>
+An old version of <code>!IO</code> that's impossible (mode system).
+But an old version of some other <code>!StateVariable</code>,
+that's easy!
+</p>
+
+<dl>
+    <dt><code>!Name</code></dt><dd>stands for both <strong>current</strong> and <strong>next</strong> variables,</dd>
+    <dt><code>!.Name</code></dt><dd>stands for only the <strong>current</strong> variable</dd>
+    <dt><code>!:Name</code></dt><dd>stands for only the <strong>next</strong> variable</dd>
+</dl>
+
+</div>
+
+<div class="slide"><h2>An old version of a state variable</h2>
+
+<p>
+An old version of <code>!IO</code> that's impossible (mode system).
+But an old version of some other <code>!StateVariable</code>,
+that's easy!
+</p>
+
+<p>
+Before we do something complex, we can save a copy of the state in the state
+variable.
+</p>
+<code><pre>
+    SavedState = !.MyProgramsState,
+</pre></code>
+
+<p>
+Now, if the user clicks "undo" I can restore that old state.
+</p>
+
+<code><pre>
+    !:MyProgramsState = SavedState
+</pre></code>
+
+</div>
+
+<div class="slide"><h2>Higher order programming</h2>
+
+<p>
+Mercury supports the usual <strong>higher order</strong> programming features.
+</p>
+
+<code><pre>
+:- type list(T)
+    ---&gt;    [ T | list(T) ]
+    ;       [].
+
+:- pred map(pred(T, U),           list(T), list(U)).
+:- mode map(pred(in, out) is det, in,      out) is det.
+
+map(_, [], []).
+map(P, [X | Xs], [Y | Ys]) :-
+    P(X, Y),
+    map(P, Xs, Ys).
+</pre></code>
+
+</div>
+
+</body>
+</html>

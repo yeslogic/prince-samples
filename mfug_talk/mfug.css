@@ -1,0 +1,114 @@
+@page {
+    size: 1280px 960px;
+    @bottom-left {
+        content: "The Mercury Programming Language";
+    }
+    @bottom-right {
+        content: counter(page);
+    }
+    background: black;
+    color: white;
+    font-family: sans-serif;
+    font-size: 16pt;
+}
+
+@page:first { 
+    @bottom-left { content: normal }
+    @bottom-right { content: normal }
+}
+
+div.centerpage {
+    margin-top: 25%;
+}
+
+body {
+    font-size: 28pt;
+    font-family: DejaVu Sans, sans-serif;
+    color: white;
+}
+
+code, code pre {
+    font-family: Source Code Pro, monospace;
+}
+
+h1 {
+    font-size: 142%;
+}
+
+h2 {
+    font-size: 120%;
+}
+
+h3 {
+    font-size: 110%;
+}
+
+h1, h2.subtitle {
+    text-align: center;
+}
+
+h1, h2, h3 {
+    font-weight: bold;
+    color: #839CA5
+}
+
+div.slide {
+    page-break-before: always;
+}
+
+p.quote {
+    text-align: center;
+    font-size: 110%;
+    margin: 4em;
+}
+
+p.footnote {
+    font-size: 80%;
+    float: bottom;
+}
+
+div.formula {
+    text-align: center;
+}
+
+div.image, div.table {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+}
+
+table.results td.label {
+    text-align: left;
+    font-weight: bold;
+}
+
+table.results td {
+    text-align: right;
+}
+
+span.math {
+    font-style: italic;
+    font-family: serif;
+}
+
+span.hl, span.hl1, span.hl2 {
+    font-weight: bold;
+}
+span.hl {
+    color: red;
+}
+
+span.hl1 {
+    color: red;
+}
+
+span.hl2 {
+    color: green;
+}
+
+li {
+    margin-top: 0.5em;
+}
+
