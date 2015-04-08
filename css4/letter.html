@@ -1,0 +1,106 @@
+<html>
+<head>
+<style>
+@import url(http://fonts.googleapis.com/css?family=Lato);
+@import url(http://fonts.googleapis.com/css?family=Fanwood+Text:400,400italic);
+@import url(http://fonts.googleapis.com/css?family=Pinyon+Script);
+
+@page {
+  size: letter;
+  margin: 1in 1in 0.8in 1in;
+}
+
+@media screen {
+  html { background: #eee }
+  body { 
+    max-width: 50em; 
+    border: thin solid black;
+    padding: 4em; 
+    margin: 2em auto 2em;
+    box-shadow: 5px 5px 5px black; 
+    background: white;
+  }
+  footer { margin-top: 10em }
+}
+
+body { 
+  font: 11pt/1.4 Lato, sans-serif;
+  text-align: justify;
+  hyphens: auto; 
+}
+
+#from { 
+  font: italic 20pt/1.2 "Fanwood Text", serif;
+  display: block;
+  white-space: pre;
+  text-align: center;
+  margin: 0 0 3em;
+}
+
+#signature {
+  font: 30pt/0.8 "Pinyon Script";
+}
+
+#to { margin: 5em 0 }
+#date { margin: 5em 0 2em 60% }
+#opening { margin: 3em 0 3em}
+#message { margin: 3em 0 3em }
+#closing { margin: 5em 0 1em 60% }
+#signature { margin: 0 2em 0 57% }
+#undersigned { margin: 0 0 2em 60% }
+
+footer {
+  float: bottom;
+  text-align: center;
+}
+
+#from, #to, #opening, #closing, #undersigned { white-space: pre-line }
+</style>
+</head>
+
+<body onload="finddate();">
+
+<div id=from>
+Campaign for 
+Better Typography
+in Movies
+</div>
+
+<div id=to>
+Motion Picture Association Of America, Inc.
+15503 Ventura Boulevard
+Encino, California 91436
+</div>
+
+<div id=date></div>
+
+<div id=opening>Dear MPAA,</div>
+
+<div id=message><p>I write you this letter voice my support for the
+campaign for better typography in movies. I would like to ensure that
+all text, numbering, signs and credits in movies are given
+professional typographical treatment. This will enhance the enjoyment
+of all viewers, including myself. Please take advantage of recent
+progress in the areas of anti-aliasing, kerning and ligatures.</div>
+
+<div id=closing>Sincerely,</div>
+<div id=signature>Cas Lon</div>
+<div id=undersigned>Cas Lon</div>
+
+<footer>Campaign for Better Typography · 1 Leading Lane · 23456 Baskerville</footer>
+
+<script>
+function finddate()
+{
+  var datecontainer = document.getElementById('date');
+
+  var now = new Date();
+  var day = ("0" + now.getDate()).slice(-2);
+  var month = ("0" + (now.getMonth() + 1)).slice(-2);
+  var today = now.getFullYear() + "-" + (month) + "-" + (day);
+  datecontainer.innerHTML = now.getFullYear() + "-" + (month) + "-" + (day);
+}
+</script>
+
+</body>
+</html>

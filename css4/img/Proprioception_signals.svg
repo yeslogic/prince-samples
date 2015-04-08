@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+]>
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="917px" height="436px" viewBox="-0.37 -0.958 917 436" enable-background="new -0.37 -0.958 917 436"
+	 xml:space="preserve">
+<defs>
+</defs>
+<g>
+	<text transform="matrix(1 0 0 1 223.6631 65.1274)"><tspan x="0" y="0" fill="#757679" font-family="'Arial-ItalicMT'" font-size="15">Force</tspan><tspan x="0" y="18" fill="#757679" font-family="'Arial-ItalicMT'" font-size="15">control</tspan><tspan x="0" y="36" fill="#757679" font-family="'Arial-ItalicMT'" font-size="15">signal</tspan></text>
+</g>
+<g>
+	<text transform="matrix(1 0 0 1 223.6631 210.1274)"><tspan x="0" y="0" fill="#757679" font-family="'Arial-ItalicMT'" font-size="15">Driving</tspan><tspan x="0" y="18" fill="#757679" font-family="'Arial-ItalicMT'" font-size="15">signal</tspan></text>
+</g>
+<g>
+	<text transform="matrix(1 0 0 1 223.6631 363.7168)"><tspan x="0" y="0" fill="#757679" font-family="'Arial-ItalicMT'" font-size="15">Length</tspan><tspan x="0" y="18" fill="#757679" font-family="'Arial-ItalicMT'" font-size="15">control</tspan><tspan x="0" y="36" fill="#757679" font-family="'Arial-ItalicMT'" font-size="15">signal</tspan></text>
+</g>
+<text transform="matrix(1 0 0 1 726.5708 240.5811)" font-family="'ArialMT'" font-size="15">Load</text>
+<g>
+	<text transform="matrix(1 0 0 1 681.1626 136.3779)"><tspan x="0" y="0" fill="#757679" font-family="'Arial-ItalicMT'" font-size="15">External</tspan><tspan x="0" y="18" fill="#757679" font-family="'Arial-ItalicMT'" font-size="15">forces</tspan></text>
+</g>
+<text transform="matrix(1 0 0 1 517.0347 231.5815)"><tspan x="0" y="0" font-family="'ArialMT'" font-size="15">Tendon</tspan><tspan x="0" y="18" font-family="'ArialMT'" font-size="15">organs</tspan></text>
+<text transform="matrix(1 0 0 1 596.1626 230.5815)" fill="#757679" font-family="'ArialMT'" font-size="15">Muscle force</text>
+<g>
+	<text transform="matrix(1 0 0 1 779.9126 207.6274)"><tspan x="0" y="0" fill="#757679" font-family="'ArialMT'" font-size="15">Muscle</tspan><tspan x="0" y="18" fill="#757679" font-family="'ArialMT'" font-size="15">length</tspan></text>
+</g>
+<text transform="matrix(1 0 0 1 408.8828 100.7539)" fill="#757679" font-family="'ArialMT'" font-size="15">Force feedback</text>
+<text transform="matrix(1 0 0 1 350.2847 319.1484)"><tspan x="0" y="0" fill="#757679" font-family="'ArialMT'" font-size="15">Length &amp;</tspan><tspan x="0" y="18" fill="#757679" font-family="'ArialMT'" font-size="15">velocity</tspan><tspan x="0" y="36" fill="#757679" font-family="'ArialMT'" font-size="15">feedback</tspan></text>
+<text transform="matrix(1 0 0 1 408.8823 82.6274)" fill="#ED1C24" font-family="'Arial-ItalicMT'" font-size="15">Force (Golgi tendon organ)</text>
+<text transform="matrix(1 0 0 1 448.0283 364.7529)" font-family="'ArialMT'" font-size="15">Spindles</text>
+<g>
+	<text transform="matrix(1 0 0 1 368.6631 430.1641)" fill="#757679" font-family="'ArialMT'" font-size="15">Gamma bias</text>
+</g>
+<text transform="matrix(1 0 0 1 16.6333 298.8779)"><tspan x="0" y="0" fill="#ED1C24" font-family="'Arial-ItalicMT'" font-size="15">Length (secondary muscle-spindel afferents)</tspan><tspan x="-16.633" y="18" fill="#ED1C24" font-family="'Arial-ItalicMT'" font-size="15">Length error (primary muscle-spindel afferents)</tspan><tspan x="12.561" y="36" fill="#ED1C24" font-family="'Arial-ItalicMT'" font-size="15">Velocity (primary muscle-spindel afferents)</tspan></text>
+<path d="M320.414,233.945h1.824l-1.429,4.999c-0.095,0.315-0.245,0.81-0.45,1.483c0.278,1.128,0.487,1.802,0.626,2.021
+	c0.264,0.403,0.597,0.604,1,0.604c0.293,0,0.564-0.121,0.813-0.363s0.414-0.619,0.495-1.131h0.439
+	c-0.103,1.055-0.324,1.783-0.665,2.186c-0.34,0.403-0.734,0.604-1.181,0.604c-0.418,0-0.797-0.176-1.137-0.527
+	c-0.341-0.352-0.646-1.105-0.917-2.263c-0.322,0.637-0.637,1.12-0.945,1.45c-0.432,0.454-0.901,0.792-1.406,1.016
+	c-0.505,0.223-1.081,0.335-1.725,0.335c-1.619,0-2.809-0.539-3.57-1.615c-0.762-1.077-1.143-2.304-1.143-3.681
+	c0-1.611,0.447-2.917,1.34-3.917c0.894-1,1.941-1.5,3.142-1.5c0.835,0,1.571,0.254,2.208,0.763c0.638,0.509,1.216,1.456,1.736,2.84
+	L320.414,233.945z M319.084,238.482c-0.396-1.509-0.905-2.562-1.527-3.159c-0.623-0.597-1.256-0.896-1.9-0.896
+	c-0.718,0-1.315,0.394-1.791,1.181c-0.476,0.787-0.714,2.042-0.714,3.763c0,1.018,0.103,1.818,0.308,2.4
+	c0.205,0.583,0.515,1.033,0.928,1.352c0.414,0.318,0.852,0.478,1.313,0.478c0.564,0,1.08-0.26,1.549-0.78
+	C317.887,242.119,318.499,240.672,319.084,238.482z"/>
+<circle fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" cx="317.218" cy="236.581" r="25"/>
+<path d="M320.007,407.528h1.835c-0.117,0.264-0.722,1.516-1.813,3.758c-0.455,0.938-0.78,1.647-0.978,2.131
+	c-0.088,0.197-0.187,0.414-0.296,0.648l-1.264,2.702c0.051,0.469,0.088,0.901,0.11,1.297s0.033,0.754,0.033,1.076
+	c0,0.996-0.073,1.766-0.22,2.308c-0.103,0.381-0.238,0.643-0.406,0.785s-0.352,0.215-0.549,0.215c-0.242,0-0.456-0.104-0.643-0.309
+	c-0.187-0.205-0.28-0.469-0.28-0.791c0-0.563,0.113-1.214,0.34-1.949c0.227-0.736,0.564-1.563,1.011-2.478
+	c-0.535-3.75-0.961-6.014-1.28-6.79c-0.318-0.776-0.76-1.164-1.324-1.164c-0.344,0-0.615,0.104-0.813,0.313
+	c-0.198,0.209-0.348,0.68-0.451,1.412h-0.428c-0.007-0.22-0.011-0.385-0.011-0.494c0-1.011,0.198-1.772,0.594-2.285
+	c0.3-0.381,0.703-0.571,1.208-0.571c0.439,0,0.798,0.132,1.077,0.396c0.38,0.373,0.721,1.187,1.021,2.438
+	c0.381,1.626,0.677,3.396,0.89,5.307l0.967-3.263C318.77,410.755,319.327,409.191,320.007,407.528z"/>
+<circle fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" cx="317.218" cy="410.165" r="23.75"/>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" x1="224.914" y1="237.628" x2="281.088" y2="237.628"/>
+		<g>
+			<polygon points="289.914,237.628 277.477,242.71 280.428,237.628 277.477,232.548 			"/>
+		</g>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 416.4722 240.5811)" font-family="'ArialMT'" font-size="15">Muscle</text>
+<rect x="407.104" y="219.706" fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" width="66.25" height="33.75"/>
+<rect x="507.792" y="212.831" fill="none" stroke="#000000" stroke-width="1.4469" stroke-miterlimit="10" width="67.697" height="47.5"/>
+<rect x="718.256" y="215.956" fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" width="50" height="41.25"/>
+<text transform="matrix(1 0 0 1 297.6138 100.7539)"><tspan x="0" y="0" font-family="'ArialMT'" font-size="15">Inter-</tspan><tspan x="0" y="18" font-family="'ArialMT'" font-size="15">neurons</tspan></text>
+<rect x="284.718" y="78.878" fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" width="80" height="53.75"/>
+<rect x="433.048" y="342.628" fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" width="87.5" height="36.25"/>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" x1="342.218" y1="236.581" x2="398.279" y2="236.581"/>
+		<g>
+			<polygon points="407.104,236.581 394.668,241.663 397.619,236.581 394.668,231.5 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" x1="473.354" y1="236.581" x2="498.966" y2="236.581"/>
+		<g>
+			<polygon points="507.792,236.581 495.356,241.663 498.307,236.581 495.356,231.5 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" x1="575.49" y1="236.581" x2="708.587" y2="236.581"/>
+		<g>
+			<polygon points="717.414,236.581 704.977,241.663 707.928,236.581 704.977,231.5 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<polyline fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" points="701.164,157.628 701.164,219.706 
+			708.587,219.706 		"/>
+		<g>
+			<polygon points="717.414,219.706 704.977,224.788 707.928,219.706 704.977,214.625 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" x1="768.256" y1="236.581" x2="808.587" y2="236.581"/>
+		<g>
+			<polygon points="817.414,236.581 804.977,241.663 807.928,236.581 804.977,231.5 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<polyline fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" points="541.641,211.378 541.641,105.753 
+			373.543,105.753 		"/>
+		<g>
+			<polygon points="364.718,105.753 377.154,100.672 374.203,105.753 377.154,110.834 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<polyline fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" points="784.914,236.581 784.914,360.753 
+			529.375,360.753 		"/>
+		<g>
+			<polygon points="520.548,360.753 532.985,355.671 530.034,360.753 532.985,365.833 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<polyline fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" points="433.048,360.753 317.218,360.753 
+			317.218,270.407 		"/>
+		<g>
+			<polygon points="317.218,261.581 322.299,274.018 317.218,271.066 312.137,274.018 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" x1="224.914" y1="410.165" x2="284.642" y2="410.165"/>
+		<g>
+			<polygon points="293.468,410.165 281.031,415.247 283.982,410.165 281.031,405.085 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" x1="224.914" y1="105.753" x2="275.892" y2="105.753"/>
+		<g>
+			<polygon points="284.718,105.753 272.281,110.835 275.232,105.753 272.281,100.673 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M871.649,250.28c1,0,2.534-1.517,0.9-1.517C871.549,248.763,870.015,250.28,871.649,250.28L871.649,250.28z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<polyline fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" points="340.968,410.165 476.798,410.165 
+			476.798,387.704 		"/>
+		<g>
+			<polygon points="476.798,378.878 481.88,391.314 476.798,388.363 471.718,391.314 			"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" x1="317.218" y1="133.016" x2="317.218" y2="205.057"/>
+		<g>
+			<circle cx="317.218" cy="204.822" r="4.7"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		
+			<line fill="none" stroke="#000000" stroke-width="1.25" stroke-miterlimit="10" x1="368.664" y1="0.332" x2="327.089" y2="66.651"/>
+		<g>
+			<circle cx="327.214" cy="66.452" r="4.7"/>
+		</g>
+	</g>
+</g>
+</svg>

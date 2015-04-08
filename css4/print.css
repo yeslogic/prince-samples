@@ -1,0 +1,965 @@
+@import url(http://www.wiumlie.no/2014/ibsen/fonts/galliard/galliard.css);
+@import url(http://www.wiumlie.no/2014/ibsen/fonts/ibsen-g/ibsen-g.css);
+@import url(http://www.wiumlie.no/2014/ibsen/fonts/hydra/hydra.css);
+@import url(http://www.wiumlie.no/2014/ibsen/fonts/ibsen-h/ibsen-h.css);
+@import url(http://www.wiumlie.no/2014/ibsen/fonts/garamondsc/merem.css);
+@import url(http://www.wiumlie.no/2014/ibsen/fonts/century/century.css);
+@import url(http://www.wiumlie.no/2014/ibsen/fonts/grandcentral/grandcentral.css);
+
+
+/* generic rules */
+html, body, div, h1, h2, h3, p, blockquote, ul, ol, li {
+  margin: 0; padding: 0;
+}
+
+h2 {
+  font-size: 12pt;
+  text-align: center;
+}
+
+sup { font-size: 60%; vertical-align: 0.5em }
+
+blockquote { xfont-style: italic; margin: 1em }
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+p.tb {
+  margin-top: 1em;
+}
+
+.screen-only { display: none !important; }
+
+
+/* which section uses which named page */
+
+div.frontcover, div.halftitlepage, div.titlepage, div.imprint, div.dedication, div.foreword, div.toc, div.preface {
+  display: block;
+  page: frontmatter;
+}
+
+div.colophon {
+  display: block;
+  page: backmatter;
+  font: 9.5pt Galliard, sans-serif;
+}
+
+@page blank {
+  @top-center { content: none; }
+}
+
+@blank {
+  page-break-before: always;
+  page: blank;
+}
+
+#etterord {
+  page-break-before: left; 
+  counter-reset: page 1;
+}
+
+#etterord .stanza {
+  text-indent: 0;
+}
+
+#etterord-2014 {
+  padding-top: 1.5em;
+}
+
+/* page breaks */
+
+div.dedication, div.foreword, div.preface, div.chapter, div.reference, div.appendix, div.bibliography, div.glossary, div.index, div.colophon, div.fax, div.backcover { 
+  page-break-before: always;
+}
+div.frontcover, div.halftitlepage, div.titlepage, div.toc { page-break-before: right }
+div.imprint { page-break-before: left }
+div.poem { page-break-before: always }
+
+
+div.frontcover .bottom, div.titlepage .bottom {
+  float: bottom;
+}
+div.frontcover .bottom p, div.titlepage .bottom p {
+  margin: 5pt 0;
+}
+
+
+/* TOC */
+
+.toc { font-family: "New Century Schoolbook" }
+
+.toc h2 {
+  padding: 15mm 0 15mm;
+  text-transform: uppercase;
+  font: condensed 300 11pt "ITC Century Std"; 
+  letter-spacing: 0.2em;
+}
+
+.toc h2:after {
+  display: block;
+  content: "";
+  width: 9mm;
+  height: 1.5pt;
+  border-top: 0.1pt solid black;
+  margin: 5mm auto 0;
+}
+
+
+.toc .list { 
+  display: table; 
+  width: 100%; 
+  font-size: 6pt;
+  line-height: 8pt;
+}
+
+.toc .list:after {
+  display: block;
+  content: "";
+  width: 16mm;
+  height: 1.5pt;
+  border-bottom: 0.1pt solid black;
+  margin: 5mm auto 0;
+}
+
+.toc a {
+  display: table-row;
+}
+
+.toc span {
+  display: table-cell;
+}
+
+.toc span:after {
+  content: leader('.  ');
+}
+
+.toc a::after {
+  display: table-cell;
+  content: target-counter(attr(href), page) ".";
+/*  font-family: ibsen-g, Galliard, Janson, Cardo, sans-serif; */
+  text-align: right;
+}
+
+
+.toc .head { display: table-header-group }
+.toc .head div { 
+  display: table-cell;
+  text-align: right 
+}
+
+
+/* define default page and names pages: cover, blank, frontmatter */
+
+
+@page {
+  size: 95mm 145mm;
+  margin: 20mm 8mm 13mm;
+/*  font: 10.5pt Cardo, serif; /* to get non-proportional numbers */
+  font: 9.5pt ibsen-g, Galliard, Janson, Cardo, sans-serif; 
+  marks: crop;
+
+
+@top-center {
+  content: counter(page);
+  border-bottom: 0.1pt solid black;
+  margin-bottom: 1em;
+  width: 13mm;
+  vertical-align: bottom;
+}
+
+
+@footnotes {
+  border-top: thin solid black;
+  padding: 0.2em 0;
+  margin-top: 0.1em;
+}}
+
+@page frontmatter {
+  @top-center { content: none; }
+}
+
+
+@page backmatter {
+  margin: 20mm 8mm 13mm;
+  @top-center { content: counter(page, lower-roman); }
+}
+
+@page backmatter:blank {
+  @top-center { content: none }
+}
+
+@page spine {
+  size: 145mm 15mm;
+  margin: 2mm;
+  @top-center { content: none }
+}
+
+@page fax {
+  margin: 0;
+  @top-center { content: none }
+}
+
+/* fax */
+
+.fax {
+  page: fax;
+}
+
+.fax img {
+  width: 100%;
+}
+
+/* spine */
+
+.spine { 
+  page: spine;
+  text-align: center;
+  font: 28pt GrandCentral-Light; 
+}
+
+/* rules specific to ibsen */
+
+
+.frontcover, .titlepage {
+  text-align: center;
+  font: 7pt Bodoni; 
+}
+
+.frontcover h1, .titlepage h1 {
+  font: 30pt GrandCentral-Light, Galliard, Janson, Cardo, sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 10mm;
+}
+
+.frontcover .af, .titlepage .af {
+  margin: 10mm 0;
+  text-transform: uppercase;
+}
+
+.frontcover .author, .titlepage .author {
+  font: 16pt GrandCentral-Light, Galliard, Janson, Cardo, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-top: 10mm;
+}
+
+.frontcover .place, .titlepage .place {
+  font: 9pt Bodoni;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.frontcover .printer, .titlepage .printer {
+  font-size: 80%;
+  letter-spacing: 0.2em;
+}
+
+
+em { font-style: normal; letter-spacing: 0.15em; }
+
+body { 
+  font: 10.5pt/11.6pt ibsen-g, Galliard, Janson, Cardo, sans-serif; 
+  font: 10pt/11.5pt ibsen-g, Galliard, Janson, Cardo, sans-serif; 
+}
+
+.poem h2 {
+/*  font: 12pt ibsen-h, hydra, Frutiger-Cn, Yanone Kaffeesatz, sans-serif; 
+  font: 12pt ibsen-a, Alternate-Gothic-No3, sans-serif;*/  
+
+  text-align: center;
+  font: 12pt ibsen-h, hydra, Alternate-Gothic-No3, sans-serif;
+  letter-spacing: 0.05em;
+  word-spacing: 0.3em;
+  padding: 10mm 0 5mm;
+}
+
+.poem h2:after {
+  content: "";
+  display: block;
+  width: 9mm;
+  padding-top: 3mm;
+  border-bottom: 0.1pt solid black;
+  margin: 0 auto 0;
+}
+
+.poem h2 .orig {
+  display: block;
+  font: 8pt/10pt ibsen-g, Galliard, sans-serif;
+  letter-spacing: 0;
+  padding: 2mm 0;
+}
+
+.poem:after {
+  display: block;
+  content: "";
+  width: 16mm;
+  height: 1.5pt;
+  border-top: 0.1pt solid black;
+  border-bottom: 0.1pt solid black;
+  margin: 10mm auto 0;
+}
+
+.stanza {
+  word-spacing: 0.2em;
+  margin-bottom: 10pt;
+  widows: 4; orphans: 4;
+  text-align: left;
+}
+
+.stanza.pb {
+  page-break-before: always;
+}
+
+.stanza .tail {
+   display: block;
+   text-align: right;
+   padding-right: 3em;
+}
+
+.stanza .tail + br {
+    content: '';
+}
+
+br.indent {
+  content: '\A\A0\A0\A0\A0\A0\A0\A0\A0';
+  white-space: pre;
+}
+
+.poem p:first-of-type:first-letter {
+  font-size: 2em;
+  line-height: 0;
+}
+
+.poem p:first-of-type {
+  text-indent: 1em;
+}
+
+/* style specific to poems, trying to replicate man-made variations */
+
+#spillemenn { 
+  page: blank;
+  counter-reset: page 1;
+}
+
+#spillemenn .stanza {
+  margin-left: 13%;
+  margin-bottom: 6pt;
+}
+
+#gildehal .stanza {
+  margin-left: 8%;
+}
+
+#byggeplaner span.tight {
+  word-spacing: 0em;
+}
+
+#markblomster .stanza {
+  margin-left: 5%;
+}
+
+#fuglevise .stanza {
+  margin-left: 20%;
+}
+
+#akershus .stanza {
+  margin-left: 3%;
+}
+
+
+#ederfuglen h2 {
+  letter-spacing: 0.1em;
+}
+
+
+#ederfuglen:after {
+  margin-top: 0;
+  border-top: none;
+}
+
+#vannlilje .stanza {
+  margin-left: 15%;
+}
+
+#vannlilje:after {
+  margin-top: 0;
+}
+
+#fugl .stanza {
+  margin-left: 10%;
+}
+
+#bergmannen .stanza {
+  margin-left: 15%;
+}
+
+#vin .stanza {
+  margin-left: 15%;
+}
+
+#lysredd h2 {
+  letter-spacing: 0.2em;
+}
+
+#lysredd .stanza {
+  margin-left: 15%;
+}
+
+#dikterens-vise .stanza {
+  margin-left: 15%;
+}
+
+#kloften h2 {
+  letter-spacing: 0.2em;
+}
+
+#kloften .stanza {
+  margin-left: 10%;
+}
+
+#kloften:after {
+  margin-top: 0;
+}
+
+#fjellsliv h2 {
+  padding-top: 24mm;
+  letter-spacing: 0.1em;
+}
+
+#fjellsliv .stanza {
+  margin-left: 15%;
+  widows: 5;
+}
+
+#sangertog h2 {
+  padding-top: 20mm;
+}
+
+#sangertog .stanza {
+  margin-left: 15%;
+}
+
+#svane h2 {
+  letter-spacing: 0.1em;
+}
+
+#svane .stanza {
+  margin-left: 20%;
+}
+#svane:after {
+  margin-top: 0;
+}
+
+#kvinnen h2 {
+  padding-top: 24mm;
+}
+
+#fjerde-juli .stanza {
+  margin-left: 4%;
+}
+
+#skolehuset .stanza {
+  margin-left: 10%;
+}
+
+#svane h2 {
+  letter-spacing: 0.1em;
+}
+
+#folkesorg .stanza {
+  margin-left: 10%;
+  widows: 5;
+}
+
+#tingmennene .stanza {
+  margin-left: 15%;
+}
+
+#til-svenskerne br.indent {
+  content: '\A\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0';
+}
+#til-svenskerne .stanza {
+  word-spacing: 0;
+}
+
+#gjenlevende .stanza {
+  margin-left: 5%;
+}
+
+#professor .stanza {
+  margin-left: 5%;
+}
+
+#professor br.indent {
+  content: '\A\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0';
+}
+
+#vuggevise h2 {
+  letter-spacing: 0.1em;
+}
+
+#vuggevise .stanza {
+  margin-left: 20%;
+}
+
+#borte h2 {
+  letter-spacing: 0.2em;
+}
+
+#borte .stanza {
+  margin-left: 25%;
+}
+
+#stormsvalen h2 {
+  letter-spacing: 0.1em;
+}
+
+#stormsvalen .stanza {
+  word-spacing: 0;
+}
+
+#agnes h2 {
+  letter-spacing: 0.2em;
+}
+
+#agnes .stanza.indent {
+  margin-left: 2em;
+}
+
+#stambogsrim .stanza {
+  margin-left: 10%;
+}
+
+#minnets-magt h2 {
+  padding-top: 24mm;
+}
+
+#brev span.tight {
+  word-spacing: -0.1em;
+}
+
+#brev .place-date {
+  font: italic 7pt ibsen-g, Galliard, Janson, Cardo, serif;
+  text-align: right;
+  margin-right: 4em;
+  position: relative;
+  top: -7pt;
+}
+
+#bortdragende .stanza { 
+  margin-left: 10%;
+}
+
+#drapa .stanza {
+  margin-left: 15%;
+}
+
+#fredrik .stanza {
+  margin-left: 10%;
+}
+
+#broder h2 {
+  padding-top: 24mm;
+}
+
+#broder .stanza {
+  margin-left: 10%;
+  widows: 5;
+}
+
+#troens .stanza {
+  margin-bottom: 14pt;
+}
+
+#storthing .stanza {
+  margin-left: 10%;
+}
+
+#terje-vigen .stanza {
+  widows: 5;
+}
+
+#terje-vigen span.tight {
+  word-spacing: 0;
+}
+
+#terje-vigen span.extra-tight {
+  word-spacing: -0.1em;
+}
+
+
+#forviklinger .stanza {
+  margin-left: 5%;
+  margin-bottom: 14pt;
+}
+
+#husliv .stanza {
+  margin-left: 5%;
+}
+
+#kirke h2 {
+  letter-spacing: 0.1em;
+}
+
+#kirke .stanza {
+  margin-left: 25%;
+}
+
+#galleriet .stanza {
+  margin-left: 27%;
+}
+
+#usynliges-kor .stanza {
+  margin-left: 10%;
+}
+
+#troens h2 {
+  padding-top: 20mm; 
+}
+
+#viddene h2 {
+  padding-top: 20mm; 
+}
+
+#viddene .part {
+  text-align: center;
+  margin-bottom: 3mm;
+}
+
+#viddene .part:before {
+  display: block;
+  content: "";
+  width: 16mm;
+  height: 1.5pt;
+  border-top: 0.1pt solid black;
+  margin: 10mm auto 10mm;
+}
+
+#viddene .part.tight:before {
+  margin: 6mm auto 4mm;
+}
+
+#viddene h2 + .part:before {
+  display: none;
+}
+
+#viddene .stanza.tight {
+  margin-bottom: 3pt;
+}
+
+#viddene .stanza {
+  margin-left: 5%;
+  widows: 5;
+}
+
+#viddene span.tight {
+  word-spacing: 0;
+}
+
+
+#kvinnenes .stanza {
+  margin-left: 25%;
+}
+
+#kvinnenes:after {
+  display: none;
+}
+
+#takk h2 {
+  letter-spacing: 0.2em;
+}
+
+#takk .stanza {
+  margin-left: 17%;
+}
+
+#lincoln .stanza {
+  widows: 5;
+}
+
+#lincoln span.tight {
+  word-spacing: -0.1em;
+}
+
+#revolusjons-taleren .stanza {
+  margin-left: 5%;
+  margin-bottom: 8pt;
+}
+
+#uten-navn .stanza {
+  margin-left: 15%;
+}
+
+#port-said .stanza {
+  margin-left: 15%;
+}
+
+
+
+#ballonbrev .place-date {
+  font: italic 7pt ibsen-g, Galliard, Janson, Cardo, serif;
+  text-align: right;
+  margin-right: 4em;
+  position: relative;
+  top: -7pt;
+}
+
+#ballonbrev .stanza {
+  margin-top: 8pt;
+  margin-bottom: 0;
+  text-indent: 1em;
+  margin-left: 10%;
+  widows: 2;
+}
+
+#ballonbrev .stanza.minor {
+  margin-top: 0;
+}
+
+#ballonbrev .stanza.tight {
+  margin-top: 6pt;
+}
+
+#ballonbrev .stanza.loose {
+  margin-top: 20pt;
+}
+
+
+#rimbrev h2 {
+  padding-top: 10mm; 
+}
+
+#rimbrev .place-date {
+  font: italic 7pt ibsen-g, Galliard, Janson, Cardo, serif;
+  text-align: right;
+  margin-right: 4em;
+  position: relative;
+  top: -7pt;
+}
+
+#rimbrev .stanza {
+  margin-left: 15%;
+  margin-bottom: 32pt;
+  orphans: 3;
+  line-height: 11pt;
+}
+
+#rimbrev .stanza.tight {
+  margin-bottom: 11.2pt;
+}
+
+#rimbrev span.indent {
+  margin-left: 3em;
+}
+
+#komponist .stanza {
+  margin-left: 20%;
+}
+
+#skibe .stanza {
+  margin-left: 18%;
+  margin-bottom: 6pt;
+}
+
+.colophon {
+
+  hyphens: auto;
+/*  hyphens: prince-expand-all; */
+  prince-hyphenate-patterns: url(hyphenation/nohyphbx.tex);
+  hyphenate-before: 3;
+  hyphenate-after: 3;
+  prince-hyphenate-lines: 2;
+  text-align: justify;
+}
+
+nobr { hyphens: manual }
+
+.colophon h2 {
+  margin: 1.2em 0 0.8em;
+}
+
+.colophon em {
+  letter-spacing: 0;
+  font-style: italic;
+}
+
+.colophon p + p, .colophon figure + p {
+  text-indent: 1em;
+}
+
+.colophon a {
+  text-decoration: none;
+  font-style: italic;
+  color: black;
+}
+
+.colophon a:before {
+/*  content: "«"; */
+}
+
+
+.colophon a:after {
+/*  content: "» (s.\A0" target-counter(attr(href), page) ")"; */
+  font-style: normal;
+  font-size: 0.9em;
+  content: " (s.\A0" target-counter(attr(href), page) ")";
+} 
+
+:lang(en).colophon a:before {
+  content: "";
+}
+
+:lang(en).colophon a:after {
+  content: " (page\A0" target-counter(attr(href), page) ")";
+} 
+
+.colophon table a:before {
+  content: none;
+} 
+.colophon table a:after {
+  content: none;
+} 
+
+.colophon acronym {
+  text-decoration: none;
+  font-size: 90%;
+}
+
+.colophon .author {
+  margin-top: 2em;
+  text-align: right;
+}
+
+.colophon ol, .colophon ul { 
+  margin-left: 1.2em; 
+}
+
+.colophon ol ul { 
+  margin-left: 0px 
+}
+
+.colophon li {
+  margin: 0.3em 0;
+}
+
+.colophon ul {
+  list-style-type: circle;
+}
+
+#kilder {
+  text-align: left;
+  hyphens: manual;
+}
+
+#kilder ul {
+  margin-top: 1em;
+}
+
+/* footnotes */
+
+
+@media screen {
+  .footnote { display: none }
+}
+
+.footnote {
+  float: footnote;
+  margin-left: 5mm;
+  text-indent: 0;
+  font-size: 0.9em;
+}
+
+.footnote::footnote-call { 
+  content:  " [" counter(footnote, decimal) "]";
+  font-size: 0.6em;
+  vertical-align: top;
+}
+
+.footnote::footnote-marker { 
+  content: "[" counter(footnote, decimal) "]";
+  font-size: 0.6em;
+  vertical-align: top;
+  padding-left: 0.05em;
+  width: 5mm;
+}
+
+/* lists */
+
+li::marker {
+   padding-right: 4pt;
+}
+
+
+/* table */
+
+table {
+  border-collapse: collapse;
+  margin: 0.5em 0 2em;
+}
+
+td[rowspan], td[rowspan] + td { padding-top: 0.7em }
+
+td[rowspan] { font-style: italic }
+
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding-right: 0.5em;
+}
+
+td + td { padding-right: 0em }
+
+.sic { font-family: ibsen-g, Galliard, Janson, Cardo, sans-serif; }
+
+
+/* images */
+
+.colophon {
+  counter-reset: figure;
+}
+
+.colophon figure {
+  margin: 1.3em 0 1.5em;
+  font-style: italic;
+  page-break-inside: avoid;
+  hyphens: manual;
+}
+
+.colophon figure.top { 
+  float: top;
+}
+
+.colophon figure.bottom { 
+  float: bottom;
+}
+
+.colophon figure figcaption {
+  counter-increment: figure;
+  text-align: left;
+  clear: both;
+}
+
+.colophon figure figcaption:before {
+  content: "Figur " counter(figure) ": ";
+}
+
+.colophon img {
+  display: block;
+  border: thin solid black;
+  margin: 0.5em 0;
+  width: 100%;
+  box-sizing: border-box;
+  ximage-resolution: auto;
+}
+
+.colophon img.smaller {
+  width: 48%;
+  float: left;
+}
+
+.colophon img.smaller + img.smaller {
+  float: right;
+}
+

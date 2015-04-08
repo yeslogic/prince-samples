@@ -1,0 +1,332 @@
+/* import webfonts */
+
+@import url(http://fonts.googleapis.com/css?family=Crimson+Text&subset=latin);
+@import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&subset=latin);
+
+/* reset values for common elements */
+
+html, body, div, h1, h2, h3, p, blockquote, ul, ol, li {
+  margin: 0; padding: 0;
+}
+
+/* set common values */
+
+html { background: black; }
+h1, h2 { margin: 1em 0 1em; text-align: center; font-weight: normal }
+blockquote { margin: 1em }
+ul, ol { margin-left: 1em }
+ol ul { margin-left: 0 }
+li { margin: 0.5em 0 }
+th, td { vertical-align: top }
+p { margin: 0 0 1em }
+
+/* set values specific to the Ibsen project */
+
+body {
+  font: 18px "Crimson Text", serif;
+  width: 24em;
+  margin: 2em auto;
+  padding: 0;
+  background: white;
+  color: black;
+}
+
+table { border-collapse: collapse; font: 14px serif; margin: 1em 0 }
+td { margin: 0; padding: 0 1em 0.3em 0 }
+
+.note { margin: 1em 0; text-align: center }
+div.author { margin-top: 2em; text-align: right }
+
+.frontcover { text-align: center; padding: 4em 2em }
+.frontcover .author { margin: 1em 0 3em }
+
+.frontcover, .poem, .colophon { padding: 2em; border: 2pt solid black }
+
+.spine, .titlepage { display: none }
+
+.toc { position: absolute; top: 0; left: 0px; 
+  width: 18em;
+  padding: 40px 0 0 30px;
+  color: white; 
+  font: bold 12px "Trebuchet MS"; 
+}
+
+.toc a { display: block; color: white; margin: 0.2em 0 }
+.toc a:hover { color: gray }
+.toc .head { display: none }
+.toc h2 { display: none }
+
+.toc .screen-only.list { margin-top: 2em }
+
+a { color: black; text-decoration: none; }
+a:hover { color: #555 }
+
+.poem h2 { font-family: "Yanone Kaffeesatz", sans-serif }
+.poem h2 .orig { display: block; font-size: 60%; font-family: "Crimson Text", serif }
+
+figure { background: #ddd; padding: 0.5em; margin: 0.5em 0 }
+figure img, .fax img { max-width: 100%; box-sizing: border-box; margin: 0.5em 0 }
+figure .legend { font-style: italic }
+fax { border: thin solid black }
+
+/* sidebar */
+
+.sidebar {
+  position: absolute;
+  top: 2em;
+  right: 20px;
+  width: 150px;
+  height: 300px;
+  text-align: right;
+}
+
+.sidebar img {
+  padding: 3px 0 5px;
+}
+
+.sidebar a {
+  color: white; 
+  font: bold 12px "Trebuchet MS"; 
+}
+
+.footnote { display: none }
+
+
+/* poem-specific markup */
+
+#spillemenn .stanza {
+  margin-left: 12%;
+}
+
+#gildehal .stanza {
+  margin-left: 8%;
+}
+
+#markblomster .stanza {
+  margin-left: 5%;
+}
+
+#fuglevise .stanza {
+  margin-left: 20%;
+}
+
+#akershus .stanza {
+  margin-left: 3%;
+}
+
+#vannlilje .stanza {
+  margin-left: 15%;
+}
+
+#fugl .stanza {
+  margin-left: 10%;
+}
+
+#bergmannen .stanza {
+  margin-left: 15%;
+}
+
+#vin .stanza {
+  margin-left: 15%;
+}
+
+#lysredd .stanza {
+  margin-left: 15%;
+}
+
+#dikterens-vise .stanza {
+  margin-left: 15%;
+}
+
+#kloften .stanza {
+  margin-left: 10%;
+}
+
+#fjellsliv .stanza {
+  margin-left: 15%;
+}
+
+#sangertog .stanza {
+  margin-left: 15%;
+}
+
+#svane .stanza {
+  margin-left: 20%;
+}
+
+#fjerde-juli .stanza {
+  margin-left: 4%;
+}
+
+#skolehuset .stanza {
+  margin-left: 10%;
+}
+
+#folkesorg .stanza {
+  margin-left: 10%;
+}
+
+#tingmennene .stanza {
+  margin-left: 15%;
+}
+
+#til-svenskerne br.indent:after {
+  content: '\A\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0';
+}
+
+#gjenlevende .stanza {
+  margin-left: 5%;
+}
+
+#professor .stanza {
+  margin-left: 5%;
+}
+
+#professor br.indent:after {
+  content: '\A\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0';
+}
+
+#vuggevise .stanza {
+  margin-left: 20%;
+}
+
+#borte .stanza {
+  margin-left: 25%;
+}
+
+#agnes .stanza.indent {
+  margin-left: 2em;
+}
+
+#stambogsrim .stanza {
+  margin-left: 10%;
+}
+
+#brev .place-date {
+  font: italic 7pt ibsen-g, Galliard, Janson, Cardo, serif;
+  text-align: right;
+  margin-right: 4em;
+  position: relative;
+  top: -7pt;
+}
+
+#bortdragende .stanza { 
+  margin-left: 10%;
+}
+
+#drapa .stanza {
+  margin-left: 15%;
+}
+
+#fredrik .stanza {
+  margin-left: 10%;
+}
+
+#broder .stanza {
+  margin-left: 10%;
+}
+
+#storthing .stanza {
+  margin-left: 10%;
+}
+
+#forviklinger .stanza {
+  margin-left: 5%;
+}
+
+#husliv .stanza {
+  margin-left: 5%;
+}
+
+#kirke .stanza {
+  margin-left: 25%;
+}
+
+#galleriet .stanza {
+  margin-left: 27%;
+}
+
+#usynliges-kor .stanza {
+  margin-left: 10%;
+}
+
+#viddene .part {
+  text-align: center;
+  margin-bottom: 3mm;
+}
+
+#viddene .part:before {
+  display: block;
+  content: "";
+  width: 16mm;
+  height: 1.5pt;
+  border-top: 0.1pt solid black;
+  margin: 10mm auto 10mm;
+}
+
+#viddene .stanza {
+  margin-left: 5%;
+}
+
+#kvinnenes .stanza {
+  margin-left: 25%;
+}
+
+#takk .stanza {
+  margin-left: 17%;
+}
+
+#revolusjons-taleren .stanza {
+  margin-left: 5%;
+}
+
+#uten-navn .stanza {
+  margin-left: 15%;
+}
+
+#port-said .stanza {
+  margin-left: 15%;
+}
+
+#ballonbrev .place-date {
+  font: italic 7pt ibsen-g, Galliard, Janson, Cardo, serif;
+  text-align: right;
+  margin-right: 4em;
+  position: relative;
+  top: -7pt;
+}
+
+#ballonbrev .stanza {
+  margin-left: 10%;
+}
+
+
+#rimbrev .place-date {
+  font: italic 7pt ibsen-g, Galliard, Janson, Cardo, serif;
+  text-align: right;
+  margin-right: 4em;
+  position: relative;
+  top: -7pt;
+}
+
+#rimbrev .stanza {
+  margin-left: 15%;
+}
+
+#rimbrev span.indent {
+  margin-left: 3em;
+}
+
+#komponist .stanza {
+  margin-left: 20%;
+}
+
+#skibe .stanza {
+  margin-left: 18%;
+}
+
+/* colophon */
+
+.colophon p + p {
+  text-indent: 1em;
+}

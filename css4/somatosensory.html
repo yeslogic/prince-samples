@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+<title>Anatomy of the Somatosensory System</title>
+<style type="text/css" media="all">
+@import url(http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed);
+@import url(http://fonts.googleapis.com/css?family=Lato);
+
+@prince-pdf { prince-pdf-page-layout: two-column-right }
+
+@page {
+  margin: 30mm 20mm 25mm 20mm;
+  size: 20cm 25cm;
+
+  @footnotes {
+    border-top: thin solid black; 
+    border-clip: 100px;
+    padding: 0;
+    margin: 0.6em 0 0 0;
+    margin-outside: -60mm;
+    padding: 0.3em 0 0 0;
+  }
+}
+
+@page :left {
+  margin-left: 80mm; 
+
+  @top-left {
+    font: 11pt "Lato", serif;
+    content: "From Wikibooks";
+    margin-left: -60mm;
+    white-space: nowrap; 
+    vertical-align: bottom;
+    padding-bottom: 2em;
+  }
+
+  @bottom-left-corner {
+    font: 11pt "Lato", serif;
+    content: counter(page);
+    vertical-align: top;
+    padding-top: 2em;
+    padding-right: 60mm;
+  }
+}
+
+@page :right {
+  margin-right: 80mm; 
+
+  @top-right {
+    font: 11pt "Lato", serif;
+    content: string(title, first-except); 
+    white-space: nowrap; 
+    vertical-align: bottom;
+    margin-right: -60mm;
+    padding-bottom: 2em; 
+  }
+
+  @bottom-right-corner {
+    font: 11pt "Lato", serif;
+    content: counter(page);
+    vertical-align: top;
+    padding-top: 2em;
+    padding-left: 60mm;
+  }
+}
+
+html, body, div, h1, h2, h3, p, blockquote, ul, ol, li, pre { 
+  margin: 0; padding: 0 }
+li { margin-left: 1.5em }
+
+title { string-set: title content() }
+
+body { 
+  font: 11pt "PT Serif", serif;
+  text-align: justify;
+  hyphens: auto;
+  counter-reset: figure, table;
+}
+
+h1, h2, h3 { 
+  font: 2.5em "Roboto Condensed", serif;
+  margin: 1.2em 0 0.5em
+}
+
+h1 { margin: 0 0 1em }
+h2 { font-size: 1.5em }
+h3 { font-size: 1.2em }
+
+a { color: inherit }
+
+p + p, aside + p { text-indent: 1.4em }
+p.first { text-indent: 0 }
+
+h1,h2,h3,h4,h5,h6, tr { text-align: left; text-align: start; }
+
+table { border-collapse: collapse; counter-increment: table }
+table.top { float: top; margin-outside: -60mm; vertical-align: top; margin-bottom: 1em; }
+td, th { border: thin solid black; padding: 0.2em }
+table:after { content: "Table " counter(table); font-style: italic; padding: 0.5em 0; display: block }
+
+
+figure { 
+  width: 100%; 
+  margin: 0; 
+  counter-increment: figure;
+}
+
+figure img { width: 100% }
+
+.mw-headline-anchor { display: none }
+.mw-editsection { display: none }
+
+aside {
+  background: #fcc;
+  padding: 0.6em 1.3em 0.6em 1.3em; /* assuming it will end up on right page */
+  font-style: italic;
+  font-family: Lato, "Roboto Condensed", sans-serif;
+  width: 75mm;
+  box-sizing: border-box;
+  float: outside;
+  margin-outside: -80mm;
+  text-align: inside;
+  hyphens: manual;
+}
+
+figure.sidenote {
+  width: 55mm;
+  float: outside;
+  margin-outside: -60mm;
+}
+
+figcaption {
+  font-style: italic;
+}
+
+figcaption:before {
+  content: "Figure " counter(figure) ": ";
+  padding-right: 0.5em;
+}
+
+figure.top { float: top; margin-bottom: 2em; }
+figure.bottom { float: bottom; margin-top: 1em; }
+
+figure.sidecaption figcaption {
+  float: outside;
+  width: 55mm;
+  margin-outside: -60mm;
+}
+
+h1 { margin-outside: -60mm }
+
+figure.wide {
+  width: auto;
+  margin-outside: -60mm;
+}  
+
+a { text-decoration: none }
+
+p.author { margin: 2em 0; font-variant: small-caps }
+
+
+/* footnotes */
+
+::footnote-call {
+  content: counter(footnote);
+  font-size: 83%;
+  vertical-align: super;
+  line-height: none
+}
+
+::footnote-marker {
+  content: counter(footnote);
+  list-style-position: inside;
+  font-size: 83%;
+  vertical-align: super;
+  margin: 0; padding: 0 0.3em 0 0;
+}
+
+.foot {
+  float: footnote;
+  font-size: 90%; font-variant: normal;
+  footnote-style-position: inside;
+  margin: 0; padding: 0; text-indent: 0;
+}
+
+@page {
+}
+@media screen {
+  body { margin: 10% 30% 10% 10% }
+  figure { width: 100% }
+  figure.sidecaption figcaption { width: 28%; float: right; margin-right: -30%; }
+  aside { float: none; width: auto; margin: 1em 0 }
+}
+
+
+</style>
+</head>
+<body>
+
+<h1>Anatomy of the Somatosensory System</h1>
+
+<p class=author>From Wikibooks<span class=foot>The following description is based on lecture notes from Laszlo Zaborszky, from Rutgers University.</span>
+
+<aside>This is a sample document to showcase page-based formatting. It contains a chapter from a <a href=http://en.wikibooks.org/>Wikibook</a> called <a href=http://en.wikibooks.org/wiki/Sensory_Systems>Sensory Systems</a>. None of the content has been changed in this article, but some content has been removed.
+</aside>
+
+<p class=first>Our somatosensory system consists of sensors in the skin and sensors in our muscles, tendons, and joints. The receptors in the skin, the so called cutaneous receptors, tell us about temperature (<i>thermoreceptors</i>), pressure and surface texture (<i>mechano receptors</i>), and pain (<i>nociceptors</i>). The receptors in muscles and joints provide information about muscle length, muscle tension, and joint angles.
+
+<figure class='sidecaption bottom'>
+<figcaption>Receptors in the human skin: Mechanoreceptors can be free receptors or encapsulated. Examples for free receptors are the hair receptors at the roots of hairs. Encapsulated receptors are the Pacinian corpuscles and the receptors in the glabrous (hairless) skin: Meissner corpuscles, Ruffini corpuscles and Merkel’s disks.</figcaption>
+<img src=img/Skin_proprioception.svg>
+</figure>
+
+<h3>Cutaneous receptors</h3>
+
+<p>Sensory information from <i>Meissner corpuscles</i> and rapidly adapting afferents leads to adjustment of grip force when objects are lifted. These afferents respond with a brief burst of action potentials when objects move a small distance during the early stages of lifting. In response to rapidly adapting afferent activity, muscle force increases reflexively until the gripped object no longer moves. Such a rapid response to a tactile stimulus is a clear indication of the role played by somatosensory neurons in motor activity.</p>
+
+
+<p>The slowly adapting <i>Merkel’s receptors</i> are responsible for form and texture perception. As would be expected for receptors mediating form perception, Merkel’s receptors are present at high density in the digits and around the mouth (50/mm² of skin surface), at lower density in other glabrous surfaces, and at very low density in hairy skin. This innervations density shrinks progressively with the passage of time so that by the age of 50, the density in human digits is reduced to 10/mm². Unlike rapidly adapting axons, slowly adapting fibers respond not only to the initial indentation of skin, but also to sustained indentation up to several seconds in duration.</p>
+
+<p>Activation of the rapidly adapting <i>Pacinian corpuscles</i> gives a feeling of vibration, while the slowly adapting <i>Ruffini corpuscles</i> respond to the lataral movement or stretching of skin.</p>
+
+
+<figure class='sidecaption top'>
+<figcaption>Mammalian muscle spindle showing typical position in a muscle (left), neuronal connections in spinal cord (middle) and expanded schematic (right). The spindle is a stretch receptor with its own motor supply consisting of several intrafusal muscle fibres. The sensory endings of a primary (group Ia) afferent and a secondary (group II) afferent coil around the non-contractile central portions of the intrafusal fibres. 
+</figcaption>
+<img src=img/400px-Muscle_spindle_model.jpg>
+</figure>
+
+
+
+<h3>Nociceptors</h3>
+
+<p>Nociceptors have free nerve endings. Functionally, skin nociceptors are either high-threshold mechanoreceptors or <i>polymodal receptors</i>. Polymodal receptors respond not only to intense mechanical stimuli, but also to heat and to noxious chemicals. These receptors respond to minute punctures of the epithelium, with a response magnitude that depends on the degree of tissue deformation. They also respond to temperatures in the range of 40–60°C, and change their response rates as a linear function of warming (in contrast with the saturating responses displayed by non-noxious thermoreceptors at high temperatures).</p>
+
+<aside>Notice how figure captions and sidenotes are shown in the outside margin (on the left or right, depending on whether the page is left or right). Also, figures are floated to the top/bottom of the page. Wide content, like the table and Figure 3, intrude into the outside margins.</aside>
+
+<p>Pain signals can be separated into individual components, corresponding to different types of nerve fibers used for transmitting these signals. The rapidly transmitted signal, which often has high spatial resolution, is called <i>first pain</i> or <i>cutaneous pricking pain</i>. It is well localized and easily tolerated. The much slower, highly affective component is called <i>second pain</i> or <i>burning pain</i>; it is poorly localized and poorly tolerated. The third or <i>deep pain</i>, arising from viscera, musculature and joints, is also poorly localized, can be chronic and is often associated with referred pain.</p>
+
+<h3>Muscle Spindles</h3>
+
+<table class=top>
+<tr>
+<th></th>
+<th>Rapidly adapting</th>
+<th>Slowly adapting</th>
+</tr>
+<tr>
+<td>Surface&nbsp;receptor&nbsp;/ small receptive field</td>
+<td><i>Hair receptor</i>, <i>Meissner’s corpuscle</i>: Detect an insect or a very fine vibration. Used for recognizing texture.</td>
+<td>Merkel’s receptor: Used for spatial details, e.g. a round surface edge or “an X” in brail.</td>
+</tr>
+<tr>
+<td>Deep receptor / large receptive field</td>
+<td><i>Pacinian corpuscle</i>: “A diffuse vibration” e.g. tapping with a pencil.</td>
+<td><i>Ruffini’s corpuscle</i>: “A skin stretch”. Used for joint position in fingers.</td>
+</tr>
+</table>
+
+<p>Scattered throughout virtually every striated muscle in the body are long, thin, stretch receptors called muscle spindles. They are quite simple in principle, consisting of a few small muscle fibers with a capsule surrounding the middle third of the fibers. These fibers are called <i>intrafusal fibers</i>, in contrast to the ordinary <i>extrafusal fibers</i>. The ends of the intrafusal fibers are attached to extrafusal fibers, so whenever the muscle is stretched, the intrafusal fibers are also stretched. The central region of each intrafusal fiber has few myofilaments and is non-contractile, but it does have one or more sensory endings applied to it. When the muscle is stretched, the central part of the intrafusal fiber is stretched and each sensory ending fires impulses.</p>
+
+<aside>For more examples of how to use HTML and CSS for paper-based publishing, see <a href=http://css4.pub>css4.pub</a>.</aside>
+
+<p>Muscle spindles also receive a motor innervation. The large motor neurons that supply extrafusal muscle fibers are called <i>alpha motor neurons</i>, while the smaller ones supplying the contractile portions of intrafusal fibers are called <i>gamma neurons</i>. Gamma motor neurons can regulate the sensitivity of the muscle spindle so that this sensitivity can be maintained at any given muscle length.</p>
+
+<h3>Joint receptors</h3>
+
+<p>The joint receptors are low-threshold mechanoreceptors and have been divided into four groups. They signal different characteristics of joint function (position, movements, direction and speed of movements). The free receptors or type 4 joint receptors are nociceptors.</p>
+
+<figure class='wide top'>
+<img src=img/Proprioception_signals.svg>
+<figcaption style="padding-top: 0.8em">Feedback loops for proprioceptive signals for the perception and control of limb movements. Arrows indicate excitatory connections; filled circles inhibitory connections.</figcaption>
+</figure>
+
+</body>
+</html>

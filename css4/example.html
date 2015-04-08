@@ -1,0 +1,539 @@
+<html>
+<style>
+@import url(http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic);
+
+/* Set up basic page design */
+
+@page { 
+  size: letter;
+  margin: 1in;
+
+  @footnotes {
+    border-top: thin solid black; 
+    border-clip: 100px;
+    padding: 0;
+    margin: 0.6em 0 0 0;
+    padding: 0.3em 0 0 0;
+  }
+}
+
+article { 
+  columns: 2;
+  column-gap: 0.25in; 
+  font: 10pt "PT Serif", serif;
+  hyphens: auto;             /* turn on hyphenation */
+  text-align: justify;       /* and justification */
+  counter-reset: figure;
+}
+
+/* basic settings on commonly used elements */
+
+html, body, div, header, p, blockquote, ul, ol, li, pre { margin: 0; padding: 0 }
+li { margin-left: 1.5em }
+
+header { 
+  font: bold 12pt "PT Serif", serif; 
+  margin: 1em 0 0.3em;
+  page-break-after: avoid; break-after: avoid;
+}
+
+p { text-indent: 1.5em }
+header + p { text-indent: 0 }
+cite { font-style: normal }
+pre { margin: 0.5em 0; padding: 0.3em; background: #eee }
+ul { margin: 0.8em 0 }
+
+/* sections-specific styling */
+
+section.lead { 
+  column-span: all; 
+  text-align: center;
+  margin: 2em 0;
+  font-style: italic;
+}
+
+section.lead h1 { font: bold 14pt "PT Serif", serif; text-align: center } /* used for article title */
+
+section.lead .authors {
+  display: table;
+  margin: 0 auto; 
+}
+
+section.lead .vcard {
+  display: table-cell;
+  text-align: center:
+}
+
+section.lead a {
+  display: block;
+  padding: 0 1em;
+  color: black;
+  text-decoration: none;
+}
+
+section.abstract header {
+  text-align: center;
+}
+
+section.refs p {
+  margin: 0.5em 0;
+  text-indent: 0;
+}
+
+section.refs .author { 
+  font-variant: small-caps;
+}
+
+section.refs ol, table ol {
+  margin: 0; padding: 0;
+}
+
+section.refs li, table li {
+  list-style-type: none;
+  margin-left: 1.5em;
+  text-indent: -1.5em;
+}
+
+table { border-collapse: collapse; margin: 1em 0; width: 100%; }
+
+table td {
+  border: thin solid black;
+  padding: 0.2em;
+}
+
+/* counters */
+
+section:first-of-type { counter-reset: section }
+section.nonum { counter-reset: none }
+
+section { counter-increment: section }
+section.nonum { counter-increment: none }
+
+header:before { content: counters(section, ".") " " }
+section.nonum header:before { content: none }
+
+/* footnotes */
+
+::footnote-call {
+  content: "[" counter(footnote, lower-latin) "]";
+  font-size: 83%;
+  vertical-align: super;
+  line-height: none
+}
+
+::footnote-marker {
+  content: "[" counter(footnote, lower-latin) "]";
+  list-style-position: inside;
+  margin: 0; padding: 0 0.3em 0 0;
+}
+
+.foot {
+  float: prince-column-footnote;
+  font-size: 90%;
+  footnote-style-position: outside;
+  margin: 0.3em 0 0 1.3em; padding: 0; text-indent: 0;
+}
+
+/* page floats */
+
+.column-top { float: column-top; margin-bottom: 2em }
+.column-bottom { float: column-bottom;  margin-top: 2em }
+.top { float: top;  margin-bottom: 2em }
+.bottom { float: bottom;  margin-top: 2em }
+top figcaption, .bottom figcaption { margin-left: 2em; margin-right: 2em }
+
+figure { 
+  counter-increment: figure;
+  font-size: 0.9em;
+}
+
+figcaption:before { 
+  font-weight: bold;
+  content: "Figure " counter(figure) ": " 
+}
+
+@media screen {
+  body {
+    margin: 3em;
+  }
+  article { 
+    columns: 1;
+    font: 16px/1.3 "PT Serif", serif;
+    width: 60%;
+  }
+  .top, .bottom, .column-top, .column-bottom {
+    float: right; 
+    width: 55%;
+    margin-right: -60%;
+  }
+}
+
+</style>
+<body onload="makeref(); maketf();">
+<article>
+
+<section class=lead>
+<h1>USENIX Example Paper</h1>
+
+<div class=authors>
+
+<div class="vcard">
+ <a class="url fn" href="http://www.princexml.com/howcome">H&aring;kon Wium Lie</a>
+ <a class="url org" href="http://www.princexml.com">YesLogic Pty. Ltd.</a>
+</div>
+
+<div class="vcard">
+ <a class="url fn" href="http://www.pnr.iki.fi/cv.html">Pekka Nikander</a>
+ <a class="url org" href="http://www.aalto.fi">Aalto University</a>
+</div>
+
+<div class="vcard">
+ <a class="url fn" href="http://www.pnr.iki.fi/cv.html">Jane-Ellen Long</a>
+ <a class="url org" href="http://www.usenix.org">USENIX Association</a>
+</div>
+
+</div>
+
+</section>
+
+<section class='abstract nonum'>
+<header>Abstract</header>
+
+<p>This is an example for a USENIX paper, in the form of an HTML/CSS
+template. Being heavily self-referential, this template illustrates
+the features included in this template. It is expected that the
+prospective authors using HTML/CSS would create a new document based
+on this template, remove the content, and start writing their paper.
+
+<p>Note that in this template, you may have a multi-paragraph
+abstract. However, that it is not necessarily a good practice. Try
+to keep your abstract in one paragraph, and remember that the optimal
+length for an abstract is 200-300 words.
+
+</section>
+
+<header>Introduction</header>
+
+<p>For the purposes of USENIX conference publications, the authors,
+not the USENIX staff, are solely responsible for the content and
+formatting of their paper. The purpose of this template is to help
+those authors that want to use HTML/CSS to write their papers. This
+template has been prepared by H&aring;kon Wium Lie, and is based on a
+guide to using FrameMaker for USENIX papers, written by Pekka
+Nikander with the help of Jane-Ellen Long. 
+
+<!--
+<p>One of the authors<span class=foot>H&aring;kon Wium Lie</span> 
+would also link to acknowledge FrameMaker as a source
+of inspiration for his work; he was an avid user of FrameMaker starting from
+version 1.2, and many features from FrameMaker were later recreated in
+Cascading Style Sheets (CSS).
+-->
+
+<p>The rest of this paper is organized as follows. Section 2 
+gives a brief overview of related work, such as other templates and
+style manuals. Section 3 discusses the details of this template, and
+Section 4 contains our conclusions. 
+
+<section>
+
+<header>Related Work</header>
+
+<p>Preparing good-looking publications is not easy. It requires
+understanding of style and typography. The purpose of the templates
+provided by the USENIX organization is to lift the burden of caring
+about typography from the authors. However, the authors still remain,
+and will always remain, responsible for the style.
+
+<section>
+<header>Word and LaTeX templates</header>
+
+<p>The USENIX website includes a template for Microsoft Word, as well as LaTeX templates. Many of the settings in the CSS style sheet of this template have been copied from the LaTeX templates. 
+</section>
+
+<figure class=column-top>
+<a href="Floppy_icon.svg"><img style="width: 100%" src="Floppy_icon.svg"></a>
+<figcaption>This figure is showed for illustrational purposes only; floppy disks are not required to use this template.</figcaption>
+</figure>
+
+
+<section>
+
+<header>Style manuals</header>
+
+<p>Besides typography, style is the second element of preparing easy-to-read publications. There are tens of good style manuals available. To mention just a couple, The Elements of Style by Strunk and White <cite><span class=author>Strunk, W. Jr., and White, E.B.</span> The Elements of Style, 4th Ed, Allyn and Bacon, August, 1999, ISBN 020530902X</cite> is a classic, and has remained a bestseller since its
+introduction in 1930&rsquo;s. From the more contemporary ones, Writing for Computer Science by Justin Zobel <cite><span class=author>Zobel, J.</span> Writing for Computer Science, Springer-Verlag, December 1997, ISBN 9813083220</cite> seems appropriate.
+
+</section>
+</section>
+
+
+
+<section>
+<header>Implementation</header>
+
+<p>In this section we cover the features included in this template.
+Our goal has been that the authors do not need to make modifications
+to the template; instead, they should be able to concentrate on the
+content and style. With this in mind, this template includes a number
+of features. On the other hand, we have also tried to keep this
+document simple and easy to maintain.
+
+<p>This template is written in HTML, with CSS to provide styling, and
+a small JavaScript to help format references.
+
+<section>
+<header>HTML5</header>
+
+<p>This template uses HTML5 elements to aid in representing the
+document structure. The <code>section</code> element is used to split
+the text into sections, and the <code>header</code> element holds the
+headlines. The <code>figure</code> element is used to include figures
+and their corrensponding captions live inside
+the <code>figcaption</code> element. The <code>cite</code> element
+holds all references.
+
+<p>A small microformat, based on a convention of class names, is used to encode the name and affiliation of the authors.
+
+</section>
+
+<section>
+<header>CSS</header>
+
+<p>A CSS style sheet describes how to format the HTML document into a
+PDF file. CSS is a declarative language which attaches property values
+to HTML elements and documents. Many aspects of CSS is used to achieve
+the presentation of USENIX papers, including:
+
+<ul>
+<li>multi-column layout
+<li>footnotes
+<li>page and column floats
+<li>multi-level counters
+</ul>
+
+<p>Some commonly used features are absent from the above list: page numbers and running headers should not be specifed by USENIX authors, these are added by those who compile the Proceedings.
+
+</section>
+
+<section>
+<header>JavaScript</header>
+
+<p>This template uses JavaScript to process references. References are added at the point where they appear, and a script is later used to move the references to the end of the paper, leaving behind a numeric marker. 
+
+</section>
+
+<figure class=top>
+<a href="Computer_keyboard_Danish_layout.svg"><img style="width: 100%" src="Computer_keyboard_Danish_layout.svg"></a>
+<figcaption>This figure floats to the top of the page, spanning both columns.</figcaption>
+</figure>
+
+
+<section>
+<header>Prince</header>
+
+<p>In order to convert the document to PDF, a formatter is needed. Common browsers support HTML and CSS, but they do not support all the CSS functionality for page-based formatting. For example, browsers do not support footnotes or page floats. This paper has been formatted with Prince<span class=foot>www.princexml.com</span>, a purpose-built program for converting HTML and XML documents into PDF by way of CSS. Prince is a commercial product, but can be downloaded and used for free for non-commercial purposes.<span class=foot>Disclosure: H&aring;kon Wium Lie is on the board of YesLogic, the company behind Prince.</span>
+<p>In order for Prince to process the script included in this template, a command line option must be specified:
+
+<pre>
+$ prince --javascript example.html
+</pre>
+
+</section>
+</section>
+
+
+<section>
+
+<header>Tables</header>
+
+<p>The table below lists recipients of the USENIX Lifetime Achievement Award in the 1900s. Notice how notes inside the table are moved to the end of the table. 
+
+<table>
+<tr><td>Year<td>Recipient
+<tr><td>1999<td><a href="http://en.wikipedia.org/wiki/X_Window_System" title="X Window System">X Window System</a><span class=tablefoot>Given to the Community at Large</span>
+<tr><td>1998<td><a href="http://en.wikipedia.org/wiki/Tim_Berners-Lee" title="Tim Berners-Lee">Tim Berners-Lee</a>
+<tr><td>1997<td><a href="http://en.wikipedia.org/wiki/Brian_W._Kernighan" title="Brian W. Kernighan">Brian W. Kernighan</a>
+<tr><td>1996<td><a href="http://en.wikipedia.org/w/index.php?title=The_Software_Tools_Project&amp;action=edit&amp;redlink=1" class="new" title="The Software Tools Project (page does not exist)">The Software Tools Project</a>
+<tr><td>1995<td>The Creation of <a href="http://en.wikipedia.org/wiki/USENET" title="USENET">USENET</a> <span class=tablefoot>Given to <a href="http://en.wikipedia.org/wiki/Jim_Ellis_(computing)" title="Jim Ellis (computing)">Jim Ellis</a> and <a href="http://en.wikipedia.org/wiki/Tom_Truscott" title="Tom Truscott">Tom Truscott</a></span>
+<tr><td>1994<td>Networking Technologies
+<tr><td>1993<td><a href="http://en.wikipedia.org/wiki/Berkeley_UNIX" title="Berkeley UNIX">Berkeley UNIX</a></li>
+<tr><td colspan=2><ol id=tf></ol></td>
+</table>
+
+</section>
+
+
+<section>
+
+<header>Conclusions</header>
+
+<p>Each good paper concludes the most significant findings in the end.
+
+</section>
+
+<section class=nonum>
+
+<header>Acknowledgments</header>
+
+<p>A polite author always includes acknowledgments.
+Thank everyone, especially those who funded the work.
+
+<p>This author would especially like to thank the programmers behind
+Prince, and the editor of the HTML5 specification.
+
+</section>
+
+
+<section class=nonum>
+
+<header>Availability</header>
+
+<p>Please include a section at the end of your paper providing
+availability information. If the system you describe is available to
+others, and if more information (reports, etc.) may be obtained,
+indicate terms and contact information.
+
+</section>
+
+
+<section class='nonum refs'>
+
+<header>References</header>
+
+<ol id=ref></ol>
+
+</section>
+</article>
+<script>
+function getText(e)
+{
+    var text = "";
+
+    for (var x = e.firstChild; x != null; x = x.nextSibling)
+    {
+	if (x.nodeType == x.TEXT_NODE)
+	{
+	    text += x.data;
+	}
+	else if (x.nodeType == x.ELEMENT_NODE)
+	{
+	    text += getText(x);
+	}
+    }
+
+    return text;
+}
+
+function getElementsByClassName(oElm, strTagName, strClassName){
+	var arrElements = (strTagName == "*" && oElm.all)? oElm.all : oElm.getElementsByTagName(strTagName);
+	var arrReturnElements = new Array();
+	strClassName = strClassName.replace(/\-/g, "\\-");
+	var oRegExp = new RegExp("(^|\\s)" + strClassName + "(\\s|$)");
+	var oElement;
+	for(var i=0; i<arrElements.length; i++){
+		oElement = arrElements[i];
+		if(oRegExp.test(oElement.className)){
+			arrReturnElements.push(oElement);
+		}
+	}
+	return (arrReturnElements)
+}
+
+
+function makeref()  // turn references into endnotes
+{
+
+// get element that will hold list of references
+
+  var refcontainer = document.getElementById('ref');
+  var ids = new Array();
+  var ent = new Array();
+  var refnum = 0;
+
+// find all elements that contain index entries, go through them sequentially
+
+//  ref = getElementsByClassName(document, "*", "ref");
+  ref = document.getElementsByTagName("cite");
+  for(var i=0; i < ref.length; i++) {
+    ref[i].setAttribute("id", "ref"+i);
+
+// store the reference in a string in an associative array
+
+//    var str = getText(ref[i]);
+    var str = ref[i].innerHTML;
+
+// check to see if the entry is there already, if not add it
+
+    var refnum = ent.indexOf(str);
+    if (refnum < 0) {
+      ent.push(str);
+    } 
+    refnum = ent.indexOf(str) + 1;
+
+//  replace content of original element 
+
+    ref[i].innerHTML = '[' + refnum + ']';
+  }
+
+// go through list of index entries, create one li element per entry
+
+  for (var i=0; i<ent.length; i++) {
+    var li = document.createElement("li");
+    refnum=i+1;
+    li.innerHTML = '['+refnum+'] '+ent[i];
+    refcontainer.appendChild(li); 
+  }
+}
+
+function maketf()    // make table footnotes
+{
+
+// get element that will hold list table footnotes
+
+  var tfcontainer = document.getElementById('tf');
+  var ids = new Array();
+  var ent = new Array();
+  var tfnum = 0;
+
+// find all elements that contain index entries, go through them sequentially
+
+  tf = getElementsByClassName(document, "*", "tablefoot");
+  var tfstr="";
+  for(var i=0; i < tf.length; i++) {
+    tf[i].setAttribute("id", "tf"+i);
+
+// store the reference in a string in an associative array
+
+//    var str = getText(ref[i]);
+    var str = tf[i].innerHTML;
+
+// check to see if the entry is there already, if not add it
+
+    var tfnum = ent.indexOf(str);
+    if (tfnum < 0) {
+      ent.push(str);
+    } 
+    tfnum = ent.indexOf(str) + 1;
+    tfstr = tfstr + '*';
+
+//  replace content of original element 
+
+    tf[i].innerHTML = tfstr + ' ';
+  }
+
+// go through list of index entries, create one li element per entry
+
+  tfstr = "";
+  for (var i=0; i<ent.length; i++) {
+    var li = document.createElement("li");
+    tfnum=i+1;
+    tfstr = tfstr + '*';
+    li.innerHTML = tfstr+' '+ent[i];
+    tfcontainer.appendChild(li); 
+  }
+}
+
+</script>
+
+</html>
