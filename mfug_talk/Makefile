@@ -1,4 +1,6 @@
 # vim: noet sw=4 ts=4
+# Copyright (C) 2015 YesLogic Pty Ltd
+# Copyright (C) 2015 Paul Bone
 
 mfug.pdf : mfug.html mfug.css
 	prince --media projection mfug.html

@@ -1,6 +1,12 @@
 
 # Presentation for Melbourne Functional User Group (MFUG)
 
+Copyright (C) 2015 YesLogic Pty Ltd
+
+Copyright (C) 2015 Paul Bone
+
+Copyright (C) 2015 Zoltan Somogyi
+
 This example demonstrates how to create slides for a presentation.
 
 ## Creating slides
