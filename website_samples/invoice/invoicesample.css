@@ -1,0 +1,227 @@
+body,html{
+padding: 0;
+margin:0;
+color: black;
+}
+
+p{
+font-size: 16px;
+font-family: Arial, sans serif;
+}
+
+.bordertop{
+border-top: 2px solid #333;
+}
+
+.attentionto .clientname{
+font-size: 20px;
+font-weight: bold;
+}
+
+.attentionto .client{
+margin-top: 120px;
+}
+
+.attentionto .price{
+width: 100%;
+background: white;
+text-align: right;
+}
+
+.attentionto .price p{
+font-weight: bold;
+font-size: 50px;
+padding:  10px;
+}
+
+.h2{
+font-size: 20px;
+font-family: Georgia, serif;
+font-weight: bold;
+}
+
+td.logo{
+text-align: center;
+vertical-align: middle;
+}
+
+
+.brownbar{
+background-color: #754c24;
+height: 40px;
+width: 100%;
+}
+
+.ribbon-top, .ribbon-bottom{
+width: 200px;
+}
+
+.logo img{
+margin-top: 70px;
+width: 400px;
+}
+
+.ribbon-bottom{
+float: right;
+margin-top: -40px;
+}
+
+.ribbon-top{
+margin-top: 10px;
+}
+
+.content{
+border: 0px red solid;
+max-width: 960px;
+padding: 0 25px;
+margin: 0 auto;
+height: 100%;
+}
+
+.attentionto{
+max-height: 380px;
+width: 230px;
+background: #dba948;
+margin-top: -1px;
+-moz-border-radius-bottomright: 15px;
+-moz-border-radius-bottomleft: 15px;
+border-bottom-right-radius: 15px;
+border-bottom-left-radius: 15px;
+float: right;
+margin-right: 20px;
+padding: 30px;
+}
+
+.attentionto img{
+width: 110%;
+margin-left: -15px;
+}
+
+table.invoice{
+width:100%;
+border: 0px solid red;
+padding: 0px;
+border-collapse:collapse
+}
+
+table.invoicedetail{
+width: 100%;
+border-collapse: collapse;
+margin-bottom: 20px;
+}
+
+table.invoicedetail thead{
+font-size: 20px;
+font-family: Georgia;
+font-weight:bold;
+background: #dba948;
+}
+
+table.invoicedetail .pricekg, table.invoicedetail .quantity{
+text-align: center;
+}
+
+table.invoicedetail thead .subtotal{
+text-align: center;
+}
+
+table.invoicedetail .subtotal{
+text-align: right;
+padding-right: 55px;
+}
+
+table.invoicedetail .name{
+padding-left: 50px;
+}
+
+table.invoicedetail tr:nth-child(even){
+background: #f4e5c8;
+opacity: 1;
+}
+
+table.invoicedetail tbody td{
+padding: 10px 15px;
+font-family: arial;
+}
+
+table.invoicedetail thead td{
+padding: 15px;
+}
+
+.thankyou{
+width: 100%;
+}
+
+p.note{
+color: #999;
+font-size: 12px;
+}
+
+.totalall{
+height: 180px;
+width: 230px; 
+background: #dba948;
+margin-bottom: -1px;
+-moz-border-radius-topright: 15px;
+-moz-border-radius-topleft: 15px;
+border-top-right-radius: 15px;
+border-top-left-radius: 15px;
+float: right;
+margin-right: 20px;
+padding: 30px;
+}
+
+.totalall table{
+width: 100%;
+margin-bottom: 20px;
+}
+
+.totalall .heading{
+font-size: 20px;
+font-family: Georgia, Serif;
+font-weight: bold;
+padding: 5px 0px;
+}
+
+.totalall .body{
+text-align: right;
+font-size: 20px;
+}
+
+.totalall #totalall{
+background: white;
+font-size: 25px;
+font-weight: bold;
+}
+
+@media print{
+@page{
+size: A4;
+margin: 0cm;
+}
+
+.thankyou{
+width: 400px;
+}
+
+.logo img{
+width: 300px;
+}
+
+.footer{
+position: absolute;
+bottom: 0;
+width: 100%;
+margin-right: 50px;
+}
+
+.attentionto{
+margin-top: 0px;
+height: 320px;
+}
+
+.attentionto .client{
+margin-top: 50px;
+}
+
+}

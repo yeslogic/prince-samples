@@ -1,0 +1,112 @@
+@import url(http://www.princexml.com/fonts/sil/index.css);
+
+@media screen {
+  osis {
+    margin: 2em;
+  }
+}
+
+
+@page {
+  size: a5 portrait;
+  font: 11pt/1.4 Gentium, Georgia, serif;
+  margin: 2cm 1cm;
+  @top-center {
+    content: "foo";
+    content: "Titus " string(chapterx, start) ":" string(versex, start) " - "  string(chapterx, last) ":" string(versex, last);
+    vertical-align: bottom;
+    margin: 1em 0;
+  }
+}
+
+@page :first {
+  @top-center { content: normal }
+}
+
+osis, osisText, chapter, div, title {
+  display: block;
+}
+
+header { display: none }
+
+div[type=book] {
+  column-count: 2;
+  column-gap: 0.8cm;
+  font: 11pt/1.4 Gentium, Georgia, serif;
+  prince-text-replace: "'" "\2019";
+}
+
+title[type=main] {
+  font-size: 3em;
+  text-align: center;
+  string-set: title;
+}
+
+div[type=section] title {
+  margin: 1em 0 0.3em;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+
+div[type=introduction] {
+  color: red;
+}
+
+reference { display: italic }
+note { display: none }
+
+
+chapter[eID] {
+  display:none;
+}
+
+chapter[sID] {
+  counter-increment: chapter;
+  string-set: chapterx counter(chapter);
+  counter-reset: verse;
+}
+
+/* 
+   fancy selector to set chapter number on the first paragraph 
+   following <chapter sID ../> tag 
+*/
+
+chapter[sID] + div[type=section] > p:first-child:before,
+chapter[sID] + div[type=section] > title + p:before {
+  content: counter(chapter);
+  font-family: serif;
+  font-size: 3.2em;
+  line-height: 30pt;
+  padding-right: 0.1em;
+  color: red;
+  float: left; 
+}
+
+[canonical=false] {
+  display: none;
+}
+
+verse[sID] {
+  content: counter(verse);
+  font-family: serif;
+  font-size: 0.8em;
+  margin: 0 0.2em;
+  vertical-align: top;
+  color: green;
+  counter-increment: verse;
+  string-set: versex counter(verse);
+}
+
+/*
+   remove first verse counter
+*/
+chapter[sID] + div[type=section] > p:first-child > verse:first-child,
+chapter[sID] + div[type=section] > title + p > verse:first-child {
+  font-size: 0;
+}  
+
+lb[type=x-secondLine] {
+  content: " ";
+}
+

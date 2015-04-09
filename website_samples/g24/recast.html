@@ -1,0 +1,429 @@
+<html>
+<head>
+<title>G24</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+@page {
+  size: a4;
+  margin: 2.45cm 1.2cm 1cm;
+
+
+@top-left {
+  content:  flow(topleft) ;
+  vertical-align: top;
+  margin-top: 30pt;
+  border-top: 1pt solid black;
+  padding-top: 3pt;
+  border-bottom: 1pt solid black;
+  margin-bottom: 2pt;
+}
+@top-right {
+  content: flow(topright);
+  vertical-align: top;
+  margin-top: 30pt;
+  border-top: 1pt solid black;
+  padding-top: 3pt;
+  border-bottom: 1pt solid black;
+  margin-bottom: 2pt;
+  width: auto;
+}
+}
+
+@page :first {
+margin: 1cm 1.2cm 0cm;
+@top { content: none }
+@top-left { content: none }
+@top-right { content: none }
+}
+
+body { font: 9.5pt "Calgary", serif; margin: 3em }
+
+.nameplate { 
+  display: table-row; 
+  border-top: 1pt solid black;
+}
+
+.nameplate { 
+  font-size: 14pt; color: gray;
+  border-bottom: 10pt solid #a99;
+}
+
+.nameplate .bar:before { 
+  content: "|";
+  font-size: 70%;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+}
+
+.nameplate h1 { 
+  padding: 0; margin: 0;
+  line-height: 0.8em;
+  font-family: DisplayEgyptianCondensed-8Ultra; 
+  font-size: 130pt; color: #bcd 
+}
+
+h2 { font: 900 20pt/22pt "Calgary", serif; margin: 0.4em 0 0; padding: 0 }
+h3 { font: 15pt/17pt "Calgary", serif; padding: 0; margin: 0}
+.page { color: gray; font-weight: bold; white-space: pre}
+
+div.intros {
+  display: table;
+  width: 100%;
+  border: none;
+  border-collapse: collapse;
+  border-left: none;
+  border-right: none;
+}
+
+div.intro { 
+  display: table-row; 
+  width: 100%;
+  padding-bottom: 0.2em;
+  border-bottom: 1pt solid black; 
+  margin-bottom: 0.7em; 
+}
+
+div.text, div.figure {
+  display: table-cell;
+  vertical-align: top;
+  margin: 0; padding: 0;
+}
+
+div.intro img, div.figure {
+  width: 4.45cm;
+  margin: 0; padding: 0;
+}
+
+div.intro img {
+  padding: 0.5em 0 0.3em;
+}
+
+
+div.teasers {
+  display: table;
+  padding-bottom: 20pt;
+  border-top: 10pt solid #a99;
+  border-bottom: 1pt solid black;
+}
+
+div.teasers h3 {
+  font-size: 13pt;
+  line-height: 15pt;
+  font-weight: bold;
+}
+
+div.teasercol {
+  display: table-cell;
+}
+
+div.teasercol {
+  padding-left: 1em;
+}
+
+div.teasercol:first-child {
+  padding-left: 0;
+}
+
+div.teasercol h3:first-child {
+  padding-bottom: 0.5em;
+  border-bottom: thin solid black;
+  margin-bottom: 0.5em;
+}
+
+
+.news {
+  page-break-before: always;
+  column-count: 2;
+  column-gap: 1.3em;
+  column-rule: 1pt solid black;
+}
+
+.news .article {
+  margin-bottom: 1em;
+}
+
+.news h2 {
+  padding: 0;
+  font-size: 14pt;
+  line-height: 16pt;
+  border-top: 10pt solid #a99;
+  margin: 0.1em 0 1em;
+}
+
+.news h3 {
+  font-size: 13pt;
+  line-height: 15pt;
+  border-top: 1pt solid black;
+  border-bottom: 1pt solid black;
+  margin: 0.5em 0;
+}
+.news .caption {
+  font-weight: bold; text-indent: 0;
+}
+.news img {
+  padding: 0.8em 0 0.1em;
+}
+
+.news .first {
+  padding-top: 0.5em;
+  text-indent: 0
+}
+.news .byline {
+  font-size: 9pt; font-weight: bold;
+  margin: 0.5em 0;
+}
+.news .photographer {
+  color: gray;
+}
+.news p {
+  text-indent: 1.5em;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  font-size: 13pt;
+  list-style-type: none;
+  margin: 0.4em 0;
+  padding: 0;
+  border-top: 1pt solid black;
+}
+
+li {
+  border-bottom: 1pt solid black;
+}
+
+ul li:before {
+  content: "•";
+  font-size: 2em;
+  vertical-align: middle;
+  line-height: 0.5em;
+}
+
+.figure.left {
+  float: left;
+  padding-right: 0.5em;
+}
+
+.ad {
+  margin-top: 1em;
+}
+
+.ad img { width: 100% }
+
+
+div.smallprint {
+  font-size: 8pt;
+  line-height: 9pt;
+}
+
+div.smallprint .right { float: right }
+
+div.topright {
+  text-align: right;
+  flow: static(topright);
+  color: #a99;
+  font-size: 12pt;
+}
+div.topright .time { font-family: DisplayEgyptianBold; font-weight: bold; color: orange }
+
+div.topleft { 
+  flow: static(topleft);
+  font-size: 12pt;
+  color: #a99;
+}
+div.topleft:before { 
+  font-size: 12pt;
+  font-family: Egyptian-Bold; font-weight: bold;
+  content: "Page " counter(page) " ";
+  color: #a99;
+}
+
+div.topleft, div.topright { display: none }
+
+@media print {
+  body { margin: 0 }
+}
+</style>
+</head>
+<body>
+<div class="topleft">G24 Top Stories</div>
+<div class="topright">Wednesday August 30 2006 <span class="time">12:15</span></div>
+
+<div class="intros">
+<div class="nameplate">
+<div class="text">
+<span style="font-family: Egyptian-Bold; font-weight: bold; color: #058">the<span style="color: #bcd">guardian</span></span> <span class="bar">pdf edition</span> <span class="bar">Wednesday August 30 2006</span>
+<h1><span style="color: #058">G</span>24</h1>
+</div>
+<div class="figure">
+<div style="font-size: 22pt; color: black">Top stories</div>
+<div style="font-family: DisplayEgyptianBold; font-size: 11pt; width: 100%; background: #ccc; text-align: center; color: orange; padding: 0.3em">Downloaded 12:15</div>
+</div>
+</div>
+
+
+<div class="intro">
+<div class="text">
+<h2>Lift Lebanon blockade, Annan tells Israel</h2>
+<h3>Lebanese suffering ‘humiliation’ <span class=page>Page 2</span></h3>
+</div>
+<div class="figure"><img src="images/topstories-1_3.jpg"></div>
+</div>
+
+<div class="intro">
+<div class="text">
+<h2>Worried MPs plot to force Blair exit date</h2>
+<h3>Backbenchers in marginals swelling numbers wanting clear departure plan <span class=page>Page 2</span></h3>
+</div>
+<div class="figure"><img src="images/topstories-1_2.jpg"></div>
+</div>
+
+<div class="intro">
+<div class="text">
+<h2>First Arab Nobel laureate dies, aged 94</h2>
+<h3>Naguib Mahfouz, 94, wrote epic depictions of ancient Cairo. <span class=page>Page 3</span></h3>
+</div>
+<div class="figure"><img src="images/topstories-1_1.jpg"></div>
+</div>
+
+</div>
+
+<div class="teasers">
+
+<div class="teasercol">
+<h3>Iraqi faces control order after court clears him of terror video charge <span class="page">Page 4</span></h3>
+<h3>US accused of bid to oust Chávez with secret funds <span class=page>Page 5</span></h3>
+</div>
+
+<div class="teasercol">
+<h3>Corus profits hit by steel price drop <span class=page>Page 6</span></h3>
+<h3>Tories attack soaring cost of government PR <span class=page>Page 6</span></h3>
+</div>
+
+<div class="teasercol">
+<h3>Disaster capitalism: how to make money out of misery <span class=page>Page 7</span></h3>
+<h3>Couples losing out in NHS infertility treatment lottery <span class=page>Page 8</span></h3>
+</div>
+
+<div class="teasercol">
+<h3>Cole move close to collapse <span class=page>Page 8</span></h3>
+<h3>Watchdog considers action over release of primary results <span class=page>Page 9</span></h3>
+</div>
+
+</div>
+
+<div class="ad">
+<img src="images/topstories-1_4.jpg">
+</div>
+
+<div class="smallprint">
+<div class="right">guardian.co.uk/g24</div>
+Guardian Unlimited © Guardian Newspapers Limited 2006 
+<br>Registered in England and Wales. No. 908396. Registered office: 164 Deansgate, Manchester M60 2RR</div>
+
+
+<div class=news>
+
+<div class=article>
+
+<h2>Lift Lebanon blockade, Annan tells Israel</h2>
+
+<ul>
+<li>Lebanese suffering ‘humiliation’
+<li>Israeli PM sidesteps question
+<li>Annan pledge on captured Israeli troops
+</ul>
+
+
+<div class=byline>Staff and agencies<br>Wednesday August 30, 2006<br>Guardian Unlimited</div>
+
+<div class="figure">
+<img src="images/topstories-2_2.jpg">
+
+<p class=caption>Ehud Olmert and Kofi Annan. <span class="photographer">Photograph: Amos Ben Gershom/Getty </span></p>
+</div>
+
+<p class=first>Israel must lift its air and sea blockade of Lebanon, which the Lebanese people see as a “humiliation and infringement of their sovereignty”, Kofi Annan warned today. 
+
+<p>The UN secretary general renewed his call for the removal of the blockade at a news conference in Jerusalem with the Israeli prime minister, Ehud Olmert. Mr Olmert made no commitments on the blockade. 
+
+<p>Mr Annan, who was in Israel after a trip to Lebanon earlier this week, was seeking to strengthen the two-week-old ceasefire, which ended 34 days of fighting between Israel and Hizbullah fighters. He said lifting the blockade was a key step towards helping Lebanon’s economy recover. 
+
+<p>Israel has refused to lift the blockade, saying UN troops must first deploy along the Lebanese border with Syria to prevent Hizbullah rearming. 
+
+<p>Lebanon has said it will deploy its own forces there, but not international troops. Mr Annan has backed that approach. 
+
+<p>Today he said Beirut was responsible for controlling Lebanon’s borders but added that Lebanese officials had assured him they were taking measures to stop the flow of weapons. 
+
+<p>Mr Annan said he believed Israel’s security concerns could be addressed. “In the meantime, I do believe the blockade should be lifted.” 
+
+<p>Mr Olmert did not respond specifically to Mr Annan’s demand, saying only that the ceasefire deal must be implemented in its entirety. “The international community must not divert its attention” until that happened, he said. 
+
+<p>Mr Olmert, who has been facing increasing pressure domestically over his handling of the conflict, said he hoped the ceasefire would provide an opening for contact between Israel and Lebanon. 
+
+<p>“I hope the conditions will change rapidly to allow direct contact between the government of Israel and the government of Lebanon to hopefully reach agreement between the two countries.” 
+
+<p>The ceasefire deal could be “a cornerstone to build a new reality between Israel and Lebanon”, Mr Olmert said. 
+
+<p>Mr Annan said he hoped soon to double to 5,000 the number of UN troops in southern Lebanon. “We should all work together to ensure that this time the fragile peace that we are solidifying in Lebanon is for good, and that we are not going to see another escalation.” 
+
+<p>Mr Annan spoke earlier with the Israeli defence minister, Amir Peretz, who said Israel would pull out thousands of troops that remained in southern Lebanon once a “reasonable” number of UN soldiers had been deployed. He did not specify a figure. UN security council resolution 1701 calls for deployment of 15,000 peacekeepers by November 4. 
+
+<p>Mr Annan said he would do everything he could to bring about the release of three captured Israeli soldiers. Hizbullah captured two soldiers on July 12 on the Israel-Lebanon border in an incident that Israel said triggered its huge military response. Palestinian militants linked with Hamas seized a third Israeli soldier in late June. 
+
+<p>Mr Annan said he had met Hizbullah officials in Lebanon, and had the impression the soldiers were still alive. 
+
+<p>On a visit to the devastated south of Lebanon yesterday, Mr Annan said the fates of the abducted soldiers, as well as that of Lebanese prisoners held in Israel, were “serious irritants” to the truce. 
+
+<p>Mr Annan’s next destination is the West Bank, where he will meet the Palestinian president, Mahmoud Abbas. UN aides have said he will also travel to Syria and Iran, Hizbullah’s main backers, later in the week.
+</div>
+
+<!--Guardian Unlimited © Guardian Newspapers Limited 2006-->
+
+<div class=article>
+
+<h2>Worried MPs plot to force Blair exit date</h2>
+
+<h3>Backbenchers in marginals swelling numbers wanting clear departure plan</h3>
+
+<div class=byline>Patrick Wintour, political editor<br>Wednesday August 30, 2006<br>The Guardian</div>
+
+<div class="figure left"><img style="width: 100%" src="images/topstories-2_1.jpg">
+<p class=caption>Tony Blair at a ceremony in Trafalgar Square. <span class="photographer">Photograph: John D McHugh/Getty</span>
+</div>
+
+<p class="first">Fears of Labour election losses in marginal seats, especially in the south-east of England, are prompting renewed discussion among the party’s MPs about whether they should collectively and publicly demand that Tony Blair use his party conference speech to set out a clear timetable for when he will stand down. 
+
+<p>Blairites argue that a letter calling for a timetable from the prime minister would be misjudged, since it would be seen as divisive within the party and would only have a political impact if a large number of MPs signed up to it. But supporters of such a move argue that they could assemble big numbers going well beyond the ranks of serial rebel MPs. They could include previously loyal MPs such as Martin Linton, Mike Gapes, Kitty Ussher and Jim Dowd, who have recently criticised the prime minister, especially over the impact of his foreign policy. 
+
+<p>An alternative option of tabling an emergency motion at the party conference in September is likely to be rejected since it would require the support of the unions to be carried. The motion would have called for Labour’s national executive to take over preparations of a timetable for a leadership election. 
+
+<p>But it is widely accepted by opponents of Mr Blair that Gordon Brown would be seriously damaged politically if he was seen to take over the leadership as a result of a drive led by the union bloc vote. 
+
+<p>Mr Brown and his allies are not involved in the latest round of plotting, and yesterday his leading ally, the Treasury minister Ed Balls, again called on the party to avoid factionalism, and reminded it of the dangers of a bloody transfer of power like the one that marked the end of Thatcherism. 
+
+<p>Some Labour MPs had considered signing a letter calling on Mr Blair to stand down in May after the local elections, but the organisers held back after they believed the prime minister had given a clear indication at a meeting of the parliamentary party that he would stand down within a year. 
+
+<p>In the past few days a series of Blairite cabinet ministers, as well as his official spokeswoman, have insisted that he has a full agenda, including cutting hospital waiting times, social exclusion, the Middle East, and the impact of globalisation on security. 
+
+<p>This has prompted some MPs to argue that they need to raise the political pressure, probably through the form of a letter demanding that a timetable for Mr Blair’s departure is clear by the end of his party conference speech. 
+
+<p>They point to growing signs that formerly loyal MPs, notably in London and the south-east, are voicing fears that Mr Blair needs to go quickly if the party is to see off the growing challenge posed by David Cameron. A Guardian/ICM poll last week showed Labour at a 19-year low and the Tories with a nine-point lead, their strongest position for 14 years. 
+
+<p>Before leaving for his holidays, Mr Blair told allies that he wanted to clarify his intentions well before the party conference, with a Downing Street press conference mooted as the most likely forum. Mr Blair wants to lead a debate on the future of New Labour and the challenges of the next 10 years ahead of the party conference. 
+
+<p>His political allies argue that this may be impossible without the party and the media having a clearer view of the date when he will stand down. 
+
+<p>The prime minister is planning three big speeches over the next fortnight, including one to the TUC on September 12. 
+
+<p>Mr Blair’s so-called political outriders, the former cabinet ministers Stephen Byers and Alan Milburn, are also expected to make policy-rich speeches in the next fortnight designed to influence the Treasury’s comprehensive spending review. 
+
+<p>They argue that more than 10 years after Labour revised Clause 4, the party needs a new “Clause 4 moment”, in which it decides whether the post-Blair agenda will be New Labour.
+
+</div>
+
+</body>
+
+</html>
+

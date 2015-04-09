@@ -1,0 +1,534 @@
+<!DOCTYPE html PUBLIC
+  "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+  "http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:html="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css">
+@import url(http://www.princexml.com/fonts/larabie/index.css) all;
+@import url(http://www.princexml.com/fonts/steffmann/index.css) all;
+@import url(http://www.princexml.com/fonts/liberation/index.css) all;
+
+@media screen {
+  html { margin: 2em }
+}
+
+@page {
+  size: a4;
+  marks: crop cross;
+  margin: 21mm 15mm;
+  border-bottom: thin solid black;
+  padding-bottom: 0.5em;
+
+  @bottom-center {
+    font: 12pt "Liberation Serif", serif;
+    content: counter(page);
+    vertical-align: top;
+    margin: 0.3em 0;
+  }
+
+  @top-center {
+    font: 12pt "Liberation Serif", serif;
+    content: "The magic of Prince";
+    vertical-align: bottom;
+    padding-bottom: 1.5em;
+    margin: 0;
+  }
+
+  @footnotes {
+    border-top: thin solid black;
+    padding: 0.3em 0;
+    margin-top: 0.6em;
+  }
+}
+
+@page :first {
+  @top-center {
+     content: normal;
+  }
+}
+
+body {
+  font: 10.7pt/1.3 "Liberation Serif", serif;
+  counter-reset: issue;
+  prince-hyphens: auto;
+  text-align: justify;
+}
+
+h1 {
+  font-family: "Effloresce", "Port Credit", sans-serif;
+  font-size: 3.8em;
+  text-align: center;
+  font-weight: normal;
+  margin: 0;
+}
+
+h2 {
+  font: normal 1.4em "Blue Highway", "Pilsen Plakat", "Unispace", sans-serif;
+  padding: 0;
+  margin: 1em 0 0.2em;
+  counter-increment: issue;
+  clear: both;
+  page-break-after: avoid;
+}
+
+h3 {
+  font: normal 1.8em "Enge Holzschrift", "Engebrechtre Expanded", sans-serif;
+  letter-spacing: 0.1em;
+  padding: 0;
+  margin: 0.05em 0 0.2em;
+  clear: both;
+  page-break-after: avoid;
+}
+
+p {
+  margin: 0.2em 0;
+}
+
+a { text-decoration: none; color: black }
+
+.abstract {
+  font-size: 1.1em;
+  line-height: 1.4;
+  text-align: justify;
+  margin: 1em 0;
+}
+
+.multi-column { 
+  column-count: 2; -moz-column-count: 2; 
+  column-gap: 1.5em; -moz-column-gap: 1.5em;
+  column-fill: auto; 
+  text-align: justify;
+}
+
+
+/* cross-references */
+
+a.xref:after {
+  content: " " target-counter(attr(href), page);
+}
+
+/* counters */
+
+h2:before {
+  content: "#" counter(issue) ": ";
+}
+
+
+/* pagefloat */
+
+#pagefloat div {
+  display: block;
+  text-align: center;
+  float: top;
+  font-size: 40pt;
+  margin: 0 0 0.5em;
+  padding: 0 0 0.2em;
+  border: thin solid silver;
+  background: silver;
+  border-radius: 5px; 
+}
+
+
+/* http */
+
+#http img { 
+  float: left;
+  padding-right: 0.3em;
+  prince-image-resolution: 150dpi;
+}
+
+/* tr */
+
+body { prince-text-replace: "'" "\2019" }
+
+/* rounded borders */
+
+#rounded table { 
+  border-collapse: separate; 
+  border-spacing: 3px; 
+  empty-cells: hide; 
+  margin: 1em auto;
+}
+
+#rounded th { 
+  text-align: right;
+  border-top-left-radius: 5px; 
+  border-top-right-radius: 0px; 
+  border-bottom-left-radius: 5px; 
+  border-bottom-right-radius: 0px; 
+  background: green; 
+  padding: 0 0.2em;
+  color: white;
+}
+
+#rounded tr:first-child th { 
+  border-top-left-radius: 5px; 
+  border-top-right-radius: 5px; 
+  border-bottom-left-radius: 0px; 
+  border-bottom-right-radius: 0px; 
+}
+
+#rounded td { padding: 0 0.2em; border: thin solid green; }
+
+#rounded table :last-child :last-child { 
+  border-bottom-right-radius: 10px 20px; 
+}
+
+/* columns */
+
+#columns p {
+  columns: 2; -moz-columns: 2;
+  column-rule: thin solid black; -moz-column-rule: thin solid black;
+}
+
+/* toc */
+
+#toc { 
+  background: silver;
+  border: thin solid black;
+  border-radius: 5px;
+  padding: 0.4em;
+}
+
+#toc h3 {
+  text-align: center
+}
+
+#toc ul {
+  columns: 2;
+}
+
+#toc ul, #toc li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#toc a::after {
+  content: leader('.') target-counter(attr(href), page);
+  font-style: normal;
+}
+
+/* footnotes */
+
+.footnote {
+  display: none;
+  display: footnote;
+  display: prince-footnote;
+  position: footnote;
+  counter-increment: footnote;
+  list-style-position: inside;
+  margin-left: 1.4em;
+  font-size: 90%;
+  line-height: 1.4;
+}
+
+.footnote::marker1 { 
+  vertical-align: super;
+}
+
+.footnote::marker2 { 
+  vertical-align: super;
+  color: green;
+  padding-right: 0.4em;
+}
+
+/* Math */
+
+math { display: block; margin: 0.5em auto 0 }
+
+/* SVG */
+
+#crown { 
+  background: red;
+  width: 4.5em;
+  height: 4.5em;
+  margin: 0.4em 0.5em 0 0;
+  float: left;
+}
+
+
+</style>
+
+<title>The magic of Prince</title>
+</head>
+<body>
+<h1>The <em>magic</em> of Prince</h1>
+
+<p class="abstract">Prince is a computer program that converts XML and
+HTML into PDF. It is simple, yet very powerful, and it creates
+beautiful documents. The purpose of this small document is to showcase
+the formatting magic Prince can do. We have chosen to highlight eighteen of
+our favorite features. This document is written in HTML and converted
+to PDF by Prince. The source file is a compact 13k document, including
+the embedded CSS, SVG and MathML.</p>
+
+<div class="multi-column">
+<div id="toc">
+
+<h3>Table of contents</h3>
+
+<ul>
+<li><a href="#hyphenate">Hyphenation</a></li>
+<li><a href="#rounded">Rounded borders</a></li>
+<li><a href="#tr">Character substitution</a></li>
+<li><a href="#http">HTTP support</a></li>
+<li><a href="#fonts">Web fonts</a></li>
+<li><a href="#dpi">Image resolution</a></li>
+<li><a href="#columns">Columns</a></li>
+<li><a href="#cmyk">CMYK colors</a></li>
+<li><a href="#counters">Counters</a></li>
+<li><a href="#crop">Crop and cross marks</a></li>
+<li><a href="#xref">Cross-references</a></li>
+<li><a href="#math">Math</a></li>
+<li><a href="#footnotes">Footnotes</a></li>
+<li><a href="#leaders">Leaders</a></li>
+<li><a href="#svg">SVG</a></li>
+<li><a href="#pagefloat">Page floats</a></li>
+<li><a href="#hf">Headers and footers</a></li>
+<li><a href="#bookmarks">PDF bookmarks</a></li>
+</ul>
+</div>
+
+<div id="hyphenate"><h2>Hyphenation</h2>
+
+<p>Prince&nbsp;6 supports automatic hyphenation which can break words across
+several lines, adding a hyphen at the word break. Hyphenation is
+controlled with a set of experimental CSS properties, and hyphenation
+patterns for different languages can be supplied. Notice how the text
+in this document is hyphenated.</p>
+
+</div>
+
+<div id="rounded"><h2>Rounded borders</h2>
+
+<p>CSS3 introduces support for rounded borders. In the table below,
+some of the corners have been rounded. On purpose, the bottom right
+corner has an asymmetrical shape.</p>
+
+<table>
+<tr><td></td><th>fruit</th><th>computer</th></tr>
+<tr><th>apple</th><td>yes</td><td>yes</td></tr>
+<tr><th>orange</th><td>yes</td><td>no</td></tr>
+</table>
+</div>
+
+
+<div id="tr"><h2>Character substitution</h2>
+
+<p>It's sometimes convenient to replace one character with another
+without changing the source document. For example, the apostrophe
+character is easily found on keyboards, but in print it's common to
+replace it with a quotation character. Notice how Prince&nbsp;6 has
+replaced the apostrophes in this paragraph.</p>
+
+</div>
+
+
+<div id="http"><h2>HTTP support</h2>
+
+<p><img src="http://www.princexml.com/images/acid2.png" />Prince&nbsp;6 has
+built-in HTTP support and can fetch pages, images, DTDs and style sheets
+from the web. The image to the left was automatically fetched when the
+PDF version was generated.</p>
+</div>
+
+
+<div id="fonts"><h2>Web fonts</h2> 
+
+<p>Prince&nbsp;6 can fetch fonts from the web and use them without
+installing them on your system. The fonts used in the PDF version of
+this document are web fonts. We are grateful to <a href="http://www.larabiefonts.com/">Ray Larabie</a>, <a href="http://moorstation.org/typoasis/designers/steffmann/index.htm">Dieter Steffmann</a>, and <a href="http://www.redhat.com/promo/fonts">Red Hat</a> for making
+hi-quality fonts freely available.</p>
+
+</div>
+
+<div id="dpi"><h2>Image resolution</h2>
+
+<p>Sometimes images should be scaled to a certain resolution, rather
+than to an absolute size. In Prince, you can set the resolution of an
+image as a property in the style sheet. The smiley face in the
+previous section was scaled this way. The smiley also represents the
+challenging <a href="http://www.webstandards.org/acid2">Acid2</a>
+test, which Prince&nbsp;6 passes.</p>
+
+</div>
+
+<div id="columns"><h2>Columns</h2>
+
+<p>Columns are commonly used on paper and Prince supports <a
+href="http://www.w3.org/TR/css3-multicol">multi-column</a> layouts
+described in CSS. This document is laid out in two columns. Also, this section
+uses a two-column layout with gap and a rule between. The width of the gap and the style of the rule is set in the style sheet.
+</p>
+
+</div>
+
+<div id="cmyk"><h2 style="color: rgb(100%, 0%, 0%); color: cmyk(0.8, 0.5, 0.0, 0.3)">CMYK colors</h2>
+
+<p>Printers don't use RGB colors, they mostly use CMYK: cyan, magenta,
+yellow and black. Prince&nbsp;6 can read CMYK colors and will use
+them, if present. The heading above this paragraph has both an RGB
+color (red) and a CMYK color (bluish). Therefore, the text is red in
+browsers, but blue in the PDF version. This is for demonstration
+purposes; normally the colors would be close to each other.</p>
+
+</div>
+
+
+<div id="counters"><h2>Counters</h2>
+
+<p>If you are reading the XHTML source code of this document, look
+for the <code>h2</code> elements. You will notice that they contain
+the text of the headings, but not their number. The list item
+number, including the <q>#</q> and <q>:</q> are
+automatically generated by the style sheet. Generated
+content and counters are especially useful for complex documents.
+They are described in <a href="">CSS level 2.1</a>.</p>
+</div>
+
+<div id="crop"><h2>Crop and cross marks</h2>
+
+<p>In printing, crop marks are used to indicate where the printed
+paper should be cut. Cross marks are used to align prints of different
+colors to improve color reproduction. Prince&nbsp;6 adds support for crop
+and cross marks, and the PDF version of this document includes both.</p>
+</div>
+
+<div id="xref"><h2>Cross-references</h2>
+
+<p>Prince can read hyperlinks inside a document and generate page
+numbers accordingly. For example, it will automatically find out
+which page <em>Headers and Footers</em> are discussed on (<a
+class="xref" href="#hf">page</a>). Cross-references are used to
+generate the <em>Table of contents</em> (<a class="xref"
+href="#toc">page</a>).</p>
+</div>
+
+<div id="math"><h2>Math</h2>
+<p>Prince&nbsp;6 add experimental support for MathML. Here is an example:</p>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow>
+      <mrow>
+        <mi>x</mi>
+        <mover>
+           <mo>&RightArrow;</mo>
+
+           <mtext>maps to</mtext>
+        </mover>
+        <mi>y</mi>
+        <mo>=</mo>
+        <msub>
+          <mi>f</mi>
+          <mi>n</mi>
+
+        </msub>
+        <mo>&ApplyFunction;</mo>
+        <mrow>
+          <mo>(</mo>
+          <mi>x</mi>
+          <mo>)</mo>
+        </mrow>
+
+      </mrow>
+      <mo>=</mo>
+      <msup>
+        <mrow>
+          <mo>(</mo>
+          <mrow>
+            <mn>1</mn>
+
+            <mo>+</mo>
+            <mfrac>
+              <mn>1</mn>
+              <msup>
+                <mi>x</mi>
+                <mi>n</mi>
+              </msup>
+
+            </mfrac>
+          </mrow>
+          <mo>)</mo>
+        </mrow>
+        <mi>n</mi>
+      </msup>
+    </mrow>
+</math>
+
+</div>
+
+
+<div id="footnotes"><h2>Footnotes</h2>
+
+<p>Footnotes<span class="footnote">A footnote is a note placed at
+the bottom of a page of a book or manuscript that comments on or
+cites a reference for a designated part of the text.</span> are
+essential in printed documents and Prince knows how to generate
+them. Unlike what some people think, footnotes are not the place to
+put information you don't want to see. More often, footnotes will
+actually attract attention. 9 of 10 of readers will read the
+footnotes before they read the text from where the footnotes are
+anchored.<span class="footnote">Often, the most interesting
+information is found in the footnotes.</span></p>
+</div>
+
+<div id="leaders"><h2>Leaders</h2>
+
+<p>Leaders consist of dots or dashes in a row leading the eye
+across a page. For example, the <em>Table of contents</em> has
+leaders in it. The leaders are not found in the document itself,
+but rather in the style sheet.</p>
+</div>
+
+
+<div id="svg"><h2>SVG</h2>
+
+<p>
+  <svg id="crown" viewBox="50 50 650 650" xmlns="http://www.w3.org/2000/svg">
+  <path
+     style="fill:#fdd900"
+     d="M 171.01182,604.47408 L 89.577621,205.44649 L 252.44602,413.10371 
+        L 411.24271,156.58597 L 525.25059,417.17542 L 610.75651,238.02018 
+        L 594.46967,600.40237 L 171.01182,604.47408 z "/>
+  </svg>
+
+Scalable Vector Graphics (SVG) is a language for describing
+two-dimensional graphics for the web. SVG images scale better than
+traditional bitmapped images and are suitable for printing. The crown
+is generated by two SVG elements.</p>
+
+</div>
+
+<div id="pagefloat"><h2>Page floats</h2>
+
+<p>On paged media, elements can be set float to the top or bottom of
+pages. The big URL at the top of this page comes after this paragraph
+in the source code, but is floated to the top by the style sheet.</p>
+
+<div>
+<a href="http://www.princexml.com">www.princexml.com</a>
+</div>
+
+</div>
+
+<div id="hf"><h2>Headers and footers</h2>
+
+<p>Printed documents often have page headers and footers. For example,
+page numbers are often printed at the bottom of the page, and the
+document title is shown at the top &ndash; except on title pages.</p>
+
+</div>
+
+<div id="bookmarks"><h2>PDF Bookmarks</h2>
+
+<p>Prince will automatically generate PDF bookmarks from heading
+elements in HTML. The feature is set with a property in the style
+sheet, and can also be used with other markup languages.</p>
+
+</div>
+</div>
+
+</body>
+</html>

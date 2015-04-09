@@ -1,0 +1,3760 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Linux/x86 (vers 1st August 2004), see www.w3.org" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=utf-8" />
+<title>Architecture of the World Wide Web, Volume One</title>
+<link rel="stylesheet" type="text/css" href="default.css" />
+<link rel="stylesheet" type="text/css" href="forprint.css" />
+<link class="trcopy" rel="stylesheet" type="text/css" href=
+"W3C-REC.css" />
+<meta name="RCSId" content=
+"$Id: Overview.html,v 1.6 2004/12/14 20:19:18 ijacobs Exp $" />
+</head>
+<body>
+<div class="head">
+<p><a href="http://www.w3.org/" shape="rect"><img height="48"
+width="72" alt="W3C" src=
+"w3c_home.png" /></a></p>
+<h1><a name="title" id="title" shape="rect">Architecture of the
+World Wide Web, Volume One</a></h1>
+<div class="section">
+<h2 class="notoc"><a id="date" name="date" shape=
+"rect"><span class="trcopy">W3C Recommendation</span> 15 December
+2004</a></h2>
+<dl>
+<dt>This version:</dt>
+<dd><a class="trcopy" href=
+"http://www.w3.org/TR/2004/REC-webarch-20041215/" shape=
+"rect">http://www.w3.org/TR/2004/REC-webarch-20041215/</a></dd>
+<dt class="trcopy">Latest version:</dt>
+<dd class="trcopy"><a href="" shape=
+"rect">http://www.w3.org/TR/webarch/</a></dd>
+<dt>Previous version:</dt>
+<dd><a class="trcopy" href=
+"http://www.w3.org/TR/2004/PR-webarch-20041105/" shape=
+"rect">http://www.w3.org/TR/2004/PR-webarch-20041105/</a></dd>
+</dl>
+<dl>
+<dt>Editors:</dt>
+<dd><a href="http://www.w3.org/People/Jacobs" shape="rect">Ian Jacobs</a>, W3C</dd>
+<dd>Norman Walsh, Sun Microsystems, Inc.</dd>
+<dt>Authors:</dt>
+<dd>See <a href="#acks" shape="rect">acknowledgments (§8)</a>.</dd>
+</dl>
+<p>Please refer to the <a href=
+"http://www.w3.org/2001/tag/webarch/errata.html" shape=
+"rect"><strong>errata</strong></a> for this document, which may
+include some normative corrections.</p>
+<p>See also <a href=
+"http://www.w3.org/2003/03/Translations/byTechnology?technology=webarch"
+shape="rect"><strong>translations</strong></a>.</p>
+<p class="copyright"><a href=
+"http://www.w3.org/Consortium/Legal/ipr-notice#Copyright" shape=
+"rect">Copyright</a> © 2002-2004 <a href="http://www.w3.org/" shape=
+"rect"><acronym title="World Wide Web Consortium">W3C</acronym></a>
+<sup>®</sup> (<a href="http://www.lcs.mit.edu/" shape=
+"rect"><acronym title=
+"Massachusetts Institute of Technology">MIT</acronym></a>, <a href=
+"http://www.ercim.org/" shape="rect"><acronym title=
+"European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+<a href="http://www.keio.ac.jp/" shape="rect">Keio</a>), All Rights
+Reserved. W3C <a href=
+"http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer" shape=
+"rect">liability</a>, <a href=
+"http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks" shape=
+"rect">trademark</a>, <a rel="Copyright" href=
+"http://www.w3.org/Consortium/Legal/copyright-documents" shape="rect">document
+use</a> and <a rel="Copyright" href=
+"http://www.w3.org/Consortium/Legal/copyright-software" shape="rect">software
+licensing</a> rules apply. Your interactions with this site are in
+accordance with our <a href=
+"http://www.w3.org/Consortium/Legal/privacy-statement#Public" shape=
+"rect">public</a> and <a href=
+"http://www.w3.org/Consortium/Legal/privacy-statement#Members" shape=
+"rect">Member</a> privacy statements.</p>
+<hr /></div>
+</div>
+<div class="section">
+<h2 class="notoc"><a name="abstract" id="abstract" shape=
+"rect">Abstract</a></h2>
+<p><a name="p5" id="p5"></a>The World Wide Web uses relatively
+simple technologies with sufficient scalability, efficiency and
+utility that they have resulted in a remarkable information space
+of interrelated resources, growing across languages, cultures, and
+media. In an effort to preserve these properties of the information
+space as the technologies evolve, this architecture document
+discusses the core design components of the Web. They are
+identification of resources, representation of resource state, and
+the protocols that support the interaction between agents and
+resources in the space. We relate core design components,
+constraints, and good practices to the principles and properties
+they support.</p>
+</div>
+<div class="section">
+<h2 class="notoc"><a name="status" id="status" shape="rect">Status
+of this document</a></h2>
+<p><a name="p6" id="p6"></a><em>This section describes the status
+of this document at the time of its publication. Other documents
+may supersede this document. A list of current W3C publications and
+the latest revision of this technical report can be found in the
+<a href="http://www.w3.org/TR/" shape="rect">W3C technical reports
+index</a> at http://www.w3.org/TR/.</em></p>
+<p><a name="p7" id="p7"></a>This is the 15 December 2004
+Recommendation of “Architecture of the World Wide Web, Volume One.”
+This document has been reviewed by W3C Members, by software
+developers, and by other W3C groups and interested parties, and is
+endorsed by the Director as a W3C Recommendation. It is a stable
+document and may be used as reference material or cited from
+another document. W3C's role in making the Recommendation is to
+draw attention to the specification and to promote its widespread
+deployment. This enhances the functionality and interoperability of
+the Web.</p>
+<p><a name="p8" id="p8"></a>This document was developed by W3C's
+<a href="http://www.w3.org/2001/tag/" shape="rect">Technical
+Architecture Group (TAG)</a>, which, by <a href=
+"http://www.w3.org/2001/07/19-tag" shape="rect">charter</a>
+maintains a <a href="http://www.w3.org/2001/tag/issues.html" shape=
+"rect">list of architectural issues</a>. The scope of this document
+is a useful subset of those issues; it is not intended to address
+all of them. The TAG intends to address the remaining (and future)
+issues now that Volume One is published as a W3C Recommendation. A
+complete <a href="http://www.w3.org/2001/tag/webarch/changes.html"
+shape="rect">history of changes</a> so this document is available.
+Please send comments on this document to
+public-webarch-comments@w3.org (<a href=
+"http://lists.w3.org/Archives/Public/public-webarch-comments/"
+shape="rect">public archive of public-webarch-comments</a>). TAG
+technical discussion takes place on www-tag@w3.org (<a href=
+"http://lists.w3.org/Archives/Public/public-webarch-comments/"
+shape="rect">public archive of www-tag</a>).</p>
+<p><a name="p9" id="p9"></a>This document was produced under the
+<a href=
+"http://www.w3.org/Consortium/Process-20010719/policies#ipr" shape=
+"rect">W3C IPR policy of the July 2001 Process Document</a>. The
+TAG maintains a <a rel="disclosure" href=
+"http://www.w3.org/2001/tag/disclosures" shape="rect">public list
+of patent disclosures</a> relevant to this document; that page also
+includes instructions for disclosing a patent. An individual who
+has actual knowledge of a patent which the individual believes
+contains Essential Claim(s) with respect to this specification
+should disclose the information in accordance with <a href=
+"http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure"
+shape="rect">section 6 of the W3C Patent Policy</a>.</p>
+</div>
+<div class="section">
+<h2 class="notoc"><a id="contents" name="contents" shape=
+"rect">Table of Contents</a></h2>
+<ul class="toc">
+<li class="tocline1"><a href="#intro">1. Introduction</a>
+<ul class="toc">
+<li class="tocline2"><a href="#about">1.1. About this Document</a>
+<ul class="toc">
+<li class="tocline3"><a href="#doc-audience">1.1.1. Audience of
+this Document</a></li>
+<li class="tocline3"><a href="#doc-scope">1.1.2. Scope of this
+Document</a></li>
+<li class="tocline3"><a href="#app-principles">1.1.3. Principles,
+Constraints, and Good Practice Notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="tocline1"><a href="#identification">2.
+Identification</a>
+<ul class="toc">
+<li class="tocline2"><a href="#uri-benefits">2.1. Benefits of
+URIs</a></li>
+<li class="tocline2"><a href="#id-resources">2.2. URI/Resource
+Relationships</a>
+<ul class="toc">
+<li class="tocline3"><a href="#URI-collision">2.2.1. URI
+collision</a></li>
+<li class="tocline3"><a href="#uri-assignment">2.2.2. URI
+allocation</a></li>
+<li class="tocline3"><a href="#indirect-identification">2.2.3.
+Indirect Identification</a></li>
+</ul>
+</li>
+<li class="tocline2"><a href="#identifiers-comparison">2.3. URI
+Comparisons</a>
+<ul class="toc">
+<li class="tocline3"><a href="#uri-aliases">2.3.1. URI
+aliases</a></li>
+<li class="tocline3"><a href="#representation-reuse">2.3.2.
+Representation reuse</a></li>
+</ul>
+</li>
+<li class="tocline2"><a href="#URI-scheme">2.4. URI Schemes</a>
+<ul class="toc">
+<li class="tocline3"><a href="#URI-registration">2.4.1. URI Scheme
+Registration</a></li>
+</ul>
+</li>
+<li class="tocline2"><a href="#uri-opacity">2.5. URI
+Opacity</a></li>
+<li class="tocline2"><a href="#fragid">2.6. Fragment
+Identifiers</a></li>
+<li class="tocline2"><a href="#identifiers-future">2.7. Future
+Directions for Identifiers</a>
+<ul class="toc">
+<li class="tocline3"><a href="#i18n-id">2.7.1. Internationalized
+identifiers</a></li>
+<li class="tocline3"><a href="#future-comparison">2.7.2. Assertion
+that two URIs identify the same resource</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="tocline1"><a href="#interaction">3. Interaction</a>
+<ul class="toc">
+<li class="tocline2"><a href="#dereference-uri">3.1. Using a URI to
+Access a Resource</a>
+<ul class="toc">
+<li class="tocline3"><a href="#dereference-details">3.1.1. Details
+of retrieving a representation</a></li>
+</ul>
+</li>
+<li class="tocline2"><a href="#internet-media-type">3.2.
+Representation Types and Internet Media Types</a>
+<ul class="toc">
+<li class="tocline3"><a href="#media-type-fragid">3.2.1.
+Representation types and fragment identifier semantics</a></li>
+<li class="tocline3"><a href="#frag-coneg">3.2.2. Fragment
+identifiers and content negotiation</a></li>
+</ul>
+</li>
+<li class="tocline2"><a href="#metadata-inconsistencies">3.3.
+Inconsistencies between Representation Data and Metadata</a></li>
+<li class="tocline2"><a href="#safe-interaction">3.4. Safe
+Interactions</a>
+<ul class="toc">
+<li class="tocline3"><a href="#unsafe-accountability">3.4.1. Unsafe
+interactions and accountability</a></li>
+</ul>
+</li>
+<li class="tocline2"><a href="#representation-management">3.5.
+Representation Management</a>
+<ul class="toc">
+<li class="tocline3"><a href="#URI-persistence">3.5.1. URI
+persistence</a></li>
+<li class="tocline3"><a href="#id-access">3.5.2. Linking and access
+control</a></li>
+<li class="tocline3"><a href="#supporting-navigation">3.5.3.
+Supporting Navigation</a></li>
+</ul>
+</li>
+<li class="tocline2"><a href="#interaction-future">3.6. Future
+Directions for Interaction</a></li>
+</ul>
+</li>
+<li class="tocline1"><a href="#formats">4. Data Formats</a>
+<ul class="toc">
+<li class="tocline2"><a href="#binary">4.1. Binary and Textual Data
+Formats</a></li>
+<li class="tocline2"><a href="#ext-version">4.2. Versioning and
+Extensibility</a>
+<ul class="toc">
+<li class="tocline3"><a href="#versioning">4.2.1.
+Versioning</a></li>
+<li class="tocline3"><a href="#versioning-xmlns">4.2.2. Versioning
+and XML namespace policy</a></li>
+<li class="tocline3"><a href="#extensibility">4.2.3.
+Extensibility</a></li>
+<li class="tocline3"><a href="#composition">4.2.4. Composition of
+data formats</a></li>
+</ul>
+</li>
+<li class="tocline2"><a href="#pci">4.3. Separation of Content,
+Presentation, and Interaction</a></li>
+<li class="tocline2"><a href="#hypertext">4.4. Hypertext</a>
+<ul class="toc">
+<li class="tocline3"><a href="#uri-refs">4.4.1. URI
+references</a></li>
+</ul>
+</li>
+<li class="tocline2"><a href="#xml-formats">4.5. XML-Based Data
+Formats</a>
+<ul class="toc">
+<li class="tocline3"><a href="#xml-when">4.5.1. When to use an
+XML-based format</a></li>
+<li class="tocline3"><a href="#xml-links">4.5.2. Links in
+XML</a></li>
+<li class="tocline3"><a href="#xml-namespaces">4.5.3. XML
+namespaces</a></li>
+<li class="tocline3"><a href="#namespace-document">4.5.4. Namespace
+documents</a></li>
+<li class="tocline3"><a href="#xml-qnames">4.5.5. QNames in
+XML</a></li>
+<li class="tocline3"><a href="#xml-id-semantics">4.5.6. XML ID
+semantics</a></li>
+<li class="tocline3"><a href="#xml-media-types">4.5.7. Media types
+for XML</a></li>
+<li class="tocline3"><a href="#xml-fragids">4.5.8. Fragment
+identifiers in XML</a></li>
+</ul>
+</li>
+<li class="tocline2"><a href="#media-types-infospace">4.6. Future
+Directions for Data Formats</a></li>
+</ul>
+</li>
+<li class="tocline1"><a href="#general">5. General Architecture
+Principles</a>
+<ul class="toc">
+<li class="tocline2"><a href="#orthogonal-specs">5.1. Orthogonal
+Specifications</a></li>
+<li class="tocline2"><a href="#language-extensibility">5.2.
+Extensibility</a></li>
+<li class="tocline2"><a href="#error-handling">5.3. Error
+Handling</a></li>
+<li class="tocline2"><a href="#protocol-interop">5.4.
+Protocol-based Interoperability</a></li>
+</ul>
+</li>
+<li class="tocline1"><a href="#index">6. Glossary</a></li>
+<li class="tocline1"><a href="#refs">7. References</a>
+<ul class="toc">
+<li class="tocline2"><a href="#archspecs">7.1. Architectural
+Specifications</a></li>
+</ul>
+</li>
+<li class="tocline1"><a href="#acks">8. Acknowledgments</a></li>
+</ul>
+<div class="section">
+<h3 class="notoc"><a id="principles" name="principles" shape=
+"rect">List of Principles, Constraints, and Good Practice
+Notes</a></h3>
+<p><a name="p10" id="p10"></a>The following principles,
+constraints, and good practice notes are discussed in this document
+and listed here for convenience. There is also a <a href=
+"http://www.w3.org/TR/webarch/summary.html" shape="rect">free-standing summary</a>.</p>
+<dl>
+<dt>Identification</dt>
+<dd>
+<ul>
+<li><a href="#pr-global-id">Global Identifiers</a> (principle,
+2)</li>
+<li><a href="#pr-use-uris">Identify with URIs</a> (practice,
+2.1)</li>
+<li><a href="#pr-uri-collision">URIs Identify a Single Resource</a>
+(constraint, 2.2)</li>
+<li><a href="#avoid-uri-aliases">Avoiding URI aliases</a>
+(practice, 2.3.1)</li>
+<li><a href="#lc-uri-chars">Consistent URI usage</a> (practice,
+2.3.1)</li>
+<li><a href="#pr-reuse-uri-schemes">Reuse URI schemes</a>
+(practice, 2.4)</li>
+<li><a href="#pr-uri-opacity">URI opacity</a> (practice, 2.5)</li>
+</ul>
+</dd>
+<dt>Interaction</dt>
+<dd>
+<ul>
+<li><a href="#pr-reuse-formats">Reuse representation formats</a>
+(practice, 3.2)</li>
+<li><a href="#pr-server-auth">Data-metadata inconsistency</a>
+(constraint, 3.3)</li>
+<li><a href="#pr-metadata-association">Metadata association</a>
+(practice, 3.3)</li>
+<li><a href="#pr-deref-safe">Safe retrieval</a> (principle,
+3.4)</li>
+<li><a href="#pr-describe-resource">Available representation</a>
+(practice, 3.5)</li>
+<li><a href="#implied-dereference">Reference does not imply
+dereference</a> (principle, 3.5)</li>
+<li><a href="#pr-service-uri">Consistent representation</a>
+(practice, 3.5.1)</li>
+</ul>
+</dd>
+<dt>Data Formats</dt>
+<dd>
+<ul>
+<li><a href="#pr-version-info">Version information</a> (practice,
+4.2.1)</li>
+<li><a href="#pr-doc-ns-policy">Namespace policy</a> (practice,
+4.2.2)</li>
+<li><a href="#pr-allow-exts">Extensibility mechanisms</a>
+(practice, 4.2.3)</li>
+<li><a href="#pr-conform-exts">Extensibility conformance</a>
+(practice, 4.2.3)</li>
+<li><a href="#pr-unknown-extension">Unknown extensions</a>
+(practice, 4.2.3)</li>
+<li><a href="#cpi">Separation of content, presentation,
+interaction</a> (practice, 4.3)</li>
+<li><a href="#link-mechanism">Link identification</a> (practice,
+4.4)</li>
+<li><a href="#web-linking">Web linking</a> (practice, 4.4)</li>
+<li><a href="#generic-uri">Generic URIs</a> (practice, 4.4)</li>
+<li><a href="#use-hypertext-links">Hypertext links</a> (practice,
+4.4)</li>
+<li><a href="#use-namespaces">Namespace adoption</a> (practice,
+4.5.3)</li>
+<li><a href="#pr-namespace-documents">Namespace documents</a>
+(practice, 4.5.4)</li>
+<li><a href="#qname-uri-syntax">QNames Indistinguishable from
+URIs</a> (constraint, 4.5.5)</li>
+<li><a href="#qname-mapping">QName Mapping</a> (practice,
+4.5.5)</li>
+<li><a href="#no-text-xml">XML and "text/*"</a> (practice,
+4.5.7)</li>
+<li><a href="#no-charset">XML and character encodings</a>
+(practice, 4.5.7)</li>
+</ul>
+</dd>
+<dt>General Architecture Principles</dt>
+<dd>
+<ul>
+<li><a href="#pr-orthogonality">Orthogonality</a> (principle,
+5.1)</li>
+<li><a href="#no-silent-recovery">Error recovery</a> (principle,
+5.3)</li>
+</ul>
+</dd>
+</dl>
+</div>
+<hr /></div>
+<div class="section">
+<h2>1. <a id="intro" name="intro" shape=
+"rect">Introduction</a></h2>
+<p><a name="p11" id="p11"></a>The <a name="def-world-wide-web" id=
+"def-world-wide-web"><dfn>World Wide Web</dfn></a> (<a name=
+"def-www" id="def-www"><dfn><acronym>WWW</acronym></dfn></a>, or
+simply <a name="def-web" id=
+"def-web"><dfn><acronym>Web</acronym></dfn></a>) is an information
+space in which the items of interest, referred to as resources, are
+identified by global identifiers called Uniform Resource
+Identifiers (<a name="def-uri-acronym" id=
+"def-uri-acronym"><dfn><acronym>URI</acronym></dfn></a>).</p>
+<p><a name="p12" id="p12"></a>Examples such as the following
+<a name="scenario" id="scenario" shape="rect">travel scenario</a>
+are used throughout this document to illustrate typical behavior of
+<a name="def-web-agent" id="def-web-agent"><dfn>Web
+agents</dfn></a>—people or software acting on this information
+space. A <a name="def-user-agent" id="def-user-agent"><dfn>user
+agent</dfn></a> acts on behalf of a user. Software agents include
+servers, proxies, spiders, browsers, and multimedia players.</p>
+<div class="boxedtext">
+<p><a name="p13" id="p13"></a> <span class=
+"storylab">Story</span></p>
+<div class="story">
+<p><a name="p14" id="p14"></a>While planning a trip to Mexico,
+Nadia reads “Oaxaca weather information:
+'http://weather.example.com/oaxaca'” in a glossy travel magazine.
+Nadia has enough experience with the Web to recognize that
+"http://weather.example.com/oaxaca" is a URI and that she is likely
+to be able to retrieve associated information with her Web browser.
+When Nadia enters the URI into her browser:</p>
+<ol>
+<li>The browser recognizes that what Nadia typed is a URI.</li>
+<li>The browser performs an information retrieval action in
+accordance with its configured behavior for resources identified
+via the "http" URI scheme.</li>
+<li>The authority responsible for "weather.example.com" provides
+information in a response to the retrieval request.</li>
+<li>The browser interprets the response, identified as XHTML by the
+server, and performs additional retrieval actions for inline
+graphics and other content as necessary.</li>
+<li>The browser displays the retrieved information, which includes
+hypertext links to other information. Nadia can follow these
+hypertext links to retrieve additional information.</li>
+</ol>
+</div>
+</div>
+<p><a name="p15" id="p15"></a>This scenario illustrates the three
+architectural bases of the Web that are discussed in this
+document:</p>
+<ol>
+<li>
+<p><a name="p16" id="p16"></a><a href="#identification" shape=
+"rect">Identification (§2)</a>. URIs are used to identify
+resources. In this travel scenario, the resource is a periodically
+updated report on the weather in Oaxaca, and the URI is
+“http://weather.example.com/oaxaca”.</p>
+</li>
+<li>
+<p><a name="p17" id="p17"></a><a href="#interaction" shape=
+"rect">Interaction (§3)</a>. Web agents communicate using
+standardized protocols that enable interaction through the exchange
+of messages which adhere to a defined syntax and semantics. By
+entering a URI into a retrieval dialog or selecting a hypertext
+link, Nadia tells her browser to perform a retrieval action for the
+resource identified by the URI. In this example, the browser sends
+an HTTP GET request (part of the HTTP protocol) to the server at
+"weather.example.com", via TCP/IP port 80, and the server sends
+back a message containing what it determines to be a representation
+of the resource as of the time that representation was generated.
+Note that this example is specific to hypertext browsing of
+information—other kinds of interaction are possible, both within
+browsers and through the use of other types of Web agent; our
+example is intended to illustrate one common interaction, not
+define the range of possible interactions or limit the ways in
+which agents might use the Web.</p>
+</li>
+<li>
+<p><a name="p18" id="p18"></a><a href="#formats" shape=
+"rect">Formats (§4)</a>. Most protocols used for representation
+retrieval and/or submission make use of a sequence of one or more
+messages, which taken together contain a payload of representation
+data and metadata, to transfer the representation between agents.
+The choice of interaction protocol places limits on the formats of
+representation data and metadata that can be transmitted. HTTP, for
+example, typically transmits a single octet stream plus metadata,
+and uses the "Content-Type" and "Content-Encoding" header fields to
+further identify the format of the representation. In this
+scenario, the representation transferred is in XHTML, as identified
+by the "Content-type" HTTP header field containing the registered
+Internet media type name, "application/xhtml+xml". That Internet
+media type name indicates that the representation data can be
+processed according to the XHTML specification.</p>
+<p><a name="p19" id="p19"></a>Nadia's browser is configured and
+programmed to interpret the receipt of an "application/xhtml+xml"
+typed representation as an instruction to render the content of
+that representation according to the XHTML rendering model,
+including any subsidiary interactions (such as requests for
+external style sheets or in-line images) called for by the
+representation. In the scenario, the XHTML representation data
+received from the initial request instructs Nadia's browser to also
+retrieve and render in-line the weather maps, each identified by a
+URI and thus causing an additional retrieval action, resulting in
+additional representations that are processed by the browser
+according to their own data formats (e.g., "application/svg+xml"
+indicates the SVG data format), and this process continues until
+all of the data formats have been rendered. The result of all of
+this processing, once the browser has reached an application
+steady-state that completes Nadia's initial requested action, is
+commonly referred to as a "Web page".</p>
+</li>
+</ol>
+<p><a name="p20" id="p20"></a>The following illustration shows the
+relationship between identifier, resource, and representation.</p>
+<div class="figure">
+<p><a name="p21" id="p21"></a><img src="uri-res-.png" alt=
+"A resource (Oaxaca Weather Info) is identified by a particular URI and is represented by pseudo-HTML content" />
+</p>
+</div>
+<p><a name="p22" id="p22"></a>In the remainder of this document, we
+highlight important architectural points regarding Web identifiers,
+protocols, and formats. We also discuss some important <a href=
+"#general" shape="rect">general architectural principles (§5)</a>
+and how they apply to the Web.</p>
+<div class="section">
+<h3>1.1. <a name="about" id="about" shape="rect">About this
+Document</a></h3>
+<p><a name="p23" id="p23"></a>This document describes the
+properties we desire of the Web and the design choices that have
+been made to achieve them. It promotes the reuse of existing
+standards when suitable, and gives guidance on how to innovate in a
+manner consistent with Web architecture.</p>
+<p><a name="p24" id="p24"></a>The terms MUST, MUST NOT, SHOULD,
+SHOULD NOT, and MAY are used in the principles, constraints, and
+good practice notes in accordance with RFC 2119 [<a href="#RFC2119"
+shape="rect">RFC2119</a>].</p>
+<p><a name="p25" id="p25"></a>This document does not include
+conformance provisions for these reasons:</p>
+<ul>
+<li>Conforming software is expected to be so diverse that it would
+not be useful to be able to refer to the class of conforming
+software agents.</li>
+<li>Some of the good practice notes concern people; specifications
+generally define conformance for software, not people.</li>
+<li>We do not believe that the addition of a conformance section is
+likely to increase the utility of the document.</li>
+</ul>
+<div class="section">
+<h4>1.1.1. <a name="doc-audience" id="doc-audience" shape=
+"rect">Audience of this Document</a></h4>
+<p><a name="p26" id="p26"></a>This document is intended to inform
+discussions about issues of Web architecture. The intended audience
+for this document includes:</p>
+<ol>
+<li>Participants in W3C Activities</li>
+<li>Other groups and individuals designing technologies to be
+integrated into the Web</li>
+<li>Implementers of W3C specifications</li>
+<li>Web content authors and publishers</li>
+</ol>
+<!--
+<p>Readers will benefit from familiarity with the <a
+href="http://www.ietf.org/rfc.html">Requests for Comments</a>
+(<acronym>RFC</acronym>) series from the <a
+href="http://www.ietf.org/">IETF</a>, some of which define pieces of the
+architecture discussed in this document.</p>
+-->
+<p><a name="p27" id="p27"></a><strong>Note:</strong> This document
+does not distinguish in any formal way the terms "language" and
+"format." Context determines which term is used. The phrase
+"specification designer" encompasses language, format, and protocol
+designers.</p>
+</div>
+<div class="section">
+<h4>1.1.2. <a name="doc-scope" id="doc-scope" shape="rect">Scope of
+this Document</a></h4>
+<p><a name="p28" id="p28"></a>This document presents the general
+architecture of the Web. Other groups inside and outside W3C also
+address specialized aspects of Web architecture, including
+accessibility, quality assurance, internationalization, device
+independence, and Web Services. The section on <a href="#archspecs"
+shape="rect">Architectural Specifications (§7.1)</a> includes
+references to these related specifications.</p>
+<p><a name="p29" id="p29"></a>This document strives for a balance
+between brevity and precision while including illustrative
+examples. <a href="http://www.w3.org/2001/tag/findings" shape=
+"rect">TAG findings</a> are informational documents that complement
+the current document by providing more detail about selected
+topics. This document includes some excerpts from the findings.
+Since the findings evolve independently, this document includes
+references to approved TAG findings. For other TAG issues covered
+by this document but without an approved finding, references are to
+entries in the <a href="http://www.w3.org/2001/tag/issues.html"
+shape="rect">TAG issues list</a>.</p>
+<p><a name="p30" id="p30"></a>Many of the examples in this document
+that involve human activity suppose the familiar Web interaction
+model (illustrated at the beginning of the Introduction) where a
+person follows a link via a user agent, the user agent retrieves
+and presents data, the user follows another link, etc. This
+document does not discuss in any detail other interaction models
+such as voice browsing (see, for example, [<a href="#VOICEXML2"
+shape="rect">VOICEXML2</a>]). The choice of interaction model may
+have an impact on expected agent behavior. For instance, when a
+graphical user agent running on a laptop computer or hand-held
+device encounters an error, the user agent can report errors
+directly to the user through visual and audio cues, and present the
+user with options for resolving the errors. On the other hand, when
+someone is browsing the Web through voice input and audio-only
+output, stopping the dialog to wait for user input may reduce
+usability since it is so easy to "lose one's place" when browsing
+with only audio-output. This document does not discuss how the
+principles, constraints, and good practices identified here apply
+in all interaction contexts.</p>
+</div>
+<div class="section">
+<h4>1.1.3. <a id="app-principles" name="app-principles" shape=
+"rect">Principles, Constraints, and Good Practice Notes</a></h4>
+<p><a name="p31" id="p31"></a>The important points of this document
+are categorized as follows:</p>
+<dl>
+<dt><a name="cat-principle" id="cat-principle" shape=
+"rect">Principle</a></dt>
+<dd>An architectural principle is a fundamental rule that applies
+to a large number of situations and variables. Architectural
+principles include "separation of concerns", "generic interface",
+"self-descriptive syntax," "visible semantics," "network effect"
+(Metcalfe's Law), and Amdahl's Law: "The speed of a system is
+limited by its slowest component."</dd>
+<dt><a name="cat-constraint" id="cat-constraint" shape=
+"rect">Constraint</a></dt>
+<dd>In the design of the Web, some choices, like the names of the
+<code>p</code> and <code>li</code> elements in HTML, the choice of
+the colon (:) character in URIs, or grouping bits into eight-bit
+units (octets), are somewhat arbitrary; if <code>paragraph</code>
+had been chosen instead of <code>p</code> or asterisk (*) instead
+of colon, the large-scale result would, most likely, have been the
+same. This document focuses on more fundamental design choices:
+design choices that lead to constraints, i.e., restrictions in
+behavior or interaction within the system. Constraints may be
+imposed for technical, policy, or other reasons to achieve
+desirable properties in the system, such as accessibility, global
+scope, relative ease of evolution, efficiency, and dynamic
+extensibility.</dd>
+<dt><a name="cat-practice" id="cat-practice" shape="rect">Good
+practice</a></dt>
+<dd>Good practice—by software developers, content authors, site
+managers, users, and specification designers—increases the value of
+the Web.</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="section">
+<h2>2. <a name="identification" id="identification" shape=
+"rect">Identification</a></h2>
+<p><a name="p32" id="p32"></a>In order to communicate internally, a
+community agrees (to a reasonable extent) on a set of terms and
+their meanings. One goal of the Web, since its inception, has been
+to build a global community in which any party can share
+information with any other party. To achieve this goal, the Web
+makes use of a single global identification system: the URI. URIs
+are a cornerstone of Web architecture, providing identification
+that is common across the Web. The global scope of URIs promotes
+large-scale "network effects": the value of an identifier increases
+the more it is used consistently (for example, the more it is used
+in <a class="addrefnb" href="#hypertext" shape="rect">hypertext
+links (§4.4)</a>).</p>
+<div class="boxedtext">
+<p><a name="p33" id="p33"></a> <span class=
+"principlelab">Principle: <a name="pr-global-id" id="pr-global-id"
+shape="rect">Global Identifiers</a></span></p>
+<p class="principle"><a name="p34" id="p34"></a> Global naming
+leads to global network effects.</p>
+</div>
+<p><a name="p35" id="p35"></a>This principle dates back at least as
+far as Douglas Engelbart's seminal work on open hypertext systems;
+see section <a href=
+"http://www.bootstrap.org/augdocs/augment-132082.htm#11K" shape=
+"rect">Every Object Addressable</a> in [<a href="#Eng90" shape=
+"rect">Eng90</a>].</p>
+<div class="section">
+<h3>2.1. <a name="uri-benefits" id="uri-benefits" shape=
+"rect">Benefits of URIs</a></h3>
+<p><a name="p36" id="p36"></a>The choice of syntax for global
+identifiers is somewhat arbitrary; it is their global scope that is
+important. The <a name="def-uri" id="def-uri"><dfn>Uniform Resource
+Identifier</dfn></a>, [<a href="#URI" shape="rect">URI</a>], has
+been successfully deployed since the creation of the Web. There are
+substantial benefits to participating in the existing network of
+URIs, including linking, bookmarking, caching, and indexing by
+search engines, and there are substantial costs to creating a new
+identification system that has the same properties as URIs.</p>
+<div class="boxedtext">
+<p><a name="p37" id="p37"></a> <span class="practicelab">Good
+practice: <a name="pr-use-uris" id="pr-use-uris" shape=
+"rect">Identify with URIs</a></span></p>
+<p class="practice"><a name="p38" id="p38"></a> To benefit from and
+increase the value of the World Wide Web, agents should provide
+URIs as identifiers for resources.</p>
+</div>
+<p><a name="p39" id="p39"></a>A resource should have an associated
+URI if another party might reasonably want to create a hypertext
+link to it, make or refute assertions about it, retrieve or cache a
+representation of it, include all or part of it by reference into
+another representation, annotate it, or perform other operations on
+it. Software developers should expect that sharing URIs across
+applications will be useful, even if that utility is not initially
+evident. The TAG finding <cite>"<a href=
+"http://www.w3.org/2001/tag/doc/whenToUseGet.html" shape=
+"rect">URIs, Addressability, and the use of HTTP GET and
+POST</a>"</cite> discusses additional benefits and considerations
+of URI addressability.</p>
+<p><a name="p40" id="p40"></a><strong>Note:</strong> Some URI
+schemes (such as the "ftp" URI scheme specification) use the term
+"designate" where this document uses "identify."</p>
+</div>
+<div class="section">
+<h3>2.2. <a name="id-resources" id="id-resources" shape=
+"rect">URI/Resource Relationships</a></h3>
+<p><a name="p41" id="p41"></a>By design a URI identifies one
+resource. We do not limit the scope of what might be a <a name=
+"def-resource" id="def-resource"><dfn>resource</dfn></a>. The term
+"resource" is used in a general sense for whatever might be
+identified by a URI. It is conventional on the hypertext Web to
+describe Web pages, images, product catalogs, etc. as “resources”.
+The distinguishing characteristic of these resources is that all of
+their essential characteristics can be conveyed in a message. We
+identify this set as “<a name="def-information-resource" id=
+"def-information-resource"><dfn>information
+resources</dfn></a>.”</p>
+<p><a name="p42" id="p42"></a>This document is an example of an
+information resource. It consists of words and punctuation symbols
+and graphics and other artifacts that can be encoded, with varying
+degrees of fidelity, into a sequence of bits. There is nothing
+about the essential information content of this document that
+cannot in principle be transfered in a message. In the case of this
+document, the message payload is the <a href="#def-representation"
+shape="rect">representation</a> of this document.</p>
+<p><a name="p43" id="p43"></a>However, our use of the term resource
+is intentionally more broad. Other things, such as cars and dogs
+(and, if you've printed this document on physical sheets of paper,
+the artifact that you are holding in your hand), are resources too.
+They are not information resources, however, because their essence
+is not information. Although it is possible to describe a great
+many things about a car or a dog in a sequence of bits, the sum of
+those things will invariably be an approximation of the essential
+character of the resource.</p>
+<p><a name="p44" id="p44"></a>We define the term “information
+resource” because we observe that it is useful in discussions of
+Web technology and may be useful in constructing specifications for
+facilities built for use on the Web.</p>
+<div class="boxedtext">
+<p><a name="p45" id="p45"></a> <span class=
+"constraintlab">Constraint: <a name="pr-uri-collision" id=
+"pr-uri-collision" shape="rect">URIs Identify a Single
+Resource</a></span></p>
+<p class="constraint"><a name="p46" id="p46"></a> Assign distinct
+URIs to distinct resources.</p>
+</div>
+<p><a name="p47" id="p47"></a>Since the scope of a URI is global,
+the resource identified by a URI does not depend on the context in
+which the URI appears (see also the section about <a class=
+"section" href="#indirect-identification" shape="rect">indirect
+identification (§2.2.3)</a>).</p>
+<p><a name="p48" id="p48"></a>[<a href="#URI" shape="rect">URI</a>]
+is an agreement about how the Internet community allocates names
+and associates them with the resources they identify. URIs are
+divided into <a href="#URI-scheme" shape="rect">schemes (§2.4)</a>
+that define, via their scheme specification, the mechanism by which
+scheme-specific identifiers are associated with resources. For
+example, the "http" URI scheme ([<a href="#RFC2616" shape=
+"rect">RFC2616</a>]) uses DNS and TCP-based HTTP servers for the
+purpose of identifier allocation and resolution. As a result,
+identifiers such as "http://example.com/somepath#someFrag" often
+take on meaning through the community experience of performing an
+HTTP GET request on the identifier and, if given a successful
+response, interpreting the response as a representation of the
+identified resource. (See also <a href="#fragid" shape=
+"rect">Fragment Identifiers (§2.6)</a>.) Of course, a retrieval
+action like GET is not the only way to obtain information about a
+resource. One might also publish a document that purports to define
+the meaning of a particular URI. These other sources of information
+may suggest meanings for such identifiers, but it's a local policy
+decision whether those suggestions should be heeded.</p>
+<p><a name="p49" id="p49"></a>Just as one might wish to refer to a
+person by different names (by full name, first name only, sports
+nickname, romantic nickname, and so forth), Web architecture allows
+the association of more than one URI with a resource. URIs that
+identify the same resource are called <a name="def-uri-aliases" id=
+"def-uri-aliases"><dfn>URI aliases</dfn></a>. The section on
+<a href="#uri-aliases" shape="rect">URI aliases (§2.3.1)</a>
+discusses some of the potential costs of creating multiple URIs for
+the same resource.</p>
+<p><a name="p50" id="p50"></a>Several sections of this document
+address questions about the relationship between URIs and
+resources, including:</p>
+<ul>
+<li>How much can I tell about a resource by inspection of a URI
+that identifies it? See the sections on <a href="#URI-scheme"
+shape="rect">URI schemes (§2.4)</a> and <a href="#uri-opacity"
+shape="rect">URI opacity (§2.5)</a>.</li>
+<li>Who determines what resource a URI identifies? See the section
+on <a href="#uri-assignment" shape="rect">URI allocation
+(§2.2.2)</a>.</li>
+<li>Can the resource identified by a URI change over time? See the
+sections on <a href="#URI-persistence" shape="rect">URI persistence
+(§3.5.1)</a> and <a href="#representation-management" shape=
+"rect">representation management (§3.5)</a>.</li>
+<li>Since more than one URI can identify the same resource, how do
+I know which URIs identify the same resource? See the sections on
+<a href="#identifiers-comparison" shape="rect">URI comparison
+(§2.3)</a> and <a href="#future-comparison" shape="rect">assertions
+that two URIs identify the same resource (§2.7.2)</a>.</li>
+</ul>
+<div class="section">
+<h4>2.2.1. <a name="URI-collision" id="URI-collision" shape=
+"rect">URI collision</a></h4>
+<p><a name="p51" id="p51"></a>By design, a URI identifies one
+resource. Using the same URI to directly identify different
+resources produces a <a name="def-uri-collision" id=
+"def-uri-collision"><dfn>URI collision</dfn></a>. Collision often
+imposes a cost in communication due to the effort required to
+resolve ambiguities.</p>
+<p><a name="p52" id="p52"></a>Suppose, for example, that one
+organization makes use of a URI to refer to the movie <cite>The
+Sting</cite>, and another organization uses the same URI to refer
+to a discussion forum about <cite>The Sting</cite>. To a third
+party, aware of both organizations, this collision creates
+confusion about what the URI identifies, undermining the value of
+the URI. If one wanted to talk about the creation date of the
+resource identified by the URI, for instance, it would not be clear
+whether this meant "when the movie was created" or "when the
+discussion forum about the movie was created."</p>
+<p><a name="p53" id="p53"></a>Social and technical solutions have
+been devised to help avoid URI collision. However, the success or
+failure of these different approaches depends on the extent to
+which there is consensus in the Internet community on abiding by
+the defining specifications.</p>
+<p><a name="p54" id="p54"></a>The section on <a class="addrefnb"
+href="#uri-assignment" shape="rect">URI allocation (§2.2.2)</a>
+examines approaches for establishing the authoritative source of
+information about what resource a URI identifies.</p>
+<p><a name="p55" id="p55"></a>URIs are sometimes used for <a href=
+"#indirect-identification" shape="rect">indirect identification
+(§2.2.3)</a>. This does not necessarily lead to collisions.</p>
+</div>
+<div class="section">
+<h4>2.2.2. <a name="uri-assignment" id="uri-assignment" shape=
+"rect">URI allocation</a></h4>
+<p><a name="p56" id="p56"></a>URI allocation is the process of
+associating a URI with a resource. Allocation can be performed both
+by resource owners and by other parties. It is important to avoid
+<a href="#URI-collision" shape="rect">URI collision
+(§2.2.1)</a>.</p>
+<div class="section">
+<h5>2.2.2.1. <a name="uri-ownership" id="uri-ownership" shape=
+"rect">URI ownership</a></h5>
+<p><a name="p57" id="p57"></a><a name="def-uri-ownership" id=
+"def-uri-ownership"><dfn>URI ownership</dfn></a> is a relation
+between a URI and a social entity, such as a person, organization,
+or specification. URI ownership gives the relevant social entity
+certain rights, including:</p>
+<ol>
+<li>to pass on ownership of some or all owned URIs to another
+owner—delegation; and</li>
+<li>to associate a resource with an owned URI—URI allocation.</li>
+</ol>
+<p><a name="p58" id="p58"></a>By social convention, URI ownership
+is delegated from the IANA URI scheme registry [<a href=
+"#IANASchemes" shape="rect">IANASchemes</a>], itself a social
+entity, to IANA-registered URI scheme specifications. Some URI
+scheme specifications further delegate ownership to subordinate
+registries or to other nominated owners, who may further delegate
+ownership. In the case of a specification, ownership ultimately
+lies with the community that maintains the specification.</p>
+<p><a name="p59" id="p59"></a>The approach taken for the "http" URI
+scheme, for example, follows the pattern whereby the Internet
+community delegates authority, via the IANA URI scheme registry and
+the DNS, over a set of URIs with a common prefix to one particular
+owner. One consequence of this approach is the Web's heavy reliance
+on the central DNS registry. A different approach is taken by the
+URN Syntax scheme [<a href="#RFC2141" shape="rect">RFC2141</a>]
+which delegates ownership of portions of URN space to URN Namespace
+specifications which themselves are registered in an
+IANA-maintained registry of URN Namespace Identifiers.</p>
+<p><a name="p60" id="p60"></a>URI owners are responsible for
+avoiding the assignment of equivalent URIs to multiple resources.
+Thus, if a URI scheme specification does provide for the delegation
+of individual or organized sets of URIs, it should take pains to
+ensure that ownership ultimately resides in the hands of a single
+social entity. Allowing multiple owners increases the likelihood of
+URI collisions.</p>
+<p><a name="p61" id="p61"></a>URI owners may organize or deploy
+infrastruture to ensure that representations of associated
+resources are available and, where appropriate, interaction with
+the resource is possible through the exchange of representations.
+There are social expectations for responsible <a class="addrefnb"
+href="#representation-management" shape="rect">representation
+management (§3.5)</a> by URI owners. Additional social implications
+of URI ownership are not discussed here.</p>
+<p><a name="p62" id="p62"></a>See TAG issue <a href=
+"http://www.w3.org/2001/tag/issues.html#siteData-36" shape=
+"rect">siteData-36</a>, which concerns the expropriation of naming
+authority.</p>
+</div>
+<div class="section">
+<h5>2.2.2.2. <a name="assign-other-schemes" id=
+"assign-other-schemes" shape="rect">Other allocation
+schemes</a></h5>
+<p><a name="p63" id="p63"></a>Some schemes use techniques other
+than delegated ownership to avoid collision. For example, the
+specification for the data URL (sic) scheme [<a href="#RFC2397"
+shape="rect">RFC2397</a>] specifies that the resource identified by
+a data scheme URI has only one possible representation. The
+representation data makes up the URI that identifies that resource.
+Thus, the specification itself determines how data URIs are
+allocated; no delegation is possible.</p>
+<p><a name="p64" id="p64"></a>Other schemes (such as
+"news:comp.text.xml") rely on a social process.</p>
+</div>
+</div>
+<div class="section">
+<h4>2.2.3. <a name="indirect-identification" id=
+"indirect-identification" shape="rect">Indirect
+Identification</a></h4>
+<p><a name="p65" id="p65"></a>To say that the URI
+"mailto:nadia@example.com" identifies both an Internet mailbox and
+Nadia, the person, introduces a URI collision. However, we can use
+the URI to indirectly identify Nadia. Identifiers are commonly used
+in this way.</p>
+<p><a name="p66" id="p66"></a>Listening to a news broadcast, one
+might hear a report on Britain that begins, "Today, 10 Downing
+Street announced a series of new economic measures." Generally, "10
+Downing Street" identifies the official residence of Britain's
+Prime Minister. In this context, the news reporter is using it (as
+English rhetoric allows) to indirectly identify the British
+government. Similarly, URIs identify resources, but they can also
+be used in many constructs to indirectly identify other resources.
+Globally adopted assignment policies make some URIs appealing as
+general-purpose identifiers. Local policy establishes what they
+indirectly identify.</p>
+<p><a name="p67" id="p67"></a>Suppose that
+<code>nadia@example.com</code> is Nadia's email address. The
+organizers of a conference Nadia attends might use
+"mailto:nadia@example.com" to refer indirectly to her (e.g., by
+using the URI as a database key in their database of conference
+participants). This does not introduce a URI collision.</p>
+</div>
+</div>
+<div class="section">
+<h3>2.3. <a name="identifiers-comparison" id=
+"identifiers-comparison" shape="rect">URI Comparisons</a></h3>
+<p><a name="p68" id="p68"></a>URIs that are identical,
+character-by-character, refer to the same resource. Since Web
+Architecture allows the association of multiple URIs with a given
+resource, two URIs that are not character-by-character identical
+may still refer to the same resource. Different URIs do not
+necessarily refer to different resources but there is generally a
+higher computational cost to determine that different URIs refer to
+the same resource.</p>
+<p><a name="p69" id="p69"></a>To reduce the risk of a false
+negative (i.e., an incorrect conclusion that two URIs do not refer
+to the same resource) or a false positive (i.e., an incorrect
+conclusion that two URIs do refer to the same resource), some
+specifications describe equivalence tests in addition to
+character-by-character comparison. Agents that reach conclusions
+based on comparisons that are not licensed by the relevant
+specifications take responsibility for any problems that result;
+see the section on <a class="addrefnb" href="#error-handling"
+shape="rect">error handling (§5.3)</a> for more information about
+responsible behavior when reaching unlicensed conclusions. Section
+6 of [<a href="#URI" shape="rect">URI</a>] provides more
+information about comparing URIs and reducing the risk of false
+negatives and positives.</p>
+<p><a name="p70" id="p70"></a>See also the <a href=
+"#future-comparison" shape="rect">assertion that two URIs identify
+the same resource (§2.7.2)</a>.</p>
+<div class="section">
+<h4>2.3.1. <a name="uri-aliases" id="uri-aliases" shape="rect">URI
+aliases</a></h4>
+<p><a name="p71" id="p71"></a>Although there are benefits (such as
+naming flexibility) to URI aliases, there are also costs. URI
+aliases are harmful when they divide the Web of related resources.
+A corollary of Metcalfe's Principle (the "network effect") is that
+the value of a given resource can be measured by the number and
+value of other resources in its network neighborhood, that is, the
+resources that link to it.</p>
+<p><a name="p72" id="p72"></a>The problem with aliases is that if
+half of the neighborhood points to one URI for a given resource,
+and the other half points to a second, different URI for that same
+resource, the neighborhood is divided. Not only is the aliased
+resource undervalued because of this split, the entire neighborhood
+of resources loses value because of the missing second-order
+relationships that should have existed among the referring
+resources by virtue of their references to the aliased
+resource.</p>
+<div class="boxedtext">
+<p><a name="p73" id="p73"></a> <span class="practicelab">Good
+practice: <a name="avoid-uri-aliases" id="avoid-uri-aliases" shape=
+"rect">Avoiding URI aliases</a></span></p>
+<p class="practice"><a name="p74" id="p74"></a> A URI owner SHOULD
+NOT associate arbitrarily different URIs with the same
+resource.</p>
+</div>
+<p><a name="p75" id="p75"></a>URI consumers also have a role in
+ensuring URI consistency. For instance, when transcribing a URI,
+agents should not gratuitously percent-encode characters. The term
+"character" refers to URI characters as defined in section 2 of
+[<a href="#URI" shape="rect">URI</a>]; percent-encoding is
+discussed in section 2.1 of that specification.</p>
+<div class="boxedtext">
+<p><a name="p76" id="p76"></a> <span class="practicelab">Good
+practice: <a name="lc-uri-chars" id="lc-uri-chars" shape=
+"rect">Consistent URI usage</a></span></p>
+<p class="practice"><a name="p77" id="p77"></a> An agent that
+receives a URI SHOULD refer to the associated resource using the
+same URI, character-by-character.</p>
+</div>
+<p><a name="p78" id="p78"></a>When a URI alias does become common
+currency, the <a href="#uri-ownership" shape="rect">URI owner</a>
+should use protocol techniques such as server-side redirects to
+relate the two resources. The community benefits when the URI owner
+supports redirection of an aliased URI to the corresponding
+"official" URI. For more information on redirection, see section
+10.3, Redirection, in [<a href="#RFC2616" shape=
+"rect">RFC2616</a>]. See also [<a href="#CHIPS" shape=
+"rect">CHIPS</a>] for a discussion of some best practices for
+server administrators.</p>
+</div>
+<div class="section">
+<h4>2.3.2. <a name="representation-reuse" id="representation-reuse"
+shape="rect">Representation reuse</a></h4>
+<p><a name="p79" id="p79"></a>URI aliasing only occurs when more
+than one URI is used to identify the same resource. The fact that
+different resources sometimes have the same representation does not
+make the URIs for those resources aliases.</p>
+<div class="boxedtext">
+<p><a name="p80" id="p80"></a> <span class=
+"storylab">Story</span></p>
+<div class="story">
+<p><a name="p81" id="p81"></a>Dirk would like to add a link from
+his Web site to the Oaxaca weather site. He uses the URI
+http://weather.example.com/oaxaca and labels his link “report on
+weather in Oaxaca on 1&#160;August&#160;2004”. Nadia points out to
+Dirk that he is setting misleading expectations for the URI he has
+used. The Oaxaca weather site policy is that the URI in question
+identifies a report on the current weather in Oaxaca—on any given
+day—and not the weather on 1 August. Of course, on the first of
+August in 2004, Dirk's link will be correct, but the rest of the
+time he will be misleading readers. Nadia points out to Dirk that
+the managers of the Oaxaca weather site do make available a
+different URI permanently assigned to a resource reporting on the
+weather on 1 August 2004.</p>
+</div>
+</div>
+<p><a name="p82" id="p82"></a>In this story, there are two
+resources: “a report on the current weather in Oaxaca” and “a
+report on the weather in Oaxaca on 1&#160;August&#160;2004”. The
+managers of the Oaxaca weather site assign two URIs to these two
+different resources. On 1&#160;August&#160;2004, the
+representations for these resources are identical. That fact that
+dereferencing two different URIs produces identical representations
+does not imply that the two URIs are aliases.</p>
+</div>
+</div>
+<div class="section">
+<h3>2.4. <a name="URI-scheme" id="URI-scheme" shape="rect">URI
+Schemes</a></h3>
+<p><a name="p83" id="p83"></a>In the URI
+"http://weather.example.com/", the "http" that appears before the
+colon (":") names a URI scheme. Each URI scheme has a specification
+that explains the scheme-specific details of how scheme identifiers
+are allocated and become associated with a resource. The URI syntax
+is thus a federated and extensible naming system wherein each
+scheme's specification may further restrict the syntax and
+semantics of identifiers within that scheme.</p>
+<p><a name="p84" id="p84"></a>Examples of URIs from various schemes
+include:</p>
+<ul>
+<li>mailto:joe@example.org</li>
+<li>ftp://example.org/aDirectory/aFile</li>
+<li>news:comp.infosystems.www</li>
+<li>tel:+1-816-555-1212</li>
+<li>ldap://ldap.example.org/c=GB?objectClass?one</li>
+<li>urn:oasis:names:tc:entity:xmlns:xml:catalog</li>
+</ul>
+<p><a name="p85" id="p85"></a>While Web architecture allows the
+definition of new schemes, introducing a new scheme is costly. Many
+aspects of URI processing are scheme-dependent, and a large amount
+of deployed software already processes URIs of well-known schemes.
+Introducing a new URI scheme requires the development and
+deployment not only of client software to handle the scheme, but
+also of ancillary agents such as gateways, proxies, and caches. See
+[<a href="#RFC2718" shape="rect">RFC2718</a>] for other
+considerations and costs related to URI scheme design.</p>
+<p><a name="p86" id="p86"></a>Because of these costs, if a URI
+scheme exists that meets the needs of an application, designers
+should use it rather than invent one.</p>
+<div class="boxedtext">
+<p><a name="p87" id="p87"></a> <span class="practicelab">Good
+practice: <a name="pr-reuse-uri-schemes" id="pr-reuse-uri-schemes"
+shape="rect">Reuse URI schemes</a></span></p>
+<p class="practice"><a name="p88" id="p88"></a> A specification
+SHOULD reuse an existing URI scheme (rather than create a new one)
+when it provides the desired properties of identifiers and their
+relation to resources.</p>
+</div>
+<p><a name="p89" id="p89"></a> Consider our <a href="#scenario"
+shape="rect">travel scenario</a>: should the agent providing
+information about the weather in Oaxaca register a new URI scheme
+"weather" for the identification of resources related to the
+weather? They might then publish URIs such as
+"weather://travel.example.com/oaxaca". When a software agent
+dereferences such a URI, if what really happens is that HTTP GET is
+invoked to retrieve a representation of the resource, then an
+"http" URI would have sufficed.</p>
+<div class="section">
+<h4>2.4.1. <a name="URI-registration" id="URI-registration" shape=
+"rect">URI Scheme Registration</a></h4>
+<p><a name="p90" id="p90"></a>The Internet Assigned Numbers
+Authority (<acronym>IANA</acronym>) maintains a registry [<a href=
+"#IANASchemes" shape="rect">IANASchemes</a>] of mappings between
+URI scheme names and scheme specifications. For instance, the IANA
+registry indicates that the "http" scheme is defined in [<a href=
+"#RFC2616" shape="rect">RFC2616</a>]. The process for registering a
+new URI scheme is defined in [<a href="#RFC2717" shape=
+"rect">RFC2717</a>].</p>
+<p><a name="p91" id="p91"></a>Unregistered URI schemes SHOULD NOT
+be used for a number of reasons:</p>
+<ul>
+<li>There is no generally accepted way to locate the scheme
+specification.</li>
+<li>Someone else may be using the scheme for other purposes.</li>
+<li>One should not expect that general-purpose software will do
+anything useful with URIs of this scheme beyond URI
+comparison.</li>
+</ul>
+<p><a name="p92" id="p92"></a>One misguided motivation for
+registering a new URI scheme is to allow a software agent to launch
+a particular application when retrieving a representation. The same
+thing can be accomplished at lower expense by dispatching instead
+on the type of the representation, thereby allowing use of existing
+transfer protocols and implementations.</p>
+<p><a name="p93" id="p93"></a>Even if an agent cannot process
+representation data in an unknown format, it can at least retrieve
+it. The data may contain enough information to allow a user or user
+agent to make some use of it. When an agent does not handle a new
+URI scheme, it cannot retrieve a representation.</p>
+<p><a name="p94" id="p94"></a>When designing a new data format, the
+preferred mechanism to promote its deployment on the Web is the
+Internet media type (see <a href="#internet-media-type" shape=
+"rect">Representation Types and Internet Media Types (§3.2)</a>).
+Media types also provide a means for building new information
+applications, as described in <a href="#media-types-infospace"
+shape="rect">future directions for data formats (§4.6)</a>.</p>
+</div>
+</div>
+<div class="section">
+<h3>2.5. <a name="uri-opacity" id="uri-opacity" shape="rect">URI
+Opacity</a></h3>
+<p><a name="p95" id="p95"></a>It is tempting to guess the nature of
+a resource by inspection of a URI that identifies it. However, the
+Web is designed so that agents communicate resource information
+state through <a href="#def-representation" shape=
+"rect">representations</a>, not identifiers. In general, one cannot
+determine the type of a resource representation by inspecting a URI
+for that resource. For example, the ".html" at the end of
+"http://example.com/page.html" provides no guarantee that
+representations of the identified resource will be served with the
+Internet media type "text/html". The publisher is free to allocate
+identifiers and define how they are served. The HTTP protocol does
+not constrain the Internet media type based on the path component
+of the URI; the URI owner is free to configure the server to return
+a representation using PNG or any other data format.</p>
+<p><a name="p96" id="p96"></a>Resource state may evolve over time.
+Requiring a URI owner to publish a new URI for each change in
+resource state would lead to a significant number of broken
+references. For robustness, Web architecture promotes independence
+between an identifier and the state of the identified resource.</p>
+<div class="boxedtext">
+<p><a name="p97" id="p97"></a> <span class="practicelab">Good
+practice: <a name="pr-uri-opacity" id="pr-uri-opacity" shape=
+"rect">URI opacity</a></span></p>
+<p class="practice"><a name="p98" id="p98"></a> Agents making use
+of URIs SHOULD NOT attempt to infer properties of the referenced
+resource.</p>
+</div>
+<p><a name="p99" id="p99"></a>In practice, a small number of
+inferences can be made because they are explicitly licensed by the
+relevant specifications. Some of these inferences are discussed in
+the <a href="#dereference-details" shape="rect">details of
+retrieving a representation (§3.1.1)</a>.</p>
+<p><a name="p100" id="p100"></a>The example URI used in the
+<a href="#scenario" shape="rect">travel scenario</a>
+("http://weather.example.com/oaxaca") suggests to a human reader
+that the identified resource has something to do with the weather
+in Oaxaca. A site reporting the weather in Oaxaca could just as
+easily be identified by the URI "http://vjc.example.com/315". And
+the URI "http://weather.example.com/vancouver" might identify the
+resource "my photo album."</p>
+<p><a name="p101" id="p101"></a>On the other hand, the URI
+"mailto:joe@example.com" indicates that the URI refers to a
+mailbox. The "mailto" URI scheme specification authorizes agents to
+infer that URIs of this form identify Internet mailboxes.</p>
+<p><a name="p102" id="p102"></a>Some URI assignment authorities
+document and publish their URI assignment policies. For more
+information about URI opacity, see TAG issues <a href=
+"http://www.w3.org/2001/tag/issues.html#metadataInURI-31" shape=
+"rect">metaDataInURI-31</a> and <a href=
+"http://www.w3.org/2001/tag/issues.html#siteData-36" shape=
+"rect">siteData-36</a>.</p>
+</div>
+<div class="section">
+<h3>2.6. <a name="fragid" id="fragid" shape="rect">Fragment
+Identifiers</a></h3>
+<div class="boxedtext">
+<p><a name="p103" id="p103"></a> <span class=
+"storylab">Story</span></p>
+<div class="story">
+<p><a name="p104" id="p104"></a>When browsing the XHTML document
+that Nadia receives as a representation of the resource identified
+by "http://weather.example.com/oaxaca", she finds that the URI
+"http://weather.example.com/oaxaca#weekend" refers to the part of
+the representation that conveys information about the weekend
+outlook. This URI includes the fragment identifier "weekend" (the
+string after the "#").</p>
+</div>
+</div>
+<p><a name="p105" id="p105"></a>The <a name="def-fragid" id=
+"def-fragid"><dfn>fragment identifier</dfn></a> component of a URI
+allows indirect identification of a <a name=
+"def-secondary-resource" id="def-secondary-resource"><dfn>secondary
+resource</dfn></a> by reference to a primary resource and
+additional identifying information. The secondary resource may be
+some portion or subset of the primary resource, some view on
+representations of the primary resource, or some other resource
+defined or described by those representations. The terms "primary
+resource" and "secondary resource" are defined in section 3.5 of
+[<a href="#URI" shape="rect">URI</a>].</p>
+<p><a name="p106" id="p106"></a>The terms “primary” and “secondary”
+in this context do not limit the nature of the resource—they are
+not classes. In this context, primary and secondary simply indicate
+that there is a relationship between the resources for the purposes
+of one URI: the URI with a fragment identifier. Any resource can be
+identified as a secondary resource. It might also be identified
+using a URI without a fragment identifier, and a resource may be
+identified as a secondary resource via multiple URIs. The purpose
+of these terms is to enable discussion of the relationship between
+such resources, not to limit the nature of a resource.</p>
+<p><a name="p107" id="p107"></a>The interpretation of fragment
+identifiers is discussed in the section on <a href=
+"#media-type-fragid" shape="rect">media types and fragment
+identifier semantics (§3.2.1)</a>.</p>
+<p><a name="p108" id="p108"></a>See TAG issue <a href=
+"http://www.w3.org/2001/tag/issues.html#abstractComponentRefs-37"
+shape="rect">abstractComponentRefs-37</a>, which concerns the use
+of fragment identifiers with namespace names to identify abstract
+components.</p>
+</div>
+<div class="section">
+<h3>2.7. <a name="identifiers-future" id="identifiers-future"
+shape="rect">Future Directions for Identifiers</a></h3>
+<p><a name="p109" id="p109"></a>There remain open questions
+regarding identifiers on the Web.</p>
+<div class="section">
+<h4>2.7.1. <a name="i18n-id" shape="rect" id=
+"i18n-id">Internationalized identifiers</a></h4>
+<p><a name="p110" id="p110"></a>The integration of
+internationalized identifiers (i.e., composed of characters beyond
+those allowed by [<a href="#URI" shape="rect">URI</a>]) into the
+Web architecture is an important and open issue. See TAG issue
+<a href="http://www.w3.org/2001/tag/issues.html#IRIEverywhere-27"
+shape="rect">IRIEverywhere-27</a> for discussion about work going
+on in this area.</p>
+</div>
+<div class="section">
+<h4>2.7.2. <a name="future-comparison" id="future-comparison"
+shape="rect">Assertion that two URIs identify the same
+resource</a></h4>
+<p><a name="p111" id="p111"></a>Emerging Semantic Web technologies,
+including the "Web Ontology Language (OWL)" [<a href="#OWL10"
+shape="rect">OWL10</a>], define RDF properties such as
+<code>sameAs</code> to assert that two URIs identify the same
+resource or <code>inverseFunctionalProperty</code> to imply it.</p>
+</div>
+</div>
+</div>
+<div class="section">
+<h2>3. <a name="interaction" id="interaction" shape=
+"rect">Interaction</a></h2>
+<p><a name="p112" id="p112"></a>Communication between agents over a
+network about resources involves URIs, messages, and data. The
+Web's protocols (including HTTP, FTP, SOAP, NNTP, and SMTP) are
+based on the exchange of messages. A <a name="def-message" id=
+"def-message"><dfn>message</dfn></a> may include data as well as
+metadata about a resource (such as the "Alternates" and "Vary" HTTP
+headers), the message data, and the message itself (such as the
+"Transfer-encoding" HTTP header). A message may even include
+metadata about the message metadata (for message-integrity checks,
+for instance).</p>
+<div class="boxedtext">
+<p><a name="p113" id="p113"></a> <span class=
+"storylab">Story</span></p>
+<div class="story">
+<p><a name="p114" id="p114"></a>Nadia follows a hypertext link
+labeled "satellite image" expecting to retrieve a satellite photo
+of the Oaxaca region. The link to the satellite image is an XHTML
+link encoded as <code>&lt;a
+href="http://example.com/satimage/oaxaca"&gt;satellite
+image&lt;/a&gt;</code>. Nadia's browser analyzes the URI and
+determines that its <a href="#URI-scheme" shape="rect">scheme</a>
+is "http". The browser configuration determines how it locates the
+identified information, which might be via a cache of prior
+retrieval actions, by contacting an intermediary (such as a proxy
+server), or by direct access to the server identified by a portion
+of the URI. In this example, the browser opens a network connection
+to port 80 on the server at "example.com" and sends a "GET" message
+as specified by the HTTP protocol, requesting a representation of
+the resource.</p>
+<p><a name="p115" id="p115"></a>The server sends a response message
+to the browser, once again according to the HTTP protocol. The
+message consists of several headers and a JPEG image. The browser
+reads the headers, learns from the "Content-Type" field that the
+Internet media type of the representation is "image/jpeg", reads
+the sequence of octets that make up the representation data, and
+renders the image.</p>
+</div>
+</div>
+<p><a name="p116" id="p116"></a>This section describes the
+architectural principles and constraints regarding interactions
+between agents, including such topics as network protocols and
+interaction styles, along with interactions between the Web as a
+system and the people that make use of it. The fact that the Web is
+a highly distributed system affects architectural constraints and
+assumptions about interactions.</p>
+<div class="section">
+<h3>3.1. <a name="dereference-uri" id="dereference-uri" shape=
+"rect">Using a URI to Access a Resource</a></h3>
+<p><a name="p117" id="p117"></a>Agents may use a URI to access the
+referenced resource; this is called <a name="uri-dereference" id=
+"uri-dereference"><dfn>dereferencing the URI</dfn></a>. Access may
+take many forms, including retrieving a representation of the
+resource (for instance, by using HTTP GET or HEAD), adding or
+modifying a representation of the resource (for instance, by using
+HTTP POST or PUT, which in some cases may change the actual state
+of the resource if the submitted representations are interpreted as
+instructions to that end), and deleting some or all representations
+of the resource (for instance, by using HTTP DELETE, which in some
+cases may result in the deletion of the resource itself).</p>
+<p><a name="p118" id="p118"></a>There may be more than one way to
+access a resource for a given URI; application context determines
+which access method an agent uses. For instance, a browser might
+use HTTP GET to retrieve a representation of a resource, whereas a
+hypertext link checker might use HTTP HEAD on the same URI simply
+to establish whether a representation is available. Some URI
+schemes set expectations about available access methods, others
+(such as the URN scheme [<a href="#RFC2141" shape="rect">RFC
+2141</a>]) do not. Section 1.2.2 of [<a href="#URI" shape=
+"rect">URI</a>] discusses the separation of identification and
+interaction in more detail. For more information about
+relationships between multiple access methods and URI
+addressability, see the TAG finding <cite>"<a href=
+"http://www.w3.org/2001/tag/doc/whenToUseGet.html" shape=
+"rect">URIs, Addressability, and the use of HTTP GET and
+POST</a>"</cite>.</p>
+<p><a name="p119" id="p119"></a>Although many <a href="#URI-scheme"
+shape="rect">URI schemes (§2.4)</a> are named after protocols, this
+does not imply that use of such a URI will necessarily result in
+access to the resource via the named protocol. Even when an agent
+uses a URI to retrieve a representation, that access might be
+through gateways, proxies, caches, and name resolution services
+that are independent of the protocol associated with the scheme
+name.</p>
+<p><a name="p120" id="p120"></a>Many URI schemes define a default
+interaction protocol for attempting access to the identified
+resource. That interaction protocol is often the basis for
+allocating identifiers within that scheme, just as "http" URIs are
+defined in terms of TCP-based HTTP servers. However, this does not
+imply that all interaction with such resources is limited to the
+default interaction protocol. For example, information retrieval
+systems often make use of proxies to interact with a multitude of
+URI schemes, such as HTTP proxies being used to access "ftp" and
+"wais" resources. Proxies can also to provide enhanced services,
+such as annotation proxies that combine normal information
+retrieval with additional metadata retrieval to provide a seamless,
+multidimensional view of resources using the same protocols and
+user agents as the non-annotated Web. Likewise, future protocols
+may be defined that encompass our current systems, using entirely
+different interaction mechanisms, without changing the existing
+identifier schemes. See also, <a href="#orthogonal-specs" shape=
+"rect">principle of orthogonal specifications (§5.1)</a>.</p>
+<div class="section">
+<h4>3.1.1. <a name="dereference-details" id="dereference-details"
+shape="rect">Details of retrieving a representation</a></h4>
+<p><a name="p121" id="p121"></a>Dereferencing a URI generally
+involves a succession of steps as described in multiple
+specifications and implemented by the agent. The following example
+illustrates the series of specifications that governs the process
+when a user agent is instructed to follow a <a href="#hypertext"
+shape="rect">hypertext link (§4.4)</a> that is part of an SVG
+document. In this example, the URI is
+"http://weather.example.com/oaxaca" and the application context
+calls for the user agent to retrieve and render a representation of
+the identified resource.</p>
+<ol>
+<li>Since the URI is part of a hypertext link in an SVG document,
+the first relevant specification is the SVG 1.1 Recommendation
+[<a href="#SVG11" shape="rect">SVG11</a>]. <a href=
+"http://www.w3.org/TR/SVG11/linking.html#Links" shape="rect">Section 17.1</a> of
+this specification imports the link semantics defined in XLink 1.0
+[<a href="#XLink10" shape="rect">XLink10</a>]: "The remote resource
+(the destination for the link) is defined by a URI specified by the
+XLink <code>href</code> attribute on the '<code>a</code>' element."
+The SVG specification goes on to state that interpretation of an
+<code>a</code> element involves retrieving a representation of a
+resource, identified by the <code>href</code> attribute in the
+XLink namespace: "By activating these links (by clicking with the
+mouse, through keyboard input, voice commands, etc.), users may
+visit these resources."</li>
+<li>The XLink 1.0 [<a href="#XLink10" shape="rect">XLink10</a>]
+specification, which defines the <code>href</code> attribute in
+section 5.4, states that "The value of the href attribute must be a
+URI reference as defined in [IETF RFC 2396], or must result in a
+URI reference after the escaping procedure described below is
+applied."</li>
+<li>The URI specification [<a href="#URI" shape="rect">URI</a>]
+states that "Each URI begins with a scheme name that refers to a
+specification for assigning identifiers within that scheme." The
+URI scheme name in this example is "http".</li>
+<li>[<a href="#IANASchemes" shape="rect">IANASchemes</a>] states
+that the "http" scheme is defined by the HTTP/1.1 specification
+(RFC 2616 [<a href="#RFC2616" shape="rect">RFC2616</a>], section
+3.2.2).</li>
+<li>In this SVG context, the agent constructs an HTTP GET request
+(per section 9.3 of [<a href="#RFC2616" shape="rect">RFC2616</a>])
+to retrieve the representation.</li>
+<li>Section 6 of [<a href="#RFC2616" shape="rect">RFC2616</a>]
+defines how the server constructs a corresponding response message,
+including the 'Content-Type' field.</li>
+<li>Section 1.4 of [<a href="#RFC2616" shape="rect">RFC2616</a>]
+states "HTTP communication usually takes place over TCP/IP
+connections." This example addresses neither that step in the
+process nor other steps such as Domain Name System
+(<acronym>DNS</acronym>) resolution.</li>
+<li>The agent interprets the returned representation according to
+the data format specification that corresponds to the
+representation's <a href="#internet-media-type" shape=
+"rect">Internet Media Type (§3.2)</a> (the value of the HTTP
+'Content-Type') in the relevant IANA registry [<a href=
+"#MEDIATYPEREG" shape="rect">MEDIATYPEREG</a>].</li>
+</ol>
+<p><a name="p122" id="p122"></a>Precisely which representation(s)
+are retrieved depends on a number of factors, including:</p>
+<ol>
+<li>Whether the URI owner makes available any representations at
+all;</li>
+<li>Whether the agent making the request has access privileges for
+those representations (see the section on <a href="#id-access"
+shape="rect">linking and access control (§3.5.2)</a>);</li>
+<li>If the URI owner has provided more than one representation (in
+different formats such as HTML, PNG, or RDF; in different languages
+such as English and Spanish; or transformed dynamically according
+to the hardware or software capabilities of the recipient), the
+resulting representation may depend on negotiation between the user
+agent and server.</li>
+<li>The time of the request; the world changes over time, so
+representations of resources are also likely to change over
+time.</li>
+</ol>
+<p><a name="p123" id="p123"></a>Assuming that a representation has
+been successfully retrieved, the expressive power of the
+representation's format will affect how precisely the
+representation provider communicates resource state. If the
+representation communicates the state of the resource inaccurately,
+this inaccuracy or ambiguity may lead to confusion among users
+about what the resource is. If different users reach different
+conclusions about what the resource is, they may interpret this as
+a <a href="#URI-collision" shape="rect">URI collision (§2.2.1)</a>.
+Some communities, such as the ones developing the Semantic Web,
+seek to provide a framework for accurately communicating the
+semantics of a resource in a machine readable way. Machine readable
+semantics may alleviate some of the ambiguity associated with
+natural language descriptions of resources.</p>
+</div>
+</div>
+<div class="section">
+<h3>3.2. <a id="internet-media-type" name="internet-media-type"
+shape="rect">Representation Types and Internet Media Types</a></h3>
+<p><a name="p124" id="p124"></a>A <a name="def-representation" id=
+"def-representation"><dfn>representation</dfn></a> is data that
+encodes information about resource state. Representations do not
+necessarily describe the resource, or portray a likeness of the
+resource, or represent the resource in other senses of the word
+"represent".</p>
+<p><a name="p125" id="p125"></a>Representations of a resource may
+be sent or received using interaction protocols. These protocols in
+turn determine the form in which representations are conveyed on
+the Web. HTTP, for example, provides for transmission of
+representations as octet streams typed using Internet media types
+[<a href="#RFC2046" shape="rect">RFC2046</a>].</p>
+<p><a name="p126" id="p126"></a>Just as it is important to reuse
+existing URI schemes whenever possible, there are significant
+benefits to using media typed octet streams for representations
+even in the unusual case where a new URI scheme and associated
+protocol is to be defined. For example, if the Oaxaca weather were
+conveyed to Nadia's browser using a protocol other than HTTP, then
+software to render formats such as text/xhmtl+xml and image/png
+would still be usable if the new protocol supported transmission of
+those types. This is an example of the <a href="#orthogonal-specs"
+shape="rect">principle of orthogonal specifications (§5.1)</a>.</p>
+<div class="boxedtext">
+<p><a name="p127" id="p127"></a> <span class="practicelab">Good
+practice: <a name="pr-reuse-formats" id="pr-reuse-formats" shape=
+"rect">Reuse representation formats</a></span></p>
+<p class="practice"><a name="p128" id="p128"></a> New protocols
+created for the Web SHOULD transmit representations as octet
+streams typed by Internet media types.</p>
+</div>
+<p><a name="p129" id="p129"></a>The Internet media type mechanism
+does have some limitations. For instance, media type strings do not
+support <a href="#versioning" shape="rect">versioning (§4.2.1)</a>
+or other parameters. See TAG issues <a href=
+"http://www.w3.org/2001/tag/issues.html#uriMediaType-9" shape=
+"rect">uriMediaType-9</a> and <a href=
+"http://www.w3.org/2001/tag/issues.html#mediaTypeManagement-45"
+shape="rect">mediaTypeManagement-45</a> which concern aspects of
+the media type mechanism.</p>
+<div class="section">
+<h4>3.2.1. <a id="media-type-fragid" name="media-type-fragid"
+shape="rect">Representation types and fragment identifier
+semantics</a></h4>
+<p><a name="p130" id="p130"></a>The Internet Media Type defines the
+syntax and semantics of the fragment identifier (introduced in
+<a href="#fragid" shape="rect">Fragment Identifiers (§2.6)</a>), if
+any, that may be used in conjunction with a representation.</p>
+<div class="boxedtext">
+<p><a name="p131" id="p131"></a> <span class=
+"storylab">Story</span></p>
+<div class="story">
+<p><a name="p132" id="p132"></a>In one of his XHTML pages, Dirk
+creates a hypertext link to an image that Nadia has published on
+the Web. He creates a hypertext link with <code>&lt;a
+href="http://www.example.com/images/nadia#hat"&gt;Nadia's
+hat&lt;/a&gt;</code>. Emma views Dirk's XHTML page in her Web
+browser and follows the link. The HTML implementation in her
+browser removes the fragment from the URI and requests the image
+"http://www.example.com/images/nadia". Nadia serves an SVG
+representation of the image (with Internet media type
+"image/svg+xml"). Emma's Web browser starts up an SVG
+implementation to view the image. It passes it the original URI
+including the fragment, "http://www.example.com/images/nadia#hat"
+to this implementation, causing a view of the hat to be displayed
+rather than the complete image.</p>
+</div>
+</div>
+<p><a name="p133" id="p133"></a>Note that the HTML implementation
+in Emma's browser did not need to <em>understand the syntax or
+semantics</em> of the SVG fragment (nor does the SVG implementation
+have to understand HTML, WebCGM, RDF ... fragment syntax or
+semantics; it merely had to recognize the # delimiter from the URI
+syntax [URI] and remove the fragment when accessing the resource).
+This <a href="#orthogonal-specs" shape="rect">orthogonality
+(§5.1)</a> is an important feature of Web architecture; it is what
+enabled Emma's browser to provide a useful service without
+requiring an upgrade.</p>
+<p><a name="p134" id="p134"></a>The semantics of a fragment
+identifier are defined by the set of representations that might
+result from a retrieval action on the primary resource. The
+fragment's format and resolution are therefore dependent on the
+type of a potentially retrieved representation, even though such a
+retrieval is only performed if the URI is dereferenced. If no such
+representation exists, then the semantics of the fragment are
+considered unknown and, effectively, unconstrained. Fragment
+identifier semantics are orthogonal to URI schemes and thus cannot
+be redefined by URI scheme specifications.</p>
+<p><a name="p135" id="p135"></a>Interpretation of the fragment
+identifier is performed solely by the agent that dereferences a
+URI; the fragment identifier is not passed to other systems during
+the process of retrieval. This means that some intermediaries in
+Web architecture (such as proxies) have no interaction with
+fragment identifiers and that redirection (in HTTP [<a href=
+"#RFC2616" shape="rect">RFC2616</a>], for example) does not account
+for fragments.</p>
+</div>
+<div class="section">
+<h4>3.2.2. <a name="frag-coneg" id="frag-coneg" shape=
+"rect">Fragment identifiers and content negotiation</a></h4>
+<p><a name="p136" id="p136"></a><a name="def-coneg" id=
+"def-coneg"><dfn>Content negotiation</dfn></a> refers to the
+practice of making available multiple representations via the same
+URI. Negotiation between the requesting agent and the server
+determines which representation is served (usually with the goal of
+serving the "best" representation a receiving agent can process).
+HTTP is an example of a protocol that enables representation
+providers to use content negotiation.</p>
+<p><a name="p137" id="p137"></a>Individual data formats may define
+their own rules for use of the fragment identifier syntax for
+specifying different types of subsets, views, or external
+references that are identifiable as secondary resources by that
+media type. Therefore, representation providers must manage content
+negotiation carefully when used with a URI that contains a fragment
+identifier. Consider an example where the owner of the URI
+"http://weather.example.com/oaxaca/map#zicatela" uses content
+negotiation to serve two representations of the identified
+resource. Three situations can arise:</p>
+<ol>
+<li>The interpretation of "zicatela" is defined consistently by
+both data format specifications. The representation provider
+decides when definitions of fragment identifier semantics are are
+sufficiently consistent.</li>
+<li>The interpretation of "zicatela" is defined inconsistently by
+the data format specifications.</li>
+<li>The interpretation of "zicatela" is defined in one data format
+specification but not the other.</li>
+</ol>
+<p><a name="p138" id="p138"></a>The first situation—consistent
+semantics—poses no problem.</p>
+<p><a name="p139" id="p139"></a>The second case is a server
+management error: representation providers must not use content
+negotiation to serve representation formats that have inconsistent
+fragment identifier semantics. This situation also leads to
+<a href="#URI-collision" shape="rect">URI collision
+(§2.2.1)</a>.</p>
+<p><a name="p140" id="p140"></a>The third case is not a server
+management error. It is a means by which the Web can grow. Because
+the Web is a distributed system in which formats and agents are
+deployed in a non-uniform manner, Web architecture does not
+constrain authors to only use "lowest common denominator" formats.
+Content authors may take advantage of new data formats while still
+ensuring reasonable backward-compatibility for agents that do not
+yet implement them.</p>
+<p><a name="p141" id="p141"></a>In case three, behavior by the
+receiving agent should vary depending on whether the negotiated
+format defines fragment identifier semantics. When a received data
+format does not define fragment identifier semantics, the agent
+should not perform <a href="#no-silent-recovery" shape=
+"rect">silent error recovery</a> unless the user has given consent;
+see [<a href="#CUAP" shape="rect">CUAP</a>] for additional
+suggested agent behavior in this case.</p>
+<p><a name="p142" id="p142"></a>See related TAG issue <a href=
+"http://www.w3.org/2001/tag/issues.html#RDFinXHTML-35" shape=
+"rect">RDFinXHTML-35</a>.</p>
+</div>
+</div>
+<div class="section">
+<h3>3.3. <a name="metadata-inconsistencies" id=
+"metadata-inconsistencies" shape="rect">Inconsistencies between
+Representation Data and Metadata</a></h3>
+<p><a name="p143" id="p143"></a>Successful communication between
+two parties depends on a reasonably shared understanding of the
+semantics of exchanged messages, both data and metadata. At times,
+there may be inconsistencies between a message sender's data and
+metadata. Examples, observed in practice, of inconsistencies
+between representation data and metadata include:</p>
+<ul>
+<li>The actual character encoding of a representation (e.g.,
+"iso-8859-1", specified by the <code>encoding</code> attribute in
+an XML declaration) is inconsistent with the charset parameter in
+the representation metadata (e.g., "utf-8", specified by the
+'Content-Type' field in an HTTP header).</li>
+<li>The <a href="#xml-namespaces" shape="rect">namespace
+(§4.5.3)</a> of the root element of XML representation data (e.g.,
+as specified by the "xmlns" attribute) is inconsistent with the
+value of the 'Content-Type' field in an HTTP header.</li>
+</ul>
+<p><a name="p144" id="p144"></a>On the other hand, there is no
+inconsistency in serving HTML content with the media type
+"text/plain", for example, as this combination is licensed by
+specifications.</p>
+<p><a name="p145" id="p145"></a>Receiving agents should detect
+protocol inconsistencies and perform proper <a href=
+"#def-error-recovery" shape="rect">error recovery</a>.</p>
+<div class="boxedtext">
+<p><a name="p146" id="p146"></a> <span class=
+"constraintlab">Constraint: <a name="pr-server-auth" id=
+"pr-server-auth" shape="rect">Data-metadata
+inconsistency</a></span></p>
+<p class="constraint"><a name="p147" id="p147"></a> Agents MUST NOT
+ignore message metadata without the consent of the user.</p>
+</div>
+<p><a name="p148" id="p148"></a>Thus, for example, if the parties
+responsible for "weather.example.com" mistakenly label the
+satellite photo of Oaxaca as "image/gif" instead of "image/jpeg",
+and if Nadia's browser detects a problem, Nadia's browser must not
+ignore the problem (e.g., by simply rendering the JPEG image)
+without Nadia's consent. Nadia's browser can notify Nadia of the
+problem or notify Nadia and take corrective action.</p>
+<p><a name="p149" id="p149"></a>Furthermore, representation
+providers can help reduce the risk of inconsistencies through
+careful assignment of representation metadata (especially that
+which applies across representations). The section on <a href=
+"#xml-media-types" shape="rect">media types for XML (§4.5.7)</a>
+presents an example of reducing the risk of error by providing no
+metadata about character encoding when serving XML.</p>
+<p><a name="p150" id="p150"></a>The accuracy of metadata relies on
+the server administrators, the authors of representations, and the
+software that they use. Practically, the capabilities of the tools
+and the social relationships may be the limiting factors.</p>
+<p><a name="p151" id="p151"></a>The accuracy of these and other
+metadata fields is just as important for dynamic Web resources,
+where a little bit of thought and programming can often ensure
+correct metadata for a huge number of resources.</p>
+<p><a name="p152" id="p152"></a>Often there is a separation of
+control between the users who create representations of resources
+and the server managers who maintain the Web site software. Given
+that it is generally the Web site software that provides the
+metadata associated with a resource, it follows that coordination
+between the server managers and content creators is required.</p>
+<div class="boxedtext">
+<p><a name="p153" id="p153"></a> <span class="practicelab">Good
+practice: <a name="pr-metadata-association" id=
+"pr-metadata-association" shape="rect">Metadata
+association</a></span></p>
+<p class="practice"><a name="p154" id="p154"></a> Server managers
+SHOULD allow representation creators to control the metadata
+associated with their representations.</p>
+</div>
+<p><a name="p155" id="p155"></a>In particular, content creators
+need to be able to control the content type (for extensibility) and
+the character encoding (for proper internationalization).</p>
+<p><a name="p156" id="p156"></a>The TAG finding <cite>"<a href=
+"http://www.w3.org/2001/tag/doc/mime-respect.html" shape=
+"rect">Authoritative Metadata</a>"</cite> discusses in more detail
+how to handle data/metadata inconsistency and how server
+configuration can be used to avoid it.</p>
+</div>
+<div class="section">
+<h3>3.4. <a name="safe-interaction" id="safe-interaction" shape=
+"rect">Safe Interactions</a></h3>
+<p><a name="p157" id="p157"></a>Nadia's retrieval of weather
+information (an example of a read-only query or lookup) qualifies
+as a "safe" interaction; a <a name="def-safe-interaction" id=
+"def-safe-interaction"><dfn>safe interaction</dfn></a> is one where
+the agent does not incur any obligation beyond the interaction. An
+agent may incur an obligation through other means (such as by
+signing a contract). If an agent does not have an obligation before
+a safe interaction, it does not have that obligation
+afterwards.</p>
+<p><a name="p158" id="p158"></a>Other Web interactions resemble
+orders more than queries. These <a name="def-unsafe-interaction"
+id="def-unsafe-interaction"><dfn>unsafe interactions</dfn></a> may
+cause a change to the state of a resource and the user may be held
+responsible for the consequences of these interactions. Unsafe
+interactions include subscribing to a newsletter, posting to a
+list, or modifying a database. <strong>Note:</strong> In this
+context, the word "unsafe" does not necessarily mean "dangerous";
+the term "safe" is used in section 9.1.1 of [<a href="#RFC2616"
+shape="rect">RFC2616</a>] and "unsafe" is the natural opposite.</p>
+<div class="boxedtext">
+<p><a name="p159" id="p159"></a> <span class=
+"storylab">Story</span></p>
+<div class="story">
+<p><a name="p160" id="p160"></a>Nadia decides to book a vacation to
+Oaxaca at "booking.example.com." She enters data into a series of
+online forms and is ultimately asked for credit card information to
+purchase the airline tickets. She provides this information in
+another form. When she presses the "Purchase" button, her browser
+opens another network connection to the server at
+"booking.example.com" and sends a message composed of form data
+using the POST method. This is an <a href="#def-unsafe-interaction"
+shape="rect">unsafe interaction</a>; Nadia wishes to change the
+state of the system by exchanging money for airline tickets.</p>
+<p><a name="p161" id="p161"></a>The server reads the POST request,
+and after performing the booking transaction returns a message to
+Nadia's browser that contains a representation of the results of
+Nadia's request. The representation data is in XHTML so that it can
+be saved or printed out for Nadia's records.</p>
+<p><a name="p162" id="p162"></a>Note that neither the data
+transmitted with the POST nor the data received in the response
+necessarily correspond to any resource identified by a URI.</p>
+</div>
+</div>
+<p><a name="p163" id="p163"></a>Safe interactions are important
+because these are interactions where users can browse with
+confidence and where agents (including search engines and browsers
+that pre-cache data for the user) can follow hypertext links
+safely. Users (or agents acting on their behalf) do not commit
+themselves to anything by querying a resource or following a
+hypertext link.</p>
+<div class="boxedtext">
+<p><a name="p164" id="p164"></a> <span class=
+"principlelab">Principle: <a name="pr-deref-safe" id=
+"pr-deref-safe" shape="rect">Safe retrieval</a></span></p>
+<p class="principle"><a name="p165" id="p165"></a> Agents do not
+incur obligations by retrieving a representation.</p>
+</div>
+<p><a name="p166" id="p166"></a>For instance, it is incorrect to
+publish a URI that, when followed as part of a hypertext link,
+subscribes a user to a mailing list. Remember that search engines
+may follow such hypertext links.</p>
+<p><a name="p167" id="p167"></a>The fact that HTTP GET, the access
+method most often used when following a hypertext link, is safe
+does not imply that all safe interactions must be done through HTTP
+GET. At times, there may be good reasons (such as confidentiality
+requirements or practical limits on URI length) to conduct an
+otherwise safe operation using a mechanism generally reserved for
+unsafe operations (e.g., HTTP POST).</p>
+<p><a name="p168" id="p168"></a>For more information about safe and
+unsafe operations using HTTP GET and POST, and handling security
+concerns around the use of HTTP GET, see the TAG finding
+<cite>"<a href="http://www.w3.org/2001/tag/doc/whenToUseGet.html"
+shape="rect">URIs, Addressability, and the use of HTTP GET and
+POST</a>"</cite>.</p>
+<div class="section">
+<h4>3.4.1. <a name="unsafe-accountability" id=
+"unsafe-accountability" shape="rect">Unsafe interactions and
+accountability</a></h4>
+<div class="boxedtext">
+<p><a name="p169" id="p169"></a> <span class=
+"storylab">Story</span></p>
+<div class="story">
+<p><a name="p170" id="p170"></a>Nadia pays for her airline tickets
+online (through a POST interaction as described above). She
+receives a Web page with confirmation information and wishes to
+bookmark it so that she can refer to it when she calculates her
+expenses. Although Nadia can print out the results, or save them to
+a file, she would also like to bookmark them.</p>
+</div>
+</div>
+<p><a name="p171" id="p171"></a>Transaction requests and results
+are valuable resources, and like all valuable resources, it is
+useful to be able to refer to them with a <a href=
+"#URI-persistence" shape="rect">persistent URI (§3.5.1)</a>.
+However, in practice, Nadia cannot bookmark her commitment to pay
+(expressed via the POST request) or the airline company's
+acknowledgment and commitment to provide her with a flight
+(expressed via the response to the POST).</p>
+<p><a name="p172" id="p172"></a>There are ways to provide
+persistent URIs for transaction requests and their results. For
+transaction requests, user agents can provide an interface for
+managing transactions where the user agent has incurred an
+obligation on behalf of the user. For transaction results, HTTP
+allows representation providers to associate a URI with the results
+of an HTTP POST request using the "Content-Location" header
+(described in section 14.14 of [<a href="#RFC2616" shape=
+"rect">RFC2616</a>]).</p>
+</div>
+</div>
+<div class="section">
+<h3>3.5. <a name="representation-management" id=
+"representation-management" shape="rect">Representation
+Management</a></h3>
+<div class="boxedtext">
+<p><a name="p173" id="p173"></a> <span class=
+"storylab">Story</span></p>
+<div class="story">
+<p><a name="p174" id="p174"></a>Since Nadia finds the Oaxaca
+weather site useful, she emails a review to her friend Dirk
+recommending that he check out 'http://weather.example.com/oaxaca'.
+Dirk clicks on the resulting hypertext link in the email he
+receives and is frustrated by a 404 (not found). Dirk tries again
+the next day and receives a representation with "news" that is
+two-weeks old. He tries one more time the next day only to receive
+a representation that claims that the weather in Oaxaca is sunny,
+even though his friends in Oaxaca tell him by phone that in fact it
+is raining. Dirk and Nadia conclude that the URI owners are
+unreliable or unpredictable. Although the URI owner has chosen the
+Web as a communication medium, the owner has lost two customers due
+to ineffective representation management.</p>
+</div>
+</div>
+<p><a name="p175" id="p175"></a>A URI owner may supply zero or more
+authoritative representations of the resource identified by that
+URI. There is a benefit to the community in providing
+representations.</p>
+<div class="boxedtext">
+<p><a name="p176" id="p176"></a> <span class="practicelab">Good
+practice: <a name="pr-describe-resource" id="pr-describe-resource"
+shape="rect">Available representation</a></span></p>
+<p class="practice"><a name="p177" id="p177"></a> A URI owner
+SHOULD provide representations of the resource it identifies</p>
+</div>
+<p><a name="p178" id="p178"></a>For example, owners of XML
+namespace URIs should use them to identify a <a href=
+"#namespace-document" shape="rect">namespace document
+(§4.5.4)</a>.</p>
+<p><a name="p179" id="p179"></a>Just because representations are
+available does not mean that it is always desirable to retrieve
+them. In fact, in some cases the opposite is true.</p>
+<div class="boxedtext">
+<p><a name="p180" id="p180"></a> <span class=
+"principlelab">Principle: <a name="pr-implied-dereference" id=
+"pr-implied-dereference" shape="rect">Reference does not imply
+dereference</a></span></p>
+<p id="implied-dereference" class="principle">An application
+developer or specification author SHOULD NOT require networked
+retrieval of representations each time they are referenced.</p>
+</div>
+<p><a name="p182" id="p182"></a>Dereferencing a URI has a
+(potentially significant) cost in computing and bandwidth
+resources, may have security implications, and may impose
+significant latency on the dereferencing application. Dereferencing
+URIs should be avoided except when necessary.</p>
+<p><a name="p183" id="p183"></a>The following sections discuss some
+aspects of representation management, including promoting <a href=
+"#URI-persistence" shape="rect">URI persistence (§3.5.1)</a>,
+managing <a href="#id-access" shape="rect">access to resources
+(§3.5.2)</a>, and <a href="#supporting-navigation" shape=
+"rect">supporting navigation (§3.5.3)</a>.</p>
+<div class="section">
+<h4>3.5.1. <a name="URI-persistence" id="URI-persistence" shape=
+"rect">URI persistence</a></h4>
+<p><a name="p184" id="p184"></a>As is the case with many human
+interactions, confidence in interactions via the Web depends on
+stability and predictability. For an information resource,
+persistence depends on the consistency of representations. The
+representation provider decides when representations are
+sufficiently consistent (although that determination generally
+takes user expectations into account).</p>
+<p><a name="p185" id="p185"></a>Although persistence in this case
+is observable as a result of representation retrieval, the term
+<a name="def-URI-persistence" id="def-URI-persistence"><dfn>URI
+persistence</dfn></a> is used to describe the desirable property
+that, once associated with a resource, a URI should continue
+indefinitely to refer to that resource.</p>
+<div class="boxedtext">
+<p><a name="p186" id="p186"></a> <span class="practicelab">Good
+practice: <a name="pr-service-uri" id="pr-service-uri" shape=
+"rect">Consistent representation</a></span></p>
+<p class="practice"><a name="p187" id="p187"></a> A URI owner
+SHOULD provide representations of the identified resource
+consistently and predictably.</p>
+</div>
+<p><a name="p188" id="p188"></a>URI persistence is a matter of
+policy and commitment on the part of the <a href="#uri-ownership"
+shape="rect">URI owner</a>. The choice of a particular URI scheme
+provides no guarantee that those URIs will be persistent or that
+they will not be persistent.</p>
+<p><a name="p189" id="p189"></a>HTTP [<a href="#RFC2616" shape=
+"rect">RFC2616</a>] has been designed to help manage URI
+persistence. For example, HTTP redirection (using the 3xx response
+codes) permits servers to tell an agent that further action needs
+to be taken by the agent in order to fulfill the request (for
+example, a new URI is associated with the resource).</p>
+<p><a name="p190" id="p190"></a> In addition, <a href="#def-coneg"
+shape="rect">content negotiation</a> also promotes consistency, as
+a site manager is not required to define new URIs when adding
+support for a new format specification. Protocols that do not
+support content negotiation (such as FTP) require a new identifier
+when a new data format is introduced. Improper use of content
+negotiation can lead to inconsistent representations.</p>
+<p><a name="p191" id="p191"></a>For more discussion about URI
+persistence, see [<a href="#Cool" shape="rect">Cool</a>].</p>
+</div>
+<div class="section">
+<h4>3.5.2. <a name="id-access" id="id-access" shape="rect">Linking
+and access control</a></h4>
+<p><a name="p192" id="p192"></a>It is reasonable to limit access to
+a resource (for commercial or security reasons, for example), but
+merely identifying the resource is like referring to a book by
+title. In exceptional circumstances, people may have agreed to keep
+titles or URIs confidential (for example, a book author and a
+publisher may agree to keep the URI of page containing additional
+material secret until after the book is published), otherwise they
+are free to exchange them.</p>
+<p><a name="p193" id="p193"></a>As an analogy: The owners of a
+building might have a policy that the public may only enter the
+building via the main front door, and only during business hours.
+People who work in the building and who make deliveries to it might
+use other doors as appropriate. Such a policy would be enforced by
+a combination of security personnel and mechanical devices such as
+locks and pass-cards. One would not enforce this policy by hiding
+some of the building entrances, nor by requesting legislation
+requiring the use of the front door and forbidding anyone to reveal
+the fact that there are other doors to the building.</p>
+<div class="boxedtext">
+<p><a name="p194" id="p194"></a> <span class=
+"storylab">Story</span></p>
+<div class="story">
+<p><a name="p195" id="p195"></a>Nadia sends to Dirk the URI of the
+current article she is reading. With his browser, Dirk follows the
+hypertext link and is asked to enter his subscriber username and
+password. Since Dirk is also a subscriber to services provided by
+"weather.example.com," he can access the same information as Nadia.
+Thus, the authority for "weather.example.com" can limit access to
+authorized parties and still provide the benefits of URIs.</p>
+</div>
+</div>
+<p><a name="p196" id="p196"></a>The Web provides several mechanisms
+to control access to resources; these mechanisms do not rely on
+hiding or suppressing URIs for those resources. For more
+information, see the TAG finding <cite>"<a href=
+"http://www.w3.org/2001/tag/doc/deeplinking.html" shape=
+"rect">'Deep Linking' in the World Wide Web</a>"</cite>.</p>
+</div>
+<div class="section">
+<h4>3.5.3. <a name="supporting-navigation" id=
+"supporting-navigation" shape="rect">Supporting Navigation</a></h4>
+<p><a name="p197" id="p197"></a>It is a strength of Web
+Architecture that links can be made and shared; a user who has
+found an interesting part of the Web can share this experience just
+by republishing a URI.</p>
+<div class="boxedtext">
+<p><a name="p198" id="p198"></a> <span class=
+"storylab">Story</span></p>
+<div class="story">
+<p><a name="p199" id="p199"></a>Nadia and Dirk want to visit the
+Museum of Weather Forecasting in Oaxaca. Nadia goes to
+"http://maps.example.com", locates the museum, and mails the URI
+"http://maps.example.com/oaxaca?lat=17.065;lon=-96.716;scale=6" to
+Dirk. Dirk goes to "http://mymaps.example.com", locates the museum,
+and mails the URI
+"http://mymaps.example.com/geo?sessionID=765345;userID=Dirk" to
+Nadia. Dirk reads Nadia's email and is able to follow the link to
+the map. Nadia reads Dirk's email, follows the link, and receives
+an error message 'No such session/user'. Nadia has to start again
+from "http://mymaps.example.com" and find the museum location once
+more.</p>
+</div>
+</div>
+<p><a name="p200" id="p200"></a>For resources that are generated on
+demand, machine generation of URIs is common. For resources that
+might usefully be bookmarked for later perusal, or shared with
+others, server managers should avoid needlessly restricting the
+reusability of such URIs. If the intention is to restrict
+information to a particular user, as might be the case in a home
+banking application for example, designers should use appropriate
+<a href="#id-access" shape="rect">access control (§3.5.2)</a>
+mechanisms.</p>
+<p><a name="p201" id="p201"></a>Interactions conducted with HTTP
+POST (where HTTP GET could have been used) also limit navigation
+possibilities. The user cannot create a bookmark or share the URI
+because HTTP POST transactions do not typically result in a
+different URI as the user interacts with the site.</p>
+</div>
+</div>
+<div class="section">
+<h3>3.6. <a name="interaction-future" id="interaction-future"
+shape="rect">Future Directions for Interaction</a></h3>
+<p><a name="p202" id="p202"></a>There remain open questions
+regarding Web interactions. The TAG expects future versions of this
+document to address in more detail the relationship between the
+architecture described herein, <a href="http://www.w3.org/2002/ws/"
+shape="rect">Web Services</a>, peer-to-peer systems, instant
+messaging systems (such as [<a href="#RFC3920" shape=
+"rect">RFC3920</a>]), streaming audio (such as RTSP [<a href=
+"#RFC2326" shape="rect">RFC2326</a>]), and voice-over-IP (such as
+SIP [<a href="#RFC3261" shape="rect">RFC3261</a>]).</p>
+</div>
+</div>
+<div class="section">
+<h2>4. <a id="formats" name="formats" shape="rect">Data
+Formats</a></h2>
+<p><a name="p203" id="p203"></a>A data format specification (for
+example, for XHTML, RDF/XML, SMIL, XLink, CSS, and PNG) embodies an
+agreement on the correct interpretation of <a href=
+"#def-representation" shape="rect">representation</a> data. The
+first data format used on the Web was HTML. Since then, data
+formats have grown in number. Web architecture does not constrain
+which data formats content providers can use. This flexibility is
+important because there is constant evolution in applications,
+resulting in new data formats and refinements of existing formats.
+Although Web architecture allows for the deployment of new data
+formats, the creation and deployment of new formats (and agents
+able to handle them) is expensive. Thus, before inventing a new
+data format (or "meta" format such as XML), designers should
+carefully consider re-using one that is already available.</p>
+<p><a name="p204" id="p204"></a>For a data format to be usefully
+interoperable between two parties, the parties must agree (to a
+reasonable extent) about its syntax and semantics. Shared
+understanding of a data format promotes interoperability but does
+not imply constraints on usage; for instance, a sender of data
+cannot count on being able to constrain the behavior of a data
+receiver.</p>
+<p><a name="p205" id="p205"></a>Below we describe some
+characteristics of a data format that facilitate integration into
+Web architecture. This document does not address generally
+beneficial characteristics of a specification such as readability,
+simplicity, attention to programmer goals, attention to user needs,
+accessibility, nor internationalization. The section on <a href=
+"#archspecs" shape="rect">architectural specifications (§7.1)</a>
+includes references to additional format specification
+guidelines.</p>
+<div class="section">
+<h3>4.1. <a name="binary" id="binary" shape="rect">Binary and
+Textual Data Formats</a></h3>
+<p><a name="p206" id="p206"></a>Binary data formats are those in
+which portions of the data are encoded for direct use by computer
+processors, for example 32 bit little-endian two's-complement and
+64 bit IEEE double-precision floating-point. The portions of data
+so represented include numeric values, pointers, and compressed
+data of all sorts.</p>
+<p><a name="p207" id="p207"></a>A textual data format is one in
+which the data is specified in a defined encoding as a sequence of
+characters. HTML, Internet e-mail, and all <a href="#xml-formats"
+shape="rect">XML-based formats (§4.5)</a> are textual.
+Increasingly, internationalized textual data formats refer to the
+Unicode repertoire [<a href="#UNICODE" shape="rect">UNICODE</a>]
+for character definitions.</p>
+<p><a name="p208" id="p208"></a>If a data format is textual, as
+defined in this section, that does not imply that it should be
+served with a media type beginning with "text/". Although XML-based
+formats are textual, many XML-based formats do not consist
+primarily of phrases in natural language. See the section on
+<a href="#xml-media-types" shape="rect">media types for XML
+(§4.5.7)</a> for issues that arise when "text/" is used in
+conjunction with an XML-based format.</p>
+<p><a name="p209" id="p209"></a>In principle, all data can be
+represented using textual formats. In practice, some types of
+content (e.g., audio and video) are generally represented using
+binary formats.</p>
+<p><a name="p210" id="p210"></a>The trade-offs between binary and
+textual data formats are complex and application-dependent. Binary
+formats can be substantially more compact, particularly for complex
+pointer-rich data structures. Also, they can be consumed more
+rapidly by agents in those cases where they can be loaded into
+memory and used with little or no conversion. Note, however, that
+such cases are relatively uncommon as such direct use may open the
+door to security issues that can only practically be addressed by
+examining every aspect of the data structure in detail.</p>
+<p><a name="p211" id="p211"></a>Textual formats are usually more
+portable and interoperable. Textual formats also have the
+considerable advantage that they can be directly read by human
+beings (and understood, given sufficient documentation). This can
+simplify the tasks of creating and maintaining software, and allow
+the direct intervention of humans in the processing chain without
+recourse to tools more complex than the ubiquitous text editor.
+Finally, it simplifies the necessary human task of learning about
+new data formats; this is called the "view source" effect.</p>
+<p><a name="p212" id="p212"></a>It is important to emphasize that
+intuition as to such matters as data size and processing speed is
+not a reliable guide in data format design; quantitative studies
+are essential to a correct understanding of the trade-offs.
+Therefore, designers of a data format specification should make a
+considered choice between binary and textual format design.</p>
+<p><a name="p213" id="p213"></a>See TAG issue <a href=
+"http://www.w3.org/2001/tag/issues.html#binaryXML-30" shape=
+"rect">binaryXML-30</a>.</p>
+</div>
+<div class="section">
+<h3>4.2. <a name="ext-version" id="ext-version" shape=
+"rect">Versioning and Extensibility</a></h3>
+<p><a name="p214" id="p214"></a>In a perfect world, language
+designers would invent languages that perfectly met the
+requirements presented to them, the requirements would be a perfect
+model of the world, they would never change over time, and all
+implementations would be perfectly interoperable because the
+specifications would have no variability.</p>
+<p><a name="p215" id="p215"></a>In the real world, language
+designers imperfectly address the requirements as they interpret
+them, the requirements inaccurately model the world, conflicting
+requirements are presented, and they change over time. As a result,
+designers negotiate with users, make compromises, and often
+introduce extensibility mechanisms so that it is possible to work
+around problems in the short term. In the long term, they produce
+multiple versions of their languages, as the problem, and their
+understanding of it, evolve. The resulting variability in
+specifications, languages, and implementations introduces
+interoperability costs.</p>
+<p><a name="p216" id="p216"></a>Extensibility and versioning are
+strategies to help manage the natural evolution of information on
+the Web and technologies used to represent that information. For
+more information about how these strategies introduce variability
+and how that variability impacts interoperability, see <a href=
+"#SPECVAR" shape="rect">Variability in Specifications</a>.</p>
+<p><a name="p217" id="p217"></a>See TAG issue <a href=
+"http://www.w3.org/2001/tag/issues.html#XMLVersioning-41" shape=
+"rect">XMLVersioning-41</a>, which concerns good practices for
+designing extensible XML languages and for handling versioning. See
+also "Web Architecture: Extensible Languages" [<a href="#EXTLANG"
+shape="rect">EXTLANG</a>].</p>
+<div class="section">
+<h4>4.2.1. <a name="versioning" id="versioning" shape=
+"rect">Versioning</a></h4>
+<p><a name="p218" id="p218"></a>There is typically a (long)
+transition period during which multiple versions of a format,
+protocol, or agent are simultaneously in use.</p>
+<div class="boxedtext">
+<p><a name="p219" id="p219"></a> <span class="practicelab">Good
+practice: <a name="pr-version-info" id="pr-version-info" shape=
+"rect">Version information</a></span></p>
+<p class="practice"><a name="p220" id="p220"></a> A data format
+specification SHOULD provide for version information.</p>
+</div>
+</div>
+<div class="section">
+<h4>4.2.2. <a name="versioning-xmlns" id="versioning-xmlns" shape=
+"rect">Versioning and XML namespace policy</a></h4>
+<div class="boxedtext">
+<p><a name="p221" id="p221"></a> <span class=
+"storylab">Story</span></p>
+<div class="story">
+<p><a name="p222" id="p222"></a>Nadia and Dirk are designing an XML
+data format to encode data about the film industry. They provide
+for extensibility by using XML namespaces and creating a schema
+that allows the inclusion, in certain places, of elements from any
+namespace. When they revise their format, Nadia proposes a new
+optional <code>lang</code> attribute on the <code>film</code>
+element. Dirk feels that such a change requires them to assign a
+new namespace name, which might require changes to deployed
+software. Nadia explains to Dirk that their choice of extensibility
+strategy in conjunction with their namespace policy allows certain
+changes that do not affect conformance of existing content and
+software, and thus no change to the namespace identifier is
+required. They chose this policy to help them meet their goals of
+reducing the cost of change.</p>
+</div>
+</div>
+<p><a name="p223" id="p223"></a>Dirk and Nadia have chosen a
+particular namespace change policy that allows them to avoid
+changing the namespace name whenever they make changes that do not
+affect conformance of deployed content and software. They might
+have chosen a different policy, for example that any new element or
+attribute has to belong to a namespace other than the original one.
+Whatever the chosen policy, it should set clear expectations for
+users of the format.</p>
+<p><a name="p224" id="p224"></a>In general, changing the namespace
+name of an element completely changes the element name. If "a" and
+"b" are bound to two different URIs, <code>a:element</code> and
+<code>b:element</code> are as distinct as <code>a:eieio</code> and
+<code>a:xyzzy</code>. Practically speaking, this means that
+deployed applications will have to be upgraded in order to
+recognize the new language; the cost of this upgrade may be very
+high.</p>
+<p><a name="p225" id="p225"></a>It follows that there are
+significant tradeoffs to be considered when deciding on a namespace
+change policy. If a vocabulary has no extensibility points (that
+is, if it does not allow elements or attributes from foreign
+namespaces or have a mechanism for dealing with unrecognized names
+from the same namespace), it may be absolutely necessary to change
+the namespace name. Languages that allow some form of extensibility
+without requiring a change to the namespace name are more likely to
+evolve gracefully.</p>
+<div class="boxedtext">
+<p><a name="p226" id="p226"></a> <span class="practicelab">Good
+practice: <a name="pr-doc-ns-policy" id="pr-doc-ns-policy" shape=
+"rect">Namespace policy</a></span></p>
+<p class="practice"><a name="p227" id="p227"></a> An XML format
+specification SHOULD include information about change policies for
+XML namespaces.</p>
+</div>
+<p><a name="p228" id="p228"></a>As an example of a change policy
+designed to reflect the variable stability of a namespace, consider
+the <a href="http://www.w3.org/1999/10/nsuri" shape="rect">W3C
+namespace policy</a> for documents on the W3C Recommendation track.
+The policy sets expectations that the Working Group responsible for
+the namespace may modify it in any way until a certain point in the
+process ("Candidate Recommendation") at which point W3C constrains
+the set of possible changes to the namespace in order to promote
+stable implementations.</p>
+<p><a name="p229" id="p229"></a>Note that since namespace names are
+URIs, the owner of a namespace URI has the authority to decide the
+namespace change policy.</p>
+</div>
+<div class="section">
+<h4>4.2.3. <a name="extensibility" id="extensibility" shape=
+"rect">Extensibility</a></h4>
+<p><a name="p230" id="p230"></a>Requirements change over time.
+Successful technologies are adopted and adapted by new users.
+Designers can facilitate the transition process by making careful
+choices about extensibility during the design of a language or
+protocol specification.</p>
+<p><a name="p231" id="p231"></a>In making these choices, the
+designers must weigh the trade-offs between extensibility,
+simplicity, and variability. A language without extensibility
+mechanisms may be simpler and less variable, improving initial
+interoperability. However, it's likely that changes to that
+language will be more difficult, possibly more complex and more
+variable, than if the initial design had provided such mechanisms.
+This may decrease interoperability over the long term.</p>
+<div class="boxedtext">
+<p><a name="p232" id="p232"></a> <span class="practicelab">Good
+practice: <a name="pr-allow-exts" id="pr-allow-exts" shape=
+"rect">Extensibility mechanisms</a></span></p>
+<p class="practice"><a name="p233" id="p233"></a> A specification
+SHOULD provide mechanisms that allow any party to create
+extensions.</p>
+</div>
+<p><a name="p234" id="p234"></a>Extensibility introduces
+variability which has an impact on interoperability. However,
+languages that have no extensibility mechanisms may be extended in
+ad hoc ways that impact interoperability as well. One key criterion
+of the mechanisms provided by language designers is that they allow
+the extended languages to remain in conformance with the original
+specification, increasing the likelihood of interoperability.</p>
+<div class="boxedtext">
+<p><a name="p235" id="p235"></a> <span class="practicelab">Good
+practice: <a name="pr-conform-exts" id="pr-conform-exts" shape=
+"rect">Extensibility conformance</a></span></p>
+<p class="practice"><a name="p236" id="p236"></a> Extensibility
+MUST NOT interfere with conformance to the original
+specification.</p>
+</div>
+<p><a name="p237" id="p237"></a>Application needs determine the
+most appropriate extension strategy for a specification. For
+example, applications designed to operate in closed environments
+may allow specification designers to define a versioning strategy
+that would be impractical at the scale of the Web.</p>
+<div class="boxedtext">
+<p><a name="p238" id="p238"></a> <span class="practicelab">Good
+practice: <a name="pr-unknown-extension" id="pr-unknown-extension"
+shape="rect">Unknown extensions</a></span></p>
+<p class="practice"><a name="p239" id="p239"></a> A specification
+SHOULD specify agent behavior in the face of unrecognized
+extensions.</p>
+</div>
+<p><a name="p240" id="p240"></a>Two strategies have emerged as
+being particularly useful:</p>
+<ol>
+<li>"Must ignore": The agent ignores any content it does not
+recognize.</li>
+<li>"Must understand": The agent treats unrecognized markup as an
+error condition.</li>
+</ol>
+<p><a name="p241" id="p241"></a>A powerful design approach is for
+the language to allow either form of extension, but to distinguish
+explicitly between them in the syntax.</p>
+<p><a name="p242" id="p242"></a>Additional strategies include
+prompting the user for more input and automatically retrieving data
+from available hypertext links. More complex strategies are also
+possible, including mixing strategies. For instance, a language can
+include mechanisms for overriding standard behavior. Thus, a data
+format can specify "must ignore" semantics but also allow for
+extensions that override that semantics in light of application
+needs (for instance, with "must understand" semantics for a
+particular extension).</p>
+<p><a name="p243" id="p243"></a>Extensibility is not free.
+Providing hooks for extensibility is one of many requirements to be
+factored into the costs of language design. Experience suggests
+that the long term benefits of a well-designed extensibility
+mechanism generally outweigh the costs.</p>
+<p><a name="p244" id="p244"></a>See “<a href=
+"http://www.w3.org/TR/qaframe-spec/#extensions" shape="rect">D.3
+Extensibility and Extensions</a>” in [<a href="#QA" shape=
+"rect">QA</a>].</p>
+</div>
+<div class="section">
+<h4>4.2.4. <a name="composition" id="composition" shape=
+"rect">Composition of data formats</a></h4>
+<p><a name="p245" id="p245"></a>Many modern data format include
+mechanisms for composition. For example:</p>
+<ul>
+<li>It is possible to embed text comments in some image formats,
+such as JPEG/JFIF. Although these comments are embedded in the
+containing data, they are not intended to affect the display of the
+image.</li>
+<li>There are container formats such as SOAP which fully expect
+content from multiple namespaces but which provide an overall
+semantic relationship of message envelope and payload.</li>
+<li>The semantics of combining RDF documents containing multiple
+vocabularies are well-defined.</li>
+</ul>
+<p><a name="p246" id="p246"></a>In principle, these relationships
+can be mixed and nested arbitrarily. A SOAP message, for example,
+can contain an SVG image that contains an RDF comment which refers
+to a vocabulary of terms for describing the image.</p>
+<p><a name="p247" id="p247"></a>Note however, that for general XML
+there is no semantic model that defines the interactions within XML
+documents with elements and/or attributes from a variety of
+namespaces. Each application must define how namespaces interact
+and what effect the namespace of an element has on the element's
+ancestors, siblings, and descendants.</p>
+<p><a name="p248" id="p248"></a>See TAG issues <a href=
+"http://www.w3.org/2001/tag/issues.html#mixedUIXMLNamespace-33"
+shape="rect">mixedUIXMLNamespace-33</a> (concerning the meaning of
+a document composed of content in multiple namespaces), <a href=
+"http://www.w3.org/2001/tag/issues.html#xmlFunctions-34" shape=
+"rect">xmlFunctions-34</a> (concerning one approach for managing
+XML transformation and composability), and <a href=
+"http://www.w3.org/2001/tag/issues.html#RDFinXHTML-35" shape=
+"rect">RDFinXHTML-35</a> (concerning the interpretation of RDF when
+embedded in an XHTML document).</p>
+</div>
+</div>
+<div class="section">
+<h3>4.3. <a name="pci" id="pci" shape="rect">Separation of Content,
+Presentation, and Interaction</a></h3>
+<p><a name="p249" id="p249"></a>The Web is a heterogeneous
+environment where a wide variety of agents provide access to
+content to users with a wide variety of capabilities. It is good
+practice for authors to create content that can reach the widest
+possible audience, including users with graphical desktop
+computers, hand-held devices and mobile phones, users with
+disabilities who may require speech synthesizers, and devices not
+yet imagined. Furthermore, authors cannot predict in some cases how
+an agent will display or process their content. Experience shows
+that the separation of content, presentation, and interaction
+promotes the reuse and device-independence of content; this follows
+from the <a href="#orthogonal-specs" shape="rect">principle of
+orthogonal specifications (§5.1)</a>.</p>
+<p><a name="p250" id="p250"></a>This separation also facilitates
+reuse of authored source content across multiple delivery contexts.
+Sometimes, functional user experiences suited to any delivery
+context can be generated by using an adaptation process applied to
+a representation that does not depend on the access mechanism. For
+more information about principles of device-independence, see
+[<a href="#DIPRINCIPLES" shape="rect">DIPRINCIPLES</a>].</p>
+<div class="boxedtext">
+<p><a name="p251" id="p251"></a> <span class="practicelab">Good
+practice: <a name="cpi" id="cpi" shape="rect">Separation of
+content, presentation, interaction</a></span></p>
+<p class="practice"><a name="p252" id="p252"></a> A specification
+SHOULD allow authors to separate content from both presentation and
+interaction concerns.</p>
+</div>
+<p><a name="p253" id="p253"></a>Note that when content,
+presentation, and interaction are separated by design, agents need
+to recombine them. There is a recombination spectrum, with "client
+does all" at one end and "server does all" at the other.</p>
+<p><a name="p254" id="p254"></a>There are advantages to each
+approach. For instance when a client (such as a mobile phone)
+communicates device capabilities to the server (for example, using
+CC/PP), the server can tailor the delivered content to fit that
+client. The server can, for example, enable faster downloads by
+adjusting links to refer to lower resolution images, smaller video
+or no video at all. Similarly, if the content has been authored
+with multiple branches, the server can remove unused branches
+before delivery. In addition, by tailoring the content to match the
+characteristics of a target client, the server can help reduce
+client side computation. However, specializing content in this
+manner reduces caching efficiency.</p>
+<p><a name="p255" id="p255"></a>On the other hand, designing
+content that that can be recombined on the client also tends to
+make that content applicable to a wider range of devices. This
+design also improves caching efficiency and offers users more
+presentation options. Media-dependent style sheets can be used to
+tailor the content on the client side to particular groups of
+target devices. For textual content with a regular and repeating
+structure, the combined size of the text content plus the style
+sheet is typically less than that of fully recombined content; the
+savings improve further if the style sheet is reused by other
+pages.</p>
+<p><a name="p256" id="p256"></a>In practice a combination of both
+approaches is often used. The design decision about where on this
+spectrum an application should be placed depends on the power on
+the client, the power and the load on the server, and the bandwidth
+of the medium that connects them. If the number of possible clients
+is unbounded, the application will scale better if more computation
+is pushed to the client.</p>
+<p><a name="p257" id="p257"></a>Of course, it may not be desirable
+to reach the widest possible audience. Designers should consider
+appropriate technologies, such as encryption and <a href=
+"#id-access" shape="rect">access control (§3.5.2)</a>, for limiting
+the audience.</p>
+<p><a name="p258" id="p258"></a>Some data formats are designed to
+describe presentation (including SVG and XSL Formatting Objects).
+Data formats such as these demonstrate that one can only separate
+content from presentation (or interaction) so far; at some point it
+becomes necessary to talk about presentation. Per the principle of
+<a href="#orthogonal-specs" shape="rect">orthogonal specifications
+(§5.1)</a> these data formats should <em>only</em> address
+presentation issues.</p>
+<p><a name="p259" id="p259"></a>See the TAG issues <a href=
+"http://www.w3.org/2001/tag/issues.html#formattingProperties-19"
+shape="rect">formattingProperties-19</a> (concerning
+interoperability in the case of formatting properties and names)
+and <a href=
+"http://www.w3.org/2001/tag/issues.html#contentPresentation-26"
+shape="rect">contentPresentation-26</a> (concerning the separation
+of semantic and presentational markup).</p>
+</div>
+<div class="section">
+<h3>4.4. <a name="hypertext" id="hypertext" shape=
+"rect">Hypertext</a></h3>
+<p><a name="p260" id="p260"></a>A defining characteristic of the
+Web is that it allows embedded references to other resources via
+URIs. The simplicity of creating hypertext links using absolute
+URIs (<code>&lt;a href="http://www.example.com/foo"&gt;</code>) and
+relative URI references (<code>&lt;a href="foo"&gt;</code> and
+<code>&lt;a href="foo#anchor"&gt;</code>) is partly (perhaps
+largely) responsible for the success of the hypertext Web as we
+know it today.</p>
+<p><a name="p261" id="p261"></a>When a representation of one
+resource contains a reference to another resource, expressed with a
+URI identifying that other resource, this constitutes a <a name=
+"def-link" id="def-link"><dfn>link</dfn></a> between the two
+resources. Additional metadata may also form part of the link (see
+[<a href="#XLink10" shape="rect">XLink10</a>], for example).
+<strong>Note:</strong> In this document, the term "link" generally
+means "relationship", not "physical connection".</p>
+<div class="boxedtext">
+<p><a name="p262" id="p262"></a> <span class="practicelab">Good
+practice: <a name="link-mechanism" id="link-mechanism" shape=
+"rect">Link identification</a></span></p>
+<p class="practice"><a name="p263" id="p263"></a> A specification
+SHOULD provide ways to identify links to other resources, including
+to secondary resources (via fragment identifiers).</p>
+</div>
+<p><a name="p264" id="p264"></a>Formats that allow content authors
+to use URIs instead of local identifiers promote the network
+effect: the value of these formats grows with the size of the
+deployed Web.</p>
+<div class="boxedtext">
+<p><a name="p265" id="p265"></a> <span class="practicelab">Good
+practice: <a name="web-linking" id="web-linking" shape="rect">Web
+linking</a></span></p>
+<p class="practice"><a name="p266" id="p266"></a> A specification
+SHOULD allow Web-wide linking, not just internal document
+linking.</p>
+</div>
+<div class="boxedtext">
+<p><a name="p267" id="p267"></a> <span class="practicelab">Good
+practice: <a name="generic-uri" id="generic-uri" shape=
+"rect">Generic URIs</a></span></p>
+<p class="practice"><a name="p268" id="p268"></a> A specification
+SHOULD allow content authors to use URIs without constraining them
+to a limited set of URI schemes.</p>
+</div>
+<p><a name="p269" id="p269"></a>What agents do with a hypertext
+link is not constrained by Web architecture and may depend on
+application context. Users of hypertext links expect to be able to
+navigate among representations by following links.</p>
+<div class="boxedtext">
+<p><a name="p270" id="p270"></a> <span class="practicelab">Good
+practice: <a name="use-hypertext-links" id="use-hypertext-links"
+shape="rect">Hypertext links</a></span></p>
+<p class="practice"><a name="p271" id="p271"></a> A data format
+SHOULD incorporate hypertext links if hypertext is the expected
+user interface paradigm.</p>
+</div>
+<p><a name="p272" id="p272"></a>Data formats that do not allow
+content authors to create hypertext links lead to the creation of
+"terminal nodes" on the Web.</p>
+<div class="section">
+<h4>4.4.1. <a name="uri-refs" id="uri-refs" shape="rect">URI
+references</a></h4>
+<p><a name="p273" id="p273"></a>Links are commonly expressed using
+<a name="uriref" id="uriref"><dfn>URI references</dfn></a> (defined
+in section 4.2 of [<a href="#URI" shape="rect">URI</a>]), which may
+be combined with a base URI to yield a usable URI. Section 5.1 of
+[<a href="#URI" shape="rect">URI</a>] explains different ways to
+establish a base URI for a resource and establishes a precedence
+among them. For instance, the base URI may be a URI for the
+resource, or specified in a representation (see the
+<code>base</code> elements provided by HTML and XML, and the HTTP
+'Content-Location' header). See also the section on <a class=
+"addrefnb" href="#xml-links" shape="rect">links in XML
+(§4.5.2)</a>.</p>
+<p><a name="p274" id="p274"></a>Agents resolve a URI reference
+before using the resulting URI to interact with another agent. URI
+references help in content management by allowing content authors
+to design a representation locally, i.e., without concern for which
+global identifier may later be used to refer to the associated
+resource.</p>
+</div>
+</div>
+<div class="section">
+<h3>4.5. <a id="xml-formats" name="xml-formats" shape=
+"rect">XML-Based Data Formats</a></h3>
+<p><a name="p275" id="p275"></a>Many data formats are <a name=
+"xml-based" id="xml-based"><dfn>XML-based</dfn></a>, that is to say
+they conform to the syntax rules defined in the XML specification
+[<a href="#XML10" shape="rect">XML10</a>] or [<a href="#XML11"
+shape="rect">XML11</a>]. This section discusses issues that are
+specific to such formats. Anyone seeking guidance in this area is
+urged to consult the "Guidelines For the Use of XML in IETF
+Protocols" <a href="#IETFXML" shape="rect">[IETFXML]</a>, which
+contains a thorough discussion of the considerations that govern
+whether or not XML ought to be used, as well as specific guidelines
+on how it ought to be used. While it is directed at Internet
+applications with specific reference to protocols, the discussion
+is generally applicable to Web scenarios as well.</p>
+<p><a name="p276" id="p276"></a>The discussion here should be seen
+as ancillary to the content of <a href="#IETFXML" shape=
+"rect">[IETFXML]</a>. Refer also to "XML Accessibility Guidelines"
+<a href="#XAG" shape="rect">[XAG]</a> for help designing XML
+formats that lower barriers to Web accessibility for people with
+disabilities.</p>
+<div class="section">
+<h4>4.5.1. <a name="xml-when" id="xml-when" shape="rect">When to
+use an XML-based format</a></h4>
+<p><a name="p277" id="p277"></a>XML defines textual data formats
+that are naturally suited to describing data objects which are
+hierarchical and processed in a chosen sequence. It is widely, but
+not universally, applicable for data formats; an audio or video
+format, for example, is unlikely to be well suited to expression in
+XML. Design constraints that would suggest the use of XML
+include:</p>
+<ol>
+<li>Requirement for a hierarchical structure.</li>
+<li>Need for a wide range of tools on a variety of platforms.</li>
+<li>Need for data that can outlive the applications that currently
+process it.</li>
+<li>Ability to support internationalization in a self-describing
+way that makes confusion over coding options unlikely.</li>
+<li>Early detection of encoding errors with no requirement to "work
+around" such errors.</li>
+<li>A high proportion of human-readable textual content.</li>
+<li>Potential composition of the data format with other XML-encoded
+formats.</li>
+<li>Desire for data easily parsed by both humans and machines.</li>
+<li>Desire for vocabularies that can be invented in a distributed
+manner and combined flexibly.</li>
+</ol>
+</div>
+<div class="section">
+<h4>4.5.2. <a name="xml-links" id="xml-links" shape="rect">Links in
+XML</a></h4>
+<p><a name="p278" id="p278"></a>Sophisticated linking mechanisms
+have been invented for XML formats. XPointer allows links to
+address content that does not have an explicit, named anchor.
+[<a href="#XLink10" shape="rect">XLink</a>] is an appropriate
+specification for representing links in <a href="#hypertext" shape=
+"rect">hypertext (§4.4)</a> XML applications. XLink allows links to
+have multiple ends and to be expressed either inline or in "link
+bases" stored external to any or all of the resources identified by
+the links it contains.</p>
+<p><a name="p279" id="p279"></a>Designers of XML-based formats may
+consider using XLink and, for defining fragment identifier syntax,
+using the XPointer framework and XPointer element() Schemes.</p>
+<p><a name="p280" id="p280"></a>XLink is not the only linking
+design that has been proposed for XML, nor is it universally
+accepted as a good design. See also TAG issue <a href=
+"http://www.w3.org/2001/tag/issues.html#xlinkScope-23" shape=
+"rect">xlinkScope-23</a>.</p>
+</div>
+<div class="section">
+<h4>4.5.3. <a name="xml-namespaces" id="xml-namespaces" shape=
+"rect">XML namespaces</a></h4>
+<p><a name="p281" id="p281"></a>The purpose of an XML namespace
+(defined in [<a href="#XMLNS" shape="rect">XMLNS</a>]) is to allow
+the deployment of XML vocabularies (in which element and attribute
+names are defined) in a global environment and to reduce the risk
+of name collisions in a given document when vocabularies are
+combined. For example, the MathML and SVG specifications both
+define the <code>set</code> element. Although XML data from
+different formats such as MathML and SVG can be combined in a
+single document, in this case there could be ambiguity about which
+<code>set</code> element was intended. XML namespaces reduce the
+risk of name collisions by taking advantage of existing systems for
+allocating globally scoped names: the URI system (see also the
+section on <a class="addrefnb" href="#uri-assignment" shape=
+"rect">URI allocation (§2.2.2)</a>). When using XML namespaces,
+each local name in an XML vocabulary is paired with a URI (called
+the namespace URI) to distinguish the local name from local names
+in other vocabularies.</p>
+<p><a name="p282" id="p282"></a> The use of URIs confers additional
+benefits. First, each URI/local name pair can be mapped to another
+URI, grounding the terms of the vocabulary in the Web. These terms
+may be important resources and thus it is appropriate to be able to
+associate URIs with them.</p>
+<p><a name="p283" id="p283"></a>[<a href="#RDFXML" shape=
+"rect">RDFXML</a>] uses simple concatenation of the namespace URI
+and the local name to create a URI for the identified term. Other
+mappings are likely to be more suitable for hierarchical
+namespaces; see the related TAG issue <a href=
+"http://www.w3.org/2001/tag/issues.html#abstractComponentRefs-37"
+shape="rect">abstractComponentRefs-37</a>.</p>
+<p><a name="p284" id="p284"></a>Designers of XML-based data formats
+who declare namespaces thus make it possible to reuse those data
+formats and combine them in novel ways not yet imagined. Failure to
+declare namespaces makes such reuse more difficult, even
+impractical in some cases.</p>
+<div class="boxedtext">
+<p><a name="p285" id="p285"></a> <span class="practicelab">Good
+practice: <a name="use-namespaces" id="use-namespaces" shape=
+"rect">Namespace adoption</a></span></p>
+<p class="practice"><a name="p286" id="p286"></a> A specification
+that establishes an XML vocabulary SHOULD place all element names
+and global attribute names in a namespace.</p>
+</div>
+<p><a name="p287" id="p287"></a>Attributes are always scoped by the
+element on which they appear. An attribute that is "global," that
+is, one that might meaningfully appear on elements of many types,
+including elements in other namespaces, should be explicitly placed
+in a namespace. Local attributes, ones associated with only a
+particular element type, need not be included in a namespace since
+their meaning will always be clear from the context provided by
+that element.</p>
+<p><a name="p288" id="p288"></a>The <code>type</code> attribute
+from the W3C XML Schema Instance namespace
+"http://www.w3.org/2001/XMLSchema-instance" ([<a href="#XMLSCHEMA"
+shape="rect">XMLSCHEMA</a>], section 4.3.2) is an example of a
+global attribute. It can be used by authors of any vocabulary to
+make an assertion in instance data about the type of the element on
+which it appears. As a global attribute, it must always be
+qualified. The <code>frame</code> attribute on an HTML table is an
+example of a local attribute. There is no value in placing that
+attribute in a namespace since the attribute is unlikely to be
+useful on an element other than an HTML table.</p>
+<p><a name="p289" id="p289"></a>Applications that rely on DTD
+processing must impose additional constraints on the use of
+namespaces. DTDs perform validation based on the lexical form of
+the element and attribute names in the document. This makes
+prefixes syntactically significant in ways that are not anticipated
+by [<a href="#XMLNS" shape="rect">XMLNS</a>].</p>
+</div>
+<div class="section">
+<h4>4.5.4. <a name="namespace-document" id="namespace-document"
+shape="rect">Namespace documents</a></h4>
+<div class="boxedtext">
+<p><a name="p290" id="p290"></a> <span class=
+"storylab">Story</span></p>
+<div class="story">
+<p><a name="p291" id="p291"></a> Nadia receives representation data
+from "weather.example.com" in an unfamiliar data format. She knows
+enough about XML to recognize which XML namespace the elements
+belong to. Since the namespace is identified by the URI
+"http://weather.example.com/2003/format", she asks her browser to
+retrieve a representation of the identified resource. She gets back
+some useful data that allows her to learn more about the data
+format. Nadia's browser may also be able to perform some operations
+automatically (i.e., unattended by a human overseer) given data
+that has been optimized for software agents. For example, her
+browser might, on Nadia's behalf, download additional agents to
+process and render the format.</p>
+</div>
+</div>
+<p><a name="p292" id="p292"></a>Another benefit of using URIs to
+build XML namespaces is that the namespace URI can be used to
+identify an information resource that contains useful information,
+machine-usable and/or human-usable, about terms in the namespace.
+This type of information resource is called a <a name="def-ns-doc"
+id="def-ns-doc"><dfn>namespace document</dfn></a>. When a namespace
+URI owner provides a namespace document, it is authoritative for
+the namespace.</p>
+<p><a name="p293" id="p293"></a>There are many reasons to provide a
+namespace document. A person might want to:</p>
+<ul>
+<li>understand the purpose of the namespace,</li>
+<li>learn how to use the markup vocabulary in the namespace,</li>
+<li>find out who controls it and associated policies,</li>
+<li>request authority to access schemas or collateral material
+about it, or</li>
+<li>report a bug or situation that could be considered an error in
+some collateral material.</li>
+</ul>
+<p><a name="p294" id="p294"></a>A processor might want to:</p>
+<ul>
+<li>retrieve a schema, for validation,</li>
+<li>retrieve a style sheet, for presentation, or</li>
+<li>retrieve ontologies, for making inferences.</li>
+</ul>
+<p><a name="p295" id="p295"></a>In general, there is no established
+best practice for creating representations of a namespace document;
+application expectations will influence what data format or formats
+are used. Application expectations will also influence whether
+relevant information appears directly in a representation or is
+referenced from it.</p>
+<div class="boxedtext">
+<p><a name="p296" id="p296"></a> <span class="practicelab">Good
+practice: <a name="pr-namespace-documents" id=
+"pr-namespace-documents" shape="rect">Namespace
+documents</a></span></p>
+<p class="practice"><a name="p297" id="p297"></a> The owner of an
+XML namespace name SHOULD make available material intended for
+people to read and material optimized for software agents in order
+to meet the needs of those who will use the namespace
+vocabulary.</p>
+</div>
+<p><a name="p298" id="p298"></a>For example, the following are
+examples of data formats for namespace documents: [<a href="#OWL10"
+shape="rect">OWL10</a>], [<a href="#RDDL" shape="rect">RDDL</a>],
+[<a href="#XMLSCHEMA" shape="rect">XMLSCHEMA</a>], and [<a href=
+"#XHTML11" shape="rect">XHTML11</a>]. Each of these formats meets
+different requirements described above for satisfying the needs of
+an agent that wants more information about the namespace. Note,
+however, issues related to <a href="#frag-coneg" shape=
+"rect">fragment identifiers and content negotiation (§3.2.2)</a> if
+content negotiation is used.</p>
+<p><a name="p299" id="p299"></a>See TAG issues <a href=
+"http://www.w3.org/2001/tag/issues.html#namespaceDocument-8" shape=
+"rect">namespaceDocument-8</a> (concerning desired characteristics
+of namespace documents) and <a href=
+"http://www.w3.org/2001/tag/issues.html#abstractComponentRefs-37"
+shape="rect">abstractComponentRefs-37</a> (concerning the use of
+fragment identifiers with namespace names to identify abstract
+components).</p>
+</div>
+<div class="section">
+<h4>4.5.5. <a name="xml-qnames" id="xml-qnames" shape="rect">QNames
+in XML</a></h4>
+<p><a name="p300" id="p300"></a>Section 3 of "Namespaces in XML"
+[<a href="#XMLNS" shape="rect">XMLNS</a>] provides a syntactic
+construct known as a QName for the compact expression of qualified
+names in XML documents. A qualified name is a pair consisting of a
+URI, which names a namespace, and a local name placed within that
+namespace. "Namespaces in XML" provides for the use of QNames as
+names for XML elements and attributes.</p>
+<p><a name="p301" id="p301"></a>Other specifications, starting with
+[<a href="#XSLT10" shape="rect">XSLT10</a>], have employed the idea
+of using QNames in contexts other than element and attribute names,
+for example in attribute values and in element content. However,
+general XML processors cannot reliably recognize QNames as such
+when they are used in attribute values and in element content; for
+example, the syntax of QNames overlaps with that of URIs.
+Experience has also revealed other limitations to QNames, such as
+losing namespace bindings after XML canonicalization.</p>
+<div class="boxedtext">
+<p><a name="p302" id="p302"></a> <span class=
+"constraintlab">Constraint: <a name="qname-uri-syntax" id=
+"qname-uri-syntax" shape="rect">QNames Indistinguishable from
+URIs</a></span></p>
+<p class="constraint"><a name="p303" id="p303"></a> Do not allow
+both QNames and URIs in attribute values or element content where
+they are indistinguishable.</p>
+</div>
+<p><a name="p304" id="p304"></a>For more information, see the TAG
+finding <cite>"<a href=
+"http://www.w3.org/2001/tag/doc/qnameids.html" shape="rect">Using
+QNames as Identifiers in Content</a>"</cite>.</p>
+<p><a name="p305" id="p305"></a>Because QNames are compact, some
+specification designers have adopted the same syntax as a means of
+identifying resources. Though convenient as a shorthand notation,
+this usage has a cost. There is no single, accepted way to convert
+a QName into a URI or vice versa. Although QNames are convenient,
+they do not replace the URI as the identification system of the
+Web. The use of QNames to identify Web resources without providing
+a mapping to URIs is inconsistent with Web architecture.</p>
+<div class="boxedtext">
+<p><a name="p306" id="p306"></a> <span class="practicelab">Good
+practice: <a name="qname-mapping" id="qname-mapping" shape=
+"rect">QName Mapping</a></span></p>
+<p class="practice"><a name="p307" id="p307"></a> A specification
+in which QNames serve as resource identifiers MUST provide a
+mapping to URIs.</p>
+</div>
+<p><a name="p308" id="p308"></a>See <a href="#xml-namespaces"
+shape="rect">XML namespaces (§4.5.3)</a> for examples of some
+mapping strategies.</p>
+<p><a name="p309" id="p309"></a>See also TAG issues <a href=
+"http://www.w3.org/2001/tag/issues.html#rdfmsQnameUriMapping-6"
+shape="rect">rdfmsQnameUriMapping-6</a> (concerning the mapping of
+QNames to URIs), <a href=
+"http://www.w3.org/2001/tag/issues.html#qnameAsId-18" shape=
+"rect">qnameAsId-18</a> (concerning the use of QNames as
+identifiers in XML content), and <a href=
+"http://www.w3.org/2001/tag/issues.html#abstractComponentRefs-37"
+shape="rect">abstractComponentRefs-37</a> (concerning the use of
+fragment identifiers with namespace names to identify abstract
+components).</p>
+</div>
+<div class="section">
+<h4>4.5.6. <a name="xml-id-semantics" id="xml-id-semantics" shape=
+"rect">XML ID semantics</a></h4>
+<p><a name="p310" id="p310"></a>Consider the following fragment of
+XML: <code>&lt;section name="foo"&gt;</code>. Does the
+<code>section</code> element have what the XML Recommendation
+refers to as the ID <code>foo</code> (i.e., "foo" must not appear
+in the surrounding XML document more than once)? One cannot answer
+this question by examining the element and its attributes alone. In
+XML, the quality of "being an ID" is associated with the type of an
+attribute, not its name. Finding the IDs in a document requires
+additional processing.</p>
+<ol>
+<li>Processing the document with a processor that recognizes DTD
+attribute list declarations (in the external or internal subset)
+might reveal a declaration that identifies the <code>name</code>
+attribute as an ID. <strong>Note:</strong> This processing is not
+necessarily part of validation. A non-validating, DTD-aware
+processor can recognize IDs.</li>
+<li>Processing the document with a W3C XML schema might reveal an
+element declaration that identifies the <code>name</code> attribute
+as an W3C XML Schema <code>ID</code>.</li>
+<li>In practice, processing the document with another schema
+language, such as RELAX NG [<a href="#RELAXNG" shape=
+"rect">RELAXNG</a>], might reveal the attributes declared to be of
+ID in the XML Schema sense. Many modern specifications begin
+processing XML at the Infoset [<a href="#INFOSET" shape=
+"rect">INFOSET</a>] level and do not specify normatively how an
+Infoset is constructed. For those specifications, any process that
+establishes the ID type in the Infoset (and Post Schema Validation
+Infoset (<acronym>PSVI</acronym>) defined in [<a href="#XMLSCHEMA"
+shape="rect">XMLSCHEMA</a>]) may usefully identify the attributes
+of type ID.</li>
+<li>In practice, applications may have independent means (such as
+those defined in the XPointer specification, [<a href="#XPTRFR"
+shape="rect">XPTRFR</a>] <a href=
+"http://www.w3.org/TR/2003/REC-xptr-framework-20030325/#shorthand"
+shape="rect">section 3.2</a>) of locating identifiers inside a
+document.</li>
+</ol>
+<p><a name="p311" id="p311"></a>To further complicate matters, DTDs
+establish the ID type in the Infoset whereas W3C XML Schema
+produces a PSVI but does not modify the original Infoset. This
+leaves open the possibility that a processor might only look in the
+Infoset and consequently would fail to recognize schema-assigned
+IDs.</p>
+<p><a name="p312" id="p312"></a>See the TAG issue <a href=
+"http://www.w3.org/2001/tag/issues.html#xmlIDSemantics-32" shape=
+"rect">xmlIDSemantics-32</a> for additional background information
+and [<a href="#XML-ID" shape="rect">XML-ID</a>] for a solution
+under development.</p>
+</div>
+<div class="section">
+<h4>4.5.7. <a name="xml-media-types" id="xml-media-types" shape=
+"rect">Media types for XML</a></h4>
+<p><a name="p313" id="p313"></a>RFC 3023 defines the Internet media
+types "application/xml" and "text/xml", and describes a convention
+whereby XML-based data formats use Internet media types with a
+"+xml" suffix, for example "image/svg+xml".</p>
+<p><a name="p314" id="p314"></a>There are two problems associated
+with the “text” media types: First, for data identified as
+"text/*", Web intermediaries are allowed to "transcode", i.e.,
+convert one character encoding to another. Transcoding may make the
+self-description false or may cause the document to be not
+well-formed.</p>
+<div class="boxedtext">
+<p><a name="p315" id="p315"></a> <span class="practicelab">Good
+practice: <a name="no-text-xml" id="no-text-xml" shape="rect">XML
+and "text/*"</a></span></p>
+<p class="practice"><a name="p316" id="p316"></a> In general, a
+representation provider SHOULD NOT assign Internet media types
+beginning with "text/" to XML representations.</p>
+</div>
+<p><a name="p317" id="p317"></a>Second, representations whose
+Internet media types begin with "text/" are required, unless the
+<code>charset</code> parameter is specified, to be considered to be
+encoded in US-ASCII. Since the syntax of XML is designed to make
+documents self-describing, it is good practice to omit the
+<code>charset</code> parameter, and since XML is very often not
+encoded in US-ASCII, the use of "text/" Internet media types
+effectively precludes this good practice.</p>
+<div class="boxedtext">
+<p><a name="p318" id="p318"></a> <span class="practicelab">Good
+practice: <a name="no-charset" id="no-charset" shape="rect">XML and
+character encodings</a></span></p>
+<p class="practice"><a name="p319" id="p319"></a> In general, a
+representation provider SHOULD NOT specify the character encoding
+for XML data in protocol headers since the data is
+self-describing.</p>
+</div>
+</div>
+<div class="section">
+<h4>4.5.8. <a name="xml-fragids" id="xml-fragids" shape=
+"rect">Fragment identifiers in XML</a></h4>
+<p><a name="p320" id="p320"></a>The section on <a href=
+"#media-type-fragid" shape="rect">media types and fragment
+identifier semantics (§3.2.1)</a> discusses the interpretation of
+fragment identifiers. Designers of an XML-based data format
+specification should define the semantics of fragment identifiers
+in that format. The XPointer Framework [<a href="#XPTRFR" shape=
+"rect">XPTRFR</a>] provides an interoperable starting point.</p>
+<p><a name="p321" id="p321"></a>When the media type assigned to
+representation data is "application/xml", there are no semantics
+defined for fragment identifiers, and authors should not make use
+of fragment identifiers in such data. The same is true if the
+assigned media type has the suffix "+xml" (defined in "XML Media
+Types" [<a href="#RFC3023" shape="rect">RFC3023</a>]), and the data
+format specification does not specify fragment identifier
+semantics. In short, just knowing that content is XML does not
+provide information about fragment identifier semantics.</p>
+<p><a name="p322" id="p322"></a>Many people assume that the
+fragment identifier <code>#abc</code>, when referring to XML data,
+identifies the element in the document with the ID "abc". However,
+there is no normative support for this assumption. A revision of
+RFC 3023 is expected to address this.</p>
+<p><a name="p323" id="p323"></a>See TAG issue <a href=
+"http://www.w3.org/2001/tag/issues.html#fragmentInXML-28" shape=
+"rect">fragmentInXML-28</a>.</p>
+</div>
+</div>
+<div class="section">
+<h3>4.6. <a name="media-types-infospace" id="media-types-infospace"
+shape="rect"></a>Future Directions for Data Formats</h3>
+<p><a name="p324" id="p324"></a>Data formats enable the creation of
+new applications to make use of the information space
+infrastructure. The Semantic Web is one such application, built on
+top of RDF [<a href="#RDFXML" shape="rect">RDFXML</a>]. This
+document does not discuss the Semantic Web in detail; the TAG
+expects that future volumes of this document will. See the related
+TAG issue <a href=
+"http://www.w3.org/2001/tag/issues.html#httpRange-14" shape=
+"rect">httpRange-14</a>.</p>
+</div>
+</div>
+<div class="section">
+<h2>5. <a name="general" id="general" shape="rect">General
+Architecture Principles</a></h2>
+<p><a name="p325" id="p325"></a>A number of general architecture
+principles apply to all three bases of Web architecture.</p>
+<div class="section">
+<h3>5.1. <a id="orthogonal-specs" name="orthogonal-specs" shape=
+"rect">Orthogonal Specifications</a></h3>
+<p><a name="p326" id="p326"></a>Identification, interaction, and
+representation are orthogonal concepts, meaning that technologies
+used for identification, interaction, and representation may evolve
+independently. For instance:</p>
+<ul>
+<li>Resources are identified with URIs. URIs can be published
+without building any representations of the resource or determining
+whether any representations are available.</li>
+<li>A generic URI syntax allows agents to function in many cases
+without knowing specifics of URI schemes.</li>
+<li>In many cases one may change the representation of a resource
+without disrupting references to the resource (for example, by
+using <a href="#def-coneg" shape="rect">content
+negotiation</a>).</li>
+</ul>
+<p><a name="p327" id="p327"></a>When two specifications are
+orthogonal, one may change one without requiring changes to the
+other, even if one has dependencies on the other. For example,
+although the HTTP specification depends on the URI specification,
+the two may evolve independently. This orthogonality increases the
+flexibility and robustness of the Web. For example, one may refer
+by URI to an image without knowing anything about the format chosen
+to represent the image. This has facilitated the introduction of
+image formats such as PNG and SVG without disrupting existing
+references to image resources.</p>
+<div class="boxedtext">
+<p><a name="p328" id="p328"></a> <span class=
+"principlelab">Principle: <a name="pr-orthogonality" id=
+"pr-orthogonality" shape="rect">Orthogonality</a></span></p>
+<p class="principle"><a name="p329" id="p329"></a> Orthogonal
+abstractions benefit from orthogonal specifications.</p>
+</div>
+<p><a name="p330" id="p330"></a>Experience demonstrates that
+problems arise where orthogonal concepts occur in a single
+specification. Consider, for example, the HTML specification which
+includes the orthogonal x-www-form-urlencoded specification.
+Software developers (for example, of [<a href="#CGI" shape=
+"rect">CGI</a>] applications) might have an easier time finding the
+specification if it were published separately and then cited from
+the HTTP, URI, and HTML specifications.</p>
+<p><a name="p331" id="p331"></a>Problems also arise when
+specifications attempt to modify orthogonal abstractions described
+elsewhere. An <a href=
+"http://www.w3.org/TR/1998/REC-html40-19980424/struct/global.html"
+shape="rect">historical version</a> of the HTML specification added
+a "<code>Refresh</code>" value to the <code>http-equiv</code>
+attribute of the <code>meta</code> element. It was defined to be
+equivalent to the HTTP header of the same name. The authors of the
+HTTP specification ultimately decided not to provide this header
+and that made the two specifications awkwardly at odds with each
+other. The W3C HTML Working Group eventually removed the
+"<code>Refresh</code>" value.</p>
+<p><a name="p332" id="p332"></a>A specification should clearly
+indicate which features overlap with those governed by another
+specification.</p>
+</div>
+<div class="section">
+<h3>5.2. <a id="language-extensibility" name=
+"language-extensibility" shape="rect">Extensibility</a></h3>
+<p><a name="p333" id="p333"></a>The information in the Web and the
+technologies used to represent that information change over time.
+Extensibility is the property of a technology that promotes
+evolution without sacrificing interoperability. Some examples of
+successful technologies designed to allow change while minimizing
+disruption include:</p>
+<ul>
+<li>the fact that URI schemes are orthogonally specified;</li>
+<li>the use of an open set of Internet media types in mail and HTTP
+to specify document interpretation;</li>
+<li>the separation of the generic XML grammar and the open set of
+XML namespaces for element and attribute names;</li>
+<li>extensibility models in Cascading Style Sheets (CSS), XSLT 1.0,
+and SOAP;</li>
+<li>user agent plug-ins.</li>
+</ul>
+<p><a name="p334" id="p334"></a>An example of an unsuccessful
+extension mechanism is HTTP mandatory extensions [<a href=
+"#HTTPEXT" shape="rect">HTTPEXT</a>]. The community has sought
+mechanisms to extend HTTP, but apparently the costs of the
+mandatory extension proposal (notably in complexity) outweighed the
+benefits and thus hampered adoption.</p>
+<p><a name="p335" id="p335"></a>Below we discuss the property of
+"extensibility," exhibited by URIs, some data formats, and some
+protocols (through the incorporation of new messages).</p>
+<p><a name="p336" id="p336"></a><a name="def-lang-subset" id=
+"def-lang-subset"><dfn>Subset language</dfn></a>: one language is a
+subset (or "profile") of a second language if any document in the
+first language is also a valid document in the second language and
+has the same interpretation in the second language.</p>
+<p><a name="p337" id="p337"></a><a name="def-lang-extended" id=
+"def-lang-extended"><dfn>Extended language</dfn></a>: If one
+language is a subset of another, the latter superset is called an
+extended language; the difference between the languages is called
+the extension. Clearly, extending a language is better for
+interoperability than creating an incompatible language.</p>
+<p><a name="p338" id="p338"></a>Ideally, many instances of a
+superset language can be safely and usefully processed as though
+they were in the subset language. Languages that can evolve this
+way, allowing applications to provide new information when
+necessary while still interoperating with applications that only
+understand a subset of the current language, are said to be
+"extensible." Language designers can facilitate extensibility by
+defining the default behavior of unknown extensions—for example,
+that they be ignored (in some defined way) or should be considered
+errors.</p>
+<p><a name="p339" id="p339"></a>For example, from early on in the
+Web, HTML agents followed the convention of ignoring unknown tags.
+This choice left room for innovation (i.e., non-standard elements)
+and encouraged the deployment of HTML. However, interoperability
+problems arose as well. In this type of environment, there is an
+inevitable tension between interoperability in the short term and
+the desire for extensibility. Experience shows that designs that
+strike the right balance between allowing change and preserving
+interoperability are more likely to thrive and are less likely to
+disrupt the Web community. <a href="#orthogonal-specs" shape=
+"rect">Orthogonal specifications (§5.1)</a> help reduce the risk of
+disruption.</p>
+<p><a name="p340" id="p340"></a>For further discussion, see the
+section on <a href="#ext-version" shape="rect">versioning and
+extensibility (§4.2)</a>. See also TAG issue <a href=
+"http://www.w3.org/2001/tag/issues.html#xmlProfiles-29" shape=
+"rect">xmlProfiles-29</a> and <a href=
+"http://www.w3.org/TR/WD-doctypes" shape="rect">HTML
+Dialects</a>.</p>
+</div>
+<div class="section">
+<h3>5.3. <a id="error-handling" name="error-handling" shape=
+"rect">Error Handling</a></h3>
+<p><a name="p341" id="p341"></a>Errors occur in networked
+information systems. An error condition can be well-characterized
+(e.g., well-formedness errors in XML or 4xx client errors in HTTP)
+or arise unpredictably. <a name="def-error-correction" id=
+"def-error-correction"><dfn>Error correction</dfn></a> means that
+an agent repairs a condition so that within the system, it is as
+though the error never occurred. One example of error correction
+involves data retransmission in response to a temporary network
+failure. <a name="def-error-recovery" id=
+"def-error-recovery"><dfn>Error recovery</dfn></a> means that an
+agent does not repair an error condition but continues processing
+by addressing the fact that the error has occurred.</p>
+<p><a name="p342" id="p342"></a>Agents frequently <em>correct</em>
+errors without user awareness, sparing users the details of complex
+network communications. On the other hand, it is important that
+agents <em>recover</em> from error in a way that is evident to
+users, since the agents are acting on their behalf.</p>
+<div class="boxedtext">
+<p><a name="p343" id="p343"></a> <span class=
+"principlelab">Principle: <a name="no-silent-recovery" id=
+"no-silent-recovery" shape="rect">Error recovery</a></span></p>
+<p class="principle"><a name="p344" id="p344"></a> Agents that
+recover from error by making a choice without the user's consent
+are not acting on the user's behalf.</p>
+</div>
+<p><a name="p345" id="p345"></a>An agent is not required to
+interrupt the user (e.g., by popping up a confirmation box) to
+obtain consent. The user may indicate consent through pre-selected
+configuration options, modes, or selectable user interface toggles,
+with appropriate reporting to the user when the agent detects an
+error. Agent developers should not ignore usability issues when
+designing error recovery behavior.</p>
+<p><a name="p346" id="p346"></a>To promote interoperability,
+specification designers should identify predictable error
+conditions. Experience has led to the following observations about
+error-handling approaches.</p>
+<ul>
+<li>Protocol designers should provide enough information about an
+error condition so that an agent can address the error condition.
+For instance, an HTTP 404 status code (not found) is useful because
+it allows user agents to present relevant information to users,
+enabling them to contact the representation provider in case of
+problems.</li>
+<li>Experience with the cost of building a user agent to handle the
+diverse forms of ill-formed HTML content convinced the designers of
+the XML specification to require that agents fail upon encountering
+ill-formed content. Because users are unlikely to tolerate such
+failures, this design choice has pressured all parties into
+respecting XML's constraints, to the benefit of all.</li>
+<li>An agent that encounters unrecognized content may handle it in
+a number of ways, including by considering it an error; see also
+the section on <a class="addrefnb" href="#ext-version" shape=
+"rect">extensibility and versioning (§4.2)</a>.</li>
+<li>Error behavior that is appropriate for a person may not be
+appropriate for software. People are capable of exercising
+judgement in ways that software applications generally cannot. An
+informal error response may suffice for a person but not for a
+processor.</li>
+</ul>
+<p><a name="p347" id="p347"></a>See the TAG issue <a href=
+"http://www.w3.org/2001/tag/issues.html#contentTypeOverride-24"
+shape="rect">contentTypeOverride-24</a>, which concerns the source
+of authoritative metadata.</p>
+</div>
+<div class="section">
+<h3>5.4. <a id="protocol-interop" name="protocol-interop" shape=
+"rect">Protocol-based Interoperability</a></h3>
+<p><a name="p348" id="p348"></a>The Web follows Internet tradition
+in that its important interfaces are defined in terms of protocols,
+by specifying the syntax, semantics, and sequencing constraints of
+the messages interchanged. Protocols designed to be resilient in
+the face of widely varying environments have helped the Web scale
+and have facilitated communication across multiple trust
+boundaries. Traditional application programming interfaces
+(<acronym>APIs</acronym>) do not always take these constraints into
+account, nor should they be required to. One effect of
+protocol-based design is that the technology shared among agents
+often lasts longer than the agents themselves.</p>
+<p><a name="p349" id="p349"></a>It is common for programmers
+working with the Web to write code that generates and parses these
+messages directly. It is less common, but not unusual, for end
+users to have direct exposure to these messages. It is often
+desirable to provide users with access to format and protocol
+details: allowing them to “view source,” whereby they may gain
+expertise in the workings of the underlying system.</p>
+</div>
+</div>
+<div class="section">
+<h2>6. <a id="index" name="index" shape="rect">Glossary</a></h2>
+<dl class="glossary">
+<dt><a href="#def-coneg">Content negotiation</a></dt>
+<dd><span class="content">The practice of providing multiple
+representations available via the same URI. Which representation is
+served depends on negotiation between the requesting agent and the
+agent serving the representations.</span></dd>
+<dt><a href="#uri-dereference">Dereference a URI</a></dt>
+<dd><span class="content">Access a representation of the resource
+identified by the URI.</span></dd>
+<dt><a href="#def-error-correction">Error correction</a></dt>
+<dd><span class="content">An agent repairs an error so that within
+the system, it is as though the error never occurred.</span></dd>
+<dt><a href="#def-error-recovery">Error recovery</a></dt>
+<dd><span class="content">An agent invokes exceptional behavior
+because it does not correct the error.</span></dd>
+<dt><a href="#def-lang-extended">Extended language</a></dt>
+<dd><span class="content">If one language is a subset of another,
+the latter is called an extended language.</span></dd>
+<dt><a href="#def-fragid">Fragment identifier</a></dt>
+<dd><span class="content">The part of a URI that allows
+identification of a secondary resource.</span></dd>
+<dt><a href="#def-information-resource">Information
+resource</a></dt>
+<dd><span class="content">A resource which has the property that
+all of its essential characteristics can be conveyed in a
+message.</span></dd>
+<dt><a href="#def-link">Link</a></dt>
+<dd><span class="content">A relationship between two resources when
+one resource (representation) refers to the other resource by means
+of a URI.</span></dd>
+<dt><a href="#def-message">Message</a></dt>
+<dd><span class="content">A unit of communication between
+agents.</span></dd>
+<dt><a href="#def-ns-doc">Namespace document</a></dt>
+<dd><span class="content">An information resource identified by an
+XML Namespace URI that contains useful information, machine-usable
+and/or human-usable, about terms in a particular XML namespace. It
+is useful, though not manditory, that the URI employed as a
+namespace name identifies a namespace document.</span></dd>
+<dt><a href="#def-representation">Representation</a></dt>
+<dd><span class="content">Data that encodes information about
+resource state.</span></dd>
+<dt><a href="#def-resource">Resource</a></dt>
+<dd><span class="content">Anything that might be identified by a
+URI.</span></dd>
+<dt><a href="#def-safe-interaction">Safe interaction</a></dt>
+<dd><span class="content">Interaction with a resource where an
+agent does not incur any obligation beyond the
+interaction.</span></dd>
+<dt><a href="#def-secondary-resource">Secondary resource</a></dt>
+<dd><span class="content">A resource related to another resource
+through the primary resource with additional identifying
+information (the fragment identifier).</span></dd>
+<dt><a href="#def-lang-subset">Subset language</a></dt>
+<dd><span class="content">One language is a subset of a second
+language if any document in the first language is also a valid
+document in the second language and has the same interpretation in
+the second language.</span></dd>
+<dt><a href="#def-uri-acronym">URI</a></dt>
+<dd><span class="content">Acronym for Uniform Resource
+Identifier.</span></dd>
+<dt><a href="#def-uri-aliases">URI aliases</a></dt>
+<dd><span class="content">Two or more different URIs that that
+identify the same resource.</span></dd>
+<dt><a href="#def-uri-collision">URI collision</a></dt>
+<dd><span class="content">The use of the same URI to refer to more
+than one resource in the context of Web protocols and
+formats.</span></dd>
+<dt><a href="#def-uri-ownership">URI ownership</a></dt>
+<dd><span class="content">A relationship between a URI and a social
+entity, such as a person, organization, or
+specification.</span></dd>
+<dt><a href="#def-URI-persistence">URI persistence</a></dt>
+<dd><span class="content">The social expectation that once a URI
+identifies a particular resource, it should continue indefinitely
+to refer to that resource.</span></dd>
+<dt><a href="#uriref">URI reference</a></dt>
+<dd><span class="content">An operational shorthand for a
+URI.</span></dd>
+<dt><a href="#def-uri">Uniform Resource Identifier (URI)</a></dt>
+<dd><span class="content">A global identifier in the context of the
+World Wide Web.</span></dd>
+<dt><a href="#def-unsafe-interaction">Unsafe interaction</a></dt>
+<dd><span class="content">Interaction with a resource that is not
+safe interaction.</span></dd>
+<dt><a href="#def-user-agent">User agent</a></dt>
+<dd><span class="content">One type of Web agent; a piece of
+software acting on behalf of a person.</span></dd>
+<dt><a href="#def-www">WWW</a></dt>
+<dd><span class="content">Acronym for World Wide Web.</span></dd>
+<dt><a href="#def-web">Web</a></dt>
+<dd><span class="content">Shortened form of World Wide
+Web.</span></dd>
+<dt><a href="#def-web-agent">Web agent</a></dt>
+<dd><span class="content">A person or a piece of software acting on
+the information space on behalf of a person, entity, or
+process.</span></dd>
+<dt><a href="#def-world-wide-web">World Wide Web</a></dt>
+<dd><span class="content">An information space in which items of
+interest are identified by Uniform Resource
+Identifiers.</span></dd>
+<dt><a href="#xml-based">XML-based format</a></dt>
+<dd><span class="content">One that conforms to the syntax rules
+defined in the XML specification.</span></dd>
+</dl>
+<!-- Generated --></div>
+<div class="section">
+<div class="section">
+<h2>7. <a id="refs" name="refs">References</a></h2>
+<dl>
+<dt><a name="CGI" id="CGI" shape="rect">CGI</a></dt>
+<dd><cite><a href="http://hoohoo.ncsa.uiuc.edu/cgi/interface.html"
+shape="rect">Common Gateway Interface/1.1 Specification</a></cite>.
+Available at http://hoohoo.ncsa.uiuc.edu/cgi/interface.html.</dd>
+<dt><a name="CHIPS" id="CHIPS" shape="rect">CHIPS</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/chips/" shape="rect">Common
+HTTP Implementation Problems</a></cite>, O. Théreaux, January 2003.
+This W3C Team Submission is available at
+http://www.w3.org/TR/chips/.</dd>
+<dt><a name="CUAP" id="CUAP" shape="rect">CUAP</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/cuap" shape="rect">Common
+User Agent Problems</a></cite>, K. Dubost, January 2003. This W3C
+Team Submission is available at http://www.w3.org/TR/cuap.</dd>
+<dt><a name="Cool" id="Cool" shape="rect">Cool</a></dt>
+<dd><cite><a href="http://www.w3.org/Provider/Style/URI.html"
+shape="rect">Cool URIs don't change</a></cite> T. Berners-Lee, W3C,
+1998 Available at http://www.w3.org/Provider/Style/URI. Note that
+the title is somewhat misleading. It is not the URIs that change,
+it is what they identify.</dd>
+<dt><a name="Eng90" id="Eng90" shape="rect">Eng90</a></dt>
+<dd><cite><a href=
+"http://www.bootstrap.org/augment/AUGMENT/132082.html" shape=
+"rect">Knowledge-Domain Interoperability and an Open Hyperdocument
+System</a></cite>, D. C. Engelbart, June 1990.</dd>
+<dt><a name="HTTPEXT" id="HTTPEXT" shape="rect">HTTPEXT</a></dt>
+<dd><cite><a href=
+"http://www.w3.org/Protocols/HTTP/ietf-http-ext/draft-frystyk-http-mandatory"
+shape="rect">Mandatory Extensions in HTTP</a></cite>, H. Frystyk
+Nielsen, P. Leach, S. Lawrence, 20 January 1998. This expired
+Internet Draft is available at
+http://www.w3.org/Protocols/HTTP/ietf-http-ext/draft-frystyk-http-mandatory.</dd>
+<dt><a name="IANASchemes" id="IANASchemes" shape=
+"rect">IANASchemes</a></dt>
+<dd>IANA's <a href="http://www.iana.org/assignments/uri-schemes"
+shape="rect">online registry of URI Schemes</a> is available at
+http://www.iana.org/assignments/uri-schemes.</dd>
+<dt><a name="IETFXML" id="IETFXML" shape="rect">IETFXML</a></dt>
+<dd>IETF <cite><a href=
+"http://www.imc.org/ietf-xml-use/xml-guidelines-07.txt" shape=
+"rect">Guidelines For The Use of XML in IETF Protocols</a></cite>,
+S. Hollenbeck, M. Rose, L. Masinter, eds., 2 November 2002. This
+Internet Draft is available at
+http://www.imc.org/ietf-xml-use/xml-guidelines-07.txt. If this
+document is no longer available, refer to the <a href=
+"http://www.imc.org/ietf-xml-use/index.html" shape=
+"rect">ietf-xml-use mailing list</a>.</dd>
+<dt><a name="INFOSET" id="INFOSET">INFOSET</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/xml-infoset">XML
+Information Set (Second Edition)</a></cite>, R. Tobin, J. Cowan,
+Editors, W3C Recommendation, 04&#160;February&#160;2004,
+http://www.w3.org/TR/2004/REC-xml-infoset-20040204. <a href=
+"http://www.w3.org/TR/xml-infoset">Latest version</a> available at
+http://www.w3.org/TR/xml-infoset.</dd>
+<dt><a name="IRI" id="IRI" shape="rect">IRI</a></dt>
+<dd>IETF <cite><a href=
+"http://www.w3.org/International/iri-edit/draft-duerst-iri-11.txt"
+shape="rect">Internationalized Resource Identifiers
+(IRIs)</a></cite>, M. Dürst, M. Suignard, Eds., November 2004. In
+an <a href=
+"http://www1.ietf.org/mail-archive/web/ietf-announce/current/msg00752.html"
+shape="rect">8 December 2004 announcement</a>, the IESG approved
+<a href=
+"http://www.w3.org/International/iri-edit/draft-duerst-iri-11.txt"
+shape="rect">draft-duerst-iri-11</a> as a Proposed Standard of the
+IETF. References to the IRI specification in Volume One of
+<cite>Architecture of the World Wide Web</cite> are to that
+Proposed Standard. Once the IETF issues a Request For Comments
+(<acronym>RFC</acronym>) number for the specification, this W3C
+Recommendation may be updated to refer to that RFC. See also the
+<a href=
+"http://www.w3.org/International/iri-edit/draft-duerst-iri.html"
+shape="rect">latest information about the IRI
+specification</a>.</dd>
+<dt><a name="MEDIATYPEREG" id="MEDIATYPEREG" shape=
+"rect">MEDIATYPEREG</a></dt>
+<dd>IANA's <a href=
+"http://www.iana.org/assignments/media-types/index.html" shape=
+"rect">online registry of Internet Media Types</a> is available at
+http://www.iana.org/assignments/media-types/index.html.</dd>
+<dt><a name="OWL10" id="OWL10">OWL10</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/owl-ref/">OWL Web Ontology
+Language Reference</a></cite>, M. Dean, G. Schreiber, Editors, W3C
+Recommendation, 10&#160;February&#160;2004,
+http://www.w3.org/TR/2004/REC-owl-ref-20040210/. <a href=
+"http://www.w3.org/TR/owl-ref/">Latest version</a> available at
+http://www.w3.org/TR/owl-ref/.</dd>
+<dt><a name="P3P10" id="P3P10">P3P10</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/P3P/">The Platform for
+Privacy Preferences 1.0 (P3P1.0) Specification</a></cite>, M.
+Marchiori, Editor, W3C Recommendation, 16&#160;April&#160;2002,
+http://www.w3.org/TR/2002/REC-P3P-20020416/. <a href=
+"http://www.w3.org/TR/P3P/">Latest version</a> available at
+http://www.w3.org/TR/P3P/.</dd>
+<dt><a name="RDDL" id="RDDL" shape="rect">RDDL</a></dt>
+<dd><cite><a href="http://www.tbray.org/tag/rddl/rddl3.html" shape=
+"rect">Resource Directory Description Language (RDDL)</a></cite>,
+J. Borden, T. Bray, eds., 1 June 2003. This document is available
+at http://www.tbray.org/tag/rddl/rddl3.html.</dd>
+<dt><a name="RDFXML" id="RDFXML">RDFXML</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/rdf-syntax-grammar">RDF/XML
+Syntax Specification (Revised)</a></cite>, D. Beckett, Editor, W3C
+Recommendation, 10&#160;February&#160;2004,
+http://www.w3.org/TR/2004/REC-rdf-syntax-grammar-20040210/.
+<a href="http://www.w3.org/TR/rdf-syntax-grammar">Latest
+version</a> available at
+http://www.w3.org/TR/rdf-syntax-grammar.</dd>
+<dt><a name="RELAXNG" id="RELAXNG" shape="rect">RELAXNG</a></dt>
+<dd>The <a href="http://www.relaxng.org/" shape="rect">RELAX NG</a>
+schema language project.</dd>
+<dt><a name="REST" id="REST" shape="rect">REST</a></dt>
+<dd><cite><a href=
+"http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm"
+shape="rect">Representational State Transfer (REST)</a></cite>,
+Chapter 5 of "Architectural Styles and the Design of Network-based
+Software Architectures", Doctoral Thesis of R. T. Fielding, 2000.
+Designers of protocol specifications in particular should invest
+time in understanding the REST model and the relevance of its
+principles to a given design. These principles include
+statelessness, clear assignment of roles to parties, uniform
+address space, and a limited, uniform set of verbs. Available at
+http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm.</dd>
+<dt><a name="RFC2045" id="RFC2045" shape="rect">RFC2045</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc2045.txt" shape=
+"rect">RFC 2045: Multipurpose Internet Mail Extensions (MIME) Part
+One: Format of Internet Message Bodies</a></cite>, N. Freed, N.
+Borenstein, November 1996. Available at
+http://www.ietf.org/rfc/rfc2045.txt.</dd>
+<dt><a name="RFC2046" id="RFC2046" shape="rect">RFC2046</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc2046.txt" shape=
+"rect">RFC 2046: Multipurpose Internet Mail Extensions (MIME) Part
+Two: Media Types</a></cite>, N. Freed, N. Borenstein, November
+1996. Available at http://www.ietf.org/rfc/rfc2046.txt.</dd>
+<dt><a name="RFC2119" id="RFC2119" shape="rect">RFC2119</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc2119.txt" shape=
+"rect">RFC 2119: Key words for use in RFCs to Indicate Requirement
+Levels</a></cite>, S. Bradner, March 1997. Available at
+http://www.ietf.org/rfc/rfc2119.txt.</dd>
+<dt><a name="RFC2141" id="RFC2141" shape="rect">RFC2141</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc2141.txt" shape=
+"rect">RFC 2141: URN Syntax</a></cite>, R. Moats, May 1997.
+Available at http://www.ietf.org/rfc/rfc2141.txt.</dd>
+<dt><a name="RFC2326" id="RFC2326" shape="rect">RFC2326</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc2326.txt" shape=
+"rect">RFC 2326: Real Time Streaming Protocol (RTSP)</a></cite>, H.
+Schulzrinne, A. Rao, R. Lanphier, April 1998. Available at:
+http://www.ietf.org/rfc/rfc2326.txt.</dd>
+<dt><a name="RFC2397" id="RFC2397" shape="rect">RFC2397</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc2397.txt" shape=
+"rect">RFC 2397: The “data” URL scheme</a></cite>, L. Masinter,
+August 1998. Available at:
+http://www.ietf.org/rfc/rfc2397.txt.</dd>
+<dt><a name="RFC2616" id="RFC2616" shape="rect">RFC2616</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc2616.txt" shape=
+"rect">RFC 2616: Hypertext Transfer Protocol - HTTP/1.1</a></cite>,
+J. Gettys, J. Mogul, H. Frystyk, L. Masinter, P. Leach, T.
+Berners-Lee, June 1999. Available at
+http://www.ietf.org/rfc/rfc2616.txt.</dd>
+<dt><a name="RFC2717" id="RFC2717" shape="rect">RFC2717</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc2717.txt" shape=
+"rect">Registration Procedures for URL Scheme Names</a></cite>, R.
+Petke, I. King, November 1999. Available at
+http://www.ietf.org/rfc/rfc2717.txt.</dd>
+<dt><a name="RFC2718" id="RFC2718" shape="rect">RFC2718</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc2718.txt" shape=
+"rect">RFC 2718: Guidelines for new URL Schemes</a></cite>, L.
+Masinter, H. Alvestrand, D. Zigmond, R. Petke, November 1999.
+Available at: http://www.ietf.org/rfc/rfc2718.txt.</dd>
+<dt><a name="RFC2818" id="RFC2818" shape="rect">RFC2818</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc2818.txt" shape=
+"rect">RFC 2818: HTTP Over TLS</a></cite>, E. Rescorla, May 2000.
+Available at: http://www.ietf.org/rfc/rfc2818.txt.</dd>
+<dt><a name="RFC3023" id="RFC3023" shape="rect">RFC3023</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc3023.txt" shape=
+"rect">RFC 3023: XML Media Types</a></cite>, M. Murata, S. St.
+Laurent, D. Kohn, January 2001. Available at:
+http://www.ietf.org/rfc/rfc3023.txt</dd>
+<dt><a name="RFC3236" id="RFC3236" shape="rect">RFC3236</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc3236.txt" shape=
+"rect">RFC 3236: The 'application/xhtml+xml' Media Type</a></cite>,
+M. Baker, P. Stark, January 2002. Available at:
+http://www.ietf.org/rfc/rfc3236.txt</dd>
+<dt><a name="RFC3261" id="RFC3261" shape="rect">RFC3261</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc3261.txt" shape=
+"rect">RFC 3261: SIP: Session Initiation Protocol</a></cite>, J.
+Rosenberg, H. Schulzrinne, G. Camarillo, et. al., June 2002.
+Available at: http://www.ietf.org/rfc/rfc3261.txt</dd>
+<dt><a name="RFC3920" id="RFC3920" shape="rect">RFC3920</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc3920.txt" shape=
+"rect">RFC 3920: Extensible Messaging and Presence Protocol (XMPP):
+Core</a></cite>, P. Saint-Andre, Ed., October 2004. Available at:
+http://www.ietf.org/rfc/rfc3920.txt</dd>
+<dt><a name="RFC977" id="RFC977" shape="rect">RFC977</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc977.txt" shape=
+"rect">RFC 977: Network News Transfer Protocol</a></cite>, B.
+Kantor, P. Lapsley, February 1986. Available at
+http://www.ietf.org/rfc/rfc977.txt.</dd>
+<dt><a name="SOAP12" id="SOAP12">SOAP12</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/soap12-part1/">SOAP Version
+1.2 Part 1: Messaging Framework</a></cite>, J. Moreau, N.
+Mendelsohn, H. Frystyk Nielsen, <em>et. al.,</em> Editors, W3C
+Recommendation, 24&#160;June&#160;2003,
+http://www.w3.org/TR/2003/REC-soap12-part1-20030624/. <a href=
+"http://www.w3.org/TR/soap12-part1/">Latest version</a> available
+at http://www.w3.org/TR/soap12-part1/.</dd>
+<dt><a name="SVG11" id="SVG11">SVG11</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/SVG11/">Scalable Vector
+Graphics (SVG) 1.1 Specification</a></cite>, 藤沢 淳, J. Ferraiolo, D.
+Jackson, Editors, W3C Recommendation, 14&#160;January&#160;2003,
+http://www.w3.org/TR/2003/REC-SVG11-20030114/. <a href=
+"http://www.w3.org/TR/SVG11/">Latest version</a> available at
+http://www.w3.org/TR/SVG11/.</dd>
+<dt><a name="UNICODE" id="UNICODE" shape="rect">UNICODE</a></dt>
+<dd><a href="http://www.unicode.org/" shape="rect">The Unicode
+Consortium</a>, The Unicode Standard, Version 4, ISBN
+0-321-18578-1, as updated from time to time by the publication of
+new versions. See http://www.unicode.org/unicode/standard/versions
+for the <a href="http://www.unicode.org/unicode/standard/versions"
+shape="rect">latest Unicode version</a> and additional information
+on versions of the standard and of the Unicode Character
+Database.</dd>
+<dt><a name="URI" id="URI" shape="rect">URI</a></dt>
+<dd>IETF <cite><a href=
+"http://gbiv.com/protocols/uri/rev-2002/draft-fielding-uri-rfc2396bis-07.html"
+shape="rect">Uniform Resource Identifiers (URI): Generic
+Syntax</a></cite>, T. Berners-Lee, R. Fielding, L. Masinter, Eds.,
+September 2004. In an <a href=
+"http://www1.ietf.org/mail-archive/web/ietf-announce/current/msg00602.html"
+shape="rect">18 October 2004 announcement</a>, the IESG approved
+<a href=
+"http://gbiv.com/protocols/uri/rev-2002/draft-fielding-uri-rfc2396bis-07.html"
+shape="rect">draft-fielding-uri-rfc2396bis-07</a> as a Full
+Standard of the IETF. References to the URI specification in Volume
+One of <cite>Architecture of the World Wide Web</cite> are to that
+Full Standard. Once the IETF issues a Request For Comments
+(<acronym>RFC</acronym>) number for the specification, this W3C
+Recommendation may be updated to refer to that RFC. See also the
+<a href="http://gbiv.com/protocols/uri/rev-2002/rfc2396bis.html"
+shape="rect">latest information about the URI
+specification</a>.</dd>
+<dt><a name="UniqueDNS" id="UniqueDNS" shape=
+"rect">UniqueDNS</a></dt>
+<dd><cite><a href=
+"http://www.icann.org/correspondence/iab-tech-comment-27sept99.htm"
+shape="rect">IAB Technical Comment on the Unique DNS
+Root</a></cite>, B. Carpenter, 27 September 1999. Available at
+http://www.icann.org/correspondence/iab-tech-comment-27sept99.htm.</dd>
+<dt><a name="VOICEXML2" id="VOICEXML2">VOICEXML2</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/voicexml20">Voice
+Extensible Markup Language (VoiceXML) Version 2.0</a></cite>, B.
+Porter, A. Hunt, K. Rehor, <em>et. al.,</em> Editors, W3C
+Recommendation, 16&#160;March&#160;2004,
+http://www.w3.org/TR/2004/REC-voicexml20-20040316/. <a href=
+"http://www.w3.org/TR/voicexml20">Latest version</a> available at
+http://www.w3.org/TR/voicexml20.</dd>
+<dt><a name="XHTML11" id="XHTML11">XHTML11</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/xhtml11/">XHTML™ 1.1 -
+Module-based XHTML</a></cite>, S. McCarron, M. Altheim, Editors,
+W3C Recommendation, 31&#160;May&#160;2001,
+http://www.w3.org/TR/2001/REC-xhtml11-20010531. <a href=
+"http://www.w3.org/TR/xhtml11/">Latest version</a> available at
+http://www.w3.org/TR/xhtml11/.</dd>
+<dt><a name="XLink10" id="XLink10">XLink10</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/xlink/">XML Linking
+Language (XLink) Version 1.0</a></cite>, E. Maler, S. DeRose, D.
+Orchard, Editors, W3C Recommendation, 27&#160;June&#160;2001,
+http://www.w3.org/TR/2001/REC-xlink-20010627/. <a href=
+"http://www.w3.org/TR/xlink/">Latest version</a> available at
+http://www.w3.org/TR/xlink/.</dd>
+<dt><a name="XML-ID" id="XML-ID">XML-ID</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/xml-id/">xml:id Version
+1.0</a></cite>, D. Veillard, J. Marsh, Editors, W3C Working Draft
+(work in progress), 07&#160;April&#160;2004,
+http://www.w3.org/TR/2004/WD-xml-id-20040407. <a href=
+"http://www.w3.org/TR/xml-id/">Latest version</a> available at
+http://www.w3.org/TR/xml-id/.</dd>
+<dt><a name="XML10" id="XML10">XML10</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/REC-xml">Extensible Markup
+Language (XML) 1.0 (Third Edition)</a></cite>, F. Yergeau, J.
+Paoli, C. M. Sperberg-McQueen, <em>et. al.,</em> Editors, W3C
+Recommendation, 04&#160;February&#160;2004,
+http://www.w3.org/TR/2004/REC-xml-20040204. <a href=
+"http://www.w3.org/TR/REC-xml">Latest version</a> available at
+http://www.w3.org/TR/REC-xml.</dd>
+<dt><a name="XML11" id="XML11">XML11</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/xml11/">Extensible Markup
+Language (XML) 1.1</a></cite>, J. Paoli, C. M. Sperberg-McQueen, J.
+Cowan, <em>et. al.,</em> Editors, W3C Recommendation,
+04&#160;February&#160;2004,
+http://www.w3.org/TR/2004/REC-xml11-20040204/. <a href=
+"http://www.w3.org/TR/xml11/">Latest version</a> available at
+http://www.w3.org/TR/xml11/.</dd>
+<dt><a name="XMLNS" id="XMLNS">XMLNS</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/xml-names11/">Namespaces in
+XML 1.1</a></cite>, R. Tobin, D. Hollander, A. Layman, <em>et.
+al.,</em> Editors, W3C Recommendation, 04&#160;February&#160;2004,
+http://www.w3.org/TR/2004/REC-xml-names11-20040204. <a href=
+"http://www.w3.org/TR/xml-names11/">Latest version</a> available at
+http://www.w3.org/TR/xml-names11/.</dd>
+<dt><a name="XMLSCHEMA" id="XMLSCHEMA">XMLSCHEMA</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/xmlschema-1/">XML Schema
+Part 1: Structures</a></cite>, D. Beech, M. Maloney, H. S.
+Thompson, <em>et. al.,</em> Editors, W3C Recommendation,
+02&#160;May&#160;2001,
+http://www.w3.org/TR/2001/REC-xmlschema-1-20010502/. <a href=
+"http://www.w3.org/TR/xmlschema-1/">Latest version</a> available at
+http://www.w3.org/TR/xmlschema-1/.</dd>
+<dt><a name="XPTRFR" id="XPTRFR">XPTRFR</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/xptr-framework/">XPointer
+Framework</a></cite>, E. Maler, N. Walsh, P. Grosso, <em>et.
+al.,</em> Editors, W3C Recommendation, 25&#160;March&#160;2003,
+http://www.w3.org/TR/2003/REC-xptr-framework-20030325/. <a href=
+"http://www.w3.org/TR/xptr-framework/">Latest version</a> available
+at http://www.w3.org/TR/xptr-framework/.</dd>
+<dt><a name="XSLT10" id="XSLT10">XSLT10</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/xslt">XSL Transformations
+(XSLT) Version 1.0</a></cite>, J. Clark, Editor, W3C
+Recommendation, 16&#160;November&#160;1999,
+http://www.w3.org/TR/1999/REC-xslt-19991116. <a href=
+"http://www.w3.org/TR/xslt">Latest version</a> available at
+http://www.w3.org/TR/xslt.</dd>
+</dl>
+<div class="section">
+<h3>7.1. <a name="archspecs" id="archspecs" shape=
+"rect">Architectural Specifications</a></h3>
+<dl>
+<dt><a name="ATAG10" id="ATAG10">ATAG10</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/ATAG10">Authoring Tool
+Accessibility Guidelines 1.0</a></cite>, C. McCathieNevile, I.
+Jacobs, J. Treviranus, <em>et. al.,</em> Editors, W3C
+Recommendation, 03&#160;February&#160;2000,
+http://www.w3.org/TR/2000/REC-ATAG10-20000203. <a href=
+"http://www.w3.org/TR/ATAG10">Latest version</a> available at
+http://www.w3.org/TR/ATAG10.</dd>
+<dt><a name="CHARMOD" id="CHARMOD">CHARMOD</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/charmod/">Character Model
+for the World Wide Web 1.0: Fundamentals</a></cite>, R. Ishida, M.
+J. Dürst, M. Wolf, <em>et. al.,</em> Editors, W3C Working Draft
+(work in progress), 25&#160;February&#160;2004,
+http://www.w3.org/TR/2004/WD-charmod-20040225/. <a href=
+"http://www.w3.org/TR/charmod/">Latest version</a> available at
+http://www.w3.org/TR/charmod/.</dd>
+<dt><a name="DIPRINCIPLES" id="DIPRINCIPLES">DIPRINCIPLES</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/di-princ/">Device
+Independence Principles</a></cite>, R. Gimson, Editor, W3C Note,
+01&#160;September&#160;2003,
+http://www.w3.org/TR/2003/NOTE-di-princ-20030901/. <a href=
+"http://www.w3.org/TR/di-princ/">Latest version</a> available at
+http://www.w3.org/TR/di-princ/.</dd>
+<dt><a name="EXTLANG" id="EXTLANG" shape="rect">EXTLANG</a></dt>
+<dd><cite><a href=
+"http://www.w3.org/TR/1998/NOTE-webarch-extlang-19980210" shape=
+"rect">Web Architecture: Extensible Languages</a></cite>, T.
+Berners-Lee, D. Connolly, 10 February 1998. This W3C Note is
+available at
+http://www.w3.org/TR/1998/NOTE-webarch-extlang-19980210.</dd>
+<dt><a name="Fielding" id="Fielding" shape="rect">Fielding</a></dt>
+<dd><cite><a href=
+"http://www.ics.uci.edu/~fielding/pubs/webarch_icse2000.pdf" shape=
+"rect">Principled Design of the Modern Web Architecture</a></cite>,
+R.T. Fielding and R.N. Taylor, UC Irvine. In Proceedings of the
+2000 International Conference on Software Engineering (ICSE 2000),
+Limerick, Ireland, June 2000, pp. 407-416. This document is
+available at
+http://www.ics.uci.edu/~fielding/pubs/webarch_icse2000.pdf.</dd>
+<dt><a name="QA" id="QA">QA</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/qaframe-spec/">QA
+Framework: Specification Guidelines</a></cite>, D. Hazaël-Massieux,
+L. Rosenthal, L. Henderson, <em>et. al.,</em> Editors, W3C Working
+Draft (work in progress), 30&#160;August&#160;2004,
+http://www.w3.org/TR/2004/WD-qaframe-spec-20040830/. <a href=
+"http://www.w3.org/TR/qaframe-spec/">Latest version</a> available
+at http://www.w3.org/TR/qaframe-spec/.</dd>
+<dt><a name="RFC1958" id="RFC1958" shape="rect">RFC1958</a></dt>
+<dd>IETF <cite><a href="http://www.ietf.org/rfc/rfc1958.txt" shape=
+"rect">RFC 1958: Architectural Principles of the
+Internet</a></cite>, B. Carpenter, June 1996. Available at
+http://www.ietf.org/rfc/rfc1958.txt.</dd>
+<dt><a name="SPECVAR" id="SPECVAR">SPECVAR</a></dt>
+<dd><cite><a href=
+"http://www.w3.org/TR/spec-variability/">Variability in
+Specifications</a></cite>, L. Rosenthal, D. Hazaël-Massieux,
+Editors, W3C Working Draft (work in progress),
+30&#160;August&#160;2004,
+http://www.w3.org/TR/2004/WD-spec-variability-20040830/. <a href=
+"http://www.w3.org/TR/spec-variability/">Latest version</a>
+available at http://www.w3.org/TR/spec-variability/.</dd>
+<dt><a name="UAAG10" id="UAAG10">UAAG10</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/UAAG10/">User Agent
+Accessibility Guidelines 1.0</a></cite>, J. Gunderson, I. Jacobs,
+E. Hansen, Editors, W3C Recommendation, 17&#160;December&#160;2002,
+http://www.w3.org/TR/2002/REC-UAAG10-20021217/. <a href=
+"http://www.w3.org/TR/UAAG10/">Latest version</a> available at
+http://www.w3.org/TR/UAAG10/.</dd>
+<dt><a name="WCAG20" id="WCAG20">WCAG20</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/WCAG20/">Web Content
+Accessibility Guidelines 2.0</a></cite>, W. Chisholm, J. White, B.
+Caldwell, <em>et. al.,</em> Editors, W3C Working Draft (work in
+progress), 30&#160;July&#160;2004,
+http://www.w3.org/TR/2004/WD-WCAG20-20040730/. <a href=
+"http://www.w3.org/TR/WCAG20/">Latest version</a> available at
+http://www.w3.org/TR/WCAG20/.</dd>
+<dt><a name="WSA" id="WSA">WSA</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/ws-arch/">Web Services
+Architecture</a></cite>, D. Booth, F. McCabe, E. Newcomer, <em>et.
+al.,</em> Editors, W3C Note, 11&#160;February&#160;2004,
+http://www.w3.org/TR/2004/NOTE-ws-arch-20040211/. <a href=
+"http://www.w3.org/TR/ws-arch/">Latest version</a> available at
+http://www.w3.org/TR/ws-arch/.</dd>
+<dt><a name="XAG" id="XAG">XAG</a></dt>
+<dd><cite><a href="http://www.w3.org/TR/xag">XML Accessibility
+Guidelines</a></cite>, S. B. Palmer, C. McCathieNevile, D.
+Dardailler, Editors, W3C Working Draft (work in progress),
+03&#160;October&#160;2002,
+http://www.w3.org/TR/2002/WD-xag-20021003. <a href=
+"http://www.w3.org/TR/xag">Latest version</a> available at
+http://www.w3.org/TR/xag.</dd>
+</dl>
+</div>
+</div>
+<!-- Included; see Makefile --></div>
+<div class="section">
+<h2>8. <a name="acks" id="acks" shape=
+"rect">Acknowledgments</a></h2>
+<p><a name="p350" id="p350"></a>This document was authored by the
+W3C Technical Architecture Group which included the following
+participants: Tim Berners-Lee (co-Chair, W3C), Tim Bray (Antarctica
+Systems), Dan Connolly (W3C), Paul Cotton (Microsoft Corporation),
+Roy Fielding (Day Software), Mario Jeckle (Daimler Chrysler), Chris
+Lilley (W3C), Noah Mendelsohn (IBM), David Orchard (BEA Systems),
+Norman Walsh (Sun Microsystems), and Stuart Williams (co-Chair,
+Hewlett-Packard).</p>
+<p><a name="p351" id="p351"></a>The TAG appreciates the many
+contributions on the TAG's public mailing list, www-tag@w3.org
+(<a href="http://lists.w3.org/Archives/Public/www-tag/" shape=
+"rect">archive</a>), which have helped to improve this
+document.</p>
+<p><a name="p352" id="p352"></a>In addition, contributions by David
+Booth, Erik Bruchez, Kendall Clark, Karl Dubost, Bob DuCharme,
+Martin Duerst, Olivier Fehr, Al Gilman, Tim Goodwin, Elliotte Rusty
+Harold, Tony Hammond, Sandro Hawke, Ryan Hayes, Dominique
+Hazaël-Massieux, Masayasu Ishikawa, David M. Karr, Graham Klyne,
+Jacek Kopecky, Ken Laskey, Susan Lesch, Håkon Wium Lie, Frank
+Manola, Mark Nottingham, Bijan Parsia, Peter F. Patel-Schneider,
+David Pawson, Michael Sperberg-McQueen, Patrick Stickler, and
+Yuxiao Zhao are gratefully acknowledged.</p>
+</div>
+</body>
+</html>
+
+<!-- This document saved from http://www.w3.org/TR/webarch/ -->

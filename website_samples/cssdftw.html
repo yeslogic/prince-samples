@@ -1,0 +1,487 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Space inside boxes</title>
+<style type="text/css">
+/* 
+ * This element contains an excerpt of the style sheet which was used to format 
+ * the book "Cascading Style Sheets, designing for the Web" 3rd edition. 
+ * Copyright 1997-2004 by Hakon Wium Lie and Bert Bos
+ */
+
+/* 
+ * The body text is in Gill Sans 10/13, with a wide margin left for
+ * small figures, captions and side notes. Some figures and tables are
+ * fullwidth and use the margin space as well as the body
+ * width. Paragraphs are justified and are indented, unless they come
+ * after a white line (mtb) or after some displayed element (figure,
+ * table, etc.)
+ */
+
+@page {
+  margin: 27mm 16mm 27mm 16mm;
+  size: 7in 9.25in;
+
+  @top-left {
+    font:  bold 10pt "Gill Alternate One Monotype", "Gill Sans", sans-serif;
+    content: "Cascading Style Sheets";
+    vertical-align: bottom;
+    padding-bottom: 2em;
+  }
+
+  @bottom-left {
+    font: bold 10pt "Gill Alternate One Monotype", "Gill Sans", sans-serif;
+    content: counter(page);
+    padding-top: 2em;
+    vertical-align: top;
+  }
+}
+
+html {
+	margin: 0;
+	padding: 0;
+	background: white;
+	counter-reset: page 160;
+}
+
+@media screen
+{
+	html { margin: 1em }
+	body { background: white }
+}
+
+body {
+	color: black;
+	font: 10pt/1.26 "Gill Alternate One Monotype", "Gill Sans", sans-serif;
+	text-align: justify;
+	margin: 0 0 0 4.2cm;
+ 	padding: 0;
+	widows: 2;
+	orphans: 2;
+
+}
+
+p {
+	margin: 0;
+	text-indent: 13pt
+}
+
+p:first-child, h1 + p, h2 + p, h3 + p, ul + p, ol + p, pre + p,
+div.figure + p, .sidefigure + p, div.top + p,
+table + p, div.propdef + p, div.propdef + div p, dl + p, blockquote + p,
+div.indent + p
+{
+    text-indent: 0pt
+}
+
+.author
+{
+	margin-top: 2em;
+	text-indent: 0;
+	text-align: right;
+}
+
+h1 {
+	text-align: left;
+	padding: 2em 0 0 0;
+	font-size: 24pt;
+	line-height: 1;
+	font-weight: 900;
+	page-break-after: avoid;
+	margin-bottom: 3em;
+}
+
+
+/* Section headings are in bold (h2), small-caps (h3) and italics
+ * (h4), but in fact there aren't any h4 in the book. They are not
+ * numbered.
+ */
+
+h2 {
+	text-align: left;
+	margin: 2.4em 0 0.6em 0;
+	font-size: 120%;
+	font-weight: bold;
+	text-transform: uppercase;
+	page-break-after: avoid;
+}
+
+h3 { font-weight: bold; }
+
+h3, h4, h5 {
+	text-align: left;
+	margin: 2.4em 0 0.6em 0;
+	font-size: 10pt;
+	page-break-after: avoid;
+}
+
+h4 {
+    font-style: italic;
+    font-weight: normal;
+}
+
+
+div.section {
+  clear: both
+}
+
+/* Lists are indented to the same level as paragraphs (1em). We want
+ * the bullets to be left-aligned with the left edge of the body text,
+ * but the corresponding CSS properties are badl supported :-(
+ */
+
+ul, ol
+{
+	margin: 0.5em 0 0.5em 0;
+	padding: 0 0 0 1.5em;
+}
+
+dl { margin-top: 0.8em }
+
+dl.compact dt {
+	display: compact;
+}
+
+dt {
+	font-weight: bold;
+}
+
+li {
+	margin: 0;
+	padding: 0;
+}
+
+/* Code examples are indented to the value of text-indent.
+ */
+
+pre
+{
+	font: 9pt/1.3 "Lucida Console", "Lucida Sans Typewriter", monospace;
+	margin: 1.2em 0 1.2em 13pt;
+	widows: 4;
+	orphans: 4;
+}
+
+
+/* Tables are full-width. There is a thin rule above and below the
+ * table and below the row with column headings. Between the other
+ * rows are dotted rules. All cells are left-aligned (not justified).
+ */
+
+th, td { text-align: left }
+
+tr
+{
+    vertical-align: baseline;
+}
+
+td.border {
+  border: thin solid black;
+  width: 6em;
+  height: 6em;
+}
+
+/* Property definitions contain two tables, .grade and .propdef
+ */
+
+div.propdef
+{
+    clear: both;
+    margin: 1.2em 0;
+    page-break-inside: avoid;
+}
+
+div.propdef td
+{
+    vertical-align: baseline;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+table.grade
+{
+    border: none;
+}
+
+table.grade td
+{
+    border: none;
+}
+
+div.propdef
+{
+    clear: both;
+    margin: 1.2em 0;
+    page-break-inside: avoid;
+}
+
+div.propdef td
+{
+    vertical-align: baseline;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+table.propdef
+{
+    margin: 0;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-top: thin solid;
+    border-bottom: thin solid;
+    table-layout: fixed;
+}
+
+table.propdef td:first-child
+{
+    padding-left: 0;
+    width: 6em;
+    width: 20%;
+}
+
+table.propdef td
+{
+    border: none;
+    padding: 0.1em 0 0.1em 1em;
+    text-indent: 0;
+}
+
+table.propdef tr:first-child td
+{
+    padding-top: 0.25em;
+}
+
+table.propdef tr:last-child td
+{
+    padding-bottom: 0.25em;
+}
+
+table.grade
+{
+	float: left;
+	clear: left;
+	margin: 0 2% 1.2em -42%;
+	width: 4.0cm;
+	page-break-inside: avoid;
+	font-style: normal;
+	text-indent: 0;
+	text-align: right;
+}
+
+
+table.grade td {
+  width: 20%;
+  text-align: center;
+}
+
+table.grade td.full, span.full {
+  font: 100% "Gill Sans";
+  content: "\25CF";
+}
+
+table.grade td.half, span.half {
+  font: 100% "Gill Sans";
+  content: "\25D1";
+}
+
+table.grade td.none, span.none {
+  font: 100% "Gill Sans";
+  content: "\25CB";
+}
+
+table.grade td.unknown {
+  font: 100% "Gill Sans";
+  content: "??";
+}
+
+/* Names of HTML elements and attributes are in small caps. (XML
+ * elements are case-sensitive, so we use "code" for those.) Foreign
+ * word, such as "e.g." are marked as em.foreign.
+ */
+
+span.element, span.attribute
+{
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 80%;
+}
+
+span.property
+{
+    font-weight: bold
+}
+
+
+code, span.css, span.value, span.declaration
+{
+	font: 90% "Lucida Console", "Lucida Sans Typewriter", monospace;
+}
+
+.u
+{
+  text-decoration: underline;
+}
+
+acronym {
+    text-transform: lowercase;
+    font-variant: small-caps;
+    font-style: normal;
+    text-decoration: none;
+}
+
+sup {
+    vertical-align: super;
+    line-height: 0.1em;
+    font-size: 0.6em;
+}
+
+sub {
+    vertical-align: sub;
+    line-height: 0.1em;
+    font-size: 0.6em;
+}
+
+.issue {
+    color: white;
+    background: red;
+    padding: 0.1em 0.2em;
+}
+
+q::before {
+  content: "\201C";
+}
+
+q::after {
+  content: "\201D";
+}
+
+.indent, blockquote
+{
+    margin: 1.2em 0 1.2em 13pt;
+    text-indent: 0;
+}
+
+
+dfn { 
+	font-style: italic
+}
+</style>
+</head>
+
+<body>
+<div class="section" title="Space inside boxes">
+
+<p>a smaller line height. An effect similar to double spacing can
+be achieved by setting the line height to 2.0. This is too much for
+most cases, but it is some&#173;times required.</p>
+
+<p>Because this prop&#173;erty spec&#173;i&#173;fies the <em>minimum</em> distance
+between the base&#173;lines of the lines, an inline element with a larger
+line height or an inline image may cause lines to be farther apart than
+expected.</p>
+</div>
+
+<div class="section">
+<h2 id="inside-box-h-10">The <span class="property">word-spacing</span> prop&#173;erty</h2>
+
+<p>The <span class="property">word-spacing</span> prop&#173;erty enables you
+to adjust the amount of spacing between words. Each font has a normal
+word spacing &#8211; the amount of space that is put between words
+&#8211; that should be used in the <q>ideal</q> situ&#173;a&#173;tion (ideal
+according to the font&#8217;s designer). Browsers try to use this
+value. However, you may some&#173;times want to achieve certain effects with
+your text by expanding or shrinking the word spacing.</p>
+
+<div class="propdef">
+<table class="grade">
+<tbody>
+<tr>
+<td class="ff">FF</td>
+
+<td class="op">Op</td>
+
+<td class="sa">Sa</td>
+
+<td class="ie">IE</td>
+
+<td class="pr">Pr</td>
+</tr>
+
+<tr>
+<td class="full"></td>
+
+<td class="full"></td>
+
+<td class="full"></td>
+
+<td class="full"></td>
+
+<td class="none"></td>
+</tr>
+</tbody>
+</table>
+
+<table class="propdef" id="propdef-word-spacing">
+<tbody>
+<tr>
+<td> Name:</td>
+
+<td>word-spacing</td>
+</tr>
+
+<tr>
+<td>Value:</td>
+
+<td>normal | <var>&lt;length&gt;</var></td>
+</tr>
+
+<tr>
+<td>Initial:</td>
+
+<td>normal</td>
+</tr>
+
+<tr>
+<td>Applies to:</td>
+
+<td>all elements</td>
+</tr>
+
+<tr>
+<td>Inher&#173;ited:</td>
+
+<td>yes</td>
+</tr>
+
+<tr>
+<td>Percent&#173;ages:</td>
+
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>There are two values:</p>
+
+<ul>
+<li><span class="css">normal</span> &#8211; Word spacing is left up to
+the browser. This is the default.</li>
+
+<li>Length &#8211; Either an abso&#173;lute or rela&#173;tive value.</li>
+</ul>
+
+<p>Any length value is added to the normal word spacing; thus, 0 and
+<span class="css">normal</span> mean the same thing.</p>
+
+<p><span class="property">word-spacing</span> is an inher&#173;ited prop&#173;erty.
+The amount of word spacing is computed once for the parent element and
+the <em>result</em> is inher&#173;ited by all of its chil&#173;dren. The value is
+not computed again for its child elements even if they have a different
+font size. For example, if the current font size of the parent element
+is 10pt and the word spacing is set to 1em, its child elements will
+inherit a word spacing of 10pt no matter their font size.</p>
+</div>
+</body>
+</html>

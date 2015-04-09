@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>Prince Menu Generator</title>
+<style type="text/css">
+html, body {
+  margin: 0; padding: 0;
+}
+
+body {
+  font: 14px "Trebuchet MS", sans-serif;
+  color: black;
+/*  background: rgb(168, 204, 136); */
+  background: white;
+}
+
+#content {
+  padding: 0;
+  margin: 0 0 0 30px;
+/*  background: rgb(208, 234, 166); */
+}
+
+#footer {
+    font-size: 10px;
+    width: 750px;
+    margin: 25px auto 0 auto
+}
+
+.page {
+    width: 750px;
+    margin: 0 auto
+}
+
+div.ruler {
+  clear: both;
+}
+
+.h1 { margin: 0.3em auto; font-size: 2em; margin-left: 35% }
+.h2 { margin: auto; font-size: 1.3em;  margin-left: 30% }
+div.course { margin: 1em; }
+.en { font-style: italic; margin: 0.2em 0 0.2em 2em; }
+.pr { float: right;  }
+
+div.form {
+  border: thin solid black;
+  border-right-width: thick;
+  border-bottom-width: thick;
+  width: 600px;
+  margin: auto;
+  padding: 0.5em;
+  clear: both;
+  background: #FFB;
+}
+
+div.selection {
+  float: left;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+.submit { margin: 1.4em }
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="keywords" content="XML, CSS, SVG, PDF, XSL-FO, formatting, formatter, print, printing, typesetting, typesetter, software">
+</head>
+
+<body>
+
+<div id=content>
+
+
+<div class=page>
+
+<form name="order" method="post" action="/cgi-bin/menumake.pl">
+
+<P>Welcome to Prince's incredible interactive restaurant menu
+generator. Edit the forms below as you please and press the "Generate
+menu" button. The form is then sent to a server where <a
+hfref="http://www.princexml.com">Prince</a> is running, turning the
+menu into a delicious PDF document which is returned to your browser.
+You can also make choices depending on the paper size in your printer
+and the atmosphere of your restaurant. Fonts are selected in a
+semi-random manner, so make sure you generate more than one menu!</p>
+
+<div class="selection">
+<input type="radio" name="size" value="A4" checked>A4<br>
+<input type="radio" name="size" value="letter">letter (8.5" x 11")<br>
+</div>
+
+<div class="selection">
+<input type="radio" name="style" value="formal">formal<br>
+<input type="radio" name="style" value="informal" checked>informal
+</div>
+
+<input class="submit" type="submit" value="Generate menu">
+
+<div class=form>
+
+
+
+<input type="text" class=h1 name=mh id=mh size="10" value="Menu"><br/>
+
+<input type="text" class=h2 name=eh id=eh size="20" value="Les Hors D'Oeuvres">
+
+<div class="course">
+<input type="text" class=fr name=e1f id=e1f size="35" value="Escargots en Croute Bourguignonne">
+<input type="text" class=pr name=e1p id=e1p size="10" value="5.95"><br/>
+<input type="text" class=en name=e1e id=e1e size="35" value="Snails in Garlic Butter with Pastry Crock">
+</div>
+
+<div class="course">
+<input type="text" class=fr name=e2f id=e2f size="35" value="Foie Gras de canard Confit">
+<input type="text" class=pr name=e2p id=e2p size="10" value="7.95"><br/>
+<input type="text" class=en name=e2e id=e2e size="35" value="Medaillon of Duck Foie Gras">
+</div>
+
+<input type="text" class=h2 name=ph id=ph size="20" value="Les Poissons">
+
+<div class="course">
+<input type="text" class=fr name=p1f id=p1f size="35" value="Truite Vendéenne aux Cepes">
+<input type="text" class=pr name=p1p id=p1p size="10" value="12.95"><br/>
+<input type="text" class=en name=p1e id=p1e size="35" value="Sautéed Trout with Cepes Mushrooms">
+</div>
+
+<input type="text" class=h2 name=vh id=vh size="20" value="Les Viandes">
+
+<div class="course">
+<input type="text" class=fr name=v1f id=v1f size="35" value="Magrets de Canard aux Poires">
+<input type="text" class=pr name=v1p id=v1p size="10" value="14.95"><br/>
+<input type="text" class=en name=v1e id=v1e size="35" value="Duck Breasts with Pears">
+</div>
+
+<div class="course">
+<input type="text" class=fr name=v2f id=v2f size="35" value="Civet de Lapin à la Française">
+<input type="text" class=pr name=v2p id=v2p size="10" value="9.95"><br/>
+<input type="text" class=en name=v2e id=v2e size="35" value="Rabbit Stew with Red Wine">
+</div>
+
+<input type="text" class=h2 name=dh id=dh size="20" value="Les Desserts">
+
+<div class="course">
+<input type="text" class=fr name=d1f id=d1f size="35" value="Tulipes aux Trois Fruits Rouges">
+<input type="text" class=pr name=d1p id=d1p size="10" value="3.95"><br/>
+<input type="text" class=en name=d1e id=d1e size="35" value="Biscuit Tulips with Fresh Red Berries">
+</div>
+
+<div class="course">
+<input type="text" class=fr name=d2f id=d2f size="35" value="Crème brulée au parfum d'oranges et au Jivaras">
+<input type="text" class=pr name=d2p id=d2p size="10" value="3.95"><br/>
+<input type="text" class=en name=d2e id=d2e size="35" value="Orange and Chocolate Crème Brulée">
+
+<hr>
+
+</div>
+
+
+
+</form>
+
+</div></div>
+
+<div id="footer">
+Copyright &#xA9; 2002&#x2013;2013
+YesLogic Pty. Ltd.
+All rights reserved.
+</div>
+
+</html>

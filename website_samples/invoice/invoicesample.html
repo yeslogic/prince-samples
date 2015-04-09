@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<Title>Sunny Farm Invoice Sample</title>
+<link REL=StyleSheet type="text/css" href="invoicesample.css">
+</head>
+<body>
+<!--body-->
+	<div class="brownbar"><img class="ribbon-top" src="images/ribbon-top.svg"/></div>
+	<div class="content">
+		<table class="invoice">
+		
+			<tr>
+				<td class="logo">
+					<img src="images/logo.svg" alt="Sunny Farm Logo"/>
+					<p class="h2">
+						123 Somewhere St, Melbourne VIC 3000<br/> 
+						(03) 1234 5678
+					</p>
+				</td>
+				<td>
+					<div class="attentionto">
+						<img src="images/attentionto.svg" alt="Attention To"/>
+						<div class="client">	
+							<p class="clientname">Denny Gunawan</p>
+							<div class="bordertop"></div>
+							<p>221 Queen St<br/>
+							Melbourne VIC 3000</p>
+							<div class="price">
+								<p>$39.60</p>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2">
+					<p>Invoice Number: #20130304</p>
+					<table class="invoicedetail">
+						<thead>
+						
+						<td class="name">Organic Items</td>
+						<td class="pricekg">Price/kg</td>
+						<td class="quantity">Quantity(kg)</td>
+						<td class="subtotal">Subtotal</td>		
+						
+						</thead>
+						<tbody>
+						<tr>
+							<td class="name">Apple</td>
+							<td class="pricekg">$5.00</td>
+							<td class="quantity">1</td>
+							<td class="subtotal">$5.00</td>	
+						</tr>
+						<tr>
+							<td class="name">Orange</td>
+							<td class="pricekg">$1.99</td>
+							<td class="quantity">2</td>
+							<td class="subtotal">$3.98</td>	
+						</tr>
+						<tr>
+							<td class="name">Watermelon</td>
+							<td class="pricekg">$1.69</td>
+							<td class="quantity">3</td>
+							<td class="subtotal">$5.07</td>	
+						</tr>
+						<tr>
+							<td class="name">Mango</td>
+							<td class="pricekg">$9.56</td>
+							<td class="quantity">2</td>
+							<td class="subtotal">$19.12</td>	
+						</tr>
+						<tr>
+							<td class="name">Peach</td>
+							<td class="pricekg">$2.99</td>
+							<td class="quantity">1</td>
+							<td class="subtotal">$2.99</td>	
+						</tr>
+					</table>
+				</td>
+			</tr>
+			
+			<tr class="footer">
+				<td style="padding-right: 20px">
+					<img class="thankyou" src="images/thankyou.svg" alt="THANK YOU"/>
+					<p class="note">
+					* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales dapibus fermentum. Nunc adipiscing, magna sed scelerisque cursus, erat lectus dapibus urna, sed facilisis leo dui et ipsum.
+					</p>
+				</td>
+				<td>
+					<div class="totalall">
+						<table>
+							<tr>
+								<td class="heading">
+								Subtotal
+								</td>
+								<td class="body">
+								$36.00
+								</td>
+							</tr>
+							<tr>
+								<td class="heading">
+								GST (10%)
+								</td>
+								<td class="body">
+								$3.60
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<div class="bordertop" style="margin-bottom: 10px;"></div>
+								</td>
+							</tr>
+							<tr>
+								<td class="heading">
+								Total
+								</td>
+								<td id="totalall" class="body">
+								$39.60
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+			</tr>
+			
+		</table>
+	</div>
+
+<!--footer-->
+
+<div class="brownbar footer"><img class="ribbon-bottom" src="images/ribbon-bottom.svg"/></div>
+
+
+</body>
+</html>

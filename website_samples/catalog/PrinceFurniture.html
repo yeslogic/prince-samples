@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Prince Furniture</title>
+<link rel="stylesheet" href="PrinceFurniture.css" />
+<link rel="stylesheet" href="blueberry.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script src="jquery.blueberry.js"></script>
+</head>
+<script>
+
+$(window).load(function() {
+	$('.blueberry').blueberry();
+});
+
+</script>
+<body>
+<div class="outer">
+
+<div class="headercontainer">
+	<div class="logo"><a href=""><img src="images/PrinceFurnitureLogo.svg"/></a>
+	<div class="extramenu">
+	<p>
+	<span style="color: #ef5a24">></span> Talk to us<br/>
+	<span style="color: #ef5a24">></span> Check stock availability<br/>
+	<span style="color: #ef5a24">></span> Our Location<br/>
+	<span style="color: #ef5a24">></span> Our Service
+	</p>
+	</div>
+	</div>
+
+	<ul class=navigation-bar>
+		<li><a href="#a">Living Room</a></li>
+		<li><a href="#b">Bedroom</a></li>
+		<li><a href="#c">Study Room</a></li>
+		<li class="current"><a href="#d">Mix n Match</a></li>
+		<li><a href="#d">Bathroom</a></li>
+		<li class="searchbar"><input type="text" style="width: 140px;"/><button>Search</button></li>
+	</ul>
+</div>
+
+<div class="blueberry" style="">
+  <ul class="slides" style="">
+    <li>
+	<div class="banner">
+	<img class="image1" src="images/banner1.jpg" />
+	</div>
+	<p class="description1">
+	<b>1. Lorem ipsum dolor  $299</b> sit amet, consectetur adipiscing elit.<br/>
+	<b>2. Proin lorem sem $234</b> rhoncus ut aliquet in, mattis tincidunt dui. <br/>
+	<b>3. Pellentesque $864</b> habitant morbi tristique senectus. <br/>
+	<b>4. et netus  $383</b> et malesuada fames ac turpis egestas. <br/>
+	<b>5. Suspendisse $450</b> pellentesque auctor risus a convallis. 
+	</p>
+	</li>
+	
+    <li><div class="banner"><img class="image2" src="images/banner2.jpg" /></div>
+	<p class="description2">
+	<b>1. Lorem ipsum dolor  $299</b> sit amet, consectetur adipiscing elit.<br/>
+	<b>2. Proin lorem sem $234</b> rhoncus ut aliquet in, mattis tincidunt dui. <br/>
+	<b>3. Pellentesque $864</b> habitant morbi tristique senectus. <br/>
+	<b>4. et netus  $383</b> et malesuada fames ac turpis egestas.
+	</p>
+	</li>
+    <li><div class="banner"><img class="image3" src="images/banner3.jpg" /></div>
+	<p class="description3">
+	<b>1. Lorem ipsum dolor  $299</b> sit amet, consectetur adipiscing elit.<br/>
+	<b>2. Proin lorem sem $234</b> rhoncus ut aliquet in, mattis tincidunt dui. <br/>
+	<b>3. Pellentesque $864</b> habitant morbi tristique senectus. <br/>
+	<b>4. et netus  $383</b> et malesuada fames ac turpis egestas. <br/>
+	<b>5. Suspendisse $450</b> pellentesque auctor risus a convallis. 
+	</p>
+	</li>
+	<li><div class="banner"><img class="image4" src="images/banner4.jpg" /></div>
+	</li>
+	<li><div class="banner"><img class="image5" src="images/banner5.jpg" /></div>
+	</li>
+  </ul>
+<!-- Optional, see options below -->
+  <ul class="pager" style="margin-top: -15px;">
+    <li><a href="#"><span></span></a></li>
+    <li><a href="#"><span></span></a></li>
+    <li><a href="#"><span></span></a></li>
+	<li><a href="#"><span></span></a></li>
+	<li><a href="#"><span></span></a></li>
+  </ul>
+<!-- Optional, see options below -->
+</div>
+
+<div class="content">
+
+<div class="sidebar">
+<a href="PrinceCatalogue.pdf"><img src="images/catalogueicon.jpg"/></a>
+<p><b>Spring 2013 Catalogue</b> is now available for download!</p>
+</div> 
+
+<table class="productdisplay" border="0">
+	<tr>
+		<td>
+			<div class="productimage"><img src="images/1.jpg" /></div>
+			<div class="productinfo">
+				<p class="price">$299</p>
+				<p class="name">Lorem Ipsum</p>
+				<p class="description">This a where you can read a product description however this is only just a sample</p>
+			</div>
+		</td>
+		<td>
+			<div class="productimage"><img src="images/2.jpg" /></div>
+			<div class="productinfo">
+				<p class="price">$299</p>
+				<p class="name">Lorem Ipsum</p>
+				<p class="description">This a where you can read a product description however this is only just a sample</p>
+			</div>
+		</td>
+		<td>
+			<div class="productimage"><img src="images/3.jpg" /></div>
+			<div class="productinfo">
+				<p class="price">$299</p>
+				<p class="name">Lorem Ipsum</p>
+				<p class="description">This a where you can read a product description however this is only just a sample</p>
+			</div>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<div class="productimage"><img src="images/4.jpg" /></div>
+			<div class="productinfo">
+				<p class="price">$299</p>
+				<p class="name">Lorem Ipsum</p>
+				<p class="description">This a where you can read a product description however this is only just a sample</p>
+			</div>
+		</td>
+		<td>
+			<div class="productimage"><img src="images/5.jpg" /></div>
+			<div class="productinfo">
+				<p class="price">$299</p>
+				<p class="name">Lorem Ipsum</p>
+				<p class="description">This a where you can read a product description however this is only just a sample</p>
+			</div>
+		</td>
+		<td>
+			<div class="productimage"><img src="images/6.jpg" /></div>
+			<div class="productinfo">
+				<p class="price">$299</p>
+				<p class="name">Lorem Ipsum</p>
+				<p class="description">This a where you can read a product description however this is only just a sample</p>
+			</div>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<div class="productimage"><img src="images/7.jpg" /></div>
+			<div class="productinfo">
+				<p class="price">$299</p>
+				<p class="name">Lorem Ipsum</p>
+				<p class="description">This a where you can read a product description however this is only just a sample</p>
+			</div>
+		</td>
+		<td>
+			<div class="productimage"><img src="images/8.png" /></div>
+			<div class="productinfo">
+				<p class="price">$299</p>
+				<p class="name">Lorem Ipsum</p>
+				<p class="description">This a where you can read a product description however this is only just a sample</p>
+			</div>
+		</td>
+		<td>
+			<div class="productimage"><img src="images/9.jpg" /></div>
+			<div class="productinfo">
+				<p class="price">$299</p>
+				<p class="name">Lorem Ipsum</p>
+				<p class="description">This a where you can read a product description however this is only just a sample</p>
+			</div>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<div class="productimage"><img src="images/10.jpg" /></div>
+			<div class="productinfo">
+				<p class="price">$299</p>
+				<p class="name">Lorem Ipsum</p>
+				<p class="description">This a where you can read a product description however this is only just a sample</p>
+			</div>
+		</td>
+		<td>
+			<div class="productimage"><img src="images/11.jpg" /></div>
+			<div class="productinfo">
+				<p class="price">$299</p>
+				<p class="name">Lorem Ipsum</p>
+				<p class="description">This a where you can read a product description however this is only just a sample</p>
+			</div>
+		</td>
+		<td>
+			<div class="productimage"><img src="images/12.jpg" /></div>
+			<div class="productinfo">
+				<p class="price">$299</p>
+				<p class="name">Lorem Ipsum</p>
+				<p class="description">This a where you can read a product description however this is only just a sample</p>
+			</div>
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+
+<div class="footer">
+
+</div>
+
+</body>
+</html> 

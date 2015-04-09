@@ -1,0 +1,544 @@
+/* Sample style sheet for boom!, the book microformat              */
+/* written by Håkon Wium Lie, October 2006                         */
+/* You may reuse this style sheet for any purpose without any fees */
+
+/*
+
+A book consists of different types of sections. This style sheet
+assumes that the content of the book is marked up with these class
+names:
+
+    frontcover
+    halftitlepage: contains the title of the book
+    titlepage: contains the title of the book, name of author(s) and publisher
+    imprint: left page with copyright, publisher, library printing information
+    dedication: right page with short dedication
+    inspiration
+    foreword: written by someone other than the author(s)
+    preface: preface, including acknowledgements
+    toc: table of contents
+    lot 
+    lof
+    chapter: each chapter is given its own DIV element
+    uchapter: unnumberd chapters
+    part
+    afterword
+    references: contains list of references
+    appendix: each appendix is given its own 
+    bibliography
+    glossary
+    index
+    colophon: describes how the book was produced
+    promotion
+    backcover
+
+By using these class names, typically on HTML's DIV element, an author
+can deal with the content and a designer can deal with the style
+sheet. In principle, only the style sheet needs to be edited to
+repurpose the content. In the real world, it's hard to achive full
+separation between content and its presentation, but it still makes
+much sense to use combine structured documents with style sheets.
+
+A book will use several of the types listed above, but few books will
+use all of them.
+
+*/
+
+
+/* Establish some generic settings */
+
+
+html { 
+  margin: 0;
+  font: 10pt/1.4 "Bergamo", "Georgia", serif;
+  text-align: justify;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  font-weight: normal;
+}
+
+div { background: white }
+
+q::before {
+  content: "\201C";
+}
+
+q::after {
+  content: "\201D";
+}
+
+p { margin: 0 }
+p + p { text-indent: 1.3em }
+
+pre {  margin: 1em 1.3em; }
+
+a { text-decoration: none; color: black }
+
+
+
+/* define pages */
+
+@page {
+  margin: 27mm 16mm 27mm 16mm;
+  size: 7in 9.25in;
+
+  @top-center {
+    content: string(header, first); 
+  }
+
+  @footnotes {
+    border-top: thin solid black;
+    padding-top: 0.3em;
+    margin-top: 0.6em;
+    margin-left: 30%;
+  }
+}
+
+
+/* define default page and names pages: cover, blank, frontmatter */
+
+@page :left {
+  margin-right: 22mm;
+  @bottom-left {
+    font: 11pt "Bergamo", serif;
+    content: counter(page);
+    padding-top: 2em;
+    vertical-align: top;
+  }
+}
+
+@page :right {
+  margin-left: 22mm;
+  @bottom-right {
+    font: 11pt "Bergamo", serif;
+    content: counter(page);
+    text-align: right;
+    vertical-align: top;
+    padding-top: 2em;
+  }
+}
+
+@page frontmatter :left {
+  @top-left {
+    font: 11pt "Bergamo", serif;
+    content: string(title);
+    vertical-align: bottom;
+    padding-bottom: 2em;
+  }
+
+  @bottom-left {
+    font: 11pt "Bergamo", serif;
+    content: counter(page, lower-roman);
+    padding-top: 2em;
+    vertical-align: top;
+  }
+}
+
+@page frontcover { 
+  margin: 0;
+  padding: 0;
+  background: black url(front.jpg);
+}
+
+@page backcover { 
+  margin: 0;
+  padding: 0;
+  background: black;
+}
+
+
+@page frontmatter :right {
+  @top-right {
+    font: 11pt "Bergamo", serif;
+    content: string(header, first); 
+    vertical-align: bottom;
+    padding-bottom: 2em; 
+  }
+
+  @bottom-right {
+    font: 11pt "Bergamo", serif;
+    content: counter(page, lower-roman);
+    text-align: right;
+    vertical-align: top;
+    padding-top: 2em;
+  }
+}
+
+@page blank {
+  @top-center { content: none }
+}
+
+@page blank :left {
+  @top-left { content: none }
+  @bottom-left { content: none }
+}
+
+@page blank :right {
+  @top-right { content: none }
+  @bottom-right { content: none }
+}
+
+
+/* describe styling for the various parts of the book */
+
+/* frontcover */
+
+.frontcover {
+  display: block;
+  page: frontcover;
+  page-break-before: right;
+}
+
+.frontcover img {
+  position: absolute;
+  padding: 0;
+  width: 7in; height: 9.25in;
+  left: 0; top: 0;
+  z-index: -1;
+}
+
+.frontcover h1 {
+  position: absolute;
+  padding: 0;
+  left: 2cm; top: 3.5cm;
+  color: white;
+  font-size: 44pt;
+  font-weight: normal;
+}
+
+.frontcover h2 {
+  position: absolute;
+  padding: 0;
+  right: 0; top: 5cm;
+  color: black;
+  background: white;
+  font-size: 16pt;
+  font-weight: normal;
+  padding: 0.2em 5em 0.2em 1em;
+  letter-spacing: 0.15em;
+}
+
+
+/* halftitlepage */
+
+.halftitlepage {
+  display: block;
+  page: blank;
+  page-break-before: right;
+  text-align: center;
+}
+
+.halftitlepage h1 { margin-bottom: 2em; }
+.halftitlepage h2 { font-size: 1.2em; margin-bottom: 3em; }
+.halftitlepage h3 { font-size: 1em; margin-bottom: 3em; }
+.halftitlepage h3 { font-size: 1em; margin-bottom: 3em; }
+
+/* titlepage */
+
+.titlepage {
+  display: block;
+  page: blank;
+  page-break-before: right;
+  text-align: center;
+}
+
+.titlepage h1 { margin-bottom: 2em; }
+.titlepage h2 { font-size: 1.2em; margin-bottom: 3em; }
+.titlepage h3 { font-size: 1em; margin-bottom: 3em; }
+.titlepage h3 { font-size: 1em; margin-bottom: 3em; }
+
+
+/* imprint */
+
+.imprint {
+  display: block;
+  page: blank;
+  page-break-before: left;
+  text-align: center;
+}
+
+/* dedication */
+
+.dedication {
+  display: block;
+  page: blank;
+  page-break-before: right;
+}
+
+/* inspiration */
+
+.inspiration {
+  display: block;
+  page: blank;
+  page-break-before: right;
+}
+
+/* foreword */
+
+.foreword {
+  display: block;
+  page: frontmatter;
+  page-break-before: always;
+}
+
+/* preface */
+
+.preface {
+  display: block;
+  page: frontmatter;
+  page-break-before: always;
+}
+
+/* table of contents */
+
+.toc {
+  display: block;
+  page: frontmatter;
+  page-break-before: always;
+}
+
+
+ul.toc, ul.toc ul { 
+  list-style-type: none;
+  margin: 0; padding: 0;
+}
+ul.toc ul {
+  margin-left: 1em;
+  font-weight: normal;
+}
+ul.toc > li { 
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+ul.toc a::after {
+  content: leader('.') target-counter(attr(href), page);
+  font-style: normal;
+}
+ul.toc > li.frontmatter a::after {
+  content: leader('.') target-counter(attr(href), page, lower-roman);
+  font-style: normal;
+}
+ul.toc > li.endmatter a::after {
+  content: leader('.') target-counter(attr(href), page);
+  font-style: normal;
+}
+ul.toc > li.chapter::before {
+  content: "Chapter " counter(toc-chapter, decimal);
+  display: block;
+  margin: 1em 0 0.1em -2.5cm;
+  font-weight: normal;
+  counter-increment: toc-chapter;
+  page-break-after: avoid;
+}
+
+/* list of tables */
+
+.lot  {
+  display: block;
+  page: frontmatter;
+  page-break-before: always;
+}
+
+/* list of figures */
+
+.lof {
+  display: block;
+  page: frontmatter;
+  page-break-before: always;
+}
+
+/* chapter */
+
+.chapter {
+  display: block;
+  page-break-before: always;
+  counter-increment: chapter;
+  string-set: header " ";     /* null it for first page */
+}
+
+.chapter::before { 
+  display: block;
+  content: counter(chapter); 
+  font-size: 3em;
+  padding: 1.8em 0 1em;
+  text-align: center;
+  string-set: header "Chapter " counter(chapter)
+}
+
+/* unnumbered chapters */
+
+.uchapter {
+  display: block;
+  page-break-before: always;
+}
+
+/* parts of a book -- this element should only include part-specific content, not chapters */
+
+.part {
+  display: block;
+  page: blank;
+  page-break-before: right;
+  counter-increment: part;
+}
+
+div.part h1 { 
+  font-size: 2.5em;
+}
+
+div.part::before {
+  display: block;
+  font-size: 1.5em;
+  content: "Part " counter(part);
+  text-align: center;
+}
+
+/* afterword */
+
+.afterword {
+  display: block;
+  page-break-before: always;
+}
+
+.references {
+  display: block;
+  page-break-before: always;
+}
+
+.appendix {
+  display: block;
+  page-break-before: always;
+}
+
+.bibliography {
+  display: block;
+  page-break-before: always;
+}
+
+.glossary {
+  display: block;
+  page-break-before: always;
+}
+
+/* index */
+
+.index {
+  display: block;
+  page-break-before: always;
+}
+
+ul.index { 
+  list-style-type: none;
+  margin: 0; padding: 0;
+  column-count: 2;
+  column-gap: 1em;
+}
+
+ul.index a::after { content: ", " target-counter(attr(href), page); }
+
+/* colophon */
+
+.colophon {
+  display: block;
+  page-break-before: always;
+}
+
+.promotion {
+  display: block;
+  page-break-before: always;
+}
+
+.backcover {
+  display: block;
+  page: backcover;
+  padding: 20mm 16mm 20mm 16mm;
+  page-break-before: left;
+  color: white;
+  background: black;
+  font-size: 15pt;
+}
+
+
+/* --------------------------------------------------------------- */
+
+
+/* cross-references */
+
+a.pageref::after { content: " on page " target-counter(attr(href), page); }
+a.chapref::before { content: " Chapter " target-counter(attr(href), chapter) ", "; }
+a.figref { content: " Figure " target-counter(attr(href), figure); }
+a.tableref { content: " Table " target-counter(attr(href), figure); }
+
+/* footnotes */
+
+.footnote {
+  display: none;                   /* default rule */
+
+  display: prince-footnote;        /* prince-specific rules */
+  position: footnote;
+  footnote-style-position: inside;
+
+  counter-increment: footnote;
+  margin-left: 1.4em;
+  font-size: 90%;
+  line-height: 1.4;
+}
+
+.footnote::footnote-call {
+  vertical-align: super;
+  font-size: 80%;
+}
+
+.footnote::footnote-marker {
+  vertical-align: super;
+  color: green;
+  padding-right: 0.4em;
+}
+
+
+/* horizontal markers */
+
+hr.star, hr.starstar { 
+  page-break-before: avoid;
+  display: block;
+  content: "*";
+  border: none;
+  text-align: center;
+  padding: 1em;
+}
+
+hr.starstar {
+  content: "**";
+}
+
+em em { font-style: normal }
+
+#prologue { 
+  page: 
+  font-style: italic;
+  page-break-before: left;
+}
+
+
+.only-print { display: none }
+.not-print { display: block }
+
+
+@media print {
+  .only-print { display: block }
+  .not-print { display: none }
+  .uchapter { padding: 1em 0 0 }
+  p.bottom { float: bottom; width: 100% }
+}
+
+
+@media screen {
+  html { margin: 1em; font: 14px/1.4 "Georgia", serif; }
+  h1 { margin-bottom: 0.5em }
+  .frontcover, .backcover { display: none }
+  div { clear: both; background: #eef; margin: 0.5em; padding: 1em }
+  .imprint { text-align: left }
+  .chapter::before { padding-top: 0em }
+  p.bottom { margin-top: 1em; text-indent: 0 }
+}

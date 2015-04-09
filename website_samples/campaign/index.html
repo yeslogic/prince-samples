@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body { margin: 2em }
+div { margin: 0.3em 0 2em }
+</style>
+</head>
+<body>
+
+<form method="post" action="/cgi-bin/campaign.pl">
+
+<div>
+<input type="submit" value="The text below is correct, make me a letter I can print out!" /><br/>
+</div>
+
+<div style="">
+<label><input type="radio" name="format" checked="checked" value="pdf"/>PDF</label>
+<label><input type="radio" name="format" value="html"/>HTML</label> 
+</div>
+
+<div style="width: 800px; border: 1px solid black; padding: 2em">
+
+<input type="text" name="lh1" size="35" value="Campaign for Better Typography"/><br/>
+<input type="text" name="lh2" size="35" value="Baskerville"/><br/>
+<input type="text" name="lh3" size="35" value=""/><br/>
+
+<br/>
+
+<input type="text" name="date" size="35" value="Today's date"/><br/>
+
+
+<br/>
+Motion Picture Association Of America, Inc.<br/>
+15503 Ventura Boulevard<br/>
+Encino, California 91436
+<br/>
+<br/>
+
+<textarea cols="80" rows="15" wrap="hard" name="message">
+Dear MPAA,
+
+I write you this letter voice my support for the campaign for better
+typography in movies. I would like to ensure that all text, numbering,
+signs and credits in movies are given professional typographical
+treatment. This will enhance the enjoyment of the viewers, including
+myself. Please take advantage of recent progress in the areas of
+anti-aliasing, kerning and hinting.
+
+</textarea><br/>
+<br/>
+<br/>
+
+<input type="text" name="closing" size="35" value="Sincerely,"/><br/><br/>
+
+<input type="text" name="name" size="35" value="Cas Lon"/><br/>
+
+</div>
+</form>
+
+</body>
+</html>

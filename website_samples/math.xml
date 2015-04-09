@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/css" href="print.css"?>
+<!DOCTYPE root SYSTEM "http://xml.org/xml/schema/e95210e7/xml.dtd" 
+[<!ATTLIST a xmlns CDATA #FIXED "http://www.w3.org/1999/xhtml">]>
+<root xml:lang="en">
+<h1>Formatting Mathematical Articles with Cascading Style Sheets</h1>
+<set>
+<seg key="Author">George Chavchanidze</seg>
+<seg key="Address">Department of Theoretical Physics,
+A. Razmadze Institute of Mathematics,
+1 Aleksidze Street, Tbilisi 0193, Georgia</seg>
+<seg key="Abstract">
+This page shows how to format mathematical articles with Cascading Style Sheets (CSS).
+Simple XML 1.0 markup is used to capture basic structure
+of math expressions while rendering is specified via CSS 2.0/2.1.
+Abilities and limitations of present approach are discussed.</seg>
+<seg key="Keywords">eXtensible Markup Language, Cascading Style Sheets, Mathematics in XML</seg>
+<seg key="Date">Sun, 10 Oct 2004 (revised version)</seg>
+</set>
+<h2 xml:id="intro">Introduction</h2>
+<par>CSS is the simplest way to control formatting of XML and SGML documents.
+Today it is mainly used in web design to render and style (X)HTML documents,
+but its applications spread far beyond ordinary web design and
+one can use XML and CSS to embed mathematical expressions in web pages.
+Generally speaking it is easy to control general layout and style of scientific documents
+with CSS, the only problem is rendering of complex mathematical formulæ. 
+So in this article we will mainly focus on this problem
+and suggest relatively simple approach for rendering of mathematical expressions 
+that may appear in scientific papers.
+We use simple XML 1.0 markup to capture basic structure
+of math expressions and CSS 2.0/2.1 to specify their rendering
+(see <a href="#refs">[2]-[4]</a> for specs).
+</par>
+<par>
+Each mathematical expression may be formatted as inline equation like <m>z = 1/c</m>
+or as block level (displayed) equation
+<e>z = 1/c</e>
+Rendering of inline equations is more specific as one has to care about height of line box.
+</par>
+
+<h2 xml:id="indices">Indices in display mode</h2>
+<par>In mathematical expressions indices are probably the most widespread objects
+so it is essential to keep corresponding markup as simple as possible, otherwise
+compactness and readability of XML source will be seriously undermined.
+The simpliest way is to use CSS
+<a href="http://www.w3.org/TR/CSS21/visuren.html#relative-positioning">relative positioning</a>
+ to shift indices up/downwards.
+Most of the browsers support relative positioning and thus can easily process simple indices.
+Here are some examples of top
+<e>dz<t>k</t> = dx<t>k</t> + idy<t>k</t></e>
+<e>ch<t>2</t>(x) − sh<t>2</t>(x) = 1</e>
+<e>ch(3x) = 4ch<t>3</t>(x) − 3ch(x)</e>
+<e>Na − e<t>−</t> = Na<t>+</t></e>
+and lower indices taken from mathematics and chemistry
+<e>T<l>mn</l> = − T<l>nm</l></e>
+<e>Fe<l>3</l>O<l>4</l> + 4H<l>2</l> ⇄ 3Fe + 4H<l>2</l></e>
+Simple indices may be combined. Subscripts may precede superscripts and vise versa.
+<e>T<l>mn</l> = ε<l>nm</l><t>k</t>S<l>k</l></e>
+<e>T<t>mn</t> = ε<t>nm</t><l>k</l>S<t>k</t></e>
+<e><l_>13</l_>Al<t>27</t> + <l_>2</l_>He<t>4</t> = <l_>15</l_>P<t>30</t> + <l_>0</l_>n<t>1</t></e>
+Indices may be also positioned one over another in this way
+<e>
+∇<l>m</l>R<g><t>n</t><l>ikl</l></g> +
+∇<l>l</l>R<g><t>n</t><l>imk</l></g> +
+∇<l>k</l>R<g><t>n</t><l>ilm</l></g> = 0
+</e>
+However to archive correct alignment of such an indices one has to put
+them in <a href="http://www.w3.org/TR/CSS21/tables.html#q2">inline table</a>.
+Here browser compatibility issues show up as some browsers
+does not support inline tables. Nesting of simple indices is allowed.
+<e>dz<t>k<l>1</l></t> = dx<t>k<l>1</l></t> + idy<t>k<l>1</l></t></e>
+<e>dz<t>k<t>(1)</t></t> = dx<t>k<t>(1)</t></t> + idy<t>k<t>(1)</t></t></e>
+<e>T<l>k<l>1</l>k<l>2</l></l> = − T<l>k<l>2</l>k<l>1</l></l></e>
+<e>T<l>k<t>(1)</t>k<t>(2)</t></l> = − T<l>k<t>(2)</t>k<t>(1)</t></l></e>
+<e>e<t>A<t>(1)</t></t>e<t>A<t>(2)</t></t> = e<t>A<t>(1)</t> + A<t>(2)</t></t></e>
+<e>X<l>h</l>(F) = L<l>X<l>h</l></l>F</e>
+<e>
+∇<l>k<t>1</t></l>R<g><t>k<t>5</t></t><l>k<t>2</t>k<t>3</t>k<t>4</t></l></g> +
+∇<l>k<t>4</t></l>R<g><t>k<t>5</t></t><l>k<t>2</t>k<t>1</t>k<t>3</t></l></g> +
+∇<l>k<t>3</t></l>R<g><t>k<t>5</t></t><l>k<t>2</t>k<t>4</t>k<t>1</t></l></g> = 0
+</e>
+<e>
+∇<l>ŝ<l>1</l></l>R<g><t>ŝ<l>5</l></t><l>ŝ<l>2</l>ŝ<l>3</l>ŝ<l>4</l></l></g> +
+∇<l>ŝ<l>4</l></l>R<g><t>ŝ<l>5</l></t><l>ŝ<l>2</l>ŝ<l>1</l>ŝ<l>3</l></l></g> +
+∇<l>ŝ<l>3</l></l>R<g><t>ŝ<l>5</l></t><l>ŝ<l>2</l>ŝ<l>4</l>ŝ<l>1</l></l></g> = 0
+</e>
+So rendering indices with CSS2 is not a big problem. Their rendering can be controlled
+in details by both author and user through adjusting relative positioning offsets,
+font-size and style in author and user style sheets.
+</par>
+<h2 xml:id="inlineindices">Indices in inline mode</h2>
+<par>
+Here similar math expression appear inline. Note that relatively positioned indices
+should not affect line height
+ <m>T<l>mn</l> = − T<l>nm</l></m>.
+Alternatively one can shift indices using CSS vertical-align property
+used to control vertical alignment. However, unlike relative
+positioning, vertical alignment may affect height of line box.
+So it is better to use relative positioning <m>ε<l>nm</l><t>k</t>S<l>k</l></m>.
+Line breaks inside equations are prohibited as browsers may generate line break in
+inappropriate place (after all, there is no reliable algorithm for handling line breaks
+in mathematical equations).
+Thus the simplest solution is to prohibit all line breaks inside math expressions 
+<m>ε<t>nm</t><l>k</l>S<t>k</t></m> (this can be done by setting CSS
+<a href="http://www.w3.org/TR/CSS21/text.html#white-space-prop">'white-space'</a>
+property to 'nowrap') and mark those few points where line breaks are allowed with
+an element that has CSS 'white-space' property set to 'auto'.
+More complex indices <m>∇<l>m</l>R<g><t>n</t><l>ikl</l></g></m>
+can be used in inline mode as well, but again some browsers does not like them.
+This happens due to weak CSS support in those browsers. One can nest indices
+as follows
+<m>∇<l>k<t>1</t></l>R<g><t>k<t>5</t></t><l>k<t>2</t>k<t>3</t>k<t>4</t></l></g></m>.
+Nested indices are also shifted using relative positioning and thus they
+should not change height of line box. Here are another samples
+of nested superscripts <m>e<t>A<t>(1)</t></t>e<t>A<t>(2)</t></t></m> and
+nested subscripts <m>X<l>h</l>(F) = L<l>X<l>h</l></l>F</m>.
+</par>
+
+<h2 xml:id="frac">Fractions in display mode</h2>
+<par>Fractions are quite frequent in mathematical articles,
+so it is preferable to have simple markup for fractions. Making it too simple results
+poor rendering quality so we think that the minimal reasonable approach is to
+take two elements,  to mark fraction and its rows  (numerator/denominator).
+Fractions can be formatted as vertically centered
+<a href="http://www.w3.org/TR/CSS21/tables.html#q2">inline tables</a>. To reduce markup
+<a href="http://www.w3.org/TR/CSS21/tables.html#anonymous-boxes">anonymous table objects</a> may be exploited.
+Below you see example from statistics
+<e>
+<o>A</o> =
+<f>
+<r>Tr(AW)</r>
+<r>Tr(W)</r>
+</f>
+</e>
+another example from gravity
+<e>
+R<l>nm</l> −
+<f>
+<r>1</r>
+<r>2</r>
+</f>Rg<l>nm</l> = 0
+</e>
+and some samples from analysis and trigonometry
+<e>
+ln(2) = 1 −
+<f>
+<r>1</r>
+<r>2</r>
+</f>
++
+<f>
+<r>1</r>
+<r>3</r>
+</f>
+−
+<f>
+<r>1</r>
+<r>4</r>
+</f>
++ ...
+</e>
+<e>B<l>6</l> =
+<f>
+<r>3617</r>
+<r>510</r>
+</f></e>
+<e>ch(x) =
+<f>
+<r>1</r>
+<r>2</r>
+</f>(e<t>x</t> + e<t>− x</t>)
+</e>
+<e>
+th(x ± y) =
+<f>
+<r>th(x) ± th(y)</r>
+<r>1 ± th(x)th(y)</r>
+</f>
+</e>
+Fractions may contain nested indices. Here are some samples from mechanics
+<e>
+I =
+<f>
+<r>m<l>1</l>m<l>2</l></r>
+<r>m<l>1</l> + m<l>2</l></r>
+</f>x<t>2</t>
+</e>
+<e>
+D =
+<f>
+<r>4B<t>3</t></r>
+<r>ω<t>2</t></r>
+</f>
+</e>
+examples from field theory
+<e>
+F<l>mn</l> =
+<f>
+<r>∂A<l>m</l></r>
+<r>∂x<t>n</t></r>
+</f> −
+<f>
+<r>∂A<l>n</l></r>
+<r>∂x<t>m</t></r>
+</f>
+</e>
+<e>
+F<t>mn</t> =
+<f>
+<r>∂A<t>m</t></r>
+<r>∂x<l>n</l></r>
+</f> −
+<f>
+<r>∂A<t>n</t></r>
+<r>∂x<l>m</l></r>
+</f>
+</e>
+and other mathematical expressions
+<e>
+th(2x) =
+<f>
+<r>2th(x)</r>
+<r>1 + th<t>2</t>(x)</r>
+</f>
+</e>
+<e>
+G = 1 −
+<f>
+<r>1</r>
+<r>3<t>2</t></r>
+</f>
++
+<f>
+<r>1</r>
+<r>5<t>2</t></r>
+</f>
+−
+<f>
+<r>1</r>
+<r>7<t>2</t></r>
+</f>
++ ...
+</e>
+Nesting of fractions is possible but limited to second order
+<e>g = 1 −
+<f>
+<r>1</r>
+<r>1 −
+<c>
+<d>a</d>
+<d>r</d>
+</c></r>
+</f>
+</e>
+<e>m =
+<f>
+<r>1</r>
+<r>
+<c>
+<d>1</d>
+<d>m<l>1</l></d>
+</c> +
+<c>
+<d>1</d>
+<d>m<l>2</l></d>
+</c>
+</r>
+</f>
+</e>
+More deep nesting is also possible, but may require extra markup so
+at the moment it is reasonable to limit nesting to second order as in
+real world articles deeper nesting is rarely used and can be always avoided.
+</par>
+
+<h2 xml:id="infrac">Fractions in inline mode</h2>
+
+<par>In inline mode fractions are rendered in the same manner as in block level equations
+<m>
+<c>
+<d>Tr(AW)</d>
+<d>Tr(W)</d>
+</c>
+</m>.
+The only difference is that inline fractions are slightly compactified (height of numerator/denominator is
+reduced)
+<m>
+<c>
+<d>th(x) ± th(y)</d>
+<d>1 ± th(x)th(y)</d>
+</c>
+</m>
+to avoid possible line-height enlargement and nesting of fractions in inline mode
+is not allowed but nesting of indices is possible so
+inline fractions may contain nested indices
+<m>
+<c>
+<d>m<l>1</l>m<l>2</l></d>
+<d>m<l>1</l> + m<l>2</l></d>
+</c>x<t>2</t>
+</m>.
+Here is another example with nested superscripts
+<m>
+<c>
+<d>2th(x)</d>
+<d>1 + th<t>2</t>(x)</d>
+</c>
+</m>
+</par>
+
+<h2 xml:id="ope">Operators in display mode</h2>
+
+<par>
+Rendering of indexed operators is much more complicated issue as in general
+number of under and over scripts may be arbitrary and in addition one needs to rearrange
+all this stuff when operators are nested in fractions or appear inline.
+Also shape and baseline of glyphs may vary. At the moment we will assume that only single
+under and over scripts are used (multiple under scripts are really rarely used while multiple
+over scripts are almost never used). One can format operators as inline tables.
+Below are some sample integrals
+<e>B(m , n) =
+<und>
+<x>1</x>
+<co re="∫"/>
+<x>0</x>
+</und>
+x<t>m − 1</t>(1 − x)<t>n − 1</t>dx
+</e>
+Here are some sums
+<e>
+p =
+<und>
+<x>n</x>
+<co re="∑"/>
+<x>m=1</x>
+</und> p<l>m</l>
+</e>
+<e>
+G =
+<und><co re="∑"/><x>p, s ∈ Z</x></und> A<t>p</t>B<t>s</t>
+</e>
+Product
+<e>
+Ω = <und><co re="∏"/><x>m ∈ N</x></und> Ω<t>(m)</t>
+</e>
+Unification operator
+<e>
+A =
+<und>
+<x>∞</x>
+<co re="∪"/>
+<x>m=1</x>
+</und>
+A<t>(m)</t>
+</e>
+and intersection
+<e>
+B(s) =
+<und>
+<x>2n</x>
+<co re="∩"/>
+<x>m=1</x>
+</und>
+B<t>(m)</t>
+</e>
+Direct sum and tensor products are rendered in the same manner
+<e>
+Q <fen><und>
+<x>n</x>
+<co re="⊕"/>
+<x>k=1</x>
+</und>
+x<l>k</l></fen>
+=
+<und>
+<x>n</x>
+<co re="⊕"/>
+<x>k=1</x>
+</und>
+x<l>Q[k]</l>
+</e>
+<e>
+Â =
+<und>
+<x>n</x>
+<co re="⊗"/>
+<x>k=1</x>
+</und>
+<und>
+<x>m</x>
+<co re="⊗"/>
+<x>s=1</x>
+</und>
+N<l>ks</l>M<l>s</l>
+</e>
+Under and over scripts may contain nested indices
+<e>
+G =
+<und><co re="∑"/><x>m<l>1</l>m<l>2</l></x></und>
+A<t>m<l>1</l></t>B<t>m<l>2</l></t>
+</e>
+<e>
+F =
+<und><co re="∑"/><x>m<l>1</l> ≠ m<l>2</l></x></und>
+p<l>m<l>1</l></l>p<l>m<l>2</l></l>
+</e>
+Operators can be combined with indices and fractions to form complex
+expressions
+<e>
+<und>
+<x>∞</x>
+<co re="∫"/>
+<x>0</x>
+</und>
+<f>
+<r>e<t>− ax</t> − e<t>− bx</t></r>
+<r>x</r>
+</f>
+dx =  ln
+<f>
+<r>b</r>
+<r>a</r>
+</f>
+</e>
+<e>
+<und>
+<x>∞</x>
+<co re="∫"/>
+<x>0</x>
+</und>
+x<t>n</t>e<t>− ax</t>dx =
+<f>
+<r>n!</r>
+<r>a<t>n + 1</t></r>
+</f>
+</e>
+
+<e>
+<und>
+<x>1</x>
+<co re="∫"/>
+<x>0</x>
+</und>
+<f>
+<r>dx</r>
+<r>1 + 2x + x<t>2</t></r>
+</f>
+ =
+<f>
+<r>1</r>
+<r>2</r>
+</f>
+</e>
+
+<e>
+<und>
+<x>1</x>
+<co re="∫"/>
+<x>0</x>
+</und>
+<f>
+<r>sin<t>2</t>mx</r>
+<r>c<t>2</t> + x<t>2</t></r>
+</f>dx =
+<f>
+<r>π</r>
+<r>4c</r>
+</f>
+(1 − e<t>−2mc</t>)
+</e>
+<e>
+<und>
+<x>1</x>
+<co re="∫"/>
+<x>0</x>
+</und>
+x<t>2p − 1</t>ln(1 + x)dx =
+<f>
+<r>1</r>
+<r>2p</r>
+</f>
+<und>
+<x>2p</x>
+<co re="∑"/>
+<x>n=1</x>
+</und>
+<f>
+<r>(− 1)<t>n − 1</t></r>
+<r>n</r>
+</f>
+</e>
+Nested fractions should not affect vertical alignment of parent fraction
+<e>
+<und>
+<x>1</x>
+<co re="∫"/>
+<x>0</x>
+</und>
+x<t>m</t>(1 − x<t>n</t>)<t>p</t>dx =
+<f>
+<r>Γ(p + 1)Γ(<c><d>m + 1</d><d>n</d></c>)</r>
+<r>nΓ(p + 1 + <c><d>m + 1</d><d>n</d></c>)</r>
+</f></e>
+
+<e>
+<und>
+<x>∞</x>
+<co re="∫"/>
+<x>0</x>
+</und>
+<f>
+<r>sin(mx)</r>
+<r>e<t>ax</t> + 1</r>
+</f>dx =
+<f>
+<r>1</r>
+<r>2m</r>
+</f>
+−
+<f>
+<r>π</r>
+<r>2ash(<c><d>πm</d><d>a</d></c>)</r>
+</f></e>
+
+<e>
+<und>
+<x>∞</x>
+<co re="∫"/>
+<x>0</x>
+</und>
+<f>
+<r>th(<c><d>πx</d><d>2</d></c>)</r>
+<r>1 + x<t>2</t></r>
+</f>sin(mx)dx =
+<f>
+<r>m</r>
+<r>e<t>m</t></r>
+</f>
+− sh(m)ln(1 − e<t>−2m</t>)
+</e>
+
+<e>
+<und>
+<x>∞</x>
+<co re="∫"/>
+<x>0</x>
+</und>
+<f>
+<r>cos(mx)cos(nx)</r>
+<r>ch(ax)</r>
+</f>
+dx =
+<f>
+<r>πch(<c><d>πm</d><d>2a</d></c>)
+ch(<c><d>πn</d><d>2a</d></c>)</r>
+<r>a(ch(<c><d>πm</d><d>a</d></c>) 
++ ch(<c><d>πn</d><d>a</d></c>))</r>
+</f></e>
+Operators can be nested inside fractions. But in this case it is better to replace 
+under/over scripts with sub/superscripts placed after operator
+<e>
+<o>A</o> =
+<f>
+<r><co re="∑"/><g><_t>n</_t><_l>k=1</_l></g>W<t>(k)</t>A<t>(k)</t></r>
+<r><co re="∑"/><g><_t>n</_t><_l>k=1</_l></g>A<t>(k)</t>
+</r>
+</f>
+</e>
+<e>
+S =
+<f>
+<r><co re="∏"/><g><_t>n</_t><_l>k=1</_l></g>P<l>k</l></r>
+<r><co re="∏"/><g><_t>n</_t><_l>k=1</_l></g>Q<l>k</l></r>
+</f>
+</e>
+
+<e>
+<o>F</o> =
+<f>
+<r><co re="∑"/><g><_t>m</_t><_l>k=1</_l></g>F<t>(m)</t>W<t>(m)</t></r>
+<r><co re="∑"/><g><_t>m</_t><_l>k=1</_l></g>W<t>(m)</t></r>
+</f>
+=
+<f>
+<r><co re="∑"/><g><_t>m</_t><_l>k=0</_l></g>F<t>(m)</t>W<t>(m)</t></r>
+<r>Ŵ</r>
+</f>
+</e>
+So it is possible to render common operators with CSS. 
+</par>
+
+<h2 xml:id="inope">Operators in inline mode</h2>
+
+<par>
+In inline mode it is better to replace under/over scripts with indices placed after operator,
+<m><co re="∑"/><g><_t>n</_t><_l>m=1</_l></g>p<l>m</l></m>
+in this way possible line height distortions are reduced
+<m><co re="∏"/><g><_t>s</_t><_l>m=0</_l></g>Ω<t>(m)</t></m>.
+The additional problem is that in different fonts glyphs that correspond 
+to mathematical operators like sums, products and intergals have different shapes, 
+baselines and sizes 
+<m><co re="∑"/><_l>m<l>1</l> ≠ m<l>2</l></_l>p<l>m<l>1</l></l>p<l>m<l>2</l></l></m> 
+so if in one font operators look perfectly centered
+in others they may appear to be distorted. The problem will be
+partly resolved when we will have single font with good coverage of
+all mathematical ranges (maybe <a href="http://www.stixfonts.org">STIX</a>).
+</par>
+
+<h2 xml:id="under">Under and Over scripts</h2>
+<par>
+Rendering of generic under and over scripted expressions is easier then
+rendering of indexed operators. They are formatted as inline tables.
+Here is for example limit
+<e>
+c<l>−3</l> =
+<und>
+<k>lim</k>
+<x>x → 0</x>
+</und> x<t>3</t>s(x)
+</e>
+Residue
+<e>
+I(z<l>0</l>) =
+<und>
+<k>Res</k>
+<x>z = z<l>0</l></x>
+</und> F(z)
+</e>
+Under script with brace (rendering of such a simple square under/over
+braces is not a problem but making them round, or curly or allowing
+overlaps is much more difficult to achieve, so currently it is better to stick
+to simplest case).
+<e>
+V<t>(n)</t> =
+<und>
+<k brace="under">W ∧ W ∧ ⋯ ∧ W</k>
+<x>n times</x>
+</und>
+</e>
+Below you see some samples from chemistry
+<e>
+<ovr>
+<x>+IV</x>
+<k>Na<l>2</l>SO<l>3</l></k>
+</ovr> +
+<ovr>
+<x>0</x>
+<k>J<l>2</l></k>
+</ovr> + H<l>2</l>O =
+<ovr>
+<x>+VI</x>
+<k>Na<l>2</l>SO<l>4</l></k>
+</ovr> +
+<ovr>
+<x>−I</x>
+<k>2HJ</k>
+</ovr>
+</e>
+<e>
+<ovr>
+<x>+IV</x>
+<k>MnO<l>2</l></k>
+</ovr> +
+<ovr>
+<x>−I</x>
+<k>4HCl</k>
+</ovr> =
+<ovr>
+<x>+II</x>
+<k>MnCl<l>2</l></k>
+</ovr> +
+<ovr>
+<x>0</x>
+<k>Cl<l>2</l></k>
+</ovr> + 2H<l>2</l>O
+</e>
+<e>
+<ovr>
+<x>+2e<t>−</t></x>
+<k brace="over">Zn + H<l>2</l></k>
+</ovr>SO<l>4</l> = ZnSO<l>4</l> + H<l>2</l>
+</e>
+Here is example from nuclear physics
+<e>
+<und>
+<k>Ra</k>
+<x>226</x>
+</und> →
+<und>
+<k>Rn</k>
+<x>222</x>
+</und> +
+<und>
+<k>He</k>
+<x>4</x>
+</und>
+</e>
+Under over scripts are really rarely used. Below is rather artificial example from chemistry.
+<e>
+<und>
+<x>27</x>
+<k>Al</k>
+<x>13</x>
+</und> +
+<und>
+<x>4</x>
+<k>He</k>
+<x>2</x>
+</und> =
+<und>
+<x>30</x>
+<k>P</k>
+<x>15</x>
+</und> +
+<und>
+<x>1</x>
+<k>n</k>
+<x>0</x>
+</und>
+</e>
+</par>
+
+
+
+<h2 xml:id="matrices">Vectors, Matrices and Cases</h2>
+<par>
+Vectors, matrices and cases can be formatted as inline tables.
+Here are sample matrices and vectors.
+'Hooks' are produced by inserting extra cells at edges using CSS
+<a href="http://www.w3.org/TR/CSS21/generate.html">generated content</a> and
+removing inner borders via
+<a href="http://www.w3.org/TR/CSS21/tables.html#collapsing-borders">border collapse</a> mechanism.
+<e>
+<mat>
+<r3>
+<n>c<l>11</l></n>
+<n>c<l>12</l></n>
+<n>c<l>13</l></n>
+</r3>
+<r3>
+<n>c<l>21</l></n>
+<n>c<l>22</l></n>
+<n>c<l>23</l></n>
+</r3>
+<r3>
+<n>c<l>31</l></n>
+<n>c<l>32</l></n>
+<n>c<l>33</l></n>
+</r3>
+</mat>
+<vec>
+<n>x<l>1</l></n>
+<n>x<l>2</l></n>
+<n>x<l>3</l></n>
+</vec> =
+<vec>
+<n>b<l>1</l></n>
+<n>b<l>2</l></n>
+<n>b<l>3</l></n>
+</vec>
+</e>
+Matrices may contain nested fractions, indices and operators
+<e>
+M<l>3</l> =
+<mat>
+<r3>
+<n>M<l>11</l></n>
+<n>M<l>12</l></n>
+<n>M<l>13</l></n>
+</r3>
+<r3>
+<n>M<l>21</l></n>
+<n>M<l>22</l></n>
+<n>M<l>23</l></n>
+</r3>
+<r3>
+<n>M<l>31</l></n>
+<n>M<l>32</l></n>
+<n>M<l>33</l></n>
+</r3>
+</mat>
+=
+<mat>
+<r3>
+<n><c><d>a<t>2</t></d><d>b<t>2</t> + c<t>2</t></d></c></n>
+<n>a<t>3</t></n>
+<n>− b<t>2</t></n>
+</r3>
+<r3>
+<n>c<t>4</t></n>
+<n><c><d>a<t>2</t> + b<t>2</t></d><d>12c</d></c></n>
+<n>8a</n>
+</r3>
+<r3>
+<n>12c</n>
+<n>b<t>4</t></n>
+<n><c><d>2a<t>2</t></d><d>7b<t>3</t></d></c></n>
+</r3>
+</mat>
+</e>
+rendering of determinants is much easier as no 'hooks' are necessary.
+<e>
+det(M<l>3</l>) =
+<det>
+<r3>
+<n>M<l>11</l></n>
+<n>M<l>12</l></n>
+<n>M<l>13</l></n>
+</r3>
+<r3>
+<n>M<l>21</l></n>
+<n>M<l>22</l></n>
+<n>M<l>23</l></n>
+</r3>
+<r3>
+<n>M<l>31</l></n>
+<n>M<l>32</l></n>
+<n>M<l>33</l></n>
+</r3>
+</det>
+=
+<det>
+<r3>
+<n><c><d>a<t>2</t></d><d>b<t>2</t> + c<t>2</t></d></c></n>
+<n>a<t>3</t></n>
+<n>− b<t>2</t></n>
+</r3>
+<r3>
+<n>c<t>4</t></n>
+<n><c><d>a<t>2</t> + b<t>2</t></d><d>12c</d></c></n>
+<n>8a</n>
+</r3>
+<r3>
+<n>12c</n>
+<n>b<t>4</t></n>
+<n><c><d>2a<t>2</t></d><d>7b<t>3</t></d></c></n>
+</r3>
+</det>
+</e>
+Rendering of multivalues is slightly simplified.
+<e>
+ε(x) =
+<val>
+<r2><n>+1</n><n>{if x &gt; 0}</n></r2>
+<r2><n>0</n><n>{if x = 0}</n></r2>
+<r2><n>−1</n><n>{if x &lt; 0}</n></r2>
+</val>
+</e>
+</par>
+
+<h2 xml:id="bra">Large Brackets</h2>
+
+<par>
+Simple square brackets can be imitated using generated content and borders. This
+is the simplest and most reliable way to handle them.
+<e>
+D =
+<fen>
+G(z) +
+<f>
+<r>1</r>
+<r>S(z)</r>
+</f></fen><_t>3</_t>
+</e>
+
+<e>
+Ĉ<t>(m)</t>
+=
+<und>
+<x>m<t>2</t></x>
+<co re="∏"/>
+<x>k=m</x>
+</und>
+<fen>kF<t>k<t>3</t></t>(x) +
+<und>
+<x>k<t>5</t></x>
+<co re="∏"/>
+<x>s = c<t>4</t></x>
+</und>
+<f>
+<r>F<t>s</t>(x) + <c><d>1</d><d>2</d></c>G<t>s</t>(x)</r>
+<r>F<t>s</t>(x) − <c><d>1</d><d>2</d></c>G<t>s</t>(x)</r>
+</f></fen><_t>3k</_t>
+</e>
+
+<e>Ŝ<t>±</t> =
+<f>
+<r>4θ<t>2</t></r>
+<r>6z<t>3</t> +
+<c>
+<d>z<t>2</t></d>
+<d>3u</d>
+</c></r>
+</f>
+<und>
+<x>4b<t>2</t></x>
+<co re="∫"/>
+<x>2c<t>2</t></x>
+</und>
+<fen>e<t>± 3uc<t>2</t>ŵ<t>2</t></t> +
+<und><co re="∑"/><x>m<l>1</l> ≠ m<l>2</l></x></und>
+e<t>±m<l>1</l>m<l>2</l>ŵ</t></fen>dŵ
+</e>
+As an alternative solution one can compose brackets
+by combining Unicode characters 239B-23AD (located in
+<a href="http://www.alanwood.net/unicode/miscellaneous_technical.html">Misc. Technical</a>
+range). Task can be simplified using CSS generated content.
+</par>
+
+<h2 xml:id="marks">Diacritical Marks</h2>
+<par>Rendering of diacritical marks is not governed by CSS.
+This issue is addressed by Unicode standard <a href="#refs">[1]</a> that defines so called
+<a href="http://www.alanwood.net/unicode/combining_diacritical_marks.html">
+combining diacritical marks</a> like    __̇__̈̈__̂__̃__̄__̑__
+that being combined with ordinary Unicode characters must produce
+characters with over dots, hats, tildes, bars etc.
+<e> q̈ + q̇<t>2</t> + q<t>4</t> = c̃ </e>
+but at the moment
+browsers does not support combining diacritical marks properly and
+it is better to use precomposed characters
+<e>[Â , Ĥ] = 0</e>
+located in the following Unicode ranges:
+<a href="http://www.alanwood.net/unicode/latin_1_supplement.html">Latin-1 Supplement</a>,
+<a href="http://www.alanwood.net/unicode/latin_extended_a.html">Latin Extended-A</a>,
+<a href="http://www.alanwood.net/unicode/latin_extended_b.html">Latin Extended-B</a>,
+<a href="http://www.alanwood.net/unicode/latin_extended_additional.html">Latin Extended Additional</a>.
+ </par>
+
+
+<h2 xml:id="rads">Radicals</h2>
+
+<par>The most reliable way to settle issue with radicals is to
+use more simple power notations
+<e>x =
+<f>
+<r>− b ± <rad ic="b² − 4ac"/></r>
+<r>2a</r>
+</f>
+</e>
+<e>
+R<t>±</t> =
+<fen>
+m<t>2</t> ±
+<f>
+<r>12c<t>5</t></r>
+<r>29w<t>7</t></r>
+</f></fen><_t>3/2</_t>
+</e>
+In this way one avoids dependence on font metrics. 
+</par>
+
+<h2 xml:id="nest">Nesting Limitations</h2>
+<par>
+Our present style sheet uses simple 'shrink to fit' nesting scheme to ensure
+that nested element does not affect height of its parent. Such a rendering naturally
+imposes limits on nesting of certain expressions.
+In overall these limitations are not severe and does
+not affect real world articles. For example simple nesting of fractions is allowed
+<e>Q = B<l>0</l> +
+<f>
+<r>A<l>0</l></r>
+<r>
+B<l>1</l> +
+<c>
+<d>A<l>1</l></d>
+<d>B<l>2</l> + A<l>2</l> / B<l>3</l></d>
+</c>
+</r>
+</f>
+</e>
+but those who try to nest fractions deeper will encounter nesting limitation.
+It is possible to remove this and other nesting limitations by using more complex markup,
+but at the moment we don't want to do this as limitation are not severe.
+</par>
+
+<h2 xml:id="resume">Conclusions</h2>
+<par>
+CSS2 is basically simple style language, but in spite of its simplicity
+it is powerful enough to afford rendering of most of mathematical expressions.
+So one can start using CSS for formatting of scientific and technical
+XML documents already today.
+Rendering of some things like for instance radicals, and deeply nested expressions are not
+fully addressed in the present article. However it happened just because current CSS2
+based solutions for rendering of radicals are slightly artificial, while support for deep nesting
+requires slightly more detailed markup then we currently use, so taking into account that
+this issues are not urgent we think it is better to address them later
+when we will have more natural solutions (like CSS3 math module).
+</par>
+
+<h2 xml:id="refs">References</h2>
+<ol>
+<li>B. Beeton et al.,<a href="http://www.unicode.org/reports/tr25">Unicode Support for Mathematics</a>, 2003</li>
+<li>B. Bos et al., <a href="http://www.w3.org/TR/CSS21">Cascading Style Sheets, level 2 revision 1</a>, 2004</li>
+<li>T. Bray et al., <a href="http://www.w3.org/TR/REC-xml">Extensible Markup Language (XML) 1.0</a>, 2004</li>
+<li>J. Clark, <a href="http://www.w3.org/TR/xml-stylesheet/">Associating Style Sheets with XML documents</a>, 1999</li>
+</ol>
+</root>

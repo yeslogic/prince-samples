@@ -1,0 +1,111 @@
+@page {
+  size: a4 portrait;
+  margin: 20mm;
+  padding: 5mm 0;
+  border-top: thin solid black;
+  border-bottom: thin solid black;
+  @top-left {
+    font-size: 10pt;
+    vertical-align: bottom;
+    margin: 2mm
+  }
+  @top-right {
+    font-size: 10pt;
+    vertical-align: bottom;
+    margin: 2mm
+  }
+  @bottom {
+    font-size: 10pt;
+    content: counter(page);
+    vertical-align: top;
+    text-align: outside;
+    margin: 2mm
+  }
+  
+}
+
+@page :left {
+  @top-left {
+    content: "W3C Recommendation 15 December 2004";
+  }
+  @top-right {
+    content: "Architecture of the World Wide Web, Volume One";
+  }
+}
+
+@page :right {
+  @top-right {
+    content: "W3C Recommendation 15 December 2004";
+  }
+  @top-left {
+    content: "Architecture of the World Wide Web, Volume One";
+  }
+}
+
+
+/* avoid h/f on first page */
+
+@page :first {
+  border-top: none;
+  border-bottom: none;
+  @top-right {
+    content: normal;
+  }
+  @top-left {
+    content: normal;
+  }
+  @bottom {
+    content: normal;
+  }
+}
+
+
+/* general statements which perhaps should be part of the UA style sheet? */
+
+h1, h2, h3, h4, h5, h6, dt { page-break-after: avoid }
+
+* { text-decoration: none }
+
+
+
+/* add page numbers to TOC which is already there */
+
+ul.toc, ul.toc li  {
+  font-weight: normal;
+  margin-left: 0;
+}
+
+ul.toc ul.toc {
+  font-weight: normal;
+  margin-left: 2em;
+}
+
+
+ul.toc a::after {
+  content: leader('.') target-counter(attr(href), page);
+}
+
+
+/* document specific code */
+
+.principlelab, .constraintlab, .propertylab, .practicelab, .storylab { 
+  padding: 0.3em 1em;
+  display: block;
+  margin: 0;
+}
+
+.boxedtext p {
+  margin-top: 0;
+}
+
+.boxedtext {
+  page-break-inside: avoid;
+}
+
+html, body {
+  font: 10pt serif;
+  padding: 0;
+  margin: 0;
+}
+
+img { max-width: 100% }

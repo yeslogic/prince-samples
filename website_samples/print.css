@@ -1,0 +1,337 @@
+ 	/*
+	Designed by George Chavchanidze
+	Last modified on 31-05-2005
+	Annotated version is available at
+	http://geocities.com/csssite/ann.css
+	*/
+
+root
+	{display:block;
+	font-family:Palatino Linotype, serif;
+	font-size:14pt;
+	line-height:1.5em;
+	text-align:justify;}
+eqs, par, sec, seg, set, txt, h1, h2, h3, h4, ol, ul
+	{display:block;}
+root > par, root > seg, root > set,
+sec > par, sec > seg, sec > set
+	{margin:1ex 0;}
+txt
+	{font-family:monospace;
+	white-space:pre;
+	border:dotted 1px;
+	padding:1ex;
+	margin:1ex;}
+
+h1, h2, h3, h4
+	{font-size:1.4em;
+	font-weight:bold;
+	text-align:left;
+	margin:2mm 0;}
+h2
+	{font-size:1.2em;}
+h2::before
+	{content:counter(header) ". ";
+	counter-increment:header;}
+h2#ack::before, h2#refs::before
+	{display:none;}
+h3, h4
+	{font-size:1.1em;}
+h1 + set
+	{margin:1em 10%;
+	font-size:0.8em;
+	line-height:1.2em;}
+h1 + set > seg
+	{margin:0.3ex 0;}
+h1 + set seg[key="Author"]
+	{font-size:1.2em;}
+ol, ul 
+	{display: block;
+	text-align:left;
+	list-style-type:decimal;
+	counter-reset: list-item;}
+ul 
+	{list-style-type:disc;}
+li	{display: list-item;
+	counter-increment: list-item;
+	margin-left:2em;}
+
+li::marker 
+	{padding-right:0.5ex;
+    	text-align: right;}
+
+par[key]::before, seg[key]::before
+	{content:attr(key) ". ";
+	font-weight:bold;}
+par[key="Axiom"], par[key="Exercise"], 
+par[key="Lemma"], par[key="Problem"],
+par[key="Theorem"]
+	{border:dashed 1px;
+	padding:1mm;}
+par[key="Comment"], par[key="Remark"], par[key="Sample"], 
+par[key="Solution"], par[key="Proof"]
+	{border-bottom:dotted 1px;}
+seg[key="Author"]::before, seg[key="Authors"]::before,
+seg[key="Address"]::before
+	{display:none;}
+seg[key="Date"]::before, seg[key="Keywords"]::before, 
+seg[key="MSC 2000"]::before
+	{content:attr(key) ": ";}
+par[key="Theorem"]::before
+	{content: "Theorem " counter(theorem) ". ";
+	counter-increment:theorem;}
+par[key="Remark"]::before
+	{content: "Remark " counter(remark) ". ";
+	counter-increment:remark;}
+
+table
+	{display:table;}
+caption
+	{display:table-caption;}
+tr[role="header"]
+	{display:table-header-group;}
+tr[role="footer"]
+	{display:table-footer-group;}
+tr
+	{display:table-row;}
+td, th
+	{display:table-cell;}
+
+lf::before, wr[attr="key"]
+	{content:"\A";
+	white-space:pre;}
+wr::before
+	{white-space:normal;
+	content:"\200A\200A";}
+/*Current implementation of soft breaks (wrap points) does not work in Prince, alternative solution should be found */
+r wr, det wr, mat wr, vec wr
+	{display:none;}
+
+bf, st
+	{font-weight:bold;}
+it, em, hi
+	{font-style:italic;}
+em em, em hi, em st, hi em, hi hi, hi st,
+st em, st hi, st st, u
+	{text-decoration:underline;}
+o	
+	{text-decoration:overline;}
+s	
+	{text-decoration:line-through;}
+
+e
+	{display:block;
+	margin:0.5ex 0 0.5ex 12%;
+	line-height:2em;
+	text-align:left;}
+e, m
+	{white-space:nowrap;} 
+e::before
+	{content:"(" counter(equation) ")";
+	counter-increment:equation;
+	float:right;}
+f, c, g, det, mat, vec, val,  ovr, und
+	{line-stacking-strategy:block-line-height;}
+f, c, ovr, und
+	{display:inline-block;
+	line-height:1.5em;
+	margin:0 2px;
+	text-align:center;
+	vertical-align:middle;}
+r, d
+	{display:block;
+	line-height:1.7em;
+	white-space:nowrap;}
+d
+	{line-height:1.2em;
+	font-size:0.7em;}
+m d
+	{font-size:0.8em;}
+r:first-child, d:first-child
+	{border-bottom: solid 1px;}
+l, t, l_, t_, co + _l,
+bra + _l, fen + _l,
+bra + _t, fen + _t
+	{font-size:0.7em;
+	vertical-align:-0.9ex;}
+d l, d l_
+	{vertical-align:-0.5ex;}
+_l, _t
+	{padding-left:2px;}
+co + _l
+	{vertical-align:-1.2ex;}
+bra + _l, fen + _l
+	{vertical-align:-1em;}
+fen + _l
+	{vertical-align:-1.6em;}
+r bra + _l, n bra + _l
+	{vertical-align:-1.2ex;}
+t, t_
+	{vertical-align:1.2ex;}
+d t, d t_
+	{vertical-align:1ex;}
+bra + _t, fen + _t
+	{vertical-align:1.4em;}
+fen + _t
+	{vertical-align:2em;}
+r bra + _t, n bra + _t
+	{vertical-align:1.4ex;}
+g
+	{display:inline-block;
+	vertical-align:middle;
+	padding:1ex 0;}
+m g, r g
+	{padding:0.2ex;}
+g > t, g > l, g > t_, g > l_,
+co + g > _l, co + g > _t, 
+bra + g > _l, bra + g > _t, 
+fen + g > _l, fen + g > _t
+	{display:block;
+	font-size:0.7em;
+	line-height:1em;
+	text-align:left;
+	position:static;}
+co + g > _t
+	{margin-bottom:0.5ex;}
+bra + g > _t
+	{margin-bottom:2ex;}
+r bra + g > _t, n bra + g > _t
+	{margin-bottom:1ex;}
+fen + g > _t
+	{margin-bottom:2em;}
+g > l_, g > t_
+	{text-align:right;}
+k
+	{display:block;}
+ovr > k
+	{padding-bottom:0.7em;}
+und > k:first-child
+	{padding-top:0.7em;}
+/* Formatting of under/over braces should be improved ! */
+
+k[brace="over"]
+	{border-top:dotted 1px;
+	border-bottom:dotted 1px transparent;}
+k[brace="under"]
+	{border-top:dotted 1px transparent;
+	border-bottom:dotted 1px;}
+x
+	{display:block;
+	font-size:0.7em;
+	line-height:1em;}
+co[re]
+	{font-size:1.75em;
+	vertical-align:middle;}
+und co[re]
+	{display:block;
+	line-height:1.1em;}
+und co[re]:first-child
+	{padding-top:0.4em;}
+co[re]::before
+	{content:attr(re);}
+m co[re], r co[re], n co[re]
+	{font-size:1.2em;
+	top:0.1ex;}
+m co[re]
+	{top:0.2ex;}
+det, mat, vec, val
+	{display:inline-table;
+	border-collapse:collapse;
+	vertical-align:middle;
+	text-align:center;}
+det > *, mat > *, vec > n, val > r2
+	{display:table-row;}
+det n, mat n, val n
+	{display:table-cell;
+	line-height:1.7em;
+	white-space:nowrap;
+	padding:0 8px;}
+mat > *::before, mat > *::after,
+vec > n::before, vec > n::after
+	{display:table-cell;
+	content:"\A0";
+	border-bottom:solid 1px;
+	border-top:hidden;}
+mat > *:first-child::before, mat > *:first-child::after, 
+vec > n:first-child::before, vec > n:first-child::after
+	{border-top:solid 1px;}
+det, mat, vec
+	{border-left:solid 1px;
+	border-right:solid 1px;}
+val
+	{border:dashed 1px gray;}
+val n
+	{text-align:right;}
+val n + n
+	{text-align:left;}
+
+rad[ic]::before
+	{content:"(" attr(ic) ")";}
+rad[ic][x]::after
+	{content:"1/" attr(x);}
+rad[ic]::after, rad[ic][x="2"]::after
+	{content:"\00bd";
+	font-size:0.7em;
+	vertical-align:1ex;}
+rad[ic][x="3"]::after
+	{content:"\2153";}
+rad[ic][x="4"]::after
+	{content:"\00bc";}
+rad[ic][x="5"]::after
+	{content:"\2155";}
+rad[ic][x="6"]::after
+	{content:"\2159";}
+
+fen::before, fen::after,
+bra::before, bra::after
+	{content:"";
+	border-style:solid;
+	border-width:1px 0 1px 1px;
+	padding:1.4ex 2px;}
+bra::before, bra::after
+	{padding:0.6ex 2px;}
+r bra::before, r bra::after,
+n bra::before, n bra::after
+	{padding:0.2ex 2px;}
+fen::after, bra::after
+	{border-width:1px 1px 1px 0;}
+fen[ce~="|"]::before, fen[ce~="|"]::after,
+bra[ce~="|"]::before, bra[ce~="|"]::after
+	{border-width:0 1px 0 0;}
+fen[ce="|"]::before, bra[ce="|"]::before
+	{display:none;}
+fen[ce~="|"]::before, bra[ce~="|"]::before
+	{border-width:0 0 0 1px;}
+fen[ce~="||"]::before, fen[ce~="||"]::after,
+bra[ce~="||"]::before, bra[ce~="||"]::after
+	{border-width:0 3px 0 0;
+	border-style:double;}
+fen[ce~="||"]::before, bra[ce~="||"]::before
+	{border-width:0 0 0 3px;}
+fen[ce~="("]::before, bra[ce~="("]::before
+	{border-width:1px 0 1px 2px;}
+fen[ce~=")"]::after, bra[ce~=")"]::after
+	{border-width:1px 2px 1px 0;}
+fen[ce~="["]::before, bra[ce~="["]::before
+	{border-width:1px 0 1px 1px;}
+fen[ce~="]"]::after, bra[ce~="]"]::after
+	{border-width:1px 1px 1px 0;}
+fen[ce~="{"]::before, bra[ce~="{"]::before
+	{border-left-style:dashed;
+	border-width:1px 0 1px 1px;}
+fen[ce~="}"]::after, bra[ce~="}"]::after
+	{border-right-style:dashed;
+	border-width:1px 1px 1px 0;}
+
+e, par[key="Theorem"]
+	{page-break-inside:avoid;}
+h1, h2, h3
+	{page-break-after:avoid;}
+root
+	{background-color:white;}
+
+
+@media screen {
+  root { margin: 2em }
+}
+

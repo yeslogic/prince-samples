@@ -1,0 +1,441 @@
+<html>
+<head>
+<title>FruitStand</title>
+<style>
+h1 { 
+  text-transform: uppercase; 
+  letter-spacing: 0.5em; 
+  text-align: center;
+  font: 28px "Trebuchet MS", sans-serif;
+}
+select { font-size: 10px; }
+img { padding: 10px; padding-bottom: 0 }
+td { text-align: center }
+
+.menu {
+  background: silver;
+}
+
+body {
+  text-align: center;
+}
+
+table.main {
+  margin: 3em auto;
+}
+
+div.receipt {
+  background: silver;
+  float: left; 
+  margin: 30px 10px 10px;
+  padding: 5px;
+}
+table.receipt { 
+  font: 14px monospace; padding: 0.4em 
+}
+
+table.receipt td, table.receipt th, table.shipping td, table.shipping th {
+  text-align: left;
+}
+
+table.receipt th {
+  font-weight: bold;
+}
+td.price div { width: 4em; text-align: right }
+
+table.shipping {
+  margin: 30px 10px 10px;
+  float: left;
+  padding: 1em;
+  font: 16px "Trebuchet MS", sans-serif;
+  background: #EEE;
+}
+
+div.submit {
+  margin-top: 30px;
+}
+td { vertical-align: top }
+
+</style>
+
+
+<script type="text/javascript" language="JavaScript">
+<!-- 
+
+// Based on code by William Bontrager
+
+// See http://www.WillMaster.com/possibilities/demo/ces/ces.html
+
+// See the article "Customer Friendly, Cart-less E-commerce Site", 
+// linked from the WillMaster Possibilities archives at 
+// http://willmaster.com/possibilities/archives/
+
+
+NumberOfItemsForSale = 3;
+
+
+function MakeStringArray(n) {
+	n++;
+	this.length = n;
+	for (var i = 1; i<=n; i++) { this[i] = new String(); }
+	return this;
+}
+HiddenFieldNameForItemID = new MakeStringArray(NumberOfItemsForSale);
+DescriptionForItemID = new MakeStringArray(NumberOfItemsForSale);
+ItemCost = new MakeStringArray(NumberOfItemsForSale);
+ItemHowManyFieldName = new MakeStringArray(NumberOfItemsForSale);
+ItemSubTotalFieldName = new MakeStringArray(NumberOfItemsForSale);
+
+HiddenFieldNameForItemID[1] = "desc_item1";
+HiddenFieldNameForItemID[2] = "desc_item2";
+HiddenFieldNameForItemID[3] = "desc_item3";
+
+DescriptionForItemID[1] = "Red apples";
+DescriptionForItemID[2] = "Yellow pears";
+DescriptionForItemID[3] = "Orange oranges";
+
+ItemCost[1] = 0.35;
+ItemCost[2] = 1.33;
+ItemCost[3] = 0.46;
+
+ItemHowManyFieldName[1] = "num_item1";
+ItemHowManyFieldName[2] = "num_item2";
+ItemHowManyFieldName[3] = "num_item3";
+
+ItemSubTotalFieldName[1] = "sub_item1";
+ItemSubTotalFieldName[2] = "sub_item2";
+ItemSubTotalFieldName[3] = "sub_item3";
+
+BaseShippingCharge = 3.30;
+ShippingChargeByPercentage = 5;
+
+
+TaxRate = 6.6249;
+CollectTaxOnShipping = "no";
+
+
+function GenerateInvoiceNumber() {
+	var d = new Date();
+	return d.getTime();
+}
+
+function moneytize(n) {
+	n = (n * 100) + .005;
+	var s = n + 'z';
+	n = parseInt(s);
+	n /= 100;
+	s = new String(n);
+	var l = s.length;
+	if(s.indexOf('.') == -1) { s += '.00'; }
+	if(s.indexOf('.') == (s.length - 2)) { s += '0'; }
+	if(s.indexOf('.') == (s.length - 1)) { s += '00'; }
+	return s;
+}
+
+function initialize() {
+	var counter = 1;
+	var ii = 0;
+	for(counter = 1; counter <= NumberOfItemsForSale; counter++) {
+		document.order.elements[counter-1].value = ItemCost[counter];
+
+
+		var tss = '';
+		var s = 'document.order.' + ItemHowManyFieldName[counter] + '.value';
+		var ti = 0;
+		var ts = 'parseInt(' + s + ')';
+
+		ti = eval(ts);
+
+		if(isNaN(ti) || (ti < .01)) {
+			ts = s + '="0"';
+			ti = eval(ts);
+			ti = 0;
+			tss = 'document.order.' + HiddenFieldNameForItemID[counter] + '.value = ""';
+		}
+		else {
+//			tss = 'document.order.' + HiddenFieldNameForItemID[counter] + '.value = DescriptionForItemID[' + counter + ']';
+		}
+//		tss = eval(tss);
+
+
+		ts = 'ti = ' + ti + ' * parseFloat(' + ItemCost[counter] + ')';
+		ti = eval(ts);
+		tss = moneytize(ti);
+
+		document.order.elements[(counter-1) + NumberOfItemsForSale].value = tss;
+
+		ii += parseFloat(tss);
+		ts = new String(tss);
+		if(ts.substring(0,1) == '.') { tss = '0' + tss; }
+
+		ts = ItemSubTotalFieldName[counter] + '_noform.innerHTML = tss';
+//		ts = 'document.order.' + ItemSubTotalFieldName[counter] + '.value = tss';
+		ts = eval(ts);
+
+	}
+	subtotal_noform.innerHTML = "<b>0.00</b>";
+	tax_noform.innerHTML = "0.00";
+	shipping_noform.innerHTML = "0.00";
+	total_amount_noform.innerHTML = "<b>0.00</b>";
+	return ii;
+}
+
+
+function add_item(counter,inc) {
+	var s = 'document.order.' + ItemHowManyFieldName[counter] + '.value';
+	var ti = 0;
+	var ts = 'parseInt(' + s + ')';
+	ti = eval(ts);
+	ti = ti + inc;
+	if (ti < 10) {
+		ts = 'document.order.' + ItemHowManyFieldName[counter] + '.value = ti';
+		ts = eval(ts);
+	}
+}
+
+
+
+function calc() {
+	var tax=0;
+	var T = initialize();
+	if(T < 0.01) { return 0; }
+	T = moneytize(T);
+	subtotal_noform.innerHTML =  '<b>' + T + '</b>';
+	document.order.subtotal_hidden.value = T;
+
+	var ti = (ShippingChargeByPercentage / 100) * parseFloat(T);
+	ti += BaseShippingCharge;
+	var shipping = moneytize(ti);
+
+	if(document.order.charge_tax.checked) {
+		tax = ((TaxRate / 100) * T) + .005; 
+	}
+	tax = moneytize(tax);
+        document.getElementById('tax_noform').firstChild.data = tax;
+	document.order.tax_hidden.value = tax;
+
+	document.getElementById('shipping_noform').firstChild.data = shipping;
+	document.order.shipping_hidden.value = shipping;
+
+	ti = parseFloat(T) + parseFloat(shipping) + parseFloat(tax);
+	var total = moneytize(ti);
+	total_amount_noform.innerHTML = '<b>' + total + '</b>';
+	document.order.total_hidden.value = total;	
+	return total;
+}
+
+InvoiceNumber = GenerateInvoiceNumber();
+
+//-->
+</script>
+
+
+
+</head>
+<body onload="calc()">
+
+
+<noscript>
+<p>This demonstrations requires JavaScript to work properly. Please turn it on to proceed.</p>
+</noscript>
+
+<form name="order" method="post" action="/cgi-bin/fruitstand.pl">
+
+
+<input type="hidden" name="price_item1"></td>
+<input type="hidden" name="price_item2"></td>
+<input type="hidden" name="price_item3"></td>
+
+<input type="hidden" name="total_item1"></td>
+<input type="hidden" name="total_item2"></td>
+<input type="hidden" name="total_item3"></td>
+
+
+<table class=main>
+
+<tr>
+<td colspan=3>
+<h1>FruitStand Ltd Order form</h1>
+
+<tr>
+
+<td><img src=apple.jpg  onclick="add_item(1,1); calc()">
+<input type="hidden" name="desc_item1" value="Red apples"></td>
+
+<td><img src=pear.jpg  onclick="add_item(2,1); calc()">
+<input type="hidden" name="desc_item2" value="Yellow pears"></td>
+
+<td><img src=orange.jpg  onclick="add_item(3,1); calc()">
+<input type="hidden" name="desc_item3" value="Orange oranges"></td>
+
+<tr>
+<td>
+
+<img src=minus.png onclick="add_item(1,-1); calc()">
+<img src=plus.png onclick="add_item(1,1); calc()">
+
+<td>
+<img src=minus.png onclick="add_item(2,-1); calc()">
+<img src=plus.png onclick="add_item(2,1); calc()">
+
+<td>
+<img src=minus.png onclick="add_item(3,-1); calc()">
+<img src=plus.png onclick="add_item(3,1); calc()">
+
+</td>
+
+
+<tr>
+<td colspan=3>
+
+<div class=receipt>
+<table class=receipt>
+<tr>
+<td>Apples
+<td>
+<select name="num_item1" onchange="calc()">
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+</select>
+
+<td>x&nbsp;0.35
+<td class=price>
+<div id="sub_item1_noform"></div>
+</td>
+
+<tr>
+<td>Pears
+<td>
+<select name="num_item2" onchange="calc()">
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+</select>
+
+<td>x&nbsp;1.33
+<td class=price>
+<div id="sub_item2_noform"></div>
+</td>
+
+<tr>
+<td>Oranges
+<td>
+<select name="num_item3" onchange="calc()">
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+</select>
+
+<td>x&nbsp;0.46
+<td class=price>
+<div id="sub_item3_noform"></div>
+</td>
+
+
+<tr>
+<th colspan=2>Subtotal</th><th>
+<td class=price>
+<div id="subtotal_noform"></div>
+</td>
+</tr>
+
+<tr>
+<td>Sales tax</td><td>
+<td>
+<input type="checkbox" name="charge_tax" value="yes" onchange="calc()" onclick="calc()" onblur="calc()">
+</td>
+
+<td class=price>
+<div id="tax_noform"></div>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="right">Shipping</td><td>
+<td class=price>
+<div id="shipping_noform"></div>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="right"><b>Total</b></td><td>
+<td class=price>
+<div id="total_amount_noform"></div>
+
+</td>
+</tr>
+
+
+</tr>
+</table>
+</div>
+
+
+<table class=shipping>
+
+<tr>
+<td>Customer name:</td>
+<td><input type="text" name="ship_name" size="35" value="I. M. Hungry"></td>
+</tr>
+
+<tr>
+<td>Address:</td>
+<td><input type="text" name="ship_addr" size="35" value="12 Citrus Lane"></td>
+</tr>
+
+<tr>
+<td>City:</td>
+<td><input type="text" name="ship_city" size="35" value="Grapeville"></td>
+</tr>
+
+<tr>
+<td>Postal Code:</td>
+<td><input type="text" name="ship_zip" size="35" value="02840"></td>
+</tr>
+
+<tr>
+
+<td><td>
+<div class=submit>
+<input type="submit" value="Generate invoice" onClick="return calc()">
+</div>
+
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+<input type="hidden" name="shipping_hidden" value="">
+<input type="hidden" name="subtotal_hidden" value="0">
+<input type="hidden" name="tax_hidden" value="0">
+<input type="hidden" name="total_hidden" value="0">
+
+
+</form>
+
+</body>
+</html>

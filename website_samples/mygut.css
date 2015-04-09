@@ -1,0 +1,129 @@
+/*  */
+
+@page {
+  size: a5 portrait;
+  margin: 1.5cm;
+}
+
+@page {
+  size: a5;
+  margin: 2cm;
+  font-size: 9pt;
+}
+
+@page :left {
+  @top-left {
+    content: string(author);
+    vertical-align: middle;
+    font-size: 9pt;
+  }
+
+  @bottom-left {
+    content: counter(page);
+    vertical-align: middle;
+    margin: 0.8em 0;
+    font-size: 9pt;
+  }
+}
+
+@page :right {
+  @top-right {
+    content: string(story-title, last);
+    vertical-align: middle;
+    margin: 0.8em 0;
+    font-size: 9pt;
+  }
+  @bottom-right {
+    content: counter(page);
+    vertical-align: middle;
+    margin: 0.8em 0;
+    font-size: 9pt;
+  }
+}
+
+@page :first {
+  @top-right { content: normal }
+  @top-left { content: normal }
+  @bottom-right { content: normal }
+  @bottom-left { content: normal }
+}
+
+@page clean {
+  @top-right { content: normal }
+  @top-left { content: normal }
+  @bottom-right { content: normal }
+  @bottom-left { content: normal }
+}
+
+:root {
+  font: 11pt/15pt Georgia;
+}
+
+gutblurb, markupblurb, endblurb {
+  display: none;
+}
+
+titlepage, acknowledge, toc, item, chapheader, chapter, chapsummary, desc, def, letter, para, sect1, sect2, sect3, sect4, simplesect, blockquote, footnote, note, list, deflist, table, blockgraphic {
+  display: block;
+}
+
+quote,emph,ital,reference,date,place,name,graphic,misc{
+  display: inline;
+}
+
+titlepage {
+  text-align: center;
+}
+
+titlepage title {
+  padding: 3em 0 3em;
+  font-size: 1.5em;
+  display: block;
+}
+
+titlepage author {
+  font-size: 1.5em;
+  text-align: center;
+  padding: 3em 0 0;
+  display: block;
+  string-set: author content();
+}
+
+titlepage, acknowledge, toc, chapter {
+  page-break-after: always;
+}
+
+acknowledge, toc {
+  page: clean;
+}
+
+toc title, chapter chapheader {
+  display: block;
+  font-size: 1.4em;
+  text-align: center;
+  padding: 3em 0 2em;
+}
+
+toc item:after {
+  content: leader('.') target-counter(attr(href), page);
+}
+
+para {
+  text-indent: 1em;
+}
+
+chapheader title {
+  string-set: story-title content();
+}
+
+chapheader + para {
+  text-indent: 0;
+}
+
+chapnum {
+  display: run-in;
+}
+
+chapnum:after {
+  content: " ";
+}

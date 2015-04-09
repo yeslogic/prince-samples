@@ -1,0 +1,268 @@
+html, body {
+    margin: 0;
+    padding: 0
+}
+
+.page{
+page-break-before: always;
+position: relative;
+overflow: hidden;
+width: 8.5in;
+height: 10.5in;
+font-family: arial, sans serif;
+}
+
+@page{
+size: 8.5in 10.5in;
+margin: 0;
+}
+
+#cover .coverimage{
+position: absolute;
+z-index: -100;
+top: 0;
+left: 0;
+width: 8.5in;
+height: 10.5in;
+}
+
+#cover .coverimage img{
+width: 100%;
+}
+
+#cover p.webaddress{
+color: white;
+font-size: 14px;
+position: absolute;
+bottom: 0.1in;
+right: 0.2in;
+}
+
+#cover p.extrainfo{
+transform:rotate(-90deg);
+color: white;
+font-size: 12px;
+position: absolute;
+top: 1.1in;
+left: -1in;
+}
+
+#cover .logo{
+position: absolute;
+right: 0.3in;
+top: 0.15in;
+}
+
+#cover .title{
+position: absolute;
+bottom: 0.05in;
+left: 0.15in;
+}
+
+#cover .title img{
+width: 85%;
+}
+
+.h2{
+font-size: 45px;
+font-family: Georgia, Serif;
+color: #ef5a24;
+font-weight: bold;
+margin-top: 0.2in;
+margin-bottom: 0.2in;
+margin-left: 0.3in;
+}
+
+.banner1{
+width: 8.5in;
+height: 5in;
+overflow:hidden;
+}
+
+.banner1 img{
+width: 100%;
+}
+
+.description1{
+color: white;
+background-color:rgba(0,0,0,0.5);
+padding: 10px;
+font-size: 12px;
+line-height: 1.5em;
+position: relative;
+top: -1.5in;
+left: 4.5in;
+}
+
+#promopage{
+background: url(images/background.jpg) repeat-y 6in 0;
+}
+
+.block{
+background-color: #666;
+}
+
+#promopage .block{
+height: 0.32in;
+width: 8.5in;
+position: absolute;
+bottom: 0;
+}
+
+#promopage .block p{
+font-size: 16px;
+color: white;
+margin: 5px 0px 0px 20px;
+}
+
+table.banner{
+width: 100%;
+margin: 0.18in;
+margin-top: -1.2in;
+}
+
+table.banner td{
+padding: 0.18in;
+padding-bottom: 0;
+color: #4d4d4d;
+font-size: 9px;
+vertical-align: top;
+}
+
+table.banner span{
+color: black;
+font-weight: bold;
+}
+
+.banner2, 
+.banner3{
+width: 3.7in;
+height: 2.7in;
+overflow: hidden;
+}
+
+.banner2 img{
+height: 100%;
+} 
+
+.banner3 img{
+width: 100%;
+}
+
+#productlist .block{
+height: 10.5in;
+width: 0.5in;
+position: absolute;
+right: 0;
+}
+
+#productlist p.mixmatch{
+font-family: Georgia, serif;
+transform: rotate(90deg);
+font-weight: bold;
+font-size: 25px;
+color: white;
+}
+
+#productlist{
+background: url("images/background2.png") no-repeat 2.2in bottom;
+}
+
+#backcover .block{
+height: 10.5in;
+width: 0.5in;
+position: absolute;
+left: 0;
+}
+
+
+table.productdisplay{
+margin-top: 0.3in;
+margin-left: 0.3in;
+}
+
+table.productdisplay td{
+padding: 0 0.2in;
+}
+
+table.productdisplay .productimage{
+width: 2in;
+height: 1.5in;
+overflow: hidden;
+}
+
+table.productdisplay .productimage img{
+width: 100%;
+}
+
+.productinfo{
+width: 2in;
+}
+
+.productinfo .name{
+float: left;
+font-weight: bold;
+font-size: 12px;
+}
+
+.productinfo .price{
+float: right;
+font-weight: bold;
+font-size: 14px;
+margin-top: 10px
+}
+
+.productinfo .description{
+clear: both;
+position: relative;
+margin-bottom:10px;
+top: -10px;
+color: grey;
+font-size: 10px;
+}
+
+#backcover{
+background-color: #cacaca;
+}
+
+#backcover .backcoverimage{
+height: 4.5in;
+overflow: hidden;
+}
+
+#backcover .backcoverimage img{
+width: 100%;
+}
+
+#backcover .logo{
+position: absolute;
+right: 0.5in;
+top: 3.5in;
+}
+
+#backcover p{
+margin-left: 1in;
+width: 5in;
+font-size: 13px;
+}
+
+#backcover p.extrainfo{
+position: absolute;
+bottom: 0.2in;
+}
+
+#backcover p.extrainfo2 {
+color: white;
+transform: rotate(-90deg);
+font-size: 15px;
+font-weight: normal;
+width: auto;
+margin-top: 1.5in;
+margin-left: -0.05in;
+}
+
+.qrcode{
+position: absolute;
+right: 0.5in;
+bottom: 0.5in;
+}

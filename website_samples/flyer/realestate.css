@@ -1,0 +1,392 @@
+body{
+margin: 0px;
+padding: 0px;
+font-family: Arial, helvetica;
+}
+
+p{
+font-size: 13px;
+line-height: 1.5em;
+}
+
+h2, .h2{
+font-size: 20px;
+}
+
+.h3{
+font-size: 15px;
+font-weight: bold;
+}
+
+/*header*/
+.header{
+background: #001838; /* Old browsers */
+background: -moz-linear-gradient(top, #001838 28%, #1b304d 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(28%,#001838), color-stop(100%,#1b304d)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #001838 28%,#1b304d 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #001838 28%,#1b304d 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #001838 28%,#1b304d 100%); /* IE10+ */
+background: linear-gradient(to bottom, #001838 28%,#1b304d 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001838', endColorstr='#1b304d',GradientType=0 ); /* IE6-9 */
+}
+
+.header-container{
+max-width: 976px;
+padding: 0px 24px;
+margin: auto;
+height: 112px;
+}
+
+.logo{
+margin-top: 10px;
+}
+
+ul.main-nav{
+float:right;
+list-style-type:none;
+margin-top: 75px;
+}
+
+ul.main-nav li{
+display: inline;
+color: white;
+font-weight: bold;
+padding: 18px 25px
+}
+
+ul.main-nav li.current{
+
+-webkit-border-top-left-radius: 10px;
+-webkit-border-top-right-radius: 10px;
+-moz-border-radius-topleft: 10px;
+-moz-border-radius-topright: 10px;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;	
+background: white;
+color: #001838
+}
+
+/*content*/
+.main-content{
+width: 100%;
+}
+
+.description{
+
+}
+
+.sidebar{
+}
+
+.slide1{
+overflow:hidden;max-width: 600px; height: 435px; border: 1px solid #666;margin: 22px;
+}
+
+.slide2, .slide3, .slide4, .slide5{
+width: 132px;
+height: 91px;
+border: 1px solid #666;
+float: left;
+margin: 20px 0px 20px 22px;
+overflow:hidden;
+}
+
+.slide1 img, .slide2 img, .slide3 img, .slide4 img, .slide5 img{
+width: 100%;
+overflow:hidden;
+}
+
+.photo-content{
+max-width: 650px; border: 1px solid #b3b3b3; margin-right: 10px;
+overflow: hidden;
+}
+
+.photo1{
+max-width: 648px; background: #e6e6e6; border: 1px solid white;
+}
+
+.photo2{
+max-width: 648px; background: #e6e6e6; border: 1px solid white; border-top: none; overflow:hidden;
+}
+
+.content{
+max-width: 976px;
+padding: 0px 24px;
+margin: auto;
+border: 1px solid #ccc;
+}
+
+.beds, .bath, .parking{
+padding-left: 25px;
+color: #333;
+font-weight: bold;
+margin: 0px 5px;
+}
+
+.beds{
+background: url(images/beds.svg) no-repeat 0 0;
+}
+
+.bath{
+background: url(images/bath.svg) no-repeat 0 0;
+}
+
+.parking{
+background: url(images/parking.svg) no-repeat 0 0;
+}
+
+.property-title h2{
+margin:0px;
+}
+
+.property-title p{
+margin-bottom: 0px;
+margin-top: 5px;
+} 
+
+.property-title .price{
+float: right;
+margin-top: 0px;
+color: #c1272d;
+}
+
+.property-title{
+margin: 25px 0px;
+}
+
+
+.agent-information table{
+border-collapse: collapse;
+}
+
+.agent-information table td{
+vertical-align: top;
+}
+
+.agent-information .h3{
+margin: 0px;
+}
+
+.agent-information p.phone{
+background: url(images/phone.svg) no-repeat 0px 0px;
+padding-left: 25px;
+height: 25px;
+margin-top: 7px;
+margin-bottom: 7px;
+}
+
+.agent-information button{
+}
+
+.agent-information .h3, .agent-information p, .agent-information button{
+margin-left: 10px;
+}
+
+.additional-information{
+border: 1px solid #b3b3b3;
+max-width: 295px;
+margin-top: 20px;
+}
+
+.additional-information table{
+border: 1px solid white;
+background: #e6e6e6;
+width: 100%;
+border-collapse: collapse;
+}
+
+.additional-information table td{
+vertical-align: top; 
+}
+
+.additional-information .h3{
+margin: 10px 0px 0px 10px;
+}
+
+.additional-information p{
+margin: 5px 0px 7px 10px;
+line-height: 1.8em;
+}
+
+.google-map iframe{
+border: #b3b3b3 1px solid;
+max-width: 295px;
+height: 262px;
+margin-top: 25px;
+}
+
+.other-property{
+margin: 25px 0px;
+}
+
+.other-property table{
+border-collapse: collapse;
+width: 100%;
+}
+
+.other-property td{
+font-size: 12px;
+}
+
+.other-property .beds, .other-property .bath, .other-property .parking{
+font-size: 10px;
+}
+
+/*footer*/
+.footer{
+clear: both;
+background: #001838;
+min-height: 20px;
+}
+
+.footer-container{
+color: white;
+margin:auto;
+padding-top: 20px;
+max-width: 480px;
+font-size: 12px;
+height: 60px;
+}
+
+.footer a:link, .footer a:visited{
+color: white;
+padding: 0px 20px;
+text-decoration: none;
+}
+
+
+
+@media print
+{
+@page{
+size: A4;
+margin: 1cm;
+}
+
+h2, .h2{
+font-size: 16px;
+}
+
+.google-map{
+width: 230px;
+height: 174px;
+content: "";
+background: url(http://maps.googleapis.com/maps/api/staticmap?center=221+Queen+St,Melbourne&zoom=15&size=230x200&sensor=false) no-repeat 0px 0px;
+border: #b3b3b3 1px solid;
+margin-top: 18px;
+}
+
+.h3{
+font-size: 14px;
+}
+
+p{
+font-size: 12px;
+}
+
+ul.main-nav, .other-property, hr, button, .footer-container {
+display:none;
+}
+
+.content{
+border: none;
+padding-left: 0px;
+}
+
+.slide1{
+margin: 10px;
+width: 428px;
+height: 302px;
+}
+
+.slide2, .slide3{
+margin: 10px 0px 10px 10px;
+width: 208px;
+height: 155px;
+}
+
+.slide4,.slide5{
+display: none;
+}
+
+
+/*
+.photo1, .photo2{
+width: 450px;
+background: none;
+padding: none;
+margin: 0px;
+padding: 0px;
+border: 0px solid red;
+}
+
+.header-container{
+padding: 0px 24px;
+height: 70px;
+}
+
+.logo{
+width: 12%;
+margin-top: 5px;
+}
+
+.photo1{
+height: 342px;
+}
+
+.photo2{
+margin-top: 15px;
+height: auto;
+overflow: hidden;
+margin: 0px;
+padding: 0px;
+}
+
+
+
+
+
+
+
+.sidebar, .additional-information, .agent-information{
+width: 230px;
+}
+
+.additional-information {
+margin-top: 15px;
+width: 228px;
+height: auto;
+padding: 1px;
+}
+
+.additional-information table{
+border: none;
+width: 100%;
+height: 90px;
+}
+
+button{
+display: none;
+}
+
+.description{
+border: 1px red solid;
+width: 600px;
+clear: both;
+}
+
+.footer-container{
+display:none;
+}
+
+.footer{
+height: 20px;
+}
+
+
+
+.property-title{
+margin: 15px 0px;
+}
+*/
+}

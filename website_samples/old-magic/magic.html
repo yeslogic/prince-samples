@@ -1,0 +1,550 @@
+<html>
+<body>
+<pre>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+&lt;html xmlns="http://www.w3.org/1999/xhtml">
+&lt;head>
+&lt;style type="text/css">
+@page {
+  size: a4;
+  margin: 21mm;
+  padding: 8mm 0 5mm;
+  border-bottom: thin solid black;
+
+  @bottom-center {
+    font: 12pt "Georgia", serif;
+    content: counter(page);
+    vertical-align: top;
+    margin: 0.3em 0;
+  }
+
+  @top-center {
+    font: 12pt "Georgia", serif;
+    content: "The magic of Prince";
+    vertical-align: bottom;
+    margin: 0.3em 0;
+  }
+
+  @footnotes {
+    border-top: thin solid black;
+    padding-top: 0.3em;
+    margin-top: 0.6em;
+  }
+
+}
+
+@page :first {
+  @top-center {
+     content: normal;
+  }
+}
+
+body {
+  font: 11pt/15pt Georgia, serif;
+  counter-reset: issue;
+}
+
+h1 {
+  font-size: 3em;
+  text-align: center;
+  font-weight: normal;
+  margin: 0;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: 1.4em;
+  padding: 0;
+  margin: 1em 0 0.2em;
+  counter-increment: issue;
+  clear: both;
+  page-break-after: avoid;
+}
+
+h2:before {
+  content: "#" counter(issue) ": ";
+}
+
+h3 {
+  font-weight: normal;
+  font-size: 1.4em;
+  padding: 0;
+  margin: 0.4em 0 0.2em;
+  clear: both;
+  page-break-after: avoid;
+}
+
+p {
+  margin: 0.3em 0;
+}
+
+a { text-decoration: none; color: black }
+
+address {
+  display: block;
+  text-align: center;
+  margin-top: 1em;
+  font-size: 40pt;
+}
+
+.abstract {
+  font-size: 1.1em;
+  line-height: 1.4;
+  text-align: justify;
+  margin: 1em 0;
+}
+
+.multi-column { 
+  column-count: 2; 
+  column-gap: 1.5em;
+  text-align: justify;
+}
+
+#toc ul, #toc li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#toc a::after {
+  content: leader('.') target-counter(attr(href), page);
+  font-style: normal;
+}
+
+blockquote { 
+  border: thin solid black;
+  font-style: italic;
+  margin: 0em;
+  padding: 0.4em;
+  background: #EEE;
+  text-align: left;
+  page-break-inside: avoid;
+}
+
+blockquote.right {
+  float: right; 
+  width: 9em; 
+  margin-left: 0.8em;
+}
+
+#prince-logo { 
+  background: #fff;
+  width: 6em;
+  height: 8.5em;
+  margin: 0 0.7em 0 0;
+  float: left;
+}
+
+#crown { 
+  background: red;
+  width: 3.5em;
+  height: 3.5em;
+  margin: 0.4em 0.7em 0 0;
+  float: left;
+}
+
+.footnote {
+  display: none;
+  display: footnote;
+  position: footnote;
+  counter-increment: footnote;
+  list-style-position: inside;
+  margin-left: 1.4em;
+  font-size: 90%;
+  line-height: 1.4;
+}
+
+.footnote::marker1 { 
+  vertical-align: super;
+}
+
+.footnote::marker2 { 
+  vertical-align: super;
+  color: green;
+  padding-right: 0.4em;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td.empty {
+  border: none;
+}
+
+td, th {
+  border: 1px dotted black;
+  padding: 0.3em;
+  text-align: left;
+}
+
+.hidden {
+  border-top: hidden;
+  border-left: hidden;
+}
+
+p.change {
+  border-left: solid dotted;
+  padding-left: 0.4em;
+}
+
+.author {
+  display: block;
+  margin: 0.2em 0;
+  font-style: normal;
+  text-align: right;
+}
+
+table {
+  margin: 1em 0;
+}
+
+div.toptable {
+  margin: 1em 0 2em;
+  float: top; 
+  width: 100%;
+}
+
+div.toptable table {
+  width: 100%;
+}
+
+div.toptable td {
+  background: #EEE;
+  border: 0.15em solid white;
+}
+
+div.toptable td.empty {
+  background: white;
+}
+
+p.caption {
+  font-weight: bold;
+}
+
+a.xref:after {
+  content: " " target-counter(attr(href), page);
+}
+&lt;/style>
+
+&lt;title>&lt;/title>
+&lt;/head>
+&lt;body>
+&lt;h1>The &lt;em>magic&lt;/em> of Prince&lt;/h1>
+
+
+
+&lt;p class="abstract">
+
+&lt;svg
+   id="prince-logo"
+   xmlns="http://www.w3.org/2000/svg"
+   style="width: 100px; height: 100px; float: left; position: relative; 
+     top: 0.4em" viewBox="0 0 100 100">
+
+  &lt;path fill="#3B0C60"
+     d="M 12.20403,0.10041 C 26.989562,8.1674193 32.028056,25.095188 
+        32.028056,35.919435 C 32.028056,39.186345 31.832991,41.304404 
+        31.262321,43.422464 L 26.678287,45.344176 C 25.155118,24.79231 
+        14.986823,14.302273 0,12.127815 L 0,55.539688 L 14.445206,55.539688 
+        C 60.310444,55.539688 69.291746,54.384573 72.537301,54.384573 
+        L 78.461889,33.419122 L 82.855007,35.345011 C 82.855007,44.961922 
+        82.664092,54.192402 82.664092,63.424971 C 82.664092,70.735829 
+        82.855007,77.850337 82.855007,85.161195 L 78.652804,84.00608 
+        L 72.728215,70.53948 C 68.714851,69.772884 60.499283,69.772884 
+        15.21094,69.772884 L 0,69.772884 L 0,100.10041 L 100,100.10041 
+        L 100,0.10041 L 12.20403,0.10041 z "/>
+&lt;/svg>
+
+Prince is a computer program that converts XML
+into PDF documents. It is simple, yet very powerful. The purpose of
+this small document is to showcase the formatting magic Prince can
+do. We have chosen to highlight ten of our favorite features. This
+document is written in XHTML and converted to PDF by &amp;ndash; you
+guessed it &amp;ndash; Prince. The entire document is generated by one
+single 11k XHTML file including embedded CSS and SVG.&lt;/p>
+
+&lt;div class="multi-column">
+&lt;h3>Table of contents&lt;/h3>
+
+&lt;div id="toc">
+&lt;ul>
+&lt;li>&lt;a href="#columns">Columns&lt;/a>&lt;/li>
+
+&lt;li>&lt;a href="#counters">Counters&lt;/a>&lt;/li>
+
+&lt;li>&lt;a href="#xref">Cross-references&lt;/a>&lt;/li>
+
+&lt;li>&lt;a href="#leaders">Leaders&lt;/a>&lt;/li>
+
+&lt;li>&lt;a href="#footnotes">Footnotes&lt;/a>&lt;/li>
+
+&lt;li>&lt;a href="#svg">SVG&lt;/a>&lt;/li>
+
+&lt;li>&lt;a href="#tables">Tables&lt;/a>&lt;/li>
+
+&lt;li>&lt;a href="#box">Box model&lt;/a>&lt;/li>
+
+&lt;li>&lt;a href="#floats">Page floats&lt;/a>&lt;/li>
+
+&lt;li>&lt;a href="#hf">Headers and Footers&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/div>
+
+&lt;h2 id="columns">Columns&lt;/h2>
+
+&lt;p>If you are reading the PDF version of this document, the first
+thing you may notice is the two-column layout. Columns are
+com&amp;shy;monly used on paper and Prince supports &lt;a
+href="http://www.w3.org/TR/css3-multicol">CSS multi-column&lt;/a>
+layouts. In this document, the number of columns has been set to 2,
+with a 1.5em gap between the columns. You can also specify that
+there should be a border between the columns. &lt;!--
+&lt;h2>Generated content&lt;/h2>
+-->
+&lt;/p>
+
+&lt;h2 id="counters">Counters&lt;/h2>
+
+&lt;p>If you are reading the XHTML source code of this document, look
+for the &lt;code>h2&lt;/code> elements. You will notice that they contain
+the text of the headings, but not their number. The list item
+number, including the &lt;q>#&lt;/q> and &lt;q>:&lt;/q> are
+auto&amp;shy;mati&amp;shy;cally generated by the style sheet. Generated
+content and counters are especially useful for complex documents.
+They are described in &lt;a href="">CSS level 2.1&lt;/a>.&lt;/p>
+
+&lt;h2 id="xref">Cross-references&lt;/h2>
+
+&lt;p>Prince can read hyperlinks inside a document and generate page
+numbers accordingly. For example, it will automatically find out
+which page &lt;em>Headers and Footers&lt;/em> are discussed on (&lt;a
+class="xref" href="#hf">page&lt;/a>). Cross-references are used to
+generate the &lt;em>Table of contents&lt;/em> (&lt;a class="xref"
+href="#toc">page&lt;/a>).&lt;/p>
+
+&lt;h2 id="leaders">Leaders&lt;/h2>
+
+&lt;p>Leaders consist of dots or dashes in a row leading the eye
+across a page. For example, the &lt;em>Table of contents&lt;/em> has
+leaders in it. The leaders are not found in the document itself,
+but rather in the style sheet.&lt;/p>
+
+&lt;h2 id="footnotes">Footnotes&lt;/h2>
+
+&lt;p>Footnotes&lt;span class="footnote">A footnote is a note placed at
+the bottom of a page of a book or manuscript that comments on or
+cites a reference for a designated part of the text.&lt;/span> are
+essential in printed documents and Prince knows how to generate
+them. Unlike what some people think, footnotes are not the place to
+put information you don't want to see. More often, footnotes will
+actually attract attention. 9 of 10 of readers will read the
+footnotes before they read the text from where the footnotes are
+anchored.&lt;span class="footnote">Often, the most interesting
+information is found in the footnotes.&lt;/span>&lt;/p>
+
+&lt;h2 id="svg">SVG&lt;/h2>
+
+&lt;p>
+
+  &lt;svg id="crown" viewBox="50 50 600 600" xmlns="http://www.w3.org/2000/svg" 
+     style="float: left">
+  &lt;path
+     style="fill:#fdd900"
+     d="M 171.01182,604.47408 L 89.577621,205.44649 L 252.44602,413.10371 
+        L 411.24271,156.58597 L 525.25059,417.17542 L 610.75651,238.02018 
+        L 594.46967,600.40237 L 171.01182,604.47408 z "/>
+  &lt;/svg>
+
+
+Scalable Vector Graphics (SVG) is a language for describing two-
+dimensional graphics for the web. SVG images scale better than
+traditional bit&amp;shy;mapped images and are suitable for printing. The
+crown is generated by two SVG elements.&lt;/p>
+
+&lt;h2 id="tables">Tables&lt;/h2>
+
+&lt;p>Tables are commonly used on the web to achieve certain spatial
+layouts. Ourselves, we prefer using CSS for layouts and tables for
+tabular data. Here is an example of a real table:&lt;/p>
+
+&lt;table>
+&lt;tr>
+&lt;th class="hidden">&lt;/th>
+&lt;th>Color&lt;/th>
+&lt;th>Fruit&lt;/th>
+&lt;th>Computer&lt;/th>
+&lt;/tr>
+
+&lt;tr>
+&lt;th>Apple&lt;/th>
+&lt;td>no&lt;/td>
+&lt;td>yes&lt;/td>
+&lt;td>yes&lt;/td>
+&lt;/tr>
+
+&lt;tr>
+&lt;th>Orange&lt;/th>
+&lt;td>yes&lt;/td>
+&lt;td>yes&lt;/td>
+&lt;td>no&lt;/td>
+&lt;/tr>
+&lt;/table>
+
+&lt;p>More complex tables are also possible, including tables within
+tables.&lt;/p>
+
+&lt;h2 id="floats">Page floats&lt;/h2>
+
+&lt;div class="toptable">
+&lt;table>
+&lt;tr>
+&lt;td>H&lt;/td>
+&lt;td colspan="16" class="empty">&lt;/td>
+&lt;td>He&lt;/td>
+&lt;/tr>
+
+&lt;tr>
+&lt;td>Li&lt;/td>
+&lt;td>Be&lt;/td>
+&lt;td colspan="10" class="empty">&lt;/td>
+&lt;td>B&lt;/td>
+&lt;td>C&lt;/td>
+&lt;td>N&lt;/td>
+&lt;td>O&lt;/td>
+&lt;td>F&lt;/td>
+&lt;td>Ne&lt;/td>
+&lt;/tr>
+
+&lt;tr>
+&lt;td>Na&lt;/td>
+&lt;td>Mg&lt;/td>
+&lt;td colspan="10" class="empty">&lt;/td>
+&lt;td>Al&lt;/td>
+&lt;td>Si&lt;/td>
+&lt;td>P&lt;/td>
+&lt;td>S&lt;/td>
+&lt;td>Cl&lt;/td>
+&lt;td>Ar&lt;/td>
+&lt;/tr>
+
+&lt;tr>
+&lt;td>K&lt;/td>
+&lt;td>Ca&lt;/td>
+&lt;td>Sc&lt;/td>
+&lt;td>Ti&lt;/td>
+&lt;td>V&lt;/td>
+&lt;td>Cr&lt;/td>
+&lt;td>Mn&lt;/td>
+&lt;td>Fe&lt;/td>
+&lt;td>Co&lt;/td>
+&lt;td>Ni&lt;/td>
+&lt;td>Cu&lt;/td>
+&lt;td>Zn&lt;/td>
+&lt;td>Ga&lt;/td>
+&lt;td>Ge&lt;/td>
+&lt;td>As&lt;/td>
+&lt;td>Se&lt;/td>
+&lt;td>Br&lt;/td>
+&lt;td>Kr&lt;/td>
+&lt;/tr>
+
+&lt;tr>
+&lt;td>Rb&lt;/td>
+&lt;td>Sr&lt;/td>
+&lt;td>Y&lt;/td>
+&lt;td>Zr&lt;/td>
+&lt;td>Nb&lt;/td>
+&lt;td>Mo&lt;/td>
+&lt;td>Tc&lt;/td>
+&lt;td>Ru&lt;/td>
+&lt;td>Rh&lt;/td>
+&lt;td>Pd&lt;/td>
+&lt;td>Ag&lt;/td>
+&lt;td>Cd&lt;/td>
+&lt;td>In&lt;/td>
+&lt;td>Sn&lt;/td>
+&lt;td>Sb&lt;/td>
+&lt;td>Te&lt;/td>
+&lt;td>I&lt;/td>
+&lt;td>Xe&lt;/td>
+&lt;/tr>
+
+&lt;tr>
+&lt;td>Cs&lt;/td>
+&lt;td>Ba&lt;/td>
+&lt;td>La&lt;/td>
+&lt;td>Hf&lt;/td>
+&lt;td>Ta&lt;/td>
+&lt;td>W&lt;/td>
+&lt;td>Re&lt;/td>
+&lt;td>Os&lt;/td>
+&lt;td>Ir&lt;/td>
+&lt;td>Pt&lt;/td>
+&lt;td>Au&lt;/td>
+&lt;td>Hg&lt;/td>
+&lt;td>Tl&lt;/td>
+&lt;td>Pb&lt;/td>
+&lt;td>Bi&lt;/td>
+&lt;td>Po&lt;/td>
+&lt;td>At&lt;/td>
+&lt;td>Rn&lt;/td>
+&lt;/tr>
+
+&lt;tr>
+&lt;td>Fr&lt;/td>
+&lt;td>Ra&lt;/td>
+&lt;td>Ac&lt;/td>
+&lt;/tr>
+&lt;/table>
+
+&lt;p class="caption">&lt;em>Table 1:&lt;/em> This table floats to the top
+of the page.&lt;/p>
+&lt;/div>
+
+&lt;p>On paged media, elements can be set float to the top or bottom
+of pages. The table at the top of this page is an example.&lt;/p>
+
+
+&lt;h2 id="box">Box model&lt;/h2>
+
+&lt;p>CSS offers a powerful box model for styling particular elements.
+Each element has three &lt;em>bands&lt;/em> around it: the padding, border
+and margin. Consider this example:&lt;/p>
+
+&lt;blockquote>May God spare you from marriage with one who writes
+books!&lt;br />
+&lt;span class="author">&amp;mdash;Bj&amp;oslash;rnstjerne
+Bj&amp;oslash;rnson&lt;/span>&lt;/blockquote>
+
+&lt;p>The quote above has a background color which extends into the
+padding area. Outside the padding is a thin solid border.&lt;/p>
+
+&lt;blockquote class="right">May God spare you from marriage with one
+who writes books!&lt;br />
+&lt;span class="author">&amp;mdash;Bj&amp;oslash;rnstjerne
+Bj&amp;oslash;rnson&lt;/span>&lt;/blockquote>
+
+&lt;p>Boxes can float to the right or left, allowing other con&amp;shy;tent to
+wrap around it. Typically, images are presented this way. However,
+we thought the quote was so important that we show it twice.&lt;/p>
+
+
+&lt;h2 id="hf">Headers and footers&lt;/h2>
+
+&lt;p>Printed documents often have page headers and footers. For
+example, page numbers are often printed at the bottom of the page,
+and the document and/or chapter title is shown at the top &amp;ndash;
+except on title pages.&lt;/p>
+&lt;/div>
+
+&lt;address>
+&lt;a href="http://www.princexml.com">www.princexml.com&lt;/a>
+&lt;/address>
+
+&lt;/body>
+&lt;/html>
+</pre>
+</body>
+</html>

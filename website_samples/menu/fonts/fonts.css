@@ -1,0 +1,108 @@
+/* ChanticleerRoman, Regular */
+@font-face {
+    font-family: "ChanticleerRoman";
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    src: url("CHANTICL.TTF")
+}
+
+/* Gemerald, Regular */
+@font-face {
+    font-family: "Gemerald";
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    src: url("Gemerald.ttf")
+}
+
+/* Indubitably, Regular */
+@font-face {
+    font-family: "Indubitably";
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    src: url("INDUBITA.TTF")
+}
+
+/* Initial, Regular */
+@font-face {
+    font-family: "Initial";
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    src: url("initial.ttf")
+}
+
+/* Inkburrow, Regular */
+@font-face {
+    font-family: "Inkburrow";
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    src: url("INKBURRO.TTF")
+}
+
+/* Ironick-Normal, Regular */
+@font-face {
+    font-family: "Ironick-Normal";
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    src: url("IRONICK-.TTF")
+}
+
+/* Jedi, Normal */
+@font-face {
+    font-family: "Jedi";
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: semi-expanded;
+    src: url("Jedi.ttf")
+}
+
+/* Jetta, Regular */
+@font-face {
+    font-family: "Jetta";
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    src: url("JETTA.TTF")
+}
+
+/* KelmscottRoman, Regular */
+@font-face {
+    font-family: "KelmscottRoman";
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    src: url("KELMSCOT.TTF")
+}
+
+/* Kontakt Zagreb, Tele-Operator */
+@font-face {
+    font-family: "Kontakt Zagreb";
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    src: url("Kntkzgrb.ttf")
+}
+
+/* Laconick-NormalA, Regular */
+@font-face {
+    font-family: "Laconick-NormalA";
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    src: url("LACONICK.TTF")
+}
+
+/* LittleLordFontleroy, Regular */
+@font-face {
+    font-family: "LittleLordFontleroy";
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    src: url("LITTLELO.TTF")
+}
+

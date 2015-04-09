@@ -1,0 +1,165 @@
+body{
+font-family: Arial, Sans Serif;
+margin: 0;
+padding: 0;
+font-size: 12px;
+}
+
+.outer{
+width: 1024px;
+padding: 0 25px;
+margin: 0px auto;
+border: 0px red solid;
+background: url(images/background.jpg) repeat-y 800px 0,url(images/background2.png) no-repeat 300px bottom;;
+}
+
+.headercontainer{
+width: 100%;
+}
+
+.logo{
+padding: 10px 0px;
+}
+
+.extramenu{
+float: right;
+margin-right: 50px;
+}
+
+.extramenu p{
+font-size: 14px;
+margin-top: 0px;
+line-height: 1.5em;
+font-weight: bold;
+margin-bottom: 0px;
+}
+
+ul.navigation-bar {
+   list-style-type: none;
+   background: #f5911e; /* Old browsers */
+	background: -moz-linear-gradient(top,  #f5911e 0%, #ef5a24 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5911e),  color-stop(100%,#ef5a24)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #f5911e 0%,#ef5a24 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #f5911e 0%,#ef5a24 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #f5911e 0%,#ef5a24 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #f5911e 0%,#ef5a24 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5911e', endColorstr='#ef5a24',GradientType=0 ); /* IE6-9 */
+
+   padding: 0px;
+   margin: 0px;
+   background-color: #ef5a24; /* IE6...IE9 */
+   *line-height: 3.2em; /* IE6,IE7 */
+   }
+ul.navigation-bar li {
+   display: table-cell;
+   *display: inline; /* IE6,IE7 */
+   }
+ul.navigation-bar li:hover {
+   background-color: rgba(0, 0, 0, 0.2);
+   }
+ul.navigation-bar li a {
+   display: table-cell;
+   text-decoration: none;
+   outline: none;
+   font-family: georgia;
+   font-size: 15px;
+   font-weight:bold;
+   color: white;
+   border-right: 2px solid white;
+   padding: 8px 30px; /* sets button size */
+   }
+
+ ul.navigation-bar li.current a, ul.navigation-bar li a:hover{
+   color:yellow;
+ }
+
+ul.navigation-bar li.searchbar:hover{
+ background: none;
+ }
+ 
+li.searchbar input{
+ margin-right: 10px;
+ margin-left: 30px;
+}
+
+div.banner{
+width: 100%;
+height: 400px;
+overflow: hidden;
+}
+
+div.banner img{
+width: 100%;
+}
+
+.description1, .description2, .description3{
+color: white;
+background: rgba(0, 0, 0, 0.4);
+padding: 10px;
+position: absolute;
+right: 10px;
+top: 250px;
+}
+
+.sidebar{
+float: right;
+width: 200px;
+height: 400px;
+padding: 0px 15px
+}
+
+.sidebar p{
+font-size: 14px;
+}
+
+.content table{
+width: 780px;
+}
+
+.content{
+}
+
+.productimage{
+height: 160px;
+width: 220px;
+overflow: hidden;
+text-align:center
+}
+
+.productimage:hover{
+box-shadow: 0px 0px 1px 2px #ef5a24;
+}
+
+.productimage img{
+width: auto;
+height: 100%;
+}
+
+.productdisplay td{
+padding: 0 40px 0px 0px;
+}
+
+.productinfo .name{
+float: left;
+font-weight: bold;
+font-size: 14px;
+}
+
+.productinfo .price{
+float: right;
+font-weight: bold;
+font-size: 18px;
+margin-top: 10px
+}
+
+.productinfo .description{
+clear: both;
+position: relative;
+top: -10px;
+margin-bottom: 30px;
+}
+
+.footer{
+background: #666;
+height: 30px;
+}
