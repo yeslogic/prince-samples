@@ -161,17 +161,6 @@ Distributed under the CC Attribution 4.0 International license.
 
 ## Interactive
 
-Interactive examples
-
-### campaign
-
-Campaign letter example
-
-### fruitstand
-
-Interactive example.
-
-### menu
-
-Interactive example
+These are examples of web applications that use prince to dynamically
+generate a PDF.
 
