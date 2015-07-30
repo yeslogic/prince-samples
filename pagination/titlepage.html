@@ -1,0 +1,32 @@
+<html>
+<head>
+<style>
+@page {
+    @bottom {
+        content: counter(page)
+    }
+}
+@page:first {
+    margin-top: 10cm;
+    @bottom {
+        content: normal
+    }
+}
+h1, h2.subtitle {
+    text-align: center
+}
+h2.chaptertitle {
+    page-break-before: always
+}
+</style>
+</head>
+<body>
+
+<h1>The Magnificent Octopus</h1>
+<h2 class="subtitle">S. Baldrick</h2>
+
+<h2 class="chaptertitle">Chapter 1</h2>
+<p>Once upon a time there lived a little saussage.</p>
+
+</body>
+</html>

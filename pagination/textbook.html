@@ -1,0 +1,31 @@
+<html>
+<head>
+<style>
+@page:left {
+    @top-left { content: counter(page) }
+    @top-right { content: string(book-title) }
+}
+@page:right {
+    @top-left { content: string(chapter-title) }
+    @top-right { content: counter(page) }
+}
+
+h1 { string-set: book-title content() }
+h2 { string-set: chapter-title content() }
+</style>
+</head>
+<body>
+
+<h1>Prince User Guide</h1>
+<h2>Advanced Formatting</h2>
+
+<p>
+blah blah blah
+</p>
+
+<p style="page-break-before: always">
+la la la
+</p>
+
+</body>
+</html>
