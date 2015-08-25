@@ -1,0 +1,357 @@
+<html>
+<head>
+<title>Automatic Parallelisation for Mercury</title>
+<meta name="author" value="Paul Bone">
+<link rel="stylesheet" href="thesis.css"/>
+</head>
+<body>
+
+<div class="titlepage">
+<div class="title">Automatic Parallelisation for Mercury</div>
+<div class="author">Paul Bone</div>
+
+<p class="titlepagetext">
+Submitted in total fulfilment of the requirements of the degree of Doctor of
+Philosophy
+</p>
+
+<p class="titlepagetext">
+December 2012<br/>
+Department of Computing and Information Systems <br/>
+The University of Melbourne
+</p>
+
+<p class="titlepagetext">
+Copyright (C) 2009-2012 Paul Bone
+</p>
+</div>
+
+<div class="frontmatter">
+<h1>Abstract</h1>
+
+<p>
+Multicore computing is ubiquitous,
+so programmers need to write
+parallel programs to take advantage of the full power of modern computer
+systems.
+However the most popular parallel programming methods are difficult and
+extremely error-prone.
+Most such errors are intermittent,
+which means they may be unnoticed until after a product has been shipped;
+they are also often very difficult to fix.
+This problem has been addressed by pure declarative languages that support
+explicit parallelism.
+However, this does nothing about another problem:
+it is often difficult for developers to find tasks that are worth
+parallelising.
+When they can be found,
+it is often too easy to create too much parallelism,
+such that the overheads of parallel execution overwhelm the benefits gained
+from the parallelism.
+Also, when parallel tasks depend on other parallel tasks,
+the dependencies may restrict the amount of parallelism available.
+This makes it even harder for programmers to estimate the benefit of
+parallel execution.
+</p>
+<p>
+In this dissertation we describe our 
+profile feedback directed automatic parallelisation system,
+which aims at solving this problem.
+We implemented this system for Mercury, a pure declarative logic programming
+language.
+We use information gathered from a profile collected from a sequential
+execution of a program to inform the compiler about how that program can be
+parallelised.
+Ours is, as far as we know, the first automatic parallelisation system that
+can estimate the parallelism available among any number of parallel tasks
+with any number of (non-cyclic) dependencies.
+This novel estimation algorithm is supplemented by
+an efficient exploration of the program's call graph,
+an analysis that calculates the cost of recursive calls (as this is not provided
+by the profiler),
+and an efficient search for the best parallelisation of
+<math><ci>N</ci></math> computations 
+from among the
+<math>
+<apply><power/><cn>2</cn>
+    <apply><minus/><ci>N</ci><cn>1</cn></apply>
+</apply>
+</math>
+candidates.
+</p>
+<p>
+We found that in some cases where our system parallelised a loop,
+spawning off virtually all of its iterations,
+the resulting programs exhibited excessive memory usage and poor
+performance.
+We therefore designed and implemented
+a novel program transformation that fixes this problem.
+Our transformation allows programs to gain large improvements
+in performance and in several cases, almost perfect linear speedups.
+The transformation also allows recursive calls within the parallelised code
+to take advantage of tail recursion.
+</p>
+<p>
+Also presented in this dissertation are many changes that improve the
+performance of Mercury's parallel runtime system,
+as well as a proposal and partial implementation of a visualisation tool
+that assists developers with parallelising their programs,
+and helps researchers develop automatic parallelisation tools and
+improve the performance of the runtime system.
+</p>
+<p>
+Overall,
+we have attacked and solved a number of issues that are critical to
+making automatic parallelism a realistic option for developers.
+</p>
+
+<h1>Declaration</h1>
+<p>
+This is to certify that:
+</p>
+<ul>
+    <li> the thesis comprises only my original work towards the PhD except
+         where indicated in the Preface,
+
+    <li> due acknowledgement has been made in the text to all other material
+         used,
+
+    <li> the thesis is fewer than 100,000 words in length, exclusive of
+         tables, maps, bibliographies and appendices.
+</ul>
+
+<p>
+Signed:
+</p>
+
+<p>
+Date:
+</p>
+
+<h1>Preface</h1>
+
+<p>
+The dissertation begins with an introduction
+(chapter <a href="#chap-intro"></a>) that
+motivates the need for automatic parallelism systems.
+It provides an analysis of the related literature;
+using this to show why automatic parallelism is important
+and why the problem is still unsolved.
+</p>
+<p>
+Chapter <a href="#chap:backgnd"></a>
+provides background material used throughout the rest of the dissertation.
+In particular it describes prior work 
+that I did as part of my Honours project
+for the degree of Bachelor of Computer Science Honours at the University of
+Melbourne.
+This work occurred before my Ph.D. candidature commenced.
+This work included:
+the profiler feedback framework (section <a href="#sec-backgnd_autopar"></a>),
+an initial rudimentary version of the automatic
+parallelisation tool (also section <a href="#sec-backgrnd_autopar"></a>),
+an algorithm for determining when a sub-computation first uses
+a variable (section <a href="#sec-backgnd_var_use_analysis"></a>),
+and the initial version of the coverage profiling support in Mercury's deep
+profiler (section <a href="#sec-backgnd_coverage"></a>).
+</p>
+<p>
+Chapter <a href="#chap-rts"></a> discusses a number of improvements that
+were made to the runtime system,
+in order to make parallel Mercury programs perform better.
+Chapter <a href="#chap-rts"></a> describes some joint work with Peter Wang.
+Wang contributed about 80% of the initial work stealing implementation 
+described in section <a href="sec-rts_work_stealing"></a>;
+I contributed the other 20%.
+An improved version of work stealing is described in
+section <a href="#sec-rts_work_stealing2"></a>,
+but the work in that section is solely my own.
+</p>
+<p>
+The next three chapters are based on published papers,
+of which I am the first author and contributed the vast majority of the work.
+Chapter <a href="#chap-overlap"></a> describes our new automatic parallelism
+analysis tool and its novel algorithms.
+It is based on the following journal article.
+</p>
+
+<p class="paperref">
+<span class="pubauthor">Paul Bone, Zoltan Somogyi and Peter Schachte.</span>
+<span class="pubtitle">
+Estimating the overlap between dependent computations for automatic
+parallelization.
+</span>
+<span class="pubhow">
+Theory and Practice of Logic Programming, 11(4&ndash;5):575&ndash;591, 2011.
+</span>
+</p>
+
+<p>
+Chapter <a href="#chap-loop_control"></a> describes a code transformation
+that fixes a long standing performance problem in the parallel execution of
+most recursive code.
+It is based on the following conference paper.
+</p>
+
+<p class="paperref">
+<span class="pubauthor">Paul Bone, Zoltan Somogyi and Peter Schachte.</span>
+<span class="pubtitle">Controlling Loops in Parallel Mercury Code.</span>
+<span class="pubhow">
+Proceedings of the 7th Workshop on Declarative Aspects and
+Applications of Multicore Programming, Philadelphia PA USA, January 2012.
+</span>
+</p>
+
+<p>
+Chapter <a href="#chap:tscope"></a> describes our use of the ThreadScope visual
+profiler that was developed for use with Haskell and how we use it with
+Mercury.
+It is based on the following workshop paper.
+</p>
+
+<p class="paperref">
+<span class="pubauthor">Paul Bone and Zoltan Somogyi.</span>
+<span class="pubtitle">Profiling parallel Mercury programs with
+ThreadScope.</span>
+<span class="pubhow">
+Proceedings of the 21st Workshop on Logic-based methods in
+Programming Environments,
+Lexington KY USA, July 2011.
+</span>
+</p>
+
+<p>
+Finally Chapter <a href="conc"></a> concludes the dissertation, providing a
+discussion that unifies the work presented in the four main chapters and
+describes potential further work.
+</p>
+
+<h1>Acknowledgements</h1>
+
+<p>
+First I will thank my supervisors,
+Zoltan Somogyi,
+Peter Schachte and
+Aaron Harwood
+for all their support, hard work, and on occasion weekends.
+I have learnt a lot from you and enjoyed your company and our interesting
+offtopic conversations.
+I also want to thank my Mercury, G12 and programming languages colleagues:
+Julien Fischer,
+Mark Brown,
+Ralph Becket, 
+Thibaut Feydy,
+Matt Guica,
+Matt Davis,
+Andreas Schutt,
+Leslie DeKoninck,
+Sebastian Brand,
+Leon Mika,
+and
+Ondrej Bojar;
+and Mercury developers outside of the University:
+Peter Wang,
+Ian MacLarty,
+and
+Peter Ross.
+I also want to thank the helpful and supportive staff in the Computing and
+Information Systems department at the University of Melbourne,
+especially
+Linda Stern,
+Bernie Pope,
+Harald S&oslash;ndergaard, and
+Lee Naish.
+</p>
+
+<p>
+I would also like to acknowledge the support of the functional and logic
+programming research community.
+Firstly, I want to thank everyone
+who has contributed to the development of ThreadScope,
+helped organise the ThreadScope summit, and
+answered many of my questions,
+in particular
+Simon Marlow,
+Simon Peyton-Jones,
+Eric Kow
+and Duncan Coutts.
+Simon Marlow and his family were also incredibly hospitable during my visit
+to Cambridge.
+I also want to thank those at the University of New South Wales who invited
+me to present a seminar to their research group:
+Ben Lippmeier,
+Gabi Keller,
+and Manuel Chakravarty.
+</p>
+<p>
+I received financial support from the following scholarships, prizes and
+organisations:
+Australian Postgraduate Award,
+NICTA Top-up Scholarship,
+NICTA travel support,
+Melbourne Abroad Travelling Scholarship,
+Google Travel Prize,
+Association for Logic Programming (ICLP),
+and
+Open Parallel.
+</p>
+<p>
+I would like to offer special thanks to those who contributed time and
+effort in other ways.
+Ben Stewart for shell access to his multicore system early in my candidature,
+Chris King for his spectralnorm benchmark program,
+Michael Richter for assistance with proof reading.
+</p>
+<p>
+I would like to offer a whole lot of thanks to my friends:
+Amanda &amp; Chas Dean,
+Lucas &amp; Jen Wilson-Richter,
+Sarah Simmonds, John Spencer,
+Jeff Beinvenu, Mangai Murugappan,
+Terry Williamson, Heidi Williams,
+Tom Wijgers,
+Ha Le,
+Emil Mikulic,
+Dave Grinton,
+Marco Maimone,
+Michael Slater,
+Geoff Giesemann,
+Enzo Reyes,
+Dylan Leigh,
+and Marco Mattiuzzo.
+</p>
+
+<p>
+I want to thank my parents, Keith and Faye Bone, for their support and
+encouragement,
+but most of all,
+for teaching me that my poor vision might be an impairment, but should never
+be a limitation.
+Thanks to my brother, James Bone, for always having time to listen,
+even when I use incomprehensible jargon ("nerd-words").
+</p>
+<p>
+Finally, Liz Bone, my wife,
+for her love patience understanding and caring
+and being generally awesome.
+</p>
+
+<h1>Table of contents</h1>
+
+<div id="toc"/>
+
+\input{intro}
+\input{backgnd}
+\input{rts}
+\input{overlap}
+\input{loop_control}
+\input{tscope}
+\input{conc}
+
+\bibliographystyle{plainnat}
+\raggedright
+\bibliography{bib}
+
+</body>
+</html>
+

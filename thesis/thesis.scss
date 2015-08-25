@@ -1,0 +1,93 @@
+@mixin defaults {
+    font-family: Times, Serif;
+    font-size: 11pt;
+    text-align: justify;
+}
+
+@page {
+    margin: 3cm;
+}
+
+@page:left {
+    @include defaults;
+    @top-left {
+        content: counter(page);
+    }
+    @top {
+        content: Chapter
+    }
+}
+@page:right {
+    @include defaults;
+    @top-right {
+        content: counter(page);
+    }
+    @top {
+        content: section
+    }
+}
+body {
+    @include defaults;
+}
+
+@page titlepage {
+    @include defaults;
+    @top { content: normal; }
+    @top-left { content: normal; }
+    @top-right { content: normal; }
+}
+
+.titlepage {
+    text-align: center;
+    page: titlepage;
+    .title {
+        margin-top: 6cm; 
+        font-size: 28pt;
+    }
+    .author {
+        margin-top: 32pt; 
+        margin-bottom: 4cm; 
+        font-size: 28pt;
+    }
+    .titlepagetext {
+        font-size: 18pt;
+        margin-bottom: 27pt;
+    }
+}
+
+@page frontmatter {
+    @include defaults;
+    @top { content: normal; }
+    @top-left { content: normal; }
+    @top-right { content: normal; }
+    @bottom { content: counter(page, lower-roman); }
+}
+
+@page frontmatter:blank {
+    @top { content: normal; }
+    @top-left { content: normal; }
+    @top-right { content: normal; }
+    @bottom { content: normal; }
+}
+
+.frontmatter {
+    page: frontmatter;
+    counter-reset: page 1;
+}
+
+h1 {
+    page-break-before: right;
+}
+
+p.paperref {
+    margin-left: 1cm;
+    margin-right: 1cm;
+    text-align: left;
+    .pubauthor {
+        font-weight: 600;
+    }
+    .pubhow {
+        font-style: italic;
+    }
+}
+
