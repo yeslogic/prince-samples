@@ -21,19 +21,13 @@ font-family: arial, sans serif;
 @page{
 size: 8.5in 10.5in;
 margin: 0;
-}
-
-#cover .coverimage{
-position: absolute;
-z-index: -100;
-top: 0;
-left: 0;
-width: 8.5in;
-height: 10.5in;
-}
-
-#cover .coverimage img{
-width: 100%;
+background: url("images/CatalogueCover.jpg");
+background-position: center;
+background-size: 104%;
+background-repeat: no-repeat;
+marks: crop cross;
+prince-bleed: 0.3in;
+prince-trim: 0.7in;
 }
 
 #cover p.webaddress{
