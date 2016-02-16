@@ -5,28 +5,46 @@
 }
 
 @page {
-    margin: 3cm;
+    @include defaults;
+    margin: 2cm 2.5cm;
 }
 
-@page:left {
-    @include defaults;
+@page body:left {
     @top-left {
         content: counter(page);
+        vertical-align: bottom;
     }
     @top {
-        content: Chapter
+        content: Chapter;
+        vertical-align: bottom;
     }
 }
-@page:right {
-    @include defaults;
+@page body:right {
     @top-right {
         content: counter(page);
+        vertical-align: bottom;
     }
     @top {
-        content: section
+        content: section;
+        vertical-align: bottom;
     }
 }
+@page body {
+    border-top: thin black solid;
+}
+@page body:first {
+    margin-top: 25%;
+    @top-left { content: normal; }
+    @top-right { content: normal; }
+    border: none;
+}
+@page body:blank {
+    @top-left { content: normal; }
+    @top-right { content: normal; }
+    border: none;
+}
 body {
+    padding: 0.5cm 0cm;
     @include defaults;
 }
 
@@ -64,15 +82,7 @@ body {
 }
 
 @page frontmatter:blank {
-    @top { content: normal; }
-    @top-left { content: normal; }
-    @top-right { content: normal; }
     @bottom { content: normal; }
-}
-
-.frontmatter {
-    page: frontmatter;
-    counter-reset: page 1;
 }
 
 h1 {
@@ -88,6 +98,25 @@ p.paperref {
     }
     .pubhow {
         font-style: italic;
+    }
+}
+
+ul {
+    margin-left: 20pt;
+    margin-right: 20pt;
+}
+
+.frontmatter {
+    page: frontmatter;
+    counter-reset: page 1;
+}
+
+.body {
+    counter-reset: page 1;
+    prince-page-group: start;
+    page: body;
+    h1 {
+        margin-bottom: 1em;
     }
 }
 
