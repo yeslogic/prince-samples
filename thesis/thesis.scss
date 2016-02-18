@@ -14,8 +14,8 @@
         content: counter(page);
         vertical-align: bottom;
     }
-    @top {
-        content: Chapter;
+    @top-right {
+        content: "Chapter " counter(chapter) ": " string(chapter);
         vertical-align: bottom;
     }
 }
@@ -24,8 +24,8 @@
         content: counter(page);
         vertical-align: bottom;
     }
-    @top {
-        content: section;
+    @top-left {
+        content: counter(chapter) "." counter(section) " " string(section);
         vertical-align: bottom;
     }
 }
@@ -87,6 +87,24 @@ body {
 
 h1 {
     page-break-before: right;
+    string-set: chapter content();
+    counter-increment: chapter;
+    counter-reset: section;
+}
+h1::before {
+    content: "Chapter " counter(chapter) ": ";
+}
+
+// XXX: What if a right page is printed before a h2 heading has occured, I
+// don't think this happens in the thesis as all introductions to chapters
+// are pretty short, with the exception of chapter 1 which is still less
+// than three pages.
+h2 {
+    string-set: section content();
+    counter-increment: section;
+}
+h2::before {
+    content: counter(chapter) "." counter(section) " ";
 }
 
 p.paperref {
