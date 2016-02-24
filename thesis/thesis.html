@@ -451,7 +451,7 @@ These bugs increase the costs of software development.
 Software companies who want their software to out-perform their competitors
 will usually take on the costs of multicore programming.
 We will explain the problems with parallelism in imperative languages in
-Section \ref{sec:intro_concurrency}.
+<a class="xref" href="#intro_concurrency"></a>.
 </p>
 <p>
 In contrast to imperative languages,
@@ -558,36 +558,39 @@ required to determine when variables are assigned their values.
 Mercury's support for parallel execution and the previous
 auto-parallelisation system
 <a class="citep" href="#bone:2008:hons"></a> is described in
-Chapter \ref{chap:backgnd}.
+<a class="xref_chap" href="#chap:backgnd"></a>.
 In this dissertation we make a number of improvements to Mercury's runtime
 system that improve the performance of parallel Mercury programs
-(Chapter \ref{chap:rts}).
-In Chapter \ref{chap:overlap} we describe our
+(<a class="xref_chap" href="#chap:rts"></a>).
+In <a class="xref_chap" href="#chap:overlap"></a> we describe our
 automatic parallelism analysis tool and its algorithms,
 and show how it can speedup several programs.
-In Chapter \ref{chap:loop_control} we introduce a new transformation that
-improves the performance of 
+In <a class="xref_chap" href="#chap:loop_control"></a> we introduce a new
+transformation that improves the performance of 
 some types of recursive code and achieve almost perfect linear speedups on
 several benchmarks.
 The transformation also allows recursive code within parallel conjunctions
 to take advantage of tail recursion optimisation.
-Chapter \ref{chap:tscope} describes a proposal to add support for Mercury to
-the ThreadScope parallel profile visualisation tool.
+Chapter <a class="xref_chap" href="#chap:tscope"></a> describes a proposal
+to add support for Mercury to the ThreadScope parallel profile visualisation
+tool.
 We expect that the proposed features will very useful for programmers and
 researchers alike.
-Finally in Chapter \ref{chap:conc} we conclude the dissertation,
-tieing together the various contributions.
+Finally in <a class="xref_chap" href="#chap:conc"></a> we conclude the
+dissertation, tieing together the various contributions.
 We believe that our work could also be adapted for other systems;
 this will be easier in similar languages and more difficult in less similar
 languages.
 </p>
 
-\input{backgnd}
-\input{rts}
-\input{overlap}
-\input{loop_control}
-\input{tscope}
-\input{conc}
+<h2 id="intro_concurrency">Concurrency</h2>
+
+<h1 id="chap:backgnd">Background</h1>
+<h1 id="chap:rts">Runtime system</h1>
+<h1 id="chap:overlap">Overlap</h1>
+<h1 id="chap:loop_control">Loop control</h1>
+<h1 id="chap:tscope">ThreadScope</h1>
+<h1 id="chap:conc">Conclusion</h1>
 
 </div><!-- body -->
 

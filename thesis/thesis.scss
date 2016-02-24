@@ -150,6 +150,13 @@ h1 {
         content: "]";
         text-decoration: none;
     }
+
+    a.xref {
+        content: "section\00A0" target-counter(attr(href), chapter) "." target-counter(attr(href), section);
+    }
+    a.xref_chap {
+        content: "chapter\00A0" target-counter(attr(href), chapter);
+    }
 }
 
 div.bibliography {
