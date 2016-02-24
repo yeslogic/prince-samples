@@ -345,8 +345,8 @@ and being generally awesome.
 <h1 id="chap_intro">Introduction</h1>
 
 <p>
-In 1965 Moore \citep{moore} predicted that the transistor 
-density on processors would grow exponentially with time,
+In 1965 Moore <a class="citep" href="#moore"></a> predicted that the
+transistor density on processors would grow exponentially with time,
 and the manufacturing cost would fall.
 The smaller transistors are, the faster they can switch
 (given adequate power),
@@ -356,13 +356,13 @@ calling it Moore's Law.
 However as faster processors require more power,
 they create more heat which must be dissipated.
 Without novel power saving techniques
-(such as \citet{intel-high-k}),
+(such as Bohr at al <a class="citep" href="#intel-high-k"></a>),
 this limits increases of processors' clock speeds.
 </p>
 <p>
 Around 2005 it became clear that significant improvements in performance
 would not come from increased clock speeds but from multicore parallelism
-\citep{free_lunch}.
+<a class="citep" href="#free_lunch"></a>.
 Manufacturers now build processors with multiple processing cores,
 which can be placed in the same package,
 and usually on the same die.
@@ -440,7 +440,8 @@ This is normally done by dividing the software into multiple threads of
 execution
 which execute in parallel with one another.
 This is very difficult in imperative languages as the programmer is
-responsible for coordinating the threads \citep{sutter:2005:concurrency}.
+responsible for coordinating the threads
+<a class="citep" href="#sutter:2005:concurrency"></a>.
 Few programmers have the skills necessary to accomplish this,
 and those that do, still make expensive mistakes as
 threaded programming is inherently error prone. 
@@ -555,7 +556,8 @@ reason about parallel performance,
 and in the case of a logic language, a strict and precise mode system is
 required to determine when variables are assigned their values.
 Mercury's support for parallel execution and the previous
-auto-parallelisation system \citep{bone:2008:hons} is described in
+auto-parallelisation system
+<a class="citep" href="#bone:2008:hons"></a> is described in
 Chapter \ref{chap:backgnd}.
 In this dissertation we make a number of improvements to Mercury's runtime
 system that improve the performance of parallel Mercury programs
@@ -589,9 +591,10 @@ languages.
 
 </div><!-- body -->
 
-\bibliographystyle{plainnat}
-\raggedright
-\bibliography{bib}
+<h1>References</h1>
+<div class="bibliography">
+PUT_BIB_HERE
+</div>
 
 </body>
 </html>

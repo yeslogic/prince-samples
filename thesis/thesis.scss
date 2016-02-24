@@ -59,12 +59,12 @@ body {
     text-align: center;
     page: titlepage;
     .title {
-        margin-top: 6cm; 
+        margin-top: 6cm;
         font-size: 28pt;
     }
     .author {
-        margin-top: 32pt; 
-        margin-bottom: 4cm; 
+        margin-top: 32pt;
+        margin-bottom: 4cm;
         font-size: 28pt;
     }
     .titlepagetext {
@@ -83,28 +83,6 @@ body {
 
 @page frontmatter:blank {
     @bottom { content: normal; }
-}
-
-h1 {
-    page-break-before: right;
-    string-set: chapter content();
-    counter-increment: chapter;
-    counter-reset: section;
-}
-h1::before {
-    content: "Chapter " counter(chapter) ": ";
-}
-
-// XXX: What if a right page is printed before a h2 heading has occured, I
-// don't think this happens in the thesis as all introductions to chapters
-// are pretty short, with the exception of chapter 1 which is still less
-// than three pages.
-h2 {
-    string-set: section content();
-    counter-increment: section;
-}
-h2::before {
-    content: counter(chapter) "." counter(section) " ";
 }
 
 p.paperref {
@@ -129,12 +107,66 @@ ul {
     counter-reset: page 1;
 }
 
+h1 {
+    page-break-before: right;
+}
+
 .body {
     counter-reset: page 1;
     prince-page-group: start;
     page: body;
     h1 {
         margin-bottom: 1em;
+        page-break-before: right;
+        string-set: chapter content();
+        counter-increment: chapter;
+        counter-reset: section;
+    }
+    h1::before {
+        content: "Chapter " counter(chapter) ": ";
+    }
+
+    // XXX: What if a right page is printed before a h2 heading has occured,
+    // I don't think this happens in the thesis as all introductions to
+    // chapters are pretty short, with the exception of chapter 1 which is
+    // still less than three pages.
+    h2 {
+        string-set: section content();
+        counter-increment: section;
+    }
+    h2::before {
+        content: counter(chapter) "." counter(section) " ";
+    }
+
+    a.citep {
+        content: target-content(attr(href));
+        text-decoration: none;
+    }
+    a.citep::before {
+        content: "[";
+        text-decoration: none;
+    }
+    a.citep::after {
+        content: "]";
+        text-decoration: none;
     }
 }
+
+div.bibliography {
+    columns: 2;
+    text-align: left;
+    hr, p {
+        display: hidden;
+    }
+    dt {
+        float: left;
+    }
+    dd {
+        display: block;
+        margin-left: 30pt;
+        margin-bottom: 0.5em;
+        page-break-inside: avoid;
+    }
+}
+
 

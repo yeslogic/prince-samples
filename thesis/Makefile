@@ -1,12 +1,26 @@
 % vim: ts=4 sw=4 noet
 
-thesis.pdf : thesis.html thesis.css
-	prince thesis.html
+thesis.pdf : thesis-postproc.html thesis.css
+	prince $< -o $@
 
 thesis.css : thesis.scss
 	sass $< > $@
 
+thesis-postproc.html : thesis.html bib-sorted.html make-file.awk
+	awk -f make-file.awk < $< > $@
+
+bib-sorted.html : bib-sorted.bib citefile.txt
+	bibtex2html -q -noabstract -nokeywords -dl -nodoc -a -nobibsource \
+		-citefile citefile.txt $<
+
+citefile.txt : thesis.html
+	grep "a class=\"cite" $< | sed -e 's/.*\href=\"#\(.*\)".*/\1/' > $@
+
+bib-sorted.bib : bib.bib
+	bib2bib -q -s editor,author,year < $< > $@
+
 .PHONY: clean
 clean:
-	rm thesis.css thesis.pdf
+	rm -f thesis.css thesis.pdf bib-sorted.bib bib-sorted.html \
+		citefile.txt thesis-postproc.html
 
