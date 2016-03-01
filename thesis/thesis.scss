@@ -118,6 +118,7 @@ h1 {
     h1 {
         margin-bottom: 1em;
         page-break-before: right;
+        prince-page-group: start;
         string-set: chapter content();
         counter-increment: chapter;
         counter-reset: section;
