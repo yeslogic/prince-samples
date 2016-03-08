@@ -1,8 +1,3 @@
-bib-sorted.bib
-bib-sorted.html
-citefile.txt
-thesis-postproc.html
-thesis.css
+.sass-cache
 thesis.css.map
 thesis.pdf
-.sass-cache

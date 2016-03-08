@@ -1,0 +1,670 @@
+<html>
+<head>
+<title>Automatic Parallelisation for Mercury</title>
+<meta name="author" value="Paul Bone">
+<link rel="stylesheet" href="thesis.css"/>
+</head>
+<body>
+
+<div class="titlepage">
+<div class="title">Automatic Parallelisation for Mercury</div>
+<div class="author">Paul Bone</div>
+
+<p class="titlepagetext">
+Submitted in total fulfilment of the requirements of the degree of Doctor of
+Philosophy
+</p>
+
+<p class="titlepagetext">
+December 2012<br/>
+Department of Computing and Information Systems <br/>
+The University of Melbourne
+</p>
+
+<p class="titlepagetext">
+Copyright (C) 2009-2012 Paul Bone
+</p>
+</div>
+
+<div class="frontmatter">
+<h1>Abstract</h1>
+
+<p>
+Multicore computing is ubiquitous,
+so programmers need to write
+parallel programs to take advantage of the full power of modern computer
+systems.
+However the most popular parallel programming methods are difficult and
+extremely error-prone.
+Most such errors are intermittent,
+which means they may be unnoticed until after a product has been shipped;
+they are also often very difficult to fix.
+This problem has been addressed by pure declarative languages that support
+explicit parallelism.
+However, this does nothing about another problem:
+it is often difficult for developers to find tasks that are worth
+parallelising.
+When they can be found,
+it is often too easy to create too much parallelism,
+such that the overheads of parallel execution overwhelm the benefits gained
+from the parallelism.
+Also, when parallel tasks depend on other parallel tasks,
+the dependencies may restrict the amount of parallelism available.
+This makes it even harder for programmers to estimate the benefit of
+parallel execution.
+</p>
+<p>
+In this dissertation we describe our 
+profile feedback directed automatic parallelisation system,
+which aims at solving this problem.
+We implemented this system for Mercury, a pure declarative logic programming
+language.
+We use information gathered from a profile collected from a sequential
+execution of a program to inform the compiler about how that program can be
+parallelised.
+Ours is, as far as we know, the first automatic parallelisation system that
+can estimate the parallelism available among any number of parallel tasks
+with any number of (non-cyclic) dependencies.
+This novel estimation algorithm is supplemented by
+an efficient exploration of the program's call graph,
+an analysis that calculates the cost of recursive calls (as this is not provided
+by the profiler),
+and an efficient search for the best parallelisation of
+<math><ci>N</ci></math> computations 
+from among the
+<math>
+<apply><power/><cn>2</cn>
+    <apply><minus/><ci>N</ci><cn>1</cn></apply>
+</apply>
+</math>
+candidates.
+</p>
+<p>
+We found that in some cases where our system parallelised a loop,
+spawning off virtually all of its iterations,
+the resulting programs exhibited excessive memory usage and poor
+performance.
+We therefore designed and implemented
+a novel program transformation that fixes this problem.
+Our transformation allows programs to gain large improvements
+in performance and in several cases, almost perfect linear speedups.
+The transformation also allows recursive calls within the parallelised code
+to take advantage of tail recursion.
+</p>
+<p>
+Also presented in this dissertation are many changes that improve the
+performance of Mercury's parallel runtime system,
+as well as a proposal and partial implementation of a visualisation tool
+that assists developers with parallelising their programs,
+and helps researchers develop automatic parallelisation tools and
+improve the performance of the runtime system.
+</p>
+<p>
+Overall,
+we have attacked and solved a number of issues that are critical to
+making automatic parallelism a realistic option for developers.
+</p>
+
+<h1>Declaration</h1>
+<p>
+This is to certify that:
+</p>
+<ul>
+    <li> the thesis comprises only my original work towards the PhD except
+         where indicated in the Preface,
+
+    <li> due acknowledgement has been made in the text to all other material
+         used,
+
+    <li> the thesis is fewer than 100,000 words in length, exclusive of
+         tables, maps, bibliographies and appendices.
+</ul>
+
+<p>
+Signed:
+</p>
+
+<p>
+Date:
+</p>
+
+<h1>Preface</h1>
+
+<p>
+The dissertation begins with an introduction
+(chapter <a href="#chap-intro"></a>) that
+motivates the need for automatic parallelism systems.
+It provides an analysis of the related literature;
+using this to show why automatic parallelism is important
+and why the problem is still unsolved.
+</p>
+<p>
+Chapter <a href="#chap:backgnd"></a>
+provides background material used throughout the rest of the dissertation.
+In particular it describes prior work 
+that I did as part of my Honours project
+for the degree of Bachelor of Computer Science Honours at the University of
+Melbourne.
+This work occurred before my Ph.D. candidature commenced.
+This work included:
+the profiler feedback framework (section <a href="#sec-backgnd_autopar"></a>),
+an initial rudimentary version of the automatic
+parallelisation tool (also section <a href="#sec-backgrnd_autopar"></a>),
+an algorithm for determining when a sub-computation first uses
+a variable (section <a href="#sec-backgnd_var_use_analysis"></a>),
+and the initial version of the coverage profiling support in Mercury's deep
+profiler (section <a href="#sec-backgnd_coverage"></a>).
+</p>
+<p>
+Chapter <a href="#chap-rts"></a> discusses a number of improvements that
+were made to the runtime system,
+in order to make parallel Mercury programs perform better.
+Chapter <a href="#chap-rts"></a> describes some joint work with Peter Wang.
+Wang contributed about 80% of the initial work stealing implementation 
+described in section <a href="sec-rts_work_stealing"></a>;
+I contributed the other 20%.
+An improved version of work stealing is described in
+section <a href="#sec-rts_work_stealing2"></a>,
+but the work in that section is solely my own.
+</p>
+<p>
+The next three chapters are based on published papers,
+of which I am the first author and contributed the vast majority of the work.
+Chapter <a href="#chap-overlap"></a> describes our new automatic parallelism
+analysis tool and its novel algorithms.
+It is based on the following journal article.
+</p>
+
+<p class="paperref">
+<span class="pubauthor">Paul Bone, Zoltan Somogyi and Peter Schachte.</span>
+<span class="pubtitle">
+Estimating the overlap between dependent computations for automatic
+parallelization.
+</span>
+<span class="pubhow">
+Theory and Practice of Logic Programming, 11(4&ndash;5):575&ndash;591, 2011.
+</span>
+</p>
+
+<p>
+Chapter <a href="#chap-loop_control"></a> describes a code transformation
+that fixes a long standing performance problem in the parallel execution of
+most recursive code.
+It is based on the following conference paper.
+</p>
+
+<p class="paperref">
+<span class="pubauthor">Paul Bone, Zoltan Somogyi and Peter Schachte.</span>
+<span class="pubtitle">Controlling Loops in Parallel Mercury Code.</span>
+<span class="pubhow">
+Proceedings of the 7th Workshop on Declarative Aspects and
+Applications of Multicore Programming, Philadelphia PA USA, January 2012.
+</span>
+</p>
+
+<p>
+Chapter <a href="#chap:tscope"></a> describes our use of the ThreadScope visual
+profiler that was developed for use with Haskell and how we use it with
+Mercury.
+It is based on the following workshop paper.
+</p>
+
+<p class="paperref">
+<span class="pubauthor">Paul Bone and Zoltan Somogyi.</span>
+<span class="pubtitle">Profiling parallel Mercury programs with
+ThreadScope.</span>
+<span class="pubhow">
+Proceedings of the 21st Workshop on Logic-based methods in
+Programming Environments,
+Lexington KY USA, July 2011.
+</span>
+</p>
+
+<p>
+Finally Chapter <a href="conc"></a> concludes the dissertation, providing a
+discussion that unifies the work presented in the four main chapters and
+describes potential further work.
+</p>
+
+<h1>Acknowledgements</h1>
+
+<p>
+First I will thank my supervisors,
+Zoltan Somogyi,
+Peter Schachte and
+Aaron Harwood
+for all their support, hard work, and on occasion weekends.
+I have learnt a lot from you and enjoyed your company and our interesting
+offtopic conversations.
+I also want to thank my Mercury, G12 and programming languages colleagues:
+Julien Fischer,
+Mark Brown,
+Ralph Becket, 
+Thibaut Feydy,
+Matt Guica,
+Matt Davis,
+Andreas Schutt,
+Leslie DeKoninck,
+Sebastian Brand,
+Leon Mika,
+and
+Ondrej Bojar;
+and Mercury developers outside of the University:
+Peter Wang,
+Ian MacLarty,
+and
+Peter Ross.
+I also want to thank the helpful and supportive staff in the Computing and
+Information Systems department at the University of Melbourne,
+especially
+Linda Stern,
+Bernie Pope,
+Harald S&oslash;ndergaard, and
+Lee Naish.
+</p>
+
+<p>
+I would also like to acknowledge the support of the functional and logic
+programming research community.
+Firstly, I want to thank everyone
+who has contributed to the development of ThreadScope,
+helped organise the ThreadScope summit, and
+answered many of my questions,
+in particular
+Simon Marlow,
+Simon Peyton-Jones,
+Eric Kow
+and Duncan Coutts.
+Simon Marlow and his family were also incredibly hospitable during my visit
+to Cambridge.
+I also want to thank those at the University of New South Wales who invited
+me to present a seminar to their research group:
+Ben Lippmeier,
+Gabi Keller,
+and Manuel Chakravarty.
+</p>
+<p>
+I received financial support from the following scholarships, prizes and
+organisations:
+Australian Postgraduate Award,
+NICTA Top-up Scholarship,
+NICTA travel support,
+Melbourne Abroad Travelling Scholarship,
+Google Travel Prize,
+Association for Logic Programming (ICLP),
+and
+Open Parallel.
+</p>
+<p>
+I would like to offer special thanks to those who contributed time and
+effort in other ways.
+Ben Stewart for shell access to his multicore system early in my candidature,
+Chris King for his spectralnorm benchmark program,
+Michael Richter for assistance with proof reading.
+</p>
+<p>
+I would like to offer a whole lot of thanks to my friends:
+Amanda &amp; Chas Dean,
+Lucas &amp; Jen Wilson-Richter,
+Sarah Simmonds, John Spencer,
+Jeff Beinvenu, Mangai Murugappan,
+Terry Williamson, Heidi Williams,
+Tom Wijgers,
+Ha Le,
+Emil Mikulic,
+Dave Grinton,
+Marco Maimone,
+Michael Slater,
+Geoff Giesemann,
+Enzo Reyes,
+Dylan Leigh,
+and Marco Mattiuzzo.
+</p>
+
+<p>
+I want to thank my parents, Keith and Faye Bone, for their support and
+encouragement,
+but most of all,
+for teaching me that my poor vision might be an impairment, but should never
+be a limitation.
+Thanks to my brother, James Bone, for always having time to listen,
+even when I use incomprehensible jargon ("nerd-words").
+</p>
+<p>
+Finally, Liz Bone, my wife,
+for her love patience understanding and caring
+and being generally awesome.
+</p>
+
+<h1>Table of contents</h1>
+
+<div id="toc"></div>
+</div><!-- frontmatter -->
+
+<div class="body">
+<h1 id="chap_intro">Introduction</h1>
+
+<p>
+In 1965 Moore <a class="citep" href="#moore"></a> predicted that the
+transistor density on processors would grow exponentially with time,
+and the manufacturing cost would fall.
+The smaller transistors are, the faster they can switch
+(given adequate power),
+and therefore manufacturers can ship faster processors.
+The industry celebrated this trend,
+calling it Moore's Law.
+However as faster processors require more power,
+they create more heat which must be dissipated.
+Without novel power saving techniques
+(such as Bohr at al <a class="citep" href="#intel-high-k"></a>),
+this limits increases of processors' clock speeds.
+</p>
+<p>
+Around 2005 it became clear that significant improvements in performance
+would not come from increased clock speeds but from multicore parallelism
+<a class="citep" href="#free_lunch"></a>.
+Manufacturers now build processors with multiple processing cores,
+which can be placed in the same package,
+and usually on the same die.
+Individual cores work separately, communicating through the memory
+hierarchy.
+</p>
+<p>
+Other methods of improving performance without increasing clock speed have
+also been tried.
+</p>
+<ul>
+<li>
+Modern processors perform super-scalar execution:
+processor instructions form a pipeline,
+with several instructions at different stages of execution at once,
+and by adding extra circuitry, several instructions may be at the same stage
+of execution.
+However, we have just about reached the limits of what super-scalar
+execution can offer.
+</li>
+<li>
+Manufacturers have also added Single Instruction Multiple Data (SIMD)
+instructions to their processors;
+this allows programmers to perform the same operation on multiple pieces of
+data.
+In practice however, SIMD is useful only in some specific circumstances.
+</li>
+<li>
+Multicore computing has the potential to be useful in many circumstances,
+and does not appear to have limitations that cannot be overcome.
+Cache coherency could be a limitation for processors with many cores.
+However there are solutions to this such as directory based memory
+coherency;
+there are also research opportunities such as making compilers responsible
+for cache management.
+</li>
+</ul>
+
+<p>
+Multicore computing is a special case of multiprocessing.
+Most multiprocessing systems are symmetric multiprocessing (SMP) systems.
+An SMP system consists of several homogeneous processors and some memory
+connected together.
+Usually all processors are equally-distant from all memory location.
+Most multicore systems are SMP systems;
+they may have more than one CPU each with any number of cores.
+Some multiprocessing systems use a non-uniform memory architecture (NUMA).
+Usually this means that each processor has fast access to some local memory
+and slower access to the other processors' memories.
+A new type of architecture uses graphics programming units (GPUs) to
+perform general purpose computing,
+they are called GPGPU architectures.
+However they are not as general purpose as their name suggests:
+they work well for large regular data-parallel and compute-intensive
+workloads,
+but do not work well for more general symbolic processing.
+GPGPUs give programs access to small amounts of different types of memory
+of fixed sizes,
+however most symbolic programs rely on dynamic allocation of unpredictable
+amounts of memory.
+Additionally, symbolic programs often include code with many conditional
+branches;
+this type of code does not perform well on GPGPUs.
+GPGPU architectures are not as general purpose as SMP systems and
+SMP systems are vastly more common than NUMA systems.
+Therefore, in this dissertation we are only concerned with SMP systems as
+they are both more general and more common,
+making them more desirable targets for most programmers.
+Our approach will work with NUMA systems, but not optimally.
+</p>
+<p>
+To use a multicore system, or multiprocessing in general,
+programmers must parallelise their software.
+This is normally done by dividing the software into multiple threads of
+execution
+which execute in parallel with one another.
+This is very difficult in imperative languages as the programmer is
+responsible for coordinating the threads
+<a class="citep" href="#sutter:2005:concurrency"></a>.
+Few programmers have the skills necessary to accomplish this,
+and those that do, still make expensive mistakes as
+threaded programming is inherently error prone. 
+Bugs such as data corruption, deadlocks and race conditions
+can be extremely tedious to find and fix.
+These bugs increase the costs of software development.
+Software companies who want their software to out-perform their competitors
+will usually take on the costs of multicore programming.
+We will explain the problems with parallelism in imperative languages in
+<a class="xref" href="#intro_concurrency"></a>.
+</p>
+<p>
+In contrast to imperative languages,
+it is trivial to express parallelism in pure declarative languages.
+Expressing this parallelism creates two strongly-related problems.
+First,
+one must overcome the costs of parallel execution.
+For example,
+it may take hundreds of instructions to make a task available for execution on
+another processor.
+However, if that task only takes a few instructions to execute,
+then there is no benefit to executing it in parallel.
+Even if the task creates hundreds of instructions to execute,
+parallel execution is probably not worthwhile.
+Most easy-to-exploit parallelism is <i>fine grained</i> such as this.
+Second,
+an abundance of coarse grained parallelism can also be a problem.
+Whilst the amount of parallelism the machine can exploit
+cannot increase beyond the number of processors,
+the more parallel tasks a program creates,
+the more the overheads of parallel execution will have an effect on
+performance.
+In these situations,
+there is no benefit in parallelising many of the tasks,
+and yet the overheads of their parallel executions will still have an
+effect.
+This often cripples the performance of such programs.
+This is known as an <i>embarrassingly parallel</i>workload.
+Programs with either of these problems almost always perform more
+<i>slowly</i> than their sequential equivalents.
+Programmers must therefore find the parts of their program where parallel
+execution
+is profitable and parallelise those parts of their program <i>only</i>,
+whilst being careful to avoid embarrassing parallelism.
+This means that a programmer must have a strong understanding of their
+program's  computations' costs,
+how much parallelism they are making available,
+and how many processors may be available at any point in the program's
+execution.
+Programmers are not good at identifying the hotspots in their programs
+or in many cases understanding the costs of computations,
+consequently programmers are not good at manually parallelising programs.
+Programmers are encouraged to use profilers to help them identify the
+hotspots in their programs and speed them up;
+this also applies to parallelisation.
+</p>
+<p>
+Automatic parallelism aims to make it easy to introduce parallelism.
+Software companies will not need to spend as much effort on parallelising
+their software.
+Better yet,
+it will be easier for programmers to take advantage of the extra cores on
+newer processors.
+Furthermore, 
+as a parallel program is modified its performance characteristics will
+change,
+and some changes may affect the benefit of the parallelism that has already
+been exploited.
+In these cases automatic parallelism will make it easy to
+<i>re-parallelise</i> the program,
+saving programmers a lot of time.
+</p>
+
+\input{literature_review}
+
+<h2 id="sec_intro_general_approach">General approach</h2>
+
+<p>
+Unfortunately automatic parallelisation technology is yet to be developed to the
+point where it is generally useable.
+Our aim is that automatic parallelisation will be easy to use and
+will parallelise programs more effectively that most programmers can by
+hand.
+Most significantly,
+automatic parallelism will be very simple to use compared with the
+difficulty of manual parallelisation.
+Furthermore as programs change,
+costs of computations within them will change,
+and this may make manual parallelisations (using explicit parallelism) less
+effective.
+An automatic parallelisation system will therefore make it easier to
+maintain programs as the automatic parallelisation analysis can simply be
+redone to re-parallelise the programs.
+We are looking forward to a future where programmers think about
+parallelism no more than they currently think about traditional compiler
+optimisations.
+</p>
+<p>
+In this dissertation we have solved several of the critical issues with
+automatic parallelism.
+Our work is targeted towards Mercury.
+We choose to use Mercury because
+it already supports explicit parallelism of dependent conjunctions,
+and it provides the most powerful profiling tool of any declarative language,
+which generates data for our profile feedback analyses.
+In some ways our work can be used with other programming languages,
+but most other languages have significant barriers.
+In particular automatic parallelism can only work reliably with declaratively
+pure languages,
+the language should also use a strict evaluation strategy to make it easy to
+reason about parallel performance,
+and in the case of a logic language, a strict and precise mode system is
+required to determine when variables are assigned their values.
+Mercury's support for parallel execution and the previous
+auto-parallelisation system
+<a class="citep" href="#bone:2008:hons"></a> is described in
+<a class="xref_chap" href="#chap:backgnd"></a>.
+In this dissertation we make a number of improvements to Mercury's runtime
+system that improve the performance of parallel Mercury programs
+(<a class="xref_chap" href="#chap:rts"></a>).
+In <a class="xref_chap" href="#chap:overlap"></a> we describe our
+automatic parallelism analysis tool and its algorithms,
+and show how it can speedup several programs.
+In <a class="xref_chap" href="#chap:loop_control"></a> we introduce a new
+transformation that improves the performance of 
+some types of recursive code and achieve almost perfect linear speedups on
+several benchmarks.
+The transformation also allows recursive code within parallel conjunctions
+to take advantage of tail recursion optimisation.
+Chapter <a class="xref_chap" href="#chap:tscope"></a> describes a proposal
+to add support for Mercury to the ThreadScope parallel profile visualisation
+tool.
+We expect that the proposed features will very useful for programmers and
+researchers alike.
+Finally in <a class="xref_chap" href="#chap:conc"></a> we conclude the
+dissertation, tieing together the various contributions.
+We believe that our work could also be adapted for other systems;
+this will be easier in similar languages and more difficult in less similar
+languages.
+</p>
+
+<h2 id="intro_concurrency">Concurrency</h2>
+
+<h1 id="chap:backgnd">Background</h1>
+<h1 id="chap:rts">Runtime system</h1>
+<h1 id="chap:overlap">Overlap</h1>
+<h1 id="chap:loop_control">Loop control</h1>
+<h1 id="chap:tscope">ThreadScope</h1>
+<h1 id="chap:conc">Conclusion</h1>
+
+</div><!-- body -->
+
+<h1>References</h1>
+<div class="bibliography">
+
+<!-- This document was automatically generated with bibtex2html 1.98
+     (see http://www.lri.fr/~filliatr/bibtex2html/),
+     with the following command:
+     /usr/bin/bibtex2html -q -noabstract -nokeywords -dl -nodoc -a -nobibsource -citefile citefile.txt bib-sorted.bib  -->
+
+
+<dl>
+
+<dt>
+[<a name="intel-high-k">1</a>]
+</dt>
+<dd>
+Mark&nbsp;T. Bohr, Robert&nbsp;S. Chau, Tahir Chani, and Kaizad Mistry.
+ The high-k solution.
+ <em>IEEE Spectrum</em>, 44(10):29--35, October 2007.
+
+</dd>
+
+
+<dt>
+[<a name="bone:2008:hons">2</a>]
+</dt>
+<dd>
+Paul Bone.
+ Calculating likely parallelism within dependant conjunctions for
+  logic programs.
+ Honours thesis, University of Melbourne, Melbourne, Australia,
+  October 2008.
+
+</dd>
+
+
+<dt>
+[<a name="moore">3</a>]
+</dt>
+<dd>
+Gordon&nbsp;E. Moore.
+ Cramming more components onto integrated circuits.
+ <em>Electronics</em>, 38(8), April 1965.
+
+</dd>
+
+
+<dt>
+[<a name="free_lunch">4</a>]
+</dt>
+<dd>
+Herb Sutter.
+ The free lunch is over: A fundamental turn toward concurrency in
+  software.
+ <em>Dr Dobb's Journel</em>, 30(3), March 2005.
+
+</dd>
+
+
+<dt>
+[<a name="sutter:2005:concurrency">5</a>]
+</dt>
+<dd>
+Herb Sutter and James Larus.
+ Software and the concurrency revolution.
+ <em>Queue</em>, 3(7):54--62, September 2005.
+
+</dd>
+</dl><hr><p><em>This file was generated by
+<a href="http://www.lri.fr/~filliatr/bibtex2html/">bibtex2html</a> 1.98.</em></p>
+</div>
+
+</body>
+</html>
+

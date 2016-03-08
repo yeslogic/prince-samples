@@ -1,0 +1,146 @@
+@charset "UTF-8";
+@page {
+  font-family: Times, Serif;
+  font-size: 11pt;
+  text-align: justify;
+  margin: 2cm 2.5cm; }
+@page body:left {
+  @top-left {
+    content: counter(page);
+    vertical-align: bottom; }
+  @top-right {
+    content: "Chapter " counter(chapter) ": " string(chapter);
+    vertical-align: bottom; } }
+@page body:right {
+  @top-right {
+    content: counter(page);
+    vertical-align: bottom; }
+  @top-left {
+    content: counter(chapter) "." counter(section) " " string(section);
+    vertical-align: bottom; } }
+@page body {
+  border-top: thin black solid; }
+@page body:first {
+  margin-top: 25%;
+  @top-left {
+    content: normal; }
+  @top-right {
+    content: normal; }
+  border: none; }
+@page body:blank {
+  @top-left {
+    content: normal; }
+  @top-right {
+    content: normal; }
+  border: none; }
+body {
+  padding: 0.5cm 0cm;
+  font-family: Times, Serif;
+  font-size: 11pt;
+  text-align: justify; }
+
+@page titlepage {
+  font-family: Times, Serif;
+  font-size: 11pt;
+  text-align: justify;
+  @top {
+    content: normal; }
+  @top-left {
+    content: normal; }
+  @top-right {
+    content: normal; } }
+.titlepage {
+  text-align: center;
+  page: titlepage; }
+  .titlepage .title {
+    margin-top: 6cm;
+    font-size: 28pt; }
+  .titlepage .author {
+    margin-top: 32pt;
+    margin-bottom: 4cm;
+    font-size: 28pt; }
+  .titlepage .titlepagetext {
+    font-size: 18pt;
+    margin-bottom: 27pt; }
+
+@page frontmatter {
+  font-family: Times, Serif;
+  font-size: 11pt;
+  text-align: justify;
+  @top {
+    content: normal; }
+  @top-left {
+    content: normal; }
+  @top-right {
+    content: normal; }
+  @bottom {
+    content: counter(page,lower-roman); } }
+@page frontmatter:blank {
+  @bottom {
+    content: normal; } }
+p.paperref {
+  margin-left: 1cm;
+  margin-right: 1cm;
+  text-align: left; }
+  p.paperref .pubauthor {
+    font-weight: 600; }
+  p.paperref .pubhow {
+    font-style: italic; }
+
+ul {
+  margin-left: 20pt;
+  margin-right: 20pt; }
+
+.frontmatter {
+  page: frontmatter;
+  counter-reset: page 1; }
+
+h1 {
+  page-break-before: right; }
+
+.body {
+  counter-reset: page 1;
+  prince-page-group: start;
+  page: body; }
+  .body h1 {
+    margin-bottom: 1em;
+    page-break-before: right;
+    prince-page-group: start;
+    string-set: chapter content();
+    counter-increment: chapter;
+    counter-reset: section; }
+  .body h1::before {
+    content: "Chapter " counter(chapter) ": "; }
+  .body h2 {
+    string-set: section content();
+    counter-increment: section; }
+  .body h2::before {
+    content: counter(chapter) "." counter(section) " "; }
+  .body a.citep {
+    content: target-content(attr(href));
+    text-decoration: none; }
+  .body a.citep::before {
+    content: "[";
+    text-decoration: none; }
+  .body a.citep::after {
+    content: "]";
+    text-decoration: none; }
+  .body a.xref {
+    content: "section " target-counter(attr(href), chapter) "." target-counter(attr(href), section); }
+  .body a.xref_chap {
+    content: "chapter " target-counter(attr(href), chapter); }
+
+div.bibliography {
+  columns: 2;
+  text-align: left; }
+  div.bibliography hr, div.bibliography p {
+    display: none; }
+  div.bibliography dt {
+    float: left; }
+  div.bibliography dd {
+    display: block;
+    margin-left: 30pt;
+    margin-bottom: 0.5em;
+    page-break-inside: avoid; }
+
+/*# sourceMappingURL=thesis.css.map */

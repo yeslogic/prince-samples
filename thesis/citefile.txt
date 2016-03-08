@@ -1,0 +1,5 @@
+moore
+intel-high-k
+free_lunch
+sutter:2005:concurrency
+bone:2008:hons

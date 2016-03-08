@@ -13,13 +13,16 @@ real documents but not for example documents.
 
 ## Requirements
 
-You will need the following tools in addition to Prince.
+To build this sample you will need Prince and GNU Make, simply type `make`
+to build the PDF.
+
+If you wish to modify the sample, the intermediate files will need to be
+rebuilt.  You will need the following tools to rebuild the whole project:
 
     + bibtex2html
     + sass (I used version 3.4.21)
     + awk or gawk (already installed on most Linux / BSD / MacOS systems)
     + grep (already installed on most Linux / BSD / MacOS systems)
-    + GNU Make
 
 On Debian based systems these can be installed with:
 
