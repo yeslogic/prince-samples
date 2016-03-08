@@ -4,7 +4,7 @@ thesis.pdf : thesis-postproc.html thesis.css
 	prince $< -o $@
 
 thesis.css : thesis.scss
-	sass $< > $@
+	sass $< $@
 
 thesis-postproc.html : thesis.html bib-sorted.html make-file.awk
 	awk -f make-file.awk < $< > $@
