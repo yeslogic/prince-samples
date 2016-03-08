@@ -3,5 +3,6 @@ bib-sorted.html
 citefile.txt
 thesis-postproc.html
 thesis.css
+thesis.css.map
 thesis.pdf
 .sass-cache

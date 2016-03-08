@@ -22,5 +22,5 @@ bib-sorted.bib : bib.bib
 .PHONY: clean
 clean:
 	rm -f thesis.css thesis.pdf bib-sorted.bib bib-sorted.html \
-		citefile.txt thesis-postproc.html
+		citefile.txt thesis-postproc.html thesis.css.map
 
