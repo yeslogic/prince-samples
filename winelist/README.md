@@ -1,4 +1,4 @@
-## Wine list
+## Wine list example
 
 This sample demonstrates the use of grid layout to format
 a restaurant wine menu.
