@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jimmy's Wine Bar - Wine List</title>
+<link rel="stylesheet" href="winelist.css" />
+<link rel="stylesheet" href="fonts.css" />
+<style>
+.name {
+    font: 36pt Italiana;
+    color: #900;
+}
+
+.est {
+    font: 12pt Italiana;
+}
+
+/* must be large enough to cover the wine list */
+.wine-list    { grid-row: span 26; }
+@media screen { .wine-list { grid-row: span 27; } }
+
+/* image placement */
+#almond       { grid-column: 3; grid-row: 9; }
+#apple        { grid-column: 3; grid-row: 2; }
+#apricot      { grid-column: 1; grid-row: 5; }
+#asparagus    { grid-column: 1; grid-row: 7 / span 3; }
+#blackberry   { grid-column: 3; grid-row: 25 / span 2; }
+#blackcurrant { grid-column: 3; grid-row: 18; }
+#butter       { grid-column: 3; grid-row: 14; }
+#cherry       { grid-column: 1; grid-row: 23 / span 2; }
+#chocolate    { grid-column: 1; grid-row: 20; }
+#cloves       { grid-column: 3; grid-row: 24; }
+#grapefruit   { grid-column: 3; grid-row: 7; }
+#honey        { grid-column: 1; grid-row: 3; }
+#melon        { grid-column: 1; grid-row: 11; }
+#peach        { grid-column: 3; grid-row: 4; }
+#pear         { grid-column: 3; grid-row: 6; }
+#pepper       { grid-column: 1; grid-row: 25; }
+#pineapple    { grid-column: 1; grid-row: 13; }
+#plum         { grid-column: 1; grid-row: 17; }
+#raspberry    { grid-column: 3; grid-row: 22; }
+#rose         { grid-column: 3; grid-row: 19 / span 2; }
+#strawberry   { grid-column: 1; grid-row: 21 / span 2; }
+#truffle      { grid-column: 3; grid-row: 16; }
+#vanilla      { grid-column: 3; grid-row: 11 / span 2; }
+#violet       { grid-column: 1; grid-row: 15; }
+</style>
+</head>
+
+<body>
+<div class="header">
+  <div class="name">Jimmy's Wine Bar</div>
+  <div class="est">Est. 1935</div>
+</div>
+
+<div class="footer">
+  <div>
+    We accept all major credit Cards.
+    All cards incur a third party processing fee of 1.5% (AMEX 1.9%)
+  </div>
+  <div>
+    15% surcharge applies on weekends &amp; public holidays.
+    We do not split bills – there are 3<sup>rd</sup> party apps to facilitate this.
+  </div>
+</div>
+
+<div class="menu">
+  <img id="almond" src="images/almond.jpg"/>
+  <img id="apple" src="images/apple.jpg"/>
+  <img id="apricot" src="images/apricot.jpg"/>
+  <img id="asparagus" src="images/asparagus.jpg"/>
+  <img id="blackberry" src="images/blackberry.png"/>
+  <img id="blackcurrant" src="images/blackcurrant.jpg"/>
+  <img id="butter" src="images/butter.jpg"/>
+  <img id="cherry" src="images/cherry.jpg"/>
+  <img id="chocolate" src="images/chocolate.jpg"/>
+  <img id="cloves" src="images/cloves.jpg"/>
+  <img id="grapefruit" src="images/grapefruit.jpg"/>
+  <img id="honey" src="images/honey.jpg"/>
+  <img id="melon" src="images/melon.jpg"/>
+  <img id="peach" src="images/peach.jpg"/>
+  <img id="pear" src="images/pear.jpg"/>
+  <img id="pepper" src="images/pepper.jpg"/>
+  <img id="pineapple" src="images/pineapple.jpg"/>
+  <img id="plum" src="images/plum.jpg"/>
+  <img id="raspberry" src="images/raspberry.jpg"/>
+  <img id="rose" src="images/rose.jpg"/>
+  <img id="strawberry" src="images/strawberry.jpg"/>
+  <img id="truffle" src="images/truffle.jpg"/>
+  <img id="vanilla" src="images/vanilla.jpg"/>
+  <img id="violet" src="images/violet.jpg"/>
+
+  <img id="corks" src="images/corks.jpg"/>
+
+  <div class="wine-list">
+    <h1>Wine List</h1>
+
+    <h2>Sparkling, Champagne and White Wine</h2>
+
+    <h3>Sparkling</h3>
+    <div class="wines">
+      <div>Conca d’Oro Prosecco Rose NV (Treviso, Italy)</div>
+      <div>Dal Zotto Prosecco NV (King Valley, Vic)</div> By The Glass
+      <div>Brown Brothers Pinot Chardonnay Brut NV (NE, Vic)</div>
+      <div>JW Sparkling Chardonnay Pinot Brut NV (Langhorne Creek, SA)</div> By The Glass
+      <div>JW Sparkling Shiraz NV (Langhorne Creek, SA)</div> By The Glass
+      <div>Little Vespa Moscato (King Valley, Vic)</div> By The Glass
+    </div>
+
+    <h3>French Sparkling &amp; Champagne</h3>
+    <div class="wines">
+      <div>Laurent Perrier Brut NV (Tours-Sur-Marne, Fra)</div> 375ml
+      <div>Laurent Perrier Brut NV (Tours-Sur-Marne, Fra)</div>
+      <div>Paul Louis Blanc De Blanc NV (Loire Valley, Fra)</div> By The Glass
+    </div>
+
+    <h3>Riesling</h3>
+    <div class="wines">
+      <div>Arrowfield Riesling (Hunter, NSW)</div>
+      <div>Knights Granite Hills Riesling (Macedon, Vic)</div>
+      <div>Small Wonder ‘Landscape’ Riesling (Tamar, Tas)</div>
+      <div>Tim Adams Riesling (Clare Valley, SA)</div> By The Glass
+      <div>50• Degree Trocken Riesling (Rheingau, Germany)</div>
+    </div>
+
+    <h3>Pinot Grigio, Gris &amp; Blanc and Friends</h3>
+    <div class="wines">
+      <div>Esk Valley Pinot Gris (Hawkes Bay, NZ)</div>
+      <div>Maude Pinot Gris (Central Otago, NZ)</div>
+      <div>Millon Estate Pinot Gris (Eden Valley, SA)</div>
+      <div>Quealy‘Balnarring’ Pinot Grigio (Mornington, Vic)</div>
+      <div>Salwey Pinot Gris (Baden, Germany)</div>
+      <div>Tenuta Maccan Pinot Grigio (Friuli, Italy)</div> By The Glass
+      <div>Baddaginnie Run Verdelho (Strathbogie Ranges, Vic)</div>
+      <div>Dal Zotto Arneis (King Valley, Vic)</div>
+      <div>Holm Oak Arneis (Tamar Valley, Tas)</div>
+      <div>Jimmy Watsons Fiano (Limestone Coast, SA)</div>
+      <div>Roberto Sarotto ‘Aurora’ Cortese (Gavi, Italy)</div>
+      <div>Tenuta Corte Giacobbe Soave (Veneto, Italy)</div>
+      <div>Barbanera White Sangiovese (Tuscany, Italy)</div>
+    </div>
+
+    <h3>Sauvignon Blanc, Semillon and Friends</h3>
+    <div class="wines">
+      <div>Babich ‘Black Label’ Sauvignon Blanc (Marlborough, NZ)</div>
+      <div>Demuerte Sauvignon Blanc Verdejo (Yecla, Spain)</div>
+      <div>Karrawatta Sauvignon Blanc (Adelaide Hills, SA)</div>
+      <div>Tamar Ridge Sauvignon Blanc (Tamar Valley, Tas)</div>
+      <div>Vidal Estate Sauvignon Blanc (Marlborough, NZ)</div> By The Glass
+      <div>Genio Y Figura Albariño (Rias Baixas, Spain)</div>
+      <div>Thompson Estate Semillon Sauvignon Blanc (Margaret River, WA)</div>
+      <div>Balassa Furmint (Tokaji, Hungary)</div>
+    </div>
+
+    <h3>Alsatian, Loire, Rhone Styles &amp; Friends</h3>
+    <div class="wines">
+      <div>Mitchelton Wines Marsanne (Nagambie, Vic)</div>
+      <div>Mitchelton Wines Rousanne (Nagambie, Vic)</div>
+    </div>
+
+    <h3>Chardonnay</h3>
+    <div class="wines">
+      <div>Angove ‘Wild Olive’ Organic Chardonnay (McLaren Vale, SA)</div>
+      <div>Bellarine Estate Chardonnay (Bellarine, Vic)</div>
+      <div>Bowen Estate Chardonnay (Coonawarra, SA)</div>
+      <div>Brown Brothers Patricia Chardonnay (Tamar Valley, Tas)</div>
+      <div>De Grendel ‘Op Die Berg’ Chardonnay (Cape Town, South Africa)</div>
+      <div>Doluca ‘KAV’ Narince (Ankara,Turkey)</div>
+      <div>Esk Valley Chardonnay (Hawkes Bay, NZ)</div>
+      <div>Flametree Chardonnay (Margaret River, WA)</div>
+      <div>Indigo Chardonnay “Umpires Decision” (Beechworth, Vic)</div>
+      <div>Joel Gott Barrel Aged ‘LR’ Chardonnay (Napa Valley, California)</div>
+      <div>Kooyonga Creek Chardonnay (Benalla, Vic)</div> By The Glass
+      <div>Moppity Vineyards Estate Chardonnay (Tumbarumba, NSW)</div>
+      <div>Prosper Maufoux Élégance’ Bourgogne (Saint Aubin, Fra)</div>
+      <div>Tyrrell’s ‘Estate Grown’ Basket Pressed Chardonnay (Hunter Valley, NSW)</div>
+    </div>
+
+    <h3>Rose</h3>
+    <div class="wines">
+      <div>Il Palazzo ‘La Curia’ Rosata (Tuscany, Italy)</div>
+      <div>Marquis de Pennautier Rose (Languedoc, France)</div>
+      <div>Turkey Flat Rose (Barossa Valley, SA)</div>
+      <div>Verano Blush Rose (Turkey)</div> By The Glass
+    </div>
+
+    <h2>Red Wine</h2>
+
+    <h3>Pinot Noir</h3>
+    <div class="wines">
+      <div>Bellarine Estate Pinot Noir (Bellarine, Vic)</div>
+      <div>Bellvale Pinot Noir (Gippsland, Vic)</div> By The Glass
+      <div>Deviance Pinot Noir (Granton, Tas)</div>
+      <div>Devils Corner Resolution Pinot Noir (Tamar, Tas)</div>
+      <div>Fighting Gully Road Pinot Noir (Beechworth, Vic)</div>
+      <div>Happs iSeries Pinot Noir (Yallingup, WA)</div>
+      <div>Holm Oak Pinot Noir (Tamar Valley, Tas)</div>
+      <div>Marcel Amance Pinot Noir (Bourgogne, FRA)</div>
+      <div>Patricks Pinot Noir (Macedon, Vic)</div>
+      <div>Salwey Pinot Noir (Baden, Germany)</div>
+    </div>
+
+    <h3>Merlot, Mourvedre &amp; Malbec</h3>
+    <div class="wines">
+      <div>Brini Estate Merlot (McLaren Vale, SA)</div>
+      <div>Demuerte Monastrell Cabernet (Yecla, Spain)</div>
+      <div>Devoción Organic Malbec (Mendoza, Argentina)</div>
+      <div>Kooyonga Creek Merlot (Benalla, Vic)</div>
+    </div>
+
+    <h3>Cabernet &amp; Friends</h3>
+    <div class="wines">
+      <div>Brown Brothers Patricia Cab Sauv (Heathcote, Bendigo, Milawa, Vic)</div>
+      <div>Chateau du Grand Puch Cabernet Merlot (Médoc, Bordeaux, Fra)</div>
+      <div>Flametree Cab Sauv/ Merlot (Margaret River, WA)</div>
+      <div>Flametree SRS Wilyabrup Cab Sauv (Margaret River, WA)</div>
+      <div>Joel Gott ‘815’ Cabernet (Napa Valley, California)</div>
+      <div>Knights Granite Hills ‘The Gordon’ Cab, CF, Mlt (Macedon, Vic)</div>
+      <div>Kooyonga Creek Cabernet Sauvignon (Benalla, Vic)</div> By The Glass
+      <div>Moppity Vineyards Estate Cabernet Sauvignon (Hilltops, NSW)</div>
+      <div>Zema Estate Cabernet Sauvignon (Coonawarra, SA)</div>
+    </div>
+
+    <h3>Italian Reds</h3>
+    <div class="wines">
+      <div>Bonacchi Chianti Riserva DOCG (Tuscany, Italy)</div>
+      <div>Menhir Salento Primitivo (Puglia, Italy)</div>
+      <div>Palladino Nebbiolo D’Alba (dAlba, Italy)</div>
+      <div>Pietra Susumaniello (Lecce, Italy)</div>
+    </div>
+
+    <h3>GSM &amp; other red varieties</h3>
+    <div class="wines">
+      <div>Brini Estate Old Vine Grenache (McLaren Vale, SA)</div> By The Glass
+      <div>Brown Brothers Single Vineyard Durif (Heathcote, Vic)</div>
+      <div>Capa Tempranillo (La Mancha, Spain)</div>
+      <div>Charles Melton La Belle Mere GSM (Barossa, SA)</div>
+      <div>Charles Melton Nine Popes Rhone Blend (Barossa, SA)</div>
+      <div>Dal Zotto Sangiovese (King Valley, Vic)</div>
+      <div>Doluca ‘Tugra’ Okuzgozu (Denizli, Turkey)</div>
+      <div>‘Fire Block’ Old Bush Vine GSM (Clare Valley, SA)</div>
+      <div>Hofer Family Wines Lagrein (Langhorne Creek, SA)</div>
+      <div>Jimmy Watsons Durif (Rutherglen, Vic)</div> By The Glass
+      <div>Joel Gott Zinfandel (Napa Valley, California)</div>
+      <div>Les Vignobles Gueissard (Bandol, Fra) <span class="blend">Mourvedre 70%, Gren 15%, Cinsault 15%</span></div>
+      <div>Mr Riggs Montepulciano D’Adelaide (McLaren Vale, SA)</div>
+      <div>Tim Adams ‘The Fergus’ (Clare Valley, SA) <span class="blend">Grenache, Tempranillo, Malbec</span></div>
+    </div>
+
+    <h3>Shiraz</h3>
+    <div class="wines">
+      <div>Angove ‘Medhyk’ Shiraz (McLaren Vales, SA)</div>
+      <div>Angove ‘Wild Olive’ Organic Shiraz (McLaren Vale, SA)</div>
+      <div>Baddaginnie Run Shiraz (Strathbogies, Vic)</div>
+      <div>Best’s Great Western Bin 1 Shiraz (JW Winner) (Great Western, Vic)</div>
+      <div>Brini Estate Shiraz (McLaren Vale, SA)</div> By The Glass
+      <div>Charles Melton Voices of Angels Shiraz (Adelaide Hills, SA)</div>
+      <div>Craiglee Shiraz (Sunbury, Vic)</div>
+      <div>Geoff Merrill Reserve Shiraz (McLaren Vale, SA)</div>
+      <div>Geoff Merrill ‘Jacko’ Shiraz (McLaren Vale, SA)</div>
+      <div>Idavue Estate Vat 2 Shiraz (Heathcote, Vic)</div>
+      <div>Jasper Hill Georgia’s Paddock Shiraz (Heathcote, Vic)</div>
+      <div>Jimmy Watson’s Old Vine Shiraz (Barossa, SA)</div> By The Glass
+      <div>Kay Brothers ‘Basket Pressed’ Shiraz (McLaren Vale, SA)</div>
+      <div>Karrawatta Dairy Block Shiraz (Adelaide Hills, SA)</div>
+      <div>Knights Granite Hills Shiraz (Macedon, Vic)</div>
+      <div>Les Coteaux de Château Kefraya Shiraz, Marselan (Bekaa Valley, Lebanon)</div>
+      <div>Mitchelton Estate Grown Shiraz (Nagambie, Vic)</div>
+      <div>Scotchman’s Hill Shiraz (Drysdale, Vic)</div>
+      <div>Tyrrell’s ‘Estate Grown’ Dry Grown Shiraz (Hunter Valley, NSW)</div>
+      <div>Wild Duck Creek ‘Yellow Hammer Hill’ Sh, Mal, Cab (Heathcote, Vic)</div>
+    </div>
+  </div>
+</div>
+
+<div class="credits">
+Image sources: Vecteezy.com, goodfreephotos.com, wikipedia.org <br/>
+Wine corks image: <a href="https://www.flickr.com/photos/tomsaint/2616557989/">Rennett Stowe</a> (flickr.com)
+</div>
+
+</body>
+</html>
