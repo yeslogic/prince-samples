@@ -3,6 +3,8 @@
  * Distributed under the CC Attribution 4.0 International License.
  */
 
+@import url('https://fonts.googleapis.com/css?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Arimo:ital,wght@0,400..700;1,400..700');
+
 body,html{
 padding: 0;
 margin:0;
@@ -11,7 +13,7 @@ color: black;
 
 p{
 font-size: 16px;
-font-family: Arial, sans serif;
+font-family: Arial, Arimo, sans serif;
 }
 
 .bordertop{
@@ -41,7 +43,7 @@ padding:  10px;
 
 .h2{
 font-size: 20px;
-font-family: Georgia, serif;
+font-family: Georgia, Gelasio, serif;
 font-weight: bold;
 }
 
@@ -117,7 +119,7 @@ margin-bottom: 20px;
 
 table.invoicedetail thead{
 font-size: 20px;
-font-family: Georgia;
+font-family: Georgia, Gelasio;
 font-weight:bold;
 background: #dba948;
 }
@@ -146,7 +148,7 @@ opacity: 1;
 
 table.invoicedetail tbody td{
 padding: 10px 15px;
-font-family: arial;
+font-family: arial, Arimo;
 }
 
 table.invoicedetail thead td{
@@ -183,7 +185,7 @@ margin-bottom: 20px;
 
 .totalall .heading{
 font-size: 20px;
-font-family: Georgia, Serif;
+font-family: Georgia, Gelasio, Serif;
 font-weight: bold;
 padding: 5px 0px;
 }
