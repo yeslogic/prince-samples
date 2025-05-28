@@ -30,7 +30,7 @@ Sample documents for Prince.
 | [twist](twist) | Oliver Twist |
 | [usenix](usenix) | Scientific journal sample |
 | [webarch](webarch) | W3C Standard |
-| [wind-in-willows](wind-in-willows) | Wind in the Willows |
+| [wind-in-willows](wind-in-willows) | The Wind in the Willows |
 
 ## Licenses
 
