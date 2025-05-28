@@ -2,6 +2,8 @@
 <style>
 @import url(http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic);
 
+@prince-quirks line-height-12;
+
 /* Set up basic page design */
 
 @page { 
@@ -128,7 +130,7 @@ section.nonum header:before { content: none }
 }
 
 .foot {
-  float: prince-column-footnote;
+  float: column footnote;
   font-size: 90%;
   footnote-style-position: outside;
   margin: 0.3em 0 0 1.3em; padding: 0; text-indent: 0;
@@ -136,10 +138,10 @@ section.nonum header:before { content: none }
 
 /* page floats */
 
-.column-top { float: column-top; margin-bottom: 2em }
-.column-bottom { float: column-bottom;  margin-top: 2em }
-.top { float: top;  margin-bottom: 2em }
-.bottom { float: bottom;  margin-top: 2em }
+.column-top { float: column top; margin-bottom: 2em }
+.column-bottom { float: column bottom;  margin-top: 2em }
+.top { float: page top;  margin-bottom: 2em }
+.bottom { float: page bottom;  margin-top: 2em }
 top figcaption, .bottom figcaption { margin-left: 2em; margin-right: 2em }
 
 figure { 
