@@ -3,10 +3,12 @@
  * Distributed under the CC Attribution 4.0 International License.
  */
 
+@import url('https://fonts.googleapis.com/css?family=Arimo:ital,wght@0,400..700;1,400..700');
+
 body{
 margin: 0px;
 padding: 0px;
-font-family: Arial, helvetica;
+font-family: Arial, Arimo, helvetica;
 }
 
 p{
