@@ -23,4 +23,4 @@ prince cssdftw.html
 
 ### Credits
 
-Copyright 1997-2005, Håkon Wium Lie and Bert Bos
+Copyright (C) 1997-2005, Håkon Wium Lie and Bert Bos
