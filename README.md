@@ -31,6 +31,7 @@ Sample documents for Prince.
 | [usenix](usenix) | Scientific journal sample |
 | [webarch](webarch) | W3C Standard |
 | [wind-in-willows](wind-in-willows) | The Wind in the Willows |
+| [winelist](winelist) | Wine list example |
 
 ## Licenses
 
