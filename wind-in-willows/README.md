@@ -1,4 +1,4 @@
-## Wind in the Willows
+## The Wind in the Willows
 
 Prince for Books version of "Wind in the Willows" by Kenneth Grahame.
 
