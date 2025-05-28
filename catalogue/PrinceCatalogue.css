@@ -4,6 +4,8 @@
  * Distirbuted under the CC-Attribution 4.0 International license.
  */
 
+@import url('https://fonts.googleapis.com/css?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Arimo:ital,wght@0,400..700;1,400..700');
+
 html, body {
     margin: 0;
     padding: 0
@@ -15,7 +17,7 @@ position: relative;
 overflow: hidden;
 width: 8.5in;
 height: 10.5in;
-font-family: arial, sans serif;
+font-family: arial, Arimo, sans serif;
 }
 
 @page{
@@ -65,7 +67,7 @@ width: 85%;
 
 .h2{
 font-size: 45px;
-font-family: Georgia, Serif;
+font-family: Georgia, Gelasio, Serif;
 color: #ef5a24;
 font-weight: bold;
 margin-top: 0.2in;
@@ -157,7 +159,7 @@ right: 0;
 }
 
 #productlist p.mixmatch{
-font-family: Georgia, serif;
+font-family: Georgia, Gelasio, serif;
 transform: rotate(90deg);
 font-weight: bold;
 font-size: 25px;
