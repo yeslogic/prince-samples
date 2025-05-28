@@ -1,0 +1,224 @@
+@import "wind-in-willows.css";
+
+:root {
+    font: 16pt/18pt Plantin, serif;
+    --font-size-phrase: "16/18\a0 pt";
+    --font-family-phrase: "Plantin MT Pro with Helvetica LT Pro oblique,";
+
+    widows: -prince-prefer 2;
+    orphans: 1;
+    -prince-hyphenate-limit-lines: 3; hyphenate-limit-lines: 3;
+    hyphens: auto;
+    text-align: justify;
+    -prince-baseline-grid: new;
+    -prince-change-line-breaks-for-pagination: yes;
+}
+
+/* This styling is best viewed one spread at a time,
+ * with the first page on the right.
+ */
+@prince-pdf { -prince-pdf-page-layout: two-page-right }
+
+@page {
+    size: 396pt 612pt;   /* = 5.5in 8.5in */
+
+    margin: 25pt 46pt 47pt;   /* page body height 540pt (= 0 mod 18pt). */
+    margin-outside: 40pt;
+    margin-inside: 52pt;
+    -prince-spread-length-options: none;
+
+    @top-left { content: "" !important; }
+    @top-center { content: "" !important; }
+    @top-right { content: "" !important; }
+}
+
+@page frontmatter {
+    @bottom-center {
+        content: counter(page, roman);
+        font-size: 14pt;
+        font-style: italic;
+    }
+}
+
+@page chapter, bodymatter {
+    @bottom-center {
+        content: counter(page);
+        font-size: 14pt;
+        padding-bottom: 0.8em;
+    }
+}
+
+@font-face {
+    font-family: Plantin;
+    font-style: normal;
+    src: prince-lookup("Plantin MT Pro");
+}
+
+/* Many large-print books use an oblique Helvetica-like font or slanted roman
+ * instead of a true italic.
+ */
+@font-face {
+    font-family: Plantin;
+    font-style: italic;
+    src: prince-lookup("Helvetica LT Pro");
+}
+
+h1,h2,h3,h4,h5,h6 {
+    -prince-baseline-grid: none;
+    margin: 0;
+    padding-top: 1rlh;
+    padding-bottom: 8pt;
+    /* Suppress margin because our baseline-grid stuff doesn't work well with it. */
+}
+
+.titlepage {
+    break-before: recto;
+    break-after: page;
+}
+
+.titlepage h1,
+.titlepage h2,
+.titlepage h3,
+.titlepage h4,
+.titlepage h5,
+.titlepage h6 {
+    bookmark-level: none;
+}
+
+.toc {
+    break-before: recto;
+    break-after: recto;
+    page: frontmatter;
+}
+
+/* Reduce the ToC side indent from 1em to 0.8em, not just to match the reduced
+ * text-indent of the large-print edition, but also because it’s enough to
+ * reduce one of the entries from three to two lines.
+ */
+.toc table {
+    margin: 0 0.8em;
+}
+
+.chapter {
+    break-before: page;
+    break-after: page;
+    page: chapter;
+}
+
+p {
+    margin: 0;
+}
+p+p {
+    text-indent: 0.8em;
+}
+p.noindent {
+    text-indent: 0;
+}
+
+
+/* Adjust the font size of the oblique to have approximately the same x height
+ * and cap height as the roman.
+ */
+i, em {
+    /* Exact x height matching for these two fonts (according to the
+     * sxHeight values in the OS/2 OpenType table of each) would be 450/523,
+     * i.e. 86.0420650095602294455%;
+     * while exact cap height matching according to sCapHeight would be 682/718,
+     * i.e. 94.9860724233983286908%.
+     *
+     * 90% is between the two, slightly closer to matching x height than cap height.
+     */
+    font-style: italic;
+    font-size: 90%;
+    line-height: 1;
+    /* If mixing typefaces on a single line, then it can be useful to reduce
+     * leading, in order for the line box height to equal the requested
+     * line-height:
+     *
+     * If using the default line-stacking-strategy, then each inline element's
+     * line-height affects the line box height.  Half of the leading is applied
+     * above the ascender [more precisely, above the “em-over” portion, as
+     * described by css-text-3] and half is applied below the descender.  So if
+     * every inline box had the same line-height, but the different typefaces
+     * have different ascender & descender lengths, then different boxes place
+     * different amounts of that line-height above vs below the line, resulting
+     * in the line box having a height greater than the requested line-height.
+     */
+}
+/* If one wanted nested emphasis to alternate in obliqueness, then that
+ * might mean adding to the above selectors any needed odd amounts of nesting
+ * (e.g. :is(i,em) :is(i,em) :is(i,em)), and adding a ruleset to restore size
+ * & italicization for all needed even numbers of nesting:
+ *
+ *  :is(i,em) :is(i,em) {
+ *      font-style: normal;
+ *      font-size: 111.1111111111111111111%;
+ *  }
+ *
+ * CSS specificity rules will make the correct ruleset apply.
+ */
+
+
+.thematic {
+    border: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    content: "\25aa \2001 \25aa \2001 \25aa";  /* em-spaced black small square */
+}
+
+
+/* Given our above choice of page size & font, avoiding breaking within
+ * a .poem-half-verse happens to be sufficient to put each second half of
+ * a verse onto a new line, in “Toad’s Last Little Song”.  Adding an explicit
+ * newline here is just to affect the value of ‘max-content’, and hence make
+ * the song horizontally centered.
+ */
+#last-little-song .poem-half-verse+.poem-half-verse::before {
+    content: "\a";
+    white-space: pre-line;
+}
+
+
+p:contains("waited impatiently") {
+    /* (Though it would be better to select based on id or another unique
+     * attribute, to make it more likely that exactly one paragraph is
+     * selected.)
+     */
+
+    /* Without the below override, Prince for Books is allowing verso
+     * hyphenation ‘waited im- / patiently’, on grounds that im- is
+     * a meaningful prefix in this word, and because the best alternative
+     * it finds is to use a noticeably loose paragraph on the first page
+     * of Chapter III.
+     *
+     * Using this override is based on the experience that large-print
+     * books are more willing to accept a paragraph of that looseness than
+     * a verso hyphenation like ‘waited im- / patiently’.
+     */
+    -prince-text-replace:
+        var(--text-replace)
+        "waited impatiently" "waited \ad impatiently"
+        /* Adding a u+ad SOFT HYPHEN at the start of a word suppresses
+         * hyphenation of that word.
+         */
+}
+/* Similarly avoid another couple of verso-end hyphenations. */
+p:contains("managed to convey") {
+    -prince-text-replace:
+        var(--text-replace)
+        " managed to convey" " \ad managed to convey"
+}
+p:contains("possible trouble ahead") {
+    -prince-text-replace:
+        var(--text-replace)
+        " trouble ahead" " \ad trouble ahead"
+}
+p:contains("the only life") {
+    -prince-text-replace:
+        var(--text-replace)
+        " responded" " \ad responded"
+}
+
+
+/* vi: set autoindent shiftwidth=4 tabstop=8 expandtab softtabstop=4 : */

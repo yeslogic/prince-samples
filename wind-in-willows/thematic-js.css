@@ -1,0 +1,52 @@
+/* Stylesheet to be used only when using --script thematic.js.
+ *
+ * (Note that passing --script thematic.js will approximately double rendering
+ * time, even if no thematic breaks need to be changed.)
+ */
+
+/* Note that this approach interferes with use of break-before/after
+ * around the thematic breaks, due to always gluing zero-height ::before
+ * & ::after pseudo-elements to the adjoining content.
+ *
+ * To prevent a break before or after the thematic break, instead prevent
+ * a break after the .thematicBreakClass::before or before the
+ * .thematicBreakClass::after pseudo-element, respectively:
+ *
+ *   .thematicBreakClass::before { break-after: avoid; }
+ *
+ * prevents breaking before the thematic break, while
+ *
+ *   .thematicBreakClass::after { break-before: avoid; }
+ *
+ * prevents breaking after the thematic break.
+ */
+
+/* .afterThematicBreakClass */
+/*
+.p41 {
+    margin-top: 0 !important;
+}
+*
+
+/* thematicBreakClass */
+.thematic::before,
+.thematic::after {
+    content: "";
+    display: block;
+}
+.thematic {
+    break-before: avoid;
+    break-after: avoid;
+
+    visibility: hidden;
+    /*color: cyan;*/
+    /* If javascript & box tracking is being used, then let each thematic break
+     * start off as invisible: layout is redone only if at least one thematic
+     * break needs changing.
+     *
+     * An alternative would be to have a secondary class to indicate the
+     * starting state: the script below could be changed to do a console.log of
+     * the id that needed changing; or it could output a stylesheet to be used
+     * next time, to reduce the chance of a second layout pass being needed.
+     */
+}
