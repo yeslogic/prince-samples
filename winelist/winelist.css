@@ -1,0 +1,101 @@
+@media screen {
+    body {
+        width: 8.5in;
+        margin: 0 auto;
+        border: solid black thin;
+    }
+    .footer { margin-top: 1lh; }
+}
+
+@page {
+    size: letter;
+    margin: 1.25in .125in .75in;
+
+    @top-center { content: element(header); }
+    @bottom-center { content: element(footer); }
+}
+
+.header {
+    position: running(header);
+    text-align: center;
+}
+
+.footer {
+    position: running(footer);
+    text-align: center;
+    font: italic 11pt Newsreader;
+    color: #888;
+}
+
+.credits {
+    font: 12pt Newsreader;
+    margin-top: 1in;
+    margin-bottom: 1em;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* fonts */
+
+body { font: 18pt "PT Sans Narrow"; }
+
+h1 { font: normal 2em "Imperial Script"; }
+h2 { font: normal 1.5em "Imperial Script"; }
+h3 { font: normal 1.17em Gwendolyn; }
+
+/*
+* The menu consists of a three-column grid with the wine list in the middle.
+* Images are placed on the sides using grid placement properties.
+*/
+
+.menu {
+    display: grid;
+    grid-template-columns: 1.25in auto 1.25in;
+    grid-auto-rows: 1.5in;
+    column-gap: .25in;
+    justify-content: center;
+}
+
+.menu > img {
+    max-width: 100%;
+    max-height: 100%;
+    justify-self: center;
+    align-self: center;
+}
+
+.wine-list {
+    grid-column: 2;
+    align-self: start;
+}
+.wine-list :is(h1, h2, h3) { color: red; }
+.wine-list :is(h1, h2) { text-align: center; }
+
+#corks {
+    order: 1;
+    grid-column: 1 / -1;
+    grid-row: span 2;
+    z-index: -1;
+}
+
+/*
+* For each category, the list is also a grid. Each wine starts with a div
+* element followed by any additional notes.
+*
+* Page breaks can occur between wines.
+*/
+
+.wines {
+    display: grid;
+    grid-template-columns: auto minmax(max-content, 100px);
+    justify-items: center;
+    align-items: center;
+    font-size: 12pt;
+}
+
+.wines > div {
+    grid-column: 1;
+    justify-self: start;
+    break-inside: avoid;
+}
+
+.blend { font-size: 9pt; }
