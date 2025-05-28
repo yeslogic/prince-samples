@@ -1,0 +1,38 @@
+/* Stylesheet to be used regardless of whether box tracking is used. */
+
+/* .thematicBreakClass */
+.thematic {
+    text-align: center;
+    border: none;
+    margin: 0 auto;
+    padding: 0;
+    word-spacing: 1em;
+
+    /* Bullets. */
+    /*content: "\2022  \2022  \2022";*/
+
+    /* Square bullets (black small square). */
+    /*content: "\25aa  \25aa  \25aa";*/
+
+    /* Single swung dash. */
+    /*content: "\2053";*/
+
+    /* Asterisks. */
+    content: "* * *";
+
+    /* In UAs that don't support this use of 'content' (or where setting
+     * content prevents generation of ::before & ::after pseudo-elements),
+     * an alternative would be to set the content in js, creating a text node.
+     */
+}
+
+.thematic+p {
+    orphans: 2;
+    /* todo: Change the .js to check for the case of a single-line para,
+     * followed (on the next page) by another normal paragraph, in which
+     * case apply ‘break-after: avoid’ to the first paragraph.
+     */
+}
+
+
+/* vi: set autoindent shiftwidth=4 tabstop=8 expandtab softtabstop=4 : */

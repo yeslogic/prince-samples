@@ -1,0 +1,306 @@
+<!doctype HTML>
+<html>
+<head>
+<style type="text/css">
+@import url(http://fonts.googleapis.com/css?family=Crimson+Text:400,600italic,600,400italic);
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+
+@page {
+  size: a4 portrait;
+  marks: crop cross;
+  margin: 8mm 35mm 10mm 10mm;
+
+  @right-top {
+    content: flow(side);
+    width: 2cm;
+  }
+}
+
+@page :first {
+  size: a4 landscape;
+  margin: 16mm 16mm 0;
+  background: url(blue-sky-m.jpg) #fff799;
+  -webkit-background-size: 100%;
+  prince-background-image-resolution: 50dpi;
+  background-position: -200px -5px;
+  prince-bleed: 5px;
+  @right-top { content: none; }
+}
+
+
+html, body, div, h1, h2, h3, h4, p, blockquote, ul, ol, li, pre { 
+  margin: 0; padding: 0 }
+
+li { margin-left: 1.5em }
+
+html { 
+  font: 12.5pt 'Crimson Text', serif;
+  hyphens: auto;
+  prince-text-replace: "'" "\2019"; 
+}
+
+#header {
+  text-align: center;
+  background: rgba(234, 245, 35, 0.4);
+  padding: 1em;
+  color: white;
+  font-size: 1.3em;
+  border-radius: 0.5em;
+}
+
+h1 { 
+  font: 3em 'Oswald', sans-serif;
+  padding: 3px 0 10px;
+  border-bottom: thin solid;
+}
+
+p.ingress { 
+  padding-top: 0.4em;
+  margin-top: 0.4em;
+  font-size: 1.3em;
+}
+
+h3 { 
+  flow: static(side);
+  transform: rotate(90deg); 
+  font: 100pt 'Crimson Text', sans-serif;
+  color: #576b84;
+  color: #D68D45;
+  color: #9eae67;
+}
+
+title { string-set: title content() }
+
+div.points {
+  margin: 1em 0 1em 0;
+  padding: 1em 0.8em 1em 0.8em;
+  columns: 25em;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 0.5em;
+}
+
+div.point {
+  padding: 0.5em;
+  counter-increment: point;
+  break-inside: avoid;
+}
+
+h2 { 
+  font: 2.8em 'Oswald', serif;
+  display: table-row;
+}
+
+
+h2:before { 
+  content: counter(point);  /* browsers will see this */
+  content: prince-script(mycounterstyle, counter(point))  ":"; /* only Prince will recognize this */
+  color: #D68D45;
+  text-align: right;
+  padding: 0 0.3em 0.2em 0;
+  display: table-cell;
+}
+
+.point p { display: table-row; text-align: justify }
+
+.point img { float: right; width: 260px; margin: 0 0 0 0.8em }
+
+.point:nth-child(even) { font-style: italic;  }
+
+#transforms img { 
+  float: left; width: 120px; 
+  margin: 0 0.8em 0 0; 
+}
+
+.points p:before { content: ""; font-style: italic; display: table-cell; padding: 0 0.8em 0 0 }
+p.kontakt { display: none }
+
+#spanning div { columns: 2; margin: 0 2em 0 4em }
+
+.spanner { 
+  column-span: all; 
+  float: bottom;
+  background: rgba(234, 245, 35, 0.4); 
+  font-size: 2em; 
+  font-style: italic;  
+  padding: 0.3em; 
+  border-radius: 5px; 
+  text-align: center;
+}
+
+#toc {
+  padding: 1em 1em 0 7em;
+  columns: 2;
+}
+
+#toc a { 
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+#toc a:after { 
+  content: leader('.') target-counter(attr(href),page);
+}
+
+#noprince {
+  text-align: center;
+  margin: 1em;
+  display: none;
+}
+
+@media screen {
+  #noprince { display: block; background: white }
+  #header { 
+    background-image: url(blue-sky-m.jpg);
+    background-size: 100%;
+    color: black;
+  }
+  #prince8 { display: none }
+  body { margin: 3em }
+}
+</style>
+<script>
+function mycounterstyle(n)
+{
+    if (n == 1) return "one";
+    else if (n == 2) return "two";
+    else if (n == 3) return "three";
+    else return n;
+}
+
+function getText(e)
+{
+    var text = "";
+
+    for (var x = e.firstChild; x != null; x = x.nextSibling)
+    {
+	if (x.nodeType == x.TEXT_NODE)
+	{
+	    text += x.data;
+	}
+	else if (x.nodeType == x.ELEMENT_NODE)
+	{
+	    text += getText(x);
+	}
+    }
+
+    return text;
+}
+
+function maketoc()
+{
+    var hs = document.getElementsByTagName("h2");
+    var toc = document.getElementById('toc');
+    for(var i=0; i<hs.length; i++)
+    {
+	var text = document.createTextNode(getText(hs[i]));
+	var span = document.createElement("span");
+        span.appendChild(text);
+        hs[i].setAttribute("id", "ch"+i);
+	var link = document.createElement("a");
+	link.setAttribute("href", "#ch"+i);
+	link.appendChild(span);
+	toc.appendChild(link); 
+    }
+}
+
+Prince.addScriptFunc("mycounterstyle", mycounterstyle);
+</script>
+<title>Prince</title>
+</head>
+<body onload="maketoc();">
+
+<div id=noprince>This document is designed to showcase features in <a href="http://www.princexml.com">Prince</a>. Prince creates a beautiful PDF documents from humble HTML elements by way of CSS.</div>
+
+<div id=header>
+<h1>Blue-sky printing</h1>
+<p class=ingress>There are many reasons for using Prince. We will show you 8.
+</div>
+
+<h3 id=prince8>Prince</h3>
+
+<div class=points>
+
+<div class=point>
+
+<h2>JavaScript</h2>
+
+<p>Prince supports JavaScript so that programmers can achieve effects not possible in HTML and CSS along. For example, this
+document has a small script that automatically generates a table of contents:
+
+<div id=toc></div>
+
+</div>
+
+
+<div class=point>
+
+<h2>More JavaScript</h2>
+
+<p>This document lists 8 numbered features. Notice that the first three features are numbered with spelled-out numbers, while the rest use digits. This is achieved with a small script that exchanges digits for letters when the number is three or smaller. 
+
+
+</div>
+
+
+<div class=point>
+<h2>CSS3 columns</h2>
+
+<p>This document is laid out in two columns on the first page. The next pages are more narrow and therefore only has room for one column. The number of columns is automatically adjusted based on the available width.
+</div>
+
+<div class=point>
+
+<h2>Styling pages</h2>
+
+<p>The second page of this document is different from the first: it's upright and it has no background image. This is achieved by styling pages instead of elements. 
+
+</div>
+
+
+<div class=point>
+
+<h2>CSS3 transforms</h2>
+
+<p>CSS3 introduces transforms, which can be used to scale and rotate elements. «Prince» is rotated 90 degerees on the right. Also, it has been moved to a margin box so that it appears outside the normal text flow.
+
+</div>
+
+
+<div class=point>
+
+<h2>Background images</h2>
+
+<p><img src=blue-sky-m.jpg>The image on the right is used as the background image on the first page. There, only part of the image is visible. This is achieved by carefully setting the position and pixel-density of the image. Also, notice how the background image is «bleeding»; it extends slightly outside the page to avoid white edges when the paper is cut. 
+
+</div>
+
+
+<div class=point>
+
+<h2>CSS3 selectors</h2>
+
+<p>Notice how every other item in our list of eight is in
+italics. This is achieved by selecting and styling even-numbered
+items.
+
+</div>
+
+
+<div class=point id=transforms>
+
+<h2>More transforms</h2>
+
+<p>Transforms can be applied to images as well as text. Below is the blue-sky background image rotated at various angles. <br><br><br>
+
+<img style="transform: scale(0.5, 0.5)" src=blue-sky-m.jpg>
+<img style="transform: skew(10deg, 20deg)" src=blue-sky-m.jpg>
+<img style="transform: rotate(100deg) scale(0.7, 0.7)" src=blue-sky-m.jpg>
+<img style="transform: rotate(170deg)" src=blue-sky-m.jpg>
+
+</div>
+
+</div>
+
+</body>
+</html>

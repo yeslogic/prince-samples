@@ -1,0 +1,776 @@
+@import "thematic.css";
+@import "short-last-para.css" supports(not (-prince-min-end-length: -prince-prefer 4rlh));
+
+:root {
+    font: 11pt/13pt "GoudyOlSt BT", serif;   /* Goudy Old Style */
+    --font-size-phrase: "11/13\a0 pt";
+    --font-family-phrase: "Goudy Old Style,";
+    /*--isbn: ...;*/
+    /* Edition-specific strings for copyright page.
+     *
+     * [‘\a0 ’ means u+a0 NO-BREAK SPACE.]
+     */
+
+    /* Generic properties applicable to most novels. */
+    text-align: justify;
+    hyphens: auto;
+    -prince-baseline-grid: new;
+    -prince-change-line-breaks-for-pagination: yes;
+    widows: -prince-prefer 2;
+    orphans: 1;
+
+    --text-indent: 1em;
+    /* I haven't considered whether to prefer em or rem for this.
+     *
+     * The difference would be especially pertinent to any p in a different
+     * font size that lacks the side margin often found on a blockquote.
+     */
+
+    /* For text-replace, set a custom property for text-replace so that other
+     * rules can add to this list.
+     */
+    --text-replace:
+        /* Use the convention of omitting a dot for abbreviations that end with
+         * the correct letter.
+         *
+         * Note that this trick requires checking the text, especially if
+         * adding abbreviations such as "St" or "Dr" that could also represent
+         * a different word (Street or Drive) that should retain a dot or can
+         * occur at the end of a sentence.
+         */
+        "Mr. " "Mr "
+        "Mr.\a" "Mr "
+        /* (Rightly or wrongly, the white-space collapsing of
+         * ‘white-space: normal’ applies only after -prince-text-replace,
+         * so newline (\a) is considered to be distinct from space.)
+         */
+
+        /* Add a hair space within «“‘» and «’”».  I think they're a bit
+         * crowded & hard to read in Goudy without the hair space.
+         */
+        "\201c\2018" "\201c\200a\2018"
+        "\2019\201d" "\2019\200a\201d"
+        ;
+    -prince-text-replace: var(--text-replace);
+}
+
+@page titlepage, frontmatter {
+    -prince-pdf-page-label: counter(page, lower-roman);
+    /* -prince-pdf-page-label doesn't affect printed output, but affects
+     * page number display in many PDF viewers.
+     */
+}
+
+
+/* ===== at-rules specific to print edition. ===== */
+
+/* This styling is best viewed one spread at a time,
+ * with the first page on the right.
+ */
+@prince-pdf { -prince-pdf-page-layout: two-page-right }
+
+@page {
+    /* B-format 129x198 mm trim size, rounded down to a whole number of pt
+     * for convenience of styling (given that font-size and line-height are
+     * specified in pt).
+     */
+    size: 365pt 561pt;
+
+    /* A few notes on setting page margins:
+     *
+     *   - margin-inside & -outside set the inside/gutter/far margin and
+     *     outside/near margin respectively; they override margin-left &
+     *     margin-right of 38.5pt from the 'margin' shorthand.
+     *
+     *     [Setting the second length of the 'margin' shorthand to the
+     *      average of margin-inside & margin-outside is just in case we ever
+     *      want to view this styling in a web browser that doesn't support
+     *      the margin-inside & margin-outside properties.]
+     *
+     *   - In a novel or other book where most lines are baseline-aligned,
+     *     it is suggested to make margin-bottom “accurate”, i.e. for it to
+     *     equal, or be not many pt less than, the page height minus page top
+     *     margin minus a whole number of body lines’ line-height.
+     *
+     *     Prince for Books’ page breaking choices assume that the aim and
+     *     usual case is for a page to be “full”, i.e. for text to reach
+     *     the bottom margin.  It might do extra work searching for a better
+     *     solution if you “request” a page content length that isn't a
+     *     multiple of the usual line height.
+     *
+     *   - If -prince-spread-length-options has a value other than 'none',
+     *     then consider the appearance of that adjustment as well as the
+     *     normal appearance.  If the bottom margin is bigger than the top
+     *     margin, then consider setting -prince-spread-length-options to
+     *     'lengthen' rather than the more common 'shorten'.  However, it
+     *     does in that case become particularly important to check the
+     *     appearance of page footers, e.g. “drop folios” on the first page
+     *     of a chapter.  (Running a spread short or long intentionally does
+     *     not change the position of any page footers or borders.)
+     *
+     *   - Remember when specifying margins that margin-top & margin-bottom
+     *     are measured to the edge of the leading, not to the edge of the
+     *     ink.  E.g.  this document uses a 12pt/15pt body font, so 1.5pt of
+     *     “half-leading” on each side of the type body, and margins might
+     *     be visually 2pt or more beyond the length given for margin-top
+     *     & margin-bottom.
+     */
+    margin: 46pt 50pt 60pt;   /* pdftotext -layout -W 365 -y 46 -H 455 */
+    margin-outside: 52pt;
+    margin-inside: 48pt;
+
+    /* Allowing spreads to run short (or long) is a relatively common choice
+     * for novels in English, though note that it is rare in some other
+     * languages.
+     */
+    -prince-spread-length-options: shorten;
+
+    /* Font settings for running heads & footers. */
+    font-size: 9pt;
+    line-height: 12pt;
+    /* Set the line-height just in case any header occupies more than one line.
+     *
+     * However, usually one would abbreviate the running head text if that were
+     * to arise, using a ruleset such as ‘#chap11>h2 { string-set: recto-header
+     * "“Like Summer Tempests …”"; }’.
+     */
+
+    /* Make any running headers & footers closer to the text than to the
+     * trim edge.
+     */
+    @top-left   { padding-top: 1.9em; }
+    @top-right  { padding-top: 1.9em; }
+    @top-center { padding-top: 1.9em; }
+    @bottom-center { padding-bottom: 1.3em; }
+    @bottom-left   { padding-bottom: 1.3em; }
+    @bottom-right  { padding-bottom: 1.3em; }
+}
+
+@page {
+    @top-center {
+        font-style: italic;
+    }
+}
+
+
+/* This assumes that titlepage do not use frontmatter named page. */
+@page frontmatter:left {
+    @top-left { content: counter(page, lower-roman); }
+}
+@page frontmatter:right {
+    @top-right { content: counter(page, lower-roman); }
+}
+@page :left {
+    @top-left { content: counter(page); }
+}
+@page :right {
+    @top-right { content: counter(page); }
+}
+
+@page :recto {
+    @top-center {
+        content: string(recto-header);
+        letter-spacing: 0.05em;
+    }
+}
+@page :verso {
+    @top-center {
+        content: string(verso-header);
+        letter-spacing: 0.05em;
+    }
+}
+@page :first, frontmatter:first, :blank, frontmatter:blank, titlepage {
+    @top-left { content: "" !important; }
+    @top-center { content: ""; }
+    @top-right { content: ""; }
+}
+
+@page chapter:first, bodymatter:first {
+    @bottom-center { content: counter(page); }
+}
+
+
+
+/* Choice of named page style. */
+.cover, .titlepage, .halftitlepage { page: titlepage; }
+.frontmatter, .copyrightpage, .toc { page: frontmatter; }
+.chapter { page: chapter; }
+
+
+/* Content for running heads. */
+h1 {
+    string-set: verso-header content(), book-title content();
+    /* However, note that using content() will not work as intended if h1 uses br. */
+}
+
+.toc>h2,
+.frontmatter>h2 {
+    string-set: verso-header content();
+}
+
+.bodymatter {
+    string-set: verso-header string(book-title);
+}
+
+h2,h3,h4,h5,h6 {
+    string-set: recto-header content();
+}
+
+
+body {
+    margin: 0;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+    prince-baseline-grid: none;
+    text-align: center;
+    font-weight: normal;
+    line-height: 1.2;
+    letter-spacing: 0.03em;
+    prince-line-break-choices: title-page;
+}
+h1 {
+    font-size: 2rem;
+}
+h2 {
+    font-size: 1.5rem;
+}
+h4 {
+    font-size: 1rem;
+}
+
+
+/* Cover. */
+div.fig {
+    /*text-align: center;*/
+    margin: 5vh auto;
+    width: 90%;
+}
+div.fig>img {
+    display:block; width:100%;
+    max-height: 90vh;
+}
+
+
+/* Copyright page (of sorts). */
+@supports(-prince-linebreak-magic: none) {
+    .copyrightpage::before {
+        break-before: verso;
+
+        -prince-page-group: start;
+        /* (Just so that :first matches, and more specifically
+         * the rule that suppresses the page number.)
+         */
+
+        --user-agent-phrase: "Prince (https://www.princexml.com/)";
+        content:
+            "Typeset in " var(--font-size-phrase) " " var(--font-family-phrase)
+            " using " var(--user-agent-phrase);
+        -prince-linebreak-magic: none;
+        hyphens: none;
+        padding-top: 90vh;
+        display: block;
+        font: 8pt/10pt 'Arno Pro Caption', serif;
+        text-align: center;
+        -prince-line-break-choices: title-page;
+    }
+}
+@supports(-prince-line-break-choices: heading) {
+    .copyrightpage::before {
+        --user-agent-phrase: "Prince\a0 for\a0 Books (https://www.princexml.com/books)";
+    }
+}
+
+
+
+.titlepage {
+    break-before: recto;
+    margin-top: calc(35vh - 5rem);
+}
+.titlepage>hr {
+    display: none;
+}
+
+:is(.titlepage,.halftitlepage)>h1,
+:is(.titlepage,.halftitlepage)>h2,
+:is(.titlepage,.halftitlepage)>h3,
+:is(.titlepage,.halftitlepage)>h4,
+:is(.titlepage,.halftitlepage)>h5,
+:is(.titlepage,.halftitlepage)>h6 {
+    bookmark-level: none;
+    prince-page-group: auto !important;
+    break-before: none;
+}
+
+
+/* ToC */
+.toc {
+    break-before: recto;
+    break-after: recto;
+    text-align: start;
+    -prince-line-break-choices: heading;
+}
+.toc a[href] {
+    text-decoration: none;
+    color: inherit;
+}
+
+.toc table {
+    margin: 0 1.0em;
+}
+
+.toc tr {
+    break-inside: avoid;
+}
+
+.toc td {
+    text-indent: 2em hanging;
+}
+
+.toc a[href]::after {
+    content: leader("\2005.\2005");
+
+    string-set: p target-counter(attr('href'), page);
+    /* Save away the page number given that we're using a different element
+     * to display it: see below.
+     */
+}
+.toc tr:has(a[href])::after {
+    /* Use of table-cell for page number is so that any chapter titles needing
+     * more than one line do not intrude into the region occupied by page
+     * numbers.
+     *
+     * However, this does require using vertical_align:bottom to put the page
+     * number on the last line.
+     *
+     * Also, if attaching to an element other than the a element, then the
+     * a element needs to use string-set to save away the page number, which
+     * the page-number cell accesses using string().
+     */
+    display: table-cell;
+    text-align: right;
+    vertical-align: bottom;
+    content: string(p);
+    padding-left: 0.5em;
+}
+
+
+/* ToC & chapter headings */
+
+h2 {
+    -prince-page-group: start;
+    /* Allow :first to match the first page of a chapter, to move or suppress
+     * page number and running head.
+     */
+
+    -prince-resize-options: 1rlh, -1rlh;
+    /* Resizing headings is a valuable pagination technique: a heading block
+     * break prevents "carrying forward" flexibility from before that
+     * heading (at least in the common case that the heading has a forced
+     * page break, but to some extent even if it doesn't forced break, just
+     * due to inhibiting breaks within or soon after the heading, if the
+     * heading in question happens to end near the end of a page); and there
+     * might well not be much opportunity to adjust a paragraph length in the
+     * first page or two after that heading.
+     *
+     * This technique is under-used today, though Folio Society books are among
+     * those using it.
+     *
+     * Allowing more than one resize option is rarer; though note that Prince
+     * does prefer earlier options over later ones, so the second resize option
+     * won't often be used.
+     */
+    -prince-resize-adjust: padding;
+    /* Adding the space by adjusting padding rather than margin is to force
+     * the adjustment still to apply even after an unforced break, where the
+     * fore margin will get truncated to zero.
+     */
+}
+.chapter>h2 {
+    /* It is better for chapter titles to be written in mainly lowercase in
+     * the HTML, even if intended to be displayed in uppercase: having in
+     * mainly lowercase gives the option of having them appear in mixed case
+     * elsewhere, such as running heads, table of contents or other cross
+     * references (if formed by script or XSLT or target-content()), or in
+     * the PDF outline.
+     */
+    text-transform: uppercase;
+}
+
+/* Wrapping individual parts of the chapter heading with spans of classes using
+ * IDPF Structural Semantics Vocabulary names ordinal, ordinal-punctuation and
+ * title does admittedly rather clutter that heading; but it does at least
+ * allow flexibility in how it is styled, such as suppressing some parts, or
+ * putting number and title in different blocks with distinct styling.
+ */
+.ordinal {
+    font-size: 75%;
+}
+.ordinal-punctuation {
+    display: none;
+}
+.title {
+    display: block;
+    padding-top: 0.25em;
+    prince-line-break-choices: heading;
+    string-set: recto-header content();
+}
+
+
+/* Wrapping phrases in a span to be styled with -prince-wrap-inside is
+ * particularly useful within headings.  The value 'phrase' means to prefer to
+ * keep this text together but to balance that preference against a preference
+ * to avoid unduly short lines.  [At present, it probably leans too far towards
+ * avoiding short lines.]  The value 'avoid' is much stronger, and should
+ * almost always avoid wrapping.  “white-space: nowrap” will avoid wrapping
+ * even if this results in overflowing the available space.
+ */
+.phrase {
+    -prince-wrap-inside: phrase;
+}
+:is(h2,h4) .phrase {
+    -prince-wrap-inside: avoid;
+}
+
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+/* Paragraph indent.
+ *
+ * We don't want an indent after a heading or a thematic break.
+ * Whereas after a blockquote, in-flow image etc., we sometimes want
+ * an indent and sometimes don't according to whether it continues
+ * a logical paragraph from before that display.
+ */
+p+p,
+.indent {
+    text-indent: 1em; text-indent: var(--text-indent);
+}
+
+h1+p,
+h2+p,
+h3+p,
+hr+p,
+p:first-child {
+    text-indent: 0;
+}
+
+.noindent {
+    text-indent: 0 !important;
+}
+
+/* Allow searching for things lacking an explicit .indent/.noindent class. */
+:not(p,h2,h3,hr)+p:not(.indent,.noindent)::before {
+    content: "lacks-indent";
+    opacity: 0;
+    position: absolute;
+}
+
+
+/* Poems & songs. */
+
+/* If a poem is quoted, exclude the quotation marks from the alignment and
+ * centering calculations.
+ */
+.hang-left::before {
+    /* The reason for using ::before & ::after is to make the margin apply
+     * to an inline box if .hang-left is applied to a .poem-verse span
+     * that we choose to style as display:block.
+     *
+     * Another approach would be :first-line; though that wouldn't reliably
+     * work for .hang-right, where we would want the margin applied to the
+     * last line if the .poem-verse did have a continuation line.
+     */
+    margin-left: -0.4em;
+    content: "";
+}
+.hang-right::after {
+    margin-right: -0.4em;
+    content: "";
+}
+
+.stanza-poem {
+    text-align: left; text-align: start;
+    text-indent: 0;
+    font-size: 90%;
+    /* Here we choose to retain the same line-height.
+     * If reducing the line-height, we would use
+     *
+     *   -prince-baseline-grid: none;
+     *
+     * so the following text goes back to the baseline grid.
+     */
+
+    break-inside: -prince-prefer avoid;
+
+    /* Horizontally center poem blocks (but without centering
+     * individual lines).
+     *
+     * However, leave at least 1rem on each side. 
+     */
+    max-width: calc(100% - 2rem);
+    width: max-content;
+    margin: 1rlh auto;
+}
+
+.stanza {
+    text-indent: 0;
+    margin-bottom: 1rlh;
+    -prince-line-break-choices: heading;
+}
+.stanza+.stanza {
+    margin-top: 1rlh;
+}
+
+/* Having poem-verses as display:block allows us to avoid page breaks
+ * within a poem-verse, and allows each .indN class to have the same
+ * amount of hanging indentation (or more generally choose its own
+ * hanging indent); but doesn't allow applying 'widows' & 'orphans'
+ * to the stanza (until we support -prince-min-start/end-length).
+ *
+ * The display:inline version requires that all continuation lines
+ * be left-aligned to the same x coord regardless of .indN level.
+ */
+@supports (-prince-min-start-length: 2rlh) {
+    /* display:block version: */
+
+    .stanza {
+        break-inside: -prince-prefer avoid;
+
+        -prince-min-start-length: 2rlh;
+        /* I.e. avoid leaving just the first line of the stanza by itself,
+         * even if this means leaving 2rlh of space at the end of the page
+         * (including the previous margin of 1rlh).
+         */
+
+        -prince-min-end-length: -prince-prefer 2rlh;
+    }
+
+    .poem-verse {
+        display: block;
+        break-inside: avoid;
+        text-indent: 2em hanging;
+        margin: 0;
+    }
+    .stanza-poem:has(.ind1) .poem-verse.ind0 {
+        /* Let unindented verses use a 3em hanging indent instead of 2em if the
+         * poem has at least one indented verse.
+         */
+        text-indent: 3em hanging;
+    }
+
+    .ind1 {
+        margin-left: 1em;
+    }
+}
+@supports (not (-prince-min-start-length: 2rlh)) {
+    /* display:inline version: */
+
+    .stanza {
+        break-inside: -prince-prefer avoid;
+        widows: -prince-prefer 2;
+        orphans: -prince-prefer 2;
+    }
+
+    .poem-verse {
+        display: inline;
+    }
+    .poem-verse:has(+.poem-verse)::after {
+        content: '\a';
+        white-space: pre-line;
+    }
+
+    .stanza {
+        margin-left: 3em;
+    }
+    .poem-verse.ind0 {
+        margin-left: -3em;
+    }
+    .poem-verse.ind1 {
+        margin-left: -2em;
+    }
+}
+
+.poem-half-verse {
+    -prince-wrap-inside: avoid;
+}
+
+blockquote:has(>h3.poem-title:first-child) {
+    margin-top: 0;
+}
+
+h3.poem-title {
+    margin: 0;
+    padding: 0.5rlh 0;
+    font: inherit;
+    line-height: inherit;
+    break-after: avoid;
+    bookmark-level: none;
+    string-set: none;
+    -prince-resize-options: 1rlh;
+    -prince-resize-adjust: padding;
+}
+
+
+/* Things long enough that that it wouldn't seem wrong to have two blank
+ * lines at the end of the page (including one line of margin).
+ * 
+ * (Includes "Speech - by Toad" programme, and poems with more than one
+ * stanza.)
+ */
+.long-display + p {
+    orphans: 2;
+}
+
+.smcap {
+    font-variant: small-caps;
+}
+
+
+/* Avoid short last page of chapter. */
+@supports (-prince-min-end-length: -prince-prefer 4rlh) {
+    .chapter {
+        -prince-min-end-length: -prince-prefer 4rlh;
+    }
+    .chapter:has(>.the-end:last-child) {
+        -prince-min-end-length: -prince-prefer 5rlh;
+    }
+}
+@supports (not (-prince-min-end-length: -prince-prefer 4rlh)) {
+    @supports (min-end-length: -prince-prefer 4rlh) {
+        .chapter {
+            min-end-length: -prince-prefer 4rlh;
+        }
+        .chapter:has(>.the-end:last-child) {
+            min-end-length: -prince-prefer 5rlh;
+        }
+    }
+    @supports (not (min-end-length: -prince-prefer 4rlh)) {
+        .chapter>p:last-child {
+            widows: -prince-prefer 4;
+        }
+        p:has(+.the-end) {
+            widows: -prince-prefer 3;
+            break-after: -prince-prefer avoid;
+        }
+    }
+}
+
+
+/* "THE END", "FINIS" etc. */
+.the-end {
+    text-align: center;
+    text-indent: 0 !important;
+
+    /* If it is separated from its text, then at least put space before it. */
+    padding-top: 7rlh;
+    margin-top: -6rlh;
+
+    text-transform: lowercase;
+    font-variant: small-caps;
+    letter-spacing: 0.1em;
+    break-before: -prince-prefer avoid;
+}
+
+
+
+/* ===== Various things specific to the text of this book. ===== */
+
+
+/* "MR BADGER.", in effect quoted text. */
+p.display-line {
+    margin: 0.5rlh auto !important;
+    text-align: center;
+    text-indent: 0;
+    break-before: avoid;
+    /* I.e. absolutely require there to be no gap between "could read by the
+     * aid of the moonlight" and the heading-looking "MR BADGER": my judgement
+     * is that breaking here would cause the reader more problems than would
+     * having the previous page end with a gap.
+     */
+}
+
+
+/* "Speech - by Toad". */
+.programme {
+    break-inside: -prince-prefer avoid;
+}
+.programme>.center {
+    text-align: center;
+    text-indent: 0;
+
+    break-inside: avoid;
+    /* i.e. even if it requires a gap at the end of the previous page. */
+
+    line-stacking-strategy: block-line-height;
+    -prince-line-break-choices: title-page-lookahead;
+    margin: 1lh 0.5em;
+}
+
+
+/* A peculiarity of the text is that the heading ‘“DUCKS’ DITTY.”’ also
+ * forms the end of the preceding sentence ("... which he called").  It
+ * looks strange for "which he called" to come at the end of the page.
+ * In fact, I'd tentatively go so far as to say that I'd prefer to
+ * separate the "heading" from the song than from that paragraph.
+ */
+#ducks-ditty {
+    break-before: -prince-prefer avoid;
+}
+#ducks-ditty>h3+p {
+    break-inside: auto;
+}
+
+
+/* ===== Responses to typesetting difficulties ===== */
+
+/* For lines reported as being loose or tight, one thing to consider is whether
+ * a hyphenation would help: some words have multiple possible hyphenations
+ * according to the meaning of the word, or there's a word not in Prince for
+ * Books’ hyphenation dictionary for some reason, or a word that can be used as
+ * a name; any of these might cause a word not to be hyphenated.
+ *
+ * [Another reason might be if -prince-hyphenate-limit-lines is set to some
+ *  number, in which case try setting it to ‘no-limit’ in just that paragraph.]
+ *
+ * Adding a soft hyphen (u+ad) shows Prince for Books where to hyphenate the
+ * word, and also marks it as a relatively good place to break.
+ *
+ * This can be done either using -prince-text-replace, as we do below, or by
+ * adding the soft hyphen directly into the document (using ‘&shy;’ if HTML,
+ * otherwise &#xad;).
+ */
+:root {
+    -prince-text-replace:
+        var(--text-replace)
+
+        /* Mark each occurrences of ‘Badger’ as hyphenatable except the first
+         * occurrence and within the ‘...-for-the-Badger’ phrases.
+         *
+         * (‘\ad ’ means u+ad SOFT HYPHEN.)
+         */
+        "Badger" "Bad\ad ger"
+        "-Bad\ad ger" "-Badger"
+        "then there’s Bad\ad ger" "then there’s Badger"
+
+        /* Avoid ‘rip- / ening’; and prefer ‘sinu- / ous’ over ‘sin- / uous’.
+         *
+         * Prince for Books does have some knowledge (for English and German)
+         * of how some breaks are better than others, but there are limits
+         * to that knowledge, so there's some value in checking for such
+         * dispreferred breaks.
+         */
+        "ripening" "ripen\ad ing"
+        "sinuous" "sinu\ad ous"
+
+        !important;
+}
+
+
+
+/* vi: set autoindent shiftwidth=4 tabstop=8 expandtab softtabstop=4 : */

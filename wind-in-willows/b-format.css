@@ -1,0 +1,48 @@
+@import "wind-in-willows.css";
+
+:root {
+    font-size: 11pt;
+    line-height: 13pt;
+    --font-size-phrase: "11/13\a0 pt";
+}
+
+/* This styling is best viewed one spread at a time,
+ * with the first page on the right.
+ */
+@prince-pdf { -prince-pdf-page-layout: two-page-right }
+
+@page {
+    /* B-format 129x198 mm trim size, rounded down to a whole number of pt
+     * for convenience of styling (given that font-size and line-height are
+     * specified in pt).
+     */
+    size: 365pt 561pt;
+    margin: 46pt 50pt 60pt;   /* pdftotext -layout -W 365 -y 46 -H 455 */
+    margin-outside: 52pt;
+    margin-inside: 48pt;
+    -prince-spread-length-options: shorten;
+}
+
+
+/* In “Toad’s Last Little Song”, one of the verses is too long to fit on a
+ * single line, given this stylesheet's choice of font & page body width.
+ *
+ * Options for handling this situation include: do nothing about it in this
+ * stylesheet, thus using wind-in-willows.css treatment of moving the second
+ * half-verse onto a new line; put every second half-verse onto a new line
+ * [as is currently done in large-print.css], in order to give consistency to
+ * the appearance at cost of taking up more space; or weaken the aversion to
+ * breaking up a half-verse, so that just a word or two drops down to the new
+ * line, with the appearance of a continuation line rather than a distinct
+ * verse with a unique metre.
+ *
+ * The below adopts the last of those.  ('phrase' happens to be equivalent to
+ * freely wrapping for our current measure.)
+ */
+#last-little-song .poem-half-verse {
+    -prince-wrap-inside: phrase;
+}
+
+
+
+/* vi: set autoindent shiftwidth=4 tabstop=8 expandtab softtabstop=4 : */

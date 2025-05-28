@@ -1,0 +1,61 @@
+@import "wind-in-willows.css";
+
+:root {
+    font-size: 12.5pt;
+    line-height: 17pt;
+    --font-size-phrase: "12.5/17\a0 pt";
+    orphans: -prince-prefer 2;
+
+    -prince-hyphenate-limit-lines: 3; hyphenate-limit-lines: 3;
+}
+
+/* This styling is best viewed one spread at a time,
+ * with the first page on the right.
+ */
+@prince-pdf { -prince-pdf-page-layout: two-page-right }
+
+@page {
+    size: 432pt 648pt;  /* = 6in 9in */
+    margin: 50pt 50pt 105pt;   /* pdftotext -layout -W 432 -y 50 -H 510 */
+    margin-outside: 70pt;
+    margin-inside: 35pt;
+    -prince-spread-length-options: lengthen;
+    /* lengthen rather than shorten, given that the starting bottom:top visual
+     * margin ratio (2:1) is bigger than in most books.
+     */
+
+    font-size: 10pt;
+    line-height: 13pt;
+
+    @top-left   { padding-top: 1.9em; }
+    @top-center { padding-top: 1.9em; }
+    @top-right  { padding-top: 1.9em; }
+    @bottom-center { padding-bottom: 48pt; }
+}
+
+.chapter {
+    break-before: recto;
+}
+
+
+/* Require at least 5 lines on last page of chapter. */
+@supports (-prince-min-end-length: -prince-prefer 5rlh) {
+    .chapter {
+        -prince-min-end-length: -prince-prefer 5rlh;
+    }
+    .chapter:has(>.the-end:last-child) {
+        -prince-min-end-length: -prince-prefer 6rlh;
+    }
+}
+@supports (not (-prince-min-end-length: -prince-prefer 5rlh)) {
+    .chapter>p:last-child {
+        widows: -prince-prefer 5;
+    }
+    p:has(+.the-end) {
+        widows: -prince-prefer 4;
+        break-after: -prince-prefer avoid;
+    }
+}
+
+
+/* vi: set autoindent shiftwidth=4 tabstop=8 expandtab softtabstop=4 : */

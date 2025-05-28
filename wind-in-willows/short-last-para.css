@@ -1,0 +1,30 @@
+/* Try to make the last page of a chapter have at least 3 to 5 lines.
+ *
+ * The main styling already has
+ *
+ *   .chapter>p:last-child { widows: -prince-prefer 4; }
+ *
+ * but that is insufficient for chapters that end in one or more short
+ * paragraphs.  So we add ‘break-before: -prince-prefer avoid’ to those short
+ * paragraphs, and then ‘widows: -prince-prefer ...’ (the desired total minus
+ * the number of following lines) to any paragraphs where the existing ‘widows’
+ * setting is insufficient.
+ *
+ * (The next release of Prince for Books will allow
+ * ‘.chapter { -prince-min-end-length: -prince-prefer 4rlh; }’ so that no extra
+ * work is necessary for chapters ending in a short paragraph.)
+ */
+
+
+/* Chapter 10 ends in three single-line paragraphs.
+ *
+ * (And the text is such that I'd prefer to keep them on the same page as the
+ * end of the previous (i.e. 4th-last) paragraph, regardless of considerations
+ * of length of last page of chapter.)
+ */
+#chap10>p:nth-last-child(-n+3) {   /* (I.e. last 3 paragraphs.) */
+    break-before: -prince-prefer avoid;
+}
+
+
+/* vi: set autoindent shiftwidth=4 tabstop=8 expandtab softtabstop=4 : */
