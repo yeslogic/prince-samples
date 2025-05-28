@@ -22,3 +22,5 @@ Copyright (C) 2002-2004 W3C (MIT, ERCIM, Keio), All Rights Reserved. W3C
 liability, trademark, document use and software licensing rules apply. Your
 interactions with this site are in accordance with our public and Member
 privacy statements.
+
+Distributed under the [W3C Document License](https://www.w3.org/copyright/document-license-2023/).
