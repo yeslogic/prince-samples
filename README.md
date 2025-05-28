@@ -2,16 +2,31 @@
 
 Sample documents for Prince
 
-## css4
+## Sample directories
 
-This directory contains a collection of samples from http://css4.pub
+| 12sad10 | Twelve Stories and a Dream |
+| campaign | Business letter |
+| catalogue | Furniture catalogue |
+| changebars | Changebars example |
+| cssdftw | Book excerpt |
+| digte | Poetry collection |
+| flyer | Brochure |
+| g24 | Newspaper / Magazine example |
+| interactive | Interactive examples |
+| invoice-colorful | Colorful invoice |
+| letter | Sample letter |
+| magic6 | The Magic of Prince (old) |
+| malthus | Historical essay |
+| math | Mathematical notation |
+| slogans | Slogans |
+| textbook | Textbook excerpt |
+| titus | Epistle to Titus |
+| twist | Oliver Twist |
+| usenix | Scientific journal sample |
+| webarch | W3C Standard |
 
-## mfug_talk
+## Licenses
 
-This sample shows how Prince can be used to create slides for a
-presentation.
-
-## website_samples
-
-Many samples from the website.
-
+Licenses, if present, are given in each directory separately.
+Files for which no license information is present are for
+personal use only.
