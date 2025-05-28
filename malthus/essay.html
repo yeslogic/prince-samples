@@ -8,13 +8,14 @@
 @import url(http://fonts.googleapis.com/css?family=Radley:400,400italic);
 @import url(http://css4.pub/2015/malthus/fonts/index.css);
 
+/* @prince-pdf { prince-pdf-page-layout: two-column-right }*/
 
 /* page setup */
 
 @page {
   size: 115mm 200mm;          /* measured from scanned book */
   margin: 20mm 15mm;
-  marks: crop;
+  marks: crop; 
   font: small-caps 600 1.3em "Adobe Caslon Pro", serif;
 
   @footnote {
@@ -26,7 +27,6 @@
   @top-center {
     vertical-align: bottom; 
     padding-bottom: 10mm;
-    background: red;
   }
 }
 
@@ -89,9 +89,9 @@ body {
     ":" "\2008?"          /* add punctuation space before question mark */
     ";" "\2008;"         /* add punctuation space before semicolon*/
     ;
- <!-- necessity is spelled with double ss, on page 35; however, on page 42 necessity is written as necefsity -->
 }
 
+/* necessity is spelled with double ss, on page 35; however, on page 42 necessity is written as necefsity */
 
 p, blockquote { 
   text-indent: 1.2em;
