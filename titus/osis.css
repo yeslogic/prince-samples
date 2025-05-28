@@ -32,6 +32,7 @@ header { display: none }
 div[type=book] {
   column-count: 2;
   column-gap: 0.8cm;
+  column-fill: auto;
   font: 11pt/1.4 Gentium, Georgia, serif;
   prince-text-replace: "'" "\2019";
 }
