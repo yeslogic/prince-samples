@@ -24,7 +24,6 @@ Sample documents for Prince.
 | [malthus](malthus) | Historical essay |
 | [math](math) | Mathematical notation |
 | [newsletter](newsletter) | Newsletter example |
-| [slogans](slogans) | Slogans |
 | [textbook](textbook) | Textbook excerpt |
 | [titus](titus) | Epistle to Titus |
 | [twist](twist) | Oliver Twist |
