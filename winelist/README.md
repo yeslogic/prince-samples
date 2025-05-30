@@ -1,7 +1,10 @@
 ## Wine list example
 
-This sample demonstrates the use of grid layout to format
-a restaurant wine menu.
+Demonstrate the use of grid layout to format a restaurant wine menu.
+
+### Prerequisites
+
+This sample requires Prince 20250527 or later.
 
 ### Instructions
 

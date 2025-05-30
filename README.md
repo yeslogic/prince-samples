@@ -35,5 +35,5 @@ Sample documents for Prince.
 ## Licenses
 
 Licenses, if present, are given in each directory separately.
-Files for which no license information is present are for
-personal use only.
+Files for which no license information is present are provided
+for the purposes of evaluating Prince only.
