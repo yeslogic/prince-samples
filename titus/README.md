@@ -12,4 +12,4 @@ prince titus.xml
 
 ### Copyright
 
-Copyright (C) 1995, American Bible Society
+Copyright (C) 1995 American Bible Society
