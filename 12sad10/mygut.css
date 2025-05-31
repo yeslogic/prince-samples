@@ -3,6 +3,8 @@ Author: Håkon Wium Lie
 Date: Aug 3, 2005
 */
 
+@import url('https://fonts.googleapis.com/css?family=Gelasio:ital,wght@0,400..700;1,400..700');
+
 @page {
   size: a5 portrait;
   margin: 1.5cm;
@@ -59,7 +61,7 @@ Date: Aug 3, 2005
 }
 
 :root {
-  font: 11pt/15pt Georgia;
+  font: 11pt/15pt Georgia, Gelasio;
 }
 
 gutblurb, markupblurb, endblurb {
