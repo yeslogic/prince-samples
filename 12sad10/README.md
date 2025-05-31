@@ -12,7 +12,7 @@ prince 12sad10-prince.xml
 
 ### Copyright
 
-CSS style sheet Copyright (C) Håkon Wium Lie, 2005.
+CSS style sheet Copyright (C) 2005 Håkon Wium Lie
 
 ### Credits
 

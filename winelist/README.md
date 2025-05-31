@@ -16,7 +16,7 @@ prince winelist.html
 
 ### Copyright
 
-Files in this directory are Copyright (C) 2025, YesLogic Pty. Ltd.
+Files in this directory are Copyright (C) 2025 YesLogic Pty. Ltd.
 
 Distributed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 

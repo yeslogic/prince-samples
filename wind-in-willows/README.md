@@ -9,4 +9,4 @@ This sample requires Prince for Books.
 
 ### Copyright
 
-Copyright (C) 2024, YesLogic Pty. Ltd.
+Copyright (C) 2024 YesLogic Pty. Ltd.
