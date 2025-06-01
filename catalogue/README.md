@@ -1,14 +1,23 @@
 ## Furniture catalogue
 
-A furniture catalogue for screen and print.
+A furniture catalogue for screen and print, plus a version of the front
+cover produced with crop marks.
 
 ### Instructions
 
-Build the sample as follows:
+Build the front cover with crop marks:
+
+```
+prince Cover.html
+```
+
+Build the full catalogue as follows:
 
 ```
 prince PrinceCatalogue.html
 ```
+
+Point your browser at `PrinceFurniture.html` to see the screen version.
 
 ### Copyright
 

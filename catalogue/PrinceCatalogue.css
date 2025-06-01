@@ -1,10 +1,11 @@
 /*
- * Copyright (C) 2013 YesLogic Pty Ltd
- *
- * Distirbuted under the CC-Attribution 4.0 International license.
- */
+Copyright (C) 2013 YesLogic Pty. Ltd.
 
-@import url('https://fonts.googleapis.com/css?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Arimo:ital,wght@0,400..700;1,400..700');
+Distributed under CC BY 4.0
+https://creativecommons.org/licenses/by/4.0/
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Arimo:ital,wght@0,400..700;1,400..700');
 
 html, body {
     margin: 0;
@@ -17,19 +18,25 @@ position: relative;
 overflow: hidden;
 width: 8.5in;
 height: 10.5in;
-font-family: arial, Arimo, sans serif;
+font-family: Arial, Arimo, sans-serif;
 }
 
 @page{
 size: 8.5in 10.5in;
 margin: 0;
-background: url("images/CatalogueCover.jpg");
-background-position: center;
-background-size: 104%;
-background-repeat: no-repeat;
-marks: crop cross;
-prince-bleed: 0.3in;
-prince-trim: 0.7in;
+}
+
+#cover .coverimage{
+position: absolute;
+z-index: -100;
+top: 0;
+left: 0;
+width: 8.5in;
+height: 10.5in;
+}
+
+#cover .coverimage img{
+width: 100%;
 }
 
 #cover p.webaddress{
@@ -67,7 +74,7 @@ width: 85%;
 
 .h2{
 font-size: 45px;
-font-family: Georgia, Gelasio, Serif;
+font-family: Georgia, Gelasio, serif;
 color: #ef5a24;
 font-weight: bold;
 margin-top: 0.2in;
@@ -268,3 +275,5 @@ position: absolute;
 right: 0.5in;
 bottom: 0.5in;
 }
+
+/* vim: set ts=4 sts=4 sw=4 et : */
