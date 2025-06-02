@@ -5,7 +5,7 @@ cover produced with crop marks.
 
 ### Instructions
 
-Build the front cover with crop marks:
+Build the front cover with crop marks as follows:
 
 ```
 prince Cover.html
