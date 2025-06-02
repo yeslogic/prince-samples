@@ -18,19 +18,22 @@
  * table, etc.)
  */
 
+/* This book uses Gill Sans, a close free alternative is Lato */
+@import url(http://fonts.googleapis.com/css?family=Lato);
+
 @page {
   margin: 27mm 16mm 27mm 16mm;
   size: 7in 9.25in;
 
   @top-left {
-    font:  bold 10pt "Gill Alternate One Monotype", "Gill Sans", sans-serif;
+    font:  bold 10pt "Gill Alternate One Monotype", "Gill Sans", "Lato", sans-serif;
     content: "Cascading Style Sheets";
     vertical-align: bottom;
     padding-bottom: 2em;
   }
 
   @bottom-left {
-    font: bold 10pt "Gill Alternate One Monotype", "Gill Sans", sans-serif;
+    font: bold 10pt "Gill Alternate One Monotype", "Gill Sans", "Lato", sans-serif;
     content: counter(page);
     padding-top: 2em;
     vertical-align: top;
@@ -52,7 +55,7 @@ html {
 
 body {
 	color: black;
-	font: 10pt/1.26 "Gill Alternate One Monotype", "Gill Sans", sans-serif;
+	font: 10pt/1.26 "Gill Alternate One Monotype", "Gill Sans", "Lato", sans-serif;
 	text-align: justify;
 	margin: 0 0 0 4.2cm;
  	padding: 0;
@@ -276,22 +279,22 @@ table.grade td {
 }
 
 table.grade td.full, span.full {
-  font: 100% "Gill Sans";
+  font: 100% "Gill Sans", "Lato", sans-serif;
   content: "\25CF";
 }
 
 table.grade td.half, span.half {
-  font: 100% "Gill Sans";
+  font: 100% "Gill Sans", "Lato", sans-serif;
   content: "\25D1";
 }
 
 table.grade td.none, span.none {
-  font: 100% "Gill Sans";
+  font: 100% "Gill Sans", "Lato", sans-serif;
   content: "\25CB";
 }
 
 table.grade td.unknown {
-  font: 100% "Gill Sans";
+  font: 100% "Gill Sans", "Lato", sans-serif;
   content: "??";
 }
 
