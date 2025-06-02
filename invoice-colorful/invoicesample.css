@@ -5,7 +5,7 @@ Distributed under CC BY 4.0
 https://creativecommons.org/licenses/by/4.0/
 */
 
-@import url('https://fonts.googleapis.com/css?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Arimo:ital,wght@0,400..700;1,400..700');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Arimo:ital,wght@0,400..700;1,400..700');
 
 body,html{
 padding: 0;
@@ -15,7 +15,7 @@ color: black;
 
 p{
 font-size: 16px;
-font-family: Arial, Arimo, sans serif;
+font-family: Arial, Arimo, sans-serif;
 }
 
 .bordertop{
@@ -91,7 +91,7 @@ height: 100%;
 max-height: 380px;
 width: 230px;
 background: #dba948;
-margin-top: -1px;
+margin-top: -4px;
 -moz-border-radius-bottomright: 15px;
 -moz-border-radius-bottomleft: 15px;
 border-bottom-right-radius: 15px;
@@ -131,7 +131,7 @@ text-align: center;
 }
 
 table.invoicedetail thead .subtotal{
-text-align: center;
+text-align: right;
 }
 
 table.invoicedetail .subtotal{
@@ -155,6 +155,10 @@ font-family: arial, Arimo;
 
 table.invoicedetail thead td{
 padding: 15px;
+}
+
+.message{
+padding-right: 20px;
 }
 
 .thankyou{
@@ -194,7 +198,8 @@ padding: 5px 0px;
 
 .totalall .body{
 text-align: right;
-font-size: 20px;
+font: 20px Arial, Arimo, sans-serif;
+padding-right: 2pt;
 }
 
 .totalall #totalall{
@@ -220,8 +225,16 @@ width: 300px;
 .footer{
 position: absolute;
 bottom: 0;
-width: 100%;
-margin-right: 50px;
+left: 0;
+right: 0;
+}
+
+.message{
+padding-left: 25px;
+}
+
+.totalall {
+margin-right: 45px;
 }
 
 .attentionto{
