@@ -8,6 +8,7 @@ https://creativecommons.org/licenses/by/4.0/
 @import url('https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=Arimo:ital,wght@0,400..700;1,400..700');
 
 body,html{
+font-family: Georgia, Gelasio, serif;
 padding: 0;
 margin:0;
 color: black;
@@ -191,7 +192,7 @@ margin-bottom: 20px;
 
 .totalall .heading{
 font-size: 20px;
-font-family: Georgia, Gelasio, Serif;
+font-family: Georgia, Gelasio, serif;
 font-weight: bold;
 padding: 5px 0px;
 }
