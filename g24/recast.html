@@ -3,6 +3,9 @@
 <title>G24</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style>
+@import url("https://www.princexml.com/fonts/liberation/index.css");
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=PT+Sans+Narrow:wght@400;700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700");
+
 @page {
   size: a4;
   margin: 2.45cm 1.2cm 1cm;
@@ -27,16 +30,24 @@
   margin-bottom: 2pt;
   width: auto;
 }
+@bottom-left {
+  content: flow(bottomleft);
+  vertical-align: top;
+}
+@bottom-right {
+  content: flow(bottomright);
+  vertical-align: top;
+}
 }
 
 @page :first {
-margin: 1cm 1.2cm 0cm;
+margin: 1cm 1.2cm 1cm;
 @top { content: none }
 @top-left { content: none }
 @top-right { content: none }
 }
 
-body { font: 9.5pt "Calgary", serif; margin: 3em }
+body { font: 9.5pt "Calgary", "Liberation Serif", serif; margin: 3em }
 
 .nameplate { 
   display: table-row; 
@@ -55,15 +66,17 @@ body { font: 9.5pt "Calgary", serif; margin: 3em }
   padding-right: 0.3em;
 }
 
-.nameplate h1 { 
+.nameplate h1 {
+  position: relative;
+  top: 4pt;
   padding: 0; margin: 0;
-  line-height: 0.8em;
-  font-family: DisplayEgyptianCondensed-8Ultra; 
-  font-size: 130pt; color: #bcd 
+  line-height: 104pt;
+  font-family: DisplayEgyptianCondensed-8Ultra, "Alfa Slab One";
+  font-size: 116pt; color: #bcd
 }
 
-h2 { font: 900 20pt/22pt "Calgary", serif; margin: 0.4em 0 0; padding: 0 }
-h3 { font: 15pt/17pt "Calgary", serif; padding: 0; margin: 0}
+h2 { font: 900 20pt/22pt "Calgary", "Liberation Serif", serif; margin: 0.4em 0 0; padding: 0 }
+h3 { font: 15pt/17pt "Calgary", "Liberation Serif", serif; padding: 0; margin: 0}
 .page { color: gray; font-weight: bold; white-space: pre}
 
 div.intros {
@@ -89,7 +102,7 @@ div.text, div.figure {
   margin: 0; padding: 0;
 }
 
-div.intro img, div.figure {
+div.intro img, div.figure.right {
   width: 4.45cm;
   margin: 0; padding: 0;
 }
@@ -201,8 +214,10 @@ ul li:before {
 }
 
 .figure.left {
+  width: 4.45cm;
   float: left;
   padding-right: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 .ad {
@@ -213,11 +228,19 @@ ul li:before {
 
 
 div.smallprint {
-  font-size: 8pt;
-  line-height: 9pt;
+  font-family: "PT Sans Narrow";
+  font-size: 7.5pt;
+  line-height: 8pt;
 }
 
-div.smallprint .right { float: right }
+div.smallprint.left {
+  -prince-flow: static(bottomleft, start);
+}
+
+div.smallprint.right {
+  -prince-flow: static(bottomright, start);
+  text-align: right;
+}
 
 div.topright {
   text-align: right;
@@ -225,7 +248,7 @@ div.topright {
   color: #a99;
   font-size: 12pt;
 }
-div.topright .time { font-family: DisplayEgyptianBold; font-weight: bold; color: orange }
+div.topright .time { font-family: DisplayEgyptianBold, "PT Serif"; font-weight: bold; color: orange }
 
 div.topleft { 
   flow: static(topleft);
@@ -234,12 +257,10 @@ div.topleft {
 }
 div.topleft:before { 
   font-size: 12pt;
-  font-family: Egyptian-Bold; font-weight: bold;
+  font-family: Egyptian-Bold, "PT Serif"; font-weight: bold;
   content: "Page " counter(page) " ";
   color: #a99;
 }
-
-div.topleft, div.topright { display: none }
 
 @media print {
   body { margin: 0 }
@@ -253,12 +274,12 @@ div.topleft, div.topright { display: none }
 <div class="intros">
 <div class="nameplate">
 <div class="text">
-<span style="font-family: Egyptian-Bold; font-weight: bold; color: #058">the<span style="color: #bcd">guardian</span></span> <span class="bar">pdf edition</span> <span class="bar">Wednesday August 30 2006</span>
+<span style="font-family: Egyptian-Bold, PT Serif; font-weight: bold; color: #058">the<span style="color: #bcd">guardian</span></span> <span class="bar">pdf edition</span> <span class="bar">Wednesday August 30 2006</span>
 <h1><span style="color: #058">G</span>24</h1>
 </div>
-<div class="figure">
+<div class="figure right">
 <div style="font-size: 22pt; color: black">Top stories</div>
-<div style="font-family: DisplayEgyptianBold; font-size: 11pt; width: 100%; background: #ccc; text-align: center; color: orange; padding: 0.3em">Downloaded 12:15</div>
+<div style="font: bold 12pt PT Serif; width: 100%; background: #ccc; text-align: center; color: orange; padding: 0.3em">Downloaded 12:15</div>
 </div>
 </div>
 
@@ -268,7 +289,7 @@ div.topleft, div.topright { display: none }
 <h2>Lift Lebanon blockade, Annan tells Israel</h2>
 <h3>Lebanese suffering ‘humiliation’ <span class=page>Page 2</span></h3>
 </div>
-<div class="figure"><img src="images/topstories-1_3.jpg"></div>
+<div class="figure right"><img src="images/topstories-1_3.jpg"></div>
 </div>
 
 <div class="intro">
@@ -276,7 +297,7 @@ div.topleft, div.topright { display: none }
 <h2>Worried MPs plot to force Blair exit date</h2>
 <h3>Backbenchers in marginals swelling numbers wanting clear departure plan <span class=page>Page 2</span></h3>
 </div>
-<div class="figure"><img src="images/topstories-1_2.jpg"></div>
+<div class="figure right"><img src="images/topstories-1_2.jpg"></div>
 </div>
 
 <div class="intro">
@@ -284,7 +305,7 @@ div.topleft, div.topright { display: none }
 <h2>First Arab Nobel laureate dies, aged 94</h2>
 <h3>Naguib Mahfouz, 94, wrote epic depictions of ancient Cairo. <span class=page>Page 3</span></h3>
 </div>
-<div class="figure"><img src="images/topstories-1_1.jpg"></div>
+<div class="figure right"><img src="images/topstories-1_1.jpg"></div>
 </div>
 
 </div>
@@ -317,10 +338,10 @@ div.topleft, div.topright { display: none }
 <img src="images/topstories-1_4.jpg">
 </div>
 
-<div class="smallprint">
-<div class="right">guardian.co.uk/g24</div>
+<div class="smallprint left">
 Guardian Unlimited © Guardian Newspapers Limited 2006 
 <br>Registered in England and Wales. No. 908396. Registered office: 164 Deansgate, Manchester M60 2RR</div>
+<div class="smallprint right">guardian.co.uk/g24</div>
 
 
 <div class=news>
@@ -339,7 +360,7 @@ Guardian Unlimited © Guardian Newspapers Limited 2006
 <div class=byline>Staff and agencies<br>Wednesday August 30, 2006<br>Guardian Unlimited</div>
 
 <div class="figure">
-<img src="images/topstories-2_2.jpg">
+<img style="width: 100%" src="images/topstories-2_2.jpg">
 
 <p class=caption>Ehud Olmert and Kofi Annan. <span class="photographer">Photograph: Amos Ben Gershom/Getty </span></p>
 </div>
