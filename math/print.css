@@ -5,9 +5,21 @@
 	http://geocities.com/csssite/ann.css
 	*/
 
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800');
+
+@page {
+    margin: 1in 1.25in 1.2in;
+}
+
+:root {
+    orphans: 2;
+    widows: 2;
+    counter-reset: header 0 theorem 0 remark 0 equation 0;
+}
+
 root
 	{display:block;
-	font-family:Palatino Linotype, serif;
+	font-family:Palatino Linotype, "EB Garamond", serif;
 	font-size:14pt;
 	line-height:1.5em;
 	text-align:justify;}
