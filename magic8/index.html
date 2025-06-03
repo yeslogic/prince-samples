@@ -11,6 +11,8 @@ https://creativecommons.org/licenses/by/4.0/
 @import url(http://fonts.googleapis.com/css?family=Crimson+Text:400,600italic,600,400italic);
 @import url(http://fonts.googleapis.com/css?family=Oswald);
 
+@prince-quirks line-height-12;
+
 @page {
   size: a4 portrait;
   marks: crop cross;
@@ -33,6 +35,7 @@ https://creativecommons.org/licenses/by/4.0/
   @right-top { content: none; }
 }
 
+* { box-decoration-break: clone; }
 
 html, body, div, h1, h2, h3, h4, p, blockquote, ul, ol, li, pre { 
   margin: 0; padding: 0 }
@@ -88,7 +91,6 @@ div.points {
 div.point {
   padding: 0.5em;
   counter-increment: point;
-  break-inside: avoid;
 }
 
 h2 { 
