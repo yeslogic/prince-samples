@@ -7,6 +7,10 @@
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
 	 x="0px" y="0px" width="1013px" height="786px" viewBox="148.64 99.835 1013 786" enable-background="new 148.64 99.835 1013 786"
 	 xml:space="preserve">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900');
+* { font-family:Lato; }
+</style>
 <defs>
 </defs>
 <g>
