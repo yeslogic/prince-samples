@@ -15,14 +15,12 @@ The sample can also make use of the non-free
 [Faunus](https://monokrom.no/fonts/faunus) fonts,
 by [Monokrom](https://monokrom.no/).
 If you have these fonts, you can build the sample using them by first
-scanning the font files to generate the required CSS file, then including
-it on the command line when running Prince.
-For example:
+scanning the font files to generate the required CSS file. For example:
 
 ```
 prince --scanfonts *.otf > fonts.css
 
-prince -s fonts.css dictionary.html
+prince dictionary.html
 ```
 
 ### Credits
