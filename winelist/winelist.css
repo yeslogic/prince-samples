@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2025 YesLogic Pty. Ltd.
+Copyright (C) 2025-2026 YesLogic Pty. Ltd.
 
 Distributed under CC BY 4.0
 https://creativecommons.org/licenses/by/4.0/
@@ -52,36 +52,43 @@ h3 { font: normal 1.17em Gwendolyn; }
 
 /*
 * The menu consists of a three-column grid with the wine list in the middle.
-* Images are placed on the sides using grid placement properties.
+* Images or empty divs can be added to grid slots the left or right group.
 */
 
 .menu {
     display: grid;
     grid-template-columns: 1.25in auto 1.25in;
     grid-auto-rows: 1.5in;
+    grid-auto-flow: dense;
     column-gap: .25in;
     justify-content: center;
-}
 
-.menu > img {
-    max-width: 100%;
-    max-height: 100%;
-    justify-self: center;
-    align-self: center;
-}
+    .group { display: contents; }
+    > .left > * { grid-column: 1; }
+    > .right > * { grid-column: 3; }
 
-.wine-list {
-    grid-column: 2;
-    align-self: start;
-}
-.wine-list :is(h1, h2, h3) { color: red; }
-.wine-list :is(h1, h2) { text-align: center; }
+    .rowspan2 { grid-row: span 2; }
+    .rowspan3 { grid-row: span 3; }
 
-#corks {
-    order: 1;
-    grid-column: 1 / -1;
-    grid-row: span 2;
-    z-index: -1;
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        justify-self: center;
+        align-self: center;
+    }
+
+    #wine-list {
+        grid-column: 2;
+        align-self: start;
+        h1, h2 { text-align: center; }
+        h1, h2, h3 { color: red; }
+    }
+
+    #corks {
+        grid-column: 1 / -1;
+        grid-row: span 2;
+        z-index: -1;
+    }
 }
 
 /*
@@ -97,12 +104,12 @@ h3 { font: normal 1.17em Gwendolyn; }
     justify-items: center;
     align-items: center;
     font-size: 12pt;
-}
 
-.wines > div {
-    grid-column: 1;
-    justify-self: start;
-    break-inside: avoid;
-}
+    div {
+        grid-column: 1;
+        justify-self: start;
+        break-inside: avoid;
+    }
 
-.blend { font-size: 9pt; }
+    .blend { font-size: 9pt; }
+}

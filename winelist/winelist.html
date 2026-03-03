@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-Copyright (C) 2025 YesLogic Pty. Ltd.
+Copyright (C) 2025-2026 YesLogic Pty. Ltd.
 
 Distributed under CC BY 4.0
 https://creativecommons.org/licenses/by/4.0/
@@ -19,36 +19,6 @@ https://creativecommons.org/licenses/by/4.0/
 .est {
     font: 12pt Italiana;
 }
-
-/* must be large enough to cover the wine list */
-.wine-list    { grid-row: span 26; }
-@media screen { .wine-list { grid-row: span 27; } }
-
-/* image placement */
-#almond       { grid-column: 3; grid-row: 9; }
-#apple        { grid-column: 3; grid-row: 2; }
-#apricot      { grid-column: 1; grid-row: 5; }
-#asparagus    { grid-column: 1; grid-row: 7 / span 3; }
-#blackberry   { grid-column: 3; grid-row: 25 / span 2; }
-#blackcurrant { grid-column: 3; grid-row: 18; }
-#butter       { grid-column: 3; grid-row: 14; }
-#cherry       { grid-column: 1; grid-row: 23 / span 2; }
-#chocolate    { grid-column: 1; grid-row: 20; }
-#cloves       { grid-column: 3; grid-row: 24; }
-#grapefruit   { grid-column: 3; grid-row: 7; }
-#honey        { grid-column: 1; grid-row: 3; }
-#melon        { grid-column: 1; grid-row: 11; }
-#peach        { grid-column: 3; grid-row: 4; }
-#pear         { grid-column: 3; grid-row: 6; }
-#pepper       { grid-column: 1; grid-row: 25; }
-#pineapple    { grid-column: 1; grid-row: 13; }
-#plum         { grid-column: 1; grid-row: 17; }
-#raspberry    { grid-column: 3; grid-row: 22; }
-#rose         { grid-column: 3; grid-row: 19 / span 2; }
-#strawberry   { grid-column: 1; grid-row: 21 / span 2; }
-#truffle      { grid-column: 3; grid-row: 16; }
-#vanilla      { grid-column: 3; grid-row: 11 / span 2; }
-#violet       { grid-column: 1; grid-row: 15; }
 </style>
 </head>
 
@@ -70,34 +40,7 @@ https://creativecommons.org/licenses/by/4.0/
 </div>
 
 <div class="menu">
-  <img id="almond" src="images/almond.jpg"/>
-  <img id="apple" src="images/apple.jpg"/>
-  <img id="apricot" src="images/apricot.jpg"/>
-  <img id="asparagus" src="images/asparagus.jpg"/>
-  <img id="blackberry" src="images/blackberry.png"/>
-  <img id="blackcurrant" src="images/blackcurrant.jpg"/>
-  <img id="butter" src="images/butter.jpg"/>
-  <img id="cherry" src="images/cherry.jpg"/>
-  <img id="chocolate" src="images/chocolate.jpg"/>
-  <img id="cloves" src="images/cloves.jpg"/>
-  <img id="grapefruit" src="images/grapefruit.jpg"/>
-  <img id="honey" src="images/honey.jpg"/>
-  <img id="melon" src="images/melon.jpg"/>
-  <img id="peach" src="images/peach.jpg"/>
-  <img id="pear" src="images/pear.jpg"/>
-  <img id="pepper" src="images/pepper.jpg"/>
-  <img id="pineapple" src="images/pineapple.jpg"/>
-  <img id="plum" src="images/plum.jpg"/>
-  <img id="raspberry" src="images/raspberry.jpg"/>
-  <img id="rose" src="images/rose.jpg"/>
-  <img id="strawberry" src="images/strawberry.jpg"/>
-  <img id="truffle" src="images/truffle.jpg"/>
-  <img id="vanilla" src="images/vanilla.jpg"/>
-  <img id="violet" src="images/violet.jpg"/>
-
-  <img id="corks" src="images/corks.jpg"/>
-
-  <div class="wine-list">
+  <div id="wine-list">
     <h1>Wine List</h1>
 
     <h2>Sparkling, Champagne and White Wine</h2>
@@ -276,6 +219,59 @@ https://creativecommons.org/licenses/by/4.0/
       <div>Wild Duck Creek ‘Yellow Hammer Hill’ Sh, Mal, Cab (Heathcote, Vic)</div>
     </div>
   </div>
+
+  <div class="left group">
+    <div></div>
+    <div></div>
+    <img id="honey" src="images/honey.jpg"/>
+    <div></div>
+    <img id="apricot" src="images/apricot.jpg"/>
+    <div></div>
+    <img id="asparagus" class="rowspan3" src="images/asparagus.jpg"/>
+    <div></div>
+    <img id="melon" src="images/melon.jpg"/>
+    <div></div>
+    <img id="pineapple" src="images/pineapple.jpg"/>
+    <div></div>
+    <img id="violet" src="images/violet.jpg"/>
+    <div></div>
+    <img id="plum" src="images/plum.jpg"/>
+    <div></div>
+    <div></div>
+    <img id="chocolate" src="images/chocolate.jpg"/>
+    <img id="strawberry" class="rowspan2" src="images/strawberry.jpg"/>
+    <img id="cherry" class="rowspan2" src="images/cherry.jpg"/>
+    <img id="pepper" src="images/pepper.jpg"/>
+  </div>
+
+  <div class="right group">
+    <div></div>
+    <img id="apple" src="images/apple.jpg"/>
+    <div></div>
+    <img id="peach" src="images/peach.jpg"/>
+    <div></div>
+    <img id="pear" src="images/pear.jpg"/>
+    <img id="grapefruit" src="images/grapefruit.jpg"/>
+    <div></div>
+    <img id="almond" src="images/almond.jpg"/>
+    <div></div>
+    <img id="vanilla" class="rowspan2" src="images/vanilla.jpg"/>
+    <div></div>
+    <img id="butter" src="images/butter.jpg"/>
+    <div></div>
+    <img id="truffle" src="images/truffle.jpg"/>
+    <div></div>
+    <img id="blackcurrant" src="images/blackcurrant.jpg"/>
+    <img id="rose" class="rowspan2" src="images/rose.jpg"/>
+    <div></div>
+    <img id="raspberry" src="images/raspberry.jpg"/>
+    <div></div>
+    <img id="cloves" src="images/cloves.jpg"/>
+    <img id="blackberry" class="rowspan2" src="images/blackberry.png"/>
+  </div>
+
+  <img id="corks" src="images/corks.jpg"/>
+
 </div>
 
 <div class="credits">

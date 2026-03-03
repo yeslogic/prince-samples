@@ -4,7 +4,7 @@ Demonstrate the use of grid layout to format a restaurant wine menu.
 
 ### Prerequisites
 
-This sample requires Prince 20250527 or later.
+This sample requires Prince 20260225 or later.
 
 ### Instructions
 
@@ -16,7 +16,7 @@ prince winelist.html
 
 ### Copyright
 
-Files in this directory are Copyright (C) 2025 YesLogic Pty. Ltd.
+Files in this directory are Copyright (C) 2025-2026 YesLogic Pty. Ltd.
 
 Distributed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
